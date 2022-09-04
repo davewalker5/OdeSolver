@@ -1,0 +1,14 @@
+{
+    "function_file": "tests/data/example_function.py",
+    "method": "4th-Order Runge-Kutta",
+    "limit": "",
+    "steps": "40",
+    "step_size": "0.5",
+    "initial_value": "0.5",
+    "tolerance": "0.01",
+    "adjust_step_size": false,
+    "chart_title": "dy/dx = Ay",
+    "chart_min_y": "0",
+    "chart_max_y": "12500",
+    "chart_max_x": "22"
+}

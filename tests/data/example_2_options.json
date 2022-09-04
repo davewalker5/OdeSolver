@@ -1,0 +1,14 @@
+{
+    "function_file": "tests/data/example_function_2.py",
+    "method": "4th-Order Runge-Kutta",
+    "limit": "5",
+    "steps": "",
+    "step_size": "0.5",
+    "initial_value": "0.5",
+    "tolerance": "",
+    "adjust_step_size": false,
+    "chart_title": "dy/dx = y - t^2 + 1",
+    "chart_min_y": "-100",
+    "chart_max_y": "20",
+    "chart_max_x": "6"
+}

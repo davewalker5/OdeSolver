@@ -1,0 +1,14 @@
+{
+    "function_file": "tests/data/example_function_3.py",
+    "method": "Predictor-Corrector",
+    "limit": "2",
+    "steps": "",
+    "step_size": "0.2",
+    "initial_value": "1",
+    "tolerance": "0.0001",
+    "adjust_step_size": true,
+    "chart_title": "dy/dx = x^2 * y -y",
+    "chart_min_y": "0",
+    "chart_max_y": "2.5",
+    "chart_max_x": "2.5"
+}
