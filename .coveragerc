@@ -1,2 +1,17 @@
 [run]
-omit = tests/*
+omit =
+    tests/*
+    */__main__.py
+    src/ode_solver/gui/ode_solver_gui.py
+    src/ode_solver/gui/menus/file_menu_callbacks.py
+    src/ode_solver/gui/menus/options_dialog_callbacks.py
+    src/ode_solver/gui/menus/simulation_menu_callbacks.py
+    src/ode_solver/gui/options/options_io.py
+    src/ode_solver/gui/runner/solution_chart.py
+    src/ode_solver/gui/windows/window_layout.py
+
+[report]
+exclude_lines =
+    def highlight_invalid_options
+    def check_validity_of_all_options
+    def pre_run_validate_options
