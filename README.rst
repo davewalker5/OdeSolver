@@ -37,6 +37,20 @@ OdeSolver
 Ordinary Differential Equation Solver
 
 
+Structure
+=========
+
++-------------------------------+----------------------------------------------------------------------+
+| **Package**                   | **Contents**                                                         |
++-------------------------------+----------------------------------------------------------------------+
+| ode_solver.gui                | Implementation of a PySimpleGUI desktop user interface               |
++-------------------------------+----------------------------------------------------------------------+
+| ode_solver.solvers            | Implementation of the integration methods and solution runner        |
++-------------------------------+----------------------------------------------------------------------+
+| ode_solver.utils              | Supporting utilities for the integration methods and data I/O        |
++-------------------------------+----------------------------------------------------------------------+
+
+
 Running the Application
 =======================
 
