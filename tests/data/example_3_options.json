@@ -9,6 +9,7 @@
     "adjust_step_size": true,
     "chart_title": "dy/dx = x^2 * y -y",
     "chart_min_y": "0",
-    "chart_max_y": "2.5",
-    "chart_max_x": "2.5"
+    "chart_max_y": "20",
+    "chart_max_x": "2",
+    "chart_auto_scale": false
 }
