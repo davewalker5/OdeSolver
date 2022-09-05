@@ -56,6 +56,16 @@ Running the Desktop Application
 
 TBC
 
+Setting and Saving Options
+--------------------------
+
+TBC
+
+Exporting Results
+-----------------
+
+TBC
+
 
 Unit Tests and Coverage
 =======================
