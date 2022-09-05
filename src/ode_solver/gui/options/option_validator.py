@@ -5,7 +5,7 @@ from ode_solver.gui.options.option_reasons import OptionReason
 from ode_solver.gui.options.option_definitions import get_current_options, get_values_from_current_options
 
 
-def get_option_validity(name, display_name, option_type, new_value):
+def get_option_validity(name, display_name, option_type, required, new_value):
     """
     Given an option name and type and a new value for that option, return a dictionary of
     validity properties for that option and value
@@ -13,6 +13,7 @@ def get_option_validity(name, display_name, option_type, new_value):
     :param name: Name of the option
     :param display_name: Display name of the option
     :param option_type: Type of the option
+    :param required: Whether the parameter is mandatory
     :param new_value: Proposed new value for the option
     :return: Dictionary of validity information
     """
@@ -20,12 +21,13 @@ def get_option_validity(name, display_name, option_type, new_value):
         "name": name,
         "display_name": display_name,
         "type": option_type,
+        "required": required,
         "value": new_value,
         "valid": None,
         "reason": None
     }
 
-    if option_type != "checkbox" and not new_value:
+    if option_type != "checkbox" and not new_value and required:
         validity["valid"] = False
         validity["reason"] = OptionReason.EMPTY
     elif option_type == "file":
@@ -46,9 +48,10 @@ def get_option_validity(name, display_name, option_type, new_value):
     return validity
 
 
-def compile_invalid_options_list(options, ignore_empty_values, values):
+def determine_basic_validity(options, ignore_empty_values, values):
     """
-    Compile a list of options with invalid values
+    Compile a list of options with invalid values, based purely on type and value with
+    validity rules not applied
 
     :param options: Simulation option definitions dictionary
     :param ignore_empty_values: True to exclude empty values from validation
@@ -64,7 +67,7 @@ def compile_invalid_options_list(options, ignore_empty_values, values):
             option = options[key]
 
             # Get the validity
-            validity = get_option_validity(key, option["prompt"], option["type"], value)
+            validity = get_option_validity(key, option["prompt"], option["type"], option["required"], value)
             if not validity["valid"] and ((validity["reason"] != OptionReason.EMPTY) or not ignore_empty_values):
                 invalid_options.append(validity)
 
@@ -73,47 +76,64 @@ def compile_invalid_options_list(options, ignore_empty_values, values):
 
 def remove_invalid_option(invalid_options, option_name):
     """
-    Removed a named option from an invalid options list
+    Removed a named option from an invalid options list but only if the reason it's there
+    is that it's empty
 
     :param invalid_options: List of invalid option dictionaries
     :param option_name: Name of the option to remove
     """
     for i in range(len(invalid_options)):
         if invalid_options[i]["name"] == option_name:
-            del invalid_options[i]
+            if invalid_options[i]["reason"] == OptionReason.EMPTY:
+                del invalid_options[i]
             break
 
 
-def modify_exclusive_options_validity(step_adjustment, invalid_options):
+def apply_solution_limit_rules(invalid_options):
     """
-    Handle parameters that are mutually exclusive, where one isn't required if the
-    other is specified
+    Apply rules regarding options affecting detection of the end of the simulation
 
-    :param step_adjustment: True if automatic step adjustment is enabled
     :param invalid_options: List of invalid option validity dictionaries
     """
     limit_validity = [v for v in invalid_options if v["name"] == "limit"]
     steps_validity = [v for v in invalid_options if v["name"] == "steps"]
-    x_max_validity = [v for v in invalid_options if v["name"] == "chart_max_x"]
-    tolerance_validity = [v for v in invalid_options if v["name"] == "tolerance"]
 
-    # If the limit is specified, the number of steps isn't required and vice versa.
-    # However, they're only removed from the invalid list if the reason for them being
-    # invalid is that their value is empty
-    if limit_validity and not steps_validity and limit_validity[0]["reason"] == OptionReason.EMPTY:
+    # If the limit is specified, the number of steps isn't required and vice versa
+    if limit_validity and not steps_validity:
         remove_invalid_option(invalid_options, "limit")
-    elif steps_validity and not limit_validity and steps_validity[0]["reason"] == OptionReason.EMPTY:
+    elif steps_validity and not limit_validity:
         remove_invalid_option(invalid_options, "steps")
-        steps_validity = None
 
-    # The maximum value of X on the chart can be inferred if the number
-    # of steps is specified and automatic step adjustment is off
-    if x_max_validity and not steps_validity and not step_adjustment:
-        remove_invalid_option(invalid_options, "chart_max_x")
 
-    # Tolerance is not required if step size adjustment is disabled
-    if tolerance_validity and not step_adjustment:
+def apply_chart_scaling_rules(invalid_options):
+    """
+    Apply chart scaling rules to a list of invalid options
+
+    :param invalid_options: List of invalid option validity dictionaries
+    """
+    # If automatic scaling is being applied, none of the scaling properties are required
+    remove_invalid_option(invalid_options, "chart_min_y")
+    remove_invalid_option(invalid_options, "chart_max_y")
+    remove_invalid_option(invalid_options, "chart_max_x")
+
+
+def apply_validity_rules(step_adjustment, automatic_scaling, invalid_options):
+    """
+    Given a list of options that are invalid at a basic level (based on option
+    type and value), apply validity rules to adjust the list
+
+    :param step_adjustment: True if automatic step adjustment is enabled
+    :param automatic_scaling: True if the chart is being scaled automatically
+    :param invalid_options: List of invalid option validity dictionaries
+    """
+    apply_solution_limit_rules(invalid_options)
+
+    # Tolerance is only required if step size adjustment is disabled
+    if not step_adjustment:
         remove_invalid_option(invalid_options, "tolerance")
+
+    if automatic_scaling:
+        apply_chart_scaling_rules(invalid_options)
 
 
 def highlight_invalid_options(options, invalid_options, window):
@@ -141,9 +161,10 @@ def check_validity_of_all_options(options, ignore_empty_values, window, values):
     :param values: Values read from calling window
     :return: List of invalid options
     """
-    invalid_options = compile_invalid_options_list(options, ignore_empty_values, values)
+    invalid_options = determine_basic_validity(options, ignore_empty_values, values)
     step_adjustment = values["adjust_step_size"]
-    modify_exclusive_options_validity(step_adjustment, invalid_options)
+    automatic_scaling = values["chart_auto_scale"]
+    apply_validity_rules(step_adjustment, automatic_scaling, invalid_options)
     if window:
         highlight_invalid_options(options, invalid_options, window)
     return invalid_options
@@ -180,7 +201,7 @@ def pre_run_validate_options():
         # Invalid parameters detected, so show a message box
         invalid_option_display_names = "\n".join([v["display_name"] for v in invalid_options])
         message = f"Invalid values for the following options:\n\n{invalid_option_display_names}\n"
-        layout = [[sg.Text(message)]]
+        layout = [[sg.Text(message)], [sg.Button("Close")]]
         sg.Window("Invalid Options", layout, modal=True, keep_on_top=True, finalize=True).read(close=True)
 
     return current_values if valid else None

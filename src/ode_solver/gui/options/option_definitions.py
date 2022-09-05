@@ -1,4 +1,5 @@
 from ode_solver.gui.options.integration_methods import IntegrationMethods
+from ode_solver.gui.options.option_reasons import OptionReason
 
 SIMULATION_OPTIONS = {
     "function_file": {
@@ -8,8 +9,9 @@ SIMULATION_OPTIONS = {
         "items": None,
         "events": False,
         "group": "Simulation Parameters",
+        "required": True,
         "valid": False,
-        "reason": None
+        "reason": OptionReason.EMPTY
     },
     "method": {
         "value": "",
@@ -18,8 +20,9 @@ SIMULATION_OPTIONS = {
         "items": IntegrationMethods.method_name_list(),
         "events": False,
         "group": "Simulation Parameters",
+        "required": True,
         "valid": False,
-        "reason": None
+        "reason": OptionReason.EMPTY
     },
     "limit": {
         "value": "",
@@ -28,8 +31,9 @@ SIMULATION_OPTIONS = {
         "items": None,
         "events": True,
         "group": "Simulation Parameters",
+        "required": True,
         "valid": False,
-        "reason": None
+        "reason": OptionReason.EMPTY
     },
     "steps": {
         "value": "",
@@ -38,8 +42,9 @@ SIMULATION_OPTIONS = {
         "items": None,
         "events": True,
         "group": "Simulation Parameters",
+        "required": True,
         "valid": False,
-        "reason": None
+        "reason": OptionReason.EMPTY
     },
     "step_size": {
         "value": "",
@@ -48,8 +53,9 @@ SIMULATION_OPTIONS = {
         "items": None,
         "events": False,
         "group": "Simulation Parameters",
+        "required": True,
         "valid": False,
-        "reason": None
+        "reason": OptionReason.EMPTY
     },
     "initial_value": {
         "value": "",
@@ -58,8 +64,9 @@ SIMULATION_OPTIONS = {
         "items": None,
         "events": False,
         "group": "Simulation Parameters",
+        "required": True,
         "valid": False,
-        "reason": None
+        "reason": OptionReason.EMPTY
     },
     "tolerance": {
         "value": "",
@@ -68,8 +75,9 @@ SIMULATION_OPTIONS = {
         "items": None,
         "events": False,
         "group": "Step Adjustment",
+        "required": True,
         "valid": False,
-        "reason": None
+        "reason": OptionReason.EMPTY
     },
     "adjust_step_size": {
         "value": False,
@@ -78,8 +86,9 @@ SIMULATION_OPTIONS = {
         "items": None,
         "events": False,
         "group": "Step Adjustment",
-        "valid": False,
-        "reason": None
+        "required": True,
+        "valid": True,
+        "reason": OptionReason.OK
     },
     "chart_title": {
         "value": "",
@@ -88,18 +97,20 @@ SIMULATION_OPTIONS = {
         "items": None,
         "events": False,
         "group": "Chart Properties",
+        "required": False,
         "valid": True,
-        "reason": None
+        "reason": OptionReason.OK
     },
     "chart_min_y": {
-        "value": "0",
+        "value": "",
         "prompt": "Y(min)",
         "type": "decimal",
         "items": None,
         "events": False,
         "group": "Chart Properties",
-        "valid": True,
-        "reason": None
+        "required": True,
+        "valid": False,
+        "reason": OptionReason.EMPTY
     },
     "chart_max_y": {
         "value": "",
@@ -108,8 +119,9 @@ SIMULATION_OPTIONS = {
         "items": None,
         "events": False,
         "group": "Chart Properties",
+        "required": True,
         "valid": False,
-        "reason": None
+        "reason": OptionReason.EMPTY
     },
     "chart_max_x": {
         "value": "",
@@ -118,8 +130,20 @@ SIMULATION_OPTIONS = {
         "items": None,
         "events": False,
         "group": "Chart Properties",
+        "required": True,
         "valid": False,
-        "reason": None
+        "reason": OptionReason.EMPTY
+    },
+    "chart_auto_scale": {
+        "value": True,
+        "prompt": "Automatic scaling",
+        "type": "checkbox",
+        "items": None,
+        "events": False,
+        "group": "Chart Properties",
+        "required": True,
+        "valid": True,
+        "reason": OptionReason.OK
     }
 }
 

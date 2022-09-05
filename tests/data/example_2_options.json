@@ -8,7 +8,8 @@
     "tolerance": "",
     "adjust_step_size": false,
     "chart_title": "dy/dx = y - t^2 + 1",
-    "chart_min_y": "-100",
+    "chart_min_y": "0",
     "chart_max_y": "20",
-    "chart_max_x": "6"
+    "chart_max_x": "22",
+    "chart_auto_scale": false
 }

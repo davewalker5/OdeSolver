@@ -10,5 +10,6 @@
     "chart_title": "dy/dx = Ay",
     "chart_min_y": "0",
     "chart_max_y": "12500",
-    "chart_max_x": "22"
+    "chart_max_x": "22",
+    "chart_auto_scale": false
 }

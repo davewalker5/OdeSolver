@@ -24,16 +24,18 @@ class SolutionChart:
         """
         Initialiser
 
-        :param options: Current simulation options
         :param canvas: PySimpleGUI canvas in which to draw the chart
         """
         # Chart data
         self.data_x = []
         self.data_y = []
+        self.title = ""
+
+        # Chart scaling properties
+        self.automatic_scaling = False
         self.x_max = None
         self.y_min = None
         self.y_max = None
-        self.title = ""
 
         # Drawing objects
         self.psg_canvas = canvas
@@ -57,10 +59,12 @@ class SolutionChart:
         self.axes = self.figure.add_subplot()
 
         # Get the axis scaling from the current options
-        x_max = Decimal(options["chart_max_x"])
-        y_min = Decimal(options["chart_min_y"])
-        y_max = Decimal(options["chart_max_y"])
-        self.axes.set(xlim=(0, x_max), ylim=(y_min, y_max))
+        self.automatic_scaling = options["chart_auto_scale"]
+        if not self.automatic_scaling:
+            self.x_max = Decimal(options["chart_max_x"])
+            self.y_min = Decimal(options["chart_min_y"])
+            self.y_max = Decimal(options["chart_max_y"])
+            self.axes.set(xlim=(0, self.x_max), ylim=(self.y_min, self.y_max))
 
     def initialise_chart(self, options):
         """
@@ -73,12 +77,9 @@ class SolutionChart:
         # Create a new set of axes (i.e. a plot)
         self.create_axes(options)
 
-        # Initialise the chart X/Y data, axis limits and capture the title
+        # Initialise the chart X/Y data and capture the title
         self.data_x = []
         self.data_y = []
-        self.x_max = Decimal(options["chart_max_x"])
-        self.y_min = Decimal(options["chart_min_y"])
-        self.y_max = Decimal(options["chart_max_y"])
         self.title = options["chart_title"]
 
         # Draw the canvas to show the initial, empty, chart
@@ -95,13 +96,13 @@ class SolutionChart:
         self.data_x.append(x)
         self.data_y.append(y)
 
-        # Clear the axes and re-apply the labels (or the latter disappear) and scaling (or
-        # the chart rescales repeatedly with each point addition)
+        # Clear the axes and re-apply the labels (or the latter disappear)
         self.axes.cla()
         self.axes.set_title(self.title)
         self.axes.set_xlabel("x")
         self.axes.set_ylabel("y")
-        self.axes.set(xlim=(0, self.x_max), ylim=(self.y_min, self.y_max))
+        if not self.automatic_scaling:
+            self.axes.set(xlim=(0, self.x_max), ylim=(self.y_min, self.y_max))
 
         # Draw the grid and redraw the chart
         self.axes.grid()
