@@ -91,7 +91,7 @@ FILE_MENU_DEFINITION = {
     "&Export": {
         "CSV": menu_export_csv,
         "JSON": menu_export_json,
-        "XML:": menu_export_xml
+        "XML": menu_export_xml
     },
     "---": None,
     "E&xit": None
