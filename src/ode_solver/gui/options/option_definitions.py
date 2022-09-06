@@ -1,19 +1,22 @@
 from ode_solver.gui.options.integration_methods import IntegrationMethods
 from ode_solver.gui.options.option_reasons import OptionReason
 
+GROUP_NAME_FUNCTION_DEFINITION = "Function"
 GROUP_NAME_SIMULATION_PARAMETERS = "Simulation Parameters"
 GROUP_NAME_STEP_ADJUSTMENT = "Step Adjustment"
 GROUP_NAME_CHART_PROPERTIES = "Chart Properties"
 
 
 SIMULATION_OPTIONS = {
-    "function_file": {
+    "function": {
         "value": "",
-        "prompt": "Function file",
-        "type": "file",
+        "prompt": "Function Definition",
+        "type": "textarea",
+        "width": 80,
+        "height": 24,
         "items": None,
         "events": False,
-        "group": GROUP_NAME_SIMULATION_PARAMETERS,
+        "group": GROUP_NAME_FUNCTION_DEFINITION,
         "required": True,
         "valid": False,
         "reason": OptionReason.EMPTY
@@ -22,6 +25,8 @@ SIMULATION_OPTIONS = {
         "value": "",
         "prompt": "Method",
         "type": "list",
+        "width": 0,
+        "height": 0,
         "items": IntegrationMethods.method_name_list(),
         "events": False,
         "group": GROUP_NAME_SIMULATION_PARAMETERS,
@@ -33,6 +38,8 @@ SIMULATION_OPTIONS = {
         "value": "",
         "prompt": "Limit of x",
         "type": "decimal",
+        "width": 0,
+        "height": 0,
         "items": None,
         "events": True,
         "group": GROUP_NAME_SIMULATION_PARAMETERS,
@@ -44,6 +51,8 @@ SIMULATION_OPTIONS = {
         "value": "",
         "prompt": "No. steps",
         "type": "decimal",
+        "width": 0,
+        "height": 0,
         "items": None,
         "events": True,
         "group": GROUP_NAME_SIMULATION_PARAMETERS,
@@ -55,6 +64,8 @@ SIMULATION_OPTIONS = {
         "value": "",
         "prompt": "Initial step size",
         "type": "decimal",
+        "width": 0,
+        "height": 0,
         "items": None,
         "events": False,
         "group": GROUP_NAME_SIMULATION_PARAMETERS,
@@ -66,6 +77,8 @@ SIMULATION_OPTIONS = {
         "value": "",
         "prompt": "Initial y",
         "type": "decimal",
+        "width": 0,
+        "height": 0,
         "items": None,
         "events": False,
         "group": GROUP_NAME_SIMULATION_PARAMETERS,
@@ -77,6 +90,8 @@ SIMULATION_OPTIONS = {
         "value": "",
         "prompt": "Tolerance",
         "type": "decimal",
+        "width": 0,
+        "height": 0,
         "items": None,
         "events": False,
         "group": GROUP_NAME_STEP_ADJUSTMENT,
@@ -88,6 +103,8 @@ SIMULATION_OPTIONS = {
         "value": False,
         "prompt": "Adjust step size",
         "type": "checkbox",
+        "width": 0,
+        "height": 0,
         "items": None,
         "events": False,
         "group": GROUP_NAME_STEP_ADJUSTMENT,
@@ -99,6 +116,8 @@ SIMULATION_OPTIONS = {
         "value": "",
         "prompt": "Title",
         "type": "text",
+        "width": 0,
+        "height": 0,
         "items": None,
         "events": False,
         "group": GROUP_NAME_CHART_PROPERTIES,
@@ -110,6 +129,8 @@ SIMULATION_OPTIONS = {
         "value": "",
         "prompt": "Y(min)",
         "type": "decimal",
+        "width": 0,
+        "height": 0,
         "items": None,
         "events": False,
         "group": GROUP_NAME_CHART_PROPERTIES,
@@ -121,6 +142,8 @@ SIMULATION_OPTIONS = {
         "value": "",
         "prompt": "Y(max)",
         "type": "decimal",
+        "width": 0,
+        "height": 0,
         "items": None,
         "events": False,
         "group": GROUP_NAME_CHART_PROPERTIES,
@@ -143,6 +166,8 @@ SIMULATION_OPTIONS = {
         "value": True,
         "prompt": "Automatic scaling",
         "type": "checkbox",
+        "width": 0,
+        "height": 0,
         "items": None,
         "events": False,
         "group": GROUP_NAME_CHART_PROPERTIES,

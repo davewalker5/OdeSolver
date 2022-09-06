@@ -9,8 +9,11 @@ from ode_solver.gui.runner import SolutionRunner
 def simulation_options():
     tests_folder = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
     function_file = os.path.join(tests_folder, "data", "example_function_2.py")
+    with open(function_file, mode="rt", encoding="utf-8") as func_f:
+        function_definition = func_f.read()
+
     return {
-        "function_file": function_file,
+        "function": function_definition,
         "method": "Euler",
         "limit": "5",
         "steps": "",

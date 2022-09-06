@@ -18,8 +18,8 @@ def options_select_file(window, _values):
     window.reappear()
 
     # If the filename is specified, update the filename text box
-    if filename:
-        window["function_file"].Update(filename)
+    # if filename:
+    #     window["function_file"].Update(filename)
     return False
 
 

@@ -6,7 +6,7 @@ from ode_solver import RungeKutta4, load_function_from_file
 @pytest.fixture()
 def function():
     tests_folder = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-    module_path = os.path.join(tests_folder, "data", "example_function.py")
+    module_path = os.path.join(tests_folder, "data", "example_function_1.py")
     f = load_function_from_file(module_path, "function_to_solve", "f")
     return f
 

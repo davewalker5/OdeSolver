@@ -1,5 +1,5 @@
 {
-    "function_file": "tests/data/example_function_2.py",
+    "function": "def f(t, y):\n    \"\"\"\n    dy/dx = y - t^2 + 1\n\n    :param t: Independent variable\n    :param y: Dependent variable\n    :return: Next value of the dependent variable\n    \"\"\"\n    return y - t*t + 1",
     "method": "4th-Order Runge-Kutta",
     "limit": "5",
     "steps": "",

@@ -1,0 +1,15 @@
+{
+    "function": "def f(t, y):\n    \"\"\"\n    dy/dx = x^2 * y -y\n\n    :param t: Independent variable\n    :param y: Dependent variable\n    :return: Next value of the dependent variable\n    \"\"\"\n    return t*t*y - y",
+    "method": "Predictor-Corrector",
+    "limit": "2",
+    "steps": "",
+    "step_size": "0.2",
+    "initial_value": "1",
+    "tolerance": "0.0001",
+    "adjust_step_size": true,
+    "chart_title": "dy/dx = x^2 * y -y",
+    "chart_min_y": "0",
+    "chart_max_y": "2.5",
+    "chart_max_x": "2.5",
+    "chart_auto_scale": false
+}
