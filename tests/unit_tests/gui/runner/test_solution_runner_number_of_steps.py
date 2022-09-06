@@ -1,19 +1,14 @@
-import os
 import pytest
 from decimal import Decimal
 from tests.mocks import MockWindow, MockChart, MockDataTable
 from ode_solver.gui.runner import SolutionRunner
+from tests.unit_tests.gui.runner.runner_test_helpers import load_function_definition
 
 
 @pytest.fixture()
 def simulation_options():
-    tests_folder = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-    function_file = os.path.join(tests_folder, "data", "example_function_2.py")
-    with open(function_file, mode="rt", encoding="utf-8") as func_f:
-        function_definition = func_f.read()
-
     return {
-        "function": function_definition,
+        "function": load_function_definition("example_function_2.py"),
         "method": "Euler",
         "limit": "",
         "steps": "5",
