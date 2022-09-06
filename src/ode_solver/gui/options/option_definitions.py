@@ -1,6 +1,11 @@
 from ode_solver.gui.options.integration_methods import IntegrationMethods
 from ode_solver.gui.options.option_reasons import OptionReason
 
+GROUP_NAME_SIMULATION_PARAMETERS = "Simulation Parameters"
+GROUP_NAME_STEP_ADJUSTMENT = "Step Adjustment"
+GROUP_NAME_CHART_PROPERTIES = "Chart Properties"
+
+
 SIMULATION_OPTIONS = {
     "function_file": {
         "value": "",
@@ -8,7 +13,7 @@ SIMULATION_OPTIONS = {
         "type": "file",
         "items": None,
         "events": False,
-        "group": "Simulation Parameters",
+        "group": GROUP_NAME_SIMULATION_PARAMETERS,
         "required": True,
         "valid": False,
         "reason": OptionReason.EMPTY
@@ -19,7 +24,7 @@ SIMULATION_OPTIONS = {
         "type": "list",
         "items": IntegrationMethods.method_name_list(),
         "events": False,
-        "group": "Simulation Parameters",
+        "group": GROUP_NAME_SIMULATION_PARAMETERS,
         "required": True,
         "valid": False,
         "reason": OptionReason.EMPTY
@@ -30,7 +35,7 @@ SIMULATION_OPTIONS = {
         "type": "decimal",
         "items": None,
         "events": True,
-        "group": "Simulation Parameters",
+        "group": GROUP_NAME_SIMULATION_PARAMETERS,
         "required": True,
         "valid": False,
         "reason": OptionReason.EMPTY
@@ -41,7 +46,7 @@ SIMULATION_OPTIONS = {
         "type": "decimal",
         "items": None,
         "events": True,
-        "group": "Simulation Parameters",
+        "group": GROUP_NAME_SIMULATION_PARAMETERS,
         "required": True,
         "valid": False,
         "reason": OptionReason.EMPTY
@@ -52,7 +57,7 @@ SIMULATION_OPTIONS = {
         "type": "decimal",
         "items": None,
         "events": False,
-        "group": "Simulation Parameters",
+        "group": GROUP_NAME_SIMULATION_PARAMETERS,
         "required": True,
         "valid": False,
         "reason": OptionReason.EMPTY
@@ -63,7 +68,7 @@ SIMULATION_OPTIONS = {
         "type": "decimal",
         "items": None,
         "events": False,
-        "group": "Simulation Parameters",
+        "group": GROUP_NAME_SIMULATION_PARAMETERS,
         "required": True,
         "valid": False,
         "reason": OptionReason.EMPTY
@@ -74,7 +79,7 @@ SIMULATION_OPTIONS = {
         "type": "decimal",
         "items": None,
         "events": False,
-        "group": "Step Adjustment",
+        "group": GROUP_NAME_STEP_ADJUSTMENT,
         "required": True,
         "valid": False,
         "reason": OptionReason.EMPTY
@@ -85,7 +90,7 @@ SIMULATION_OPTIONS = {
         "type": "checkbox",
         "items": None,
         "events": False,
-        "group": "Step Adjustment",
+        "group": GROUP_NAME_STEP_ADJUSTMENT,
         "required": True,
         "valid": True,
         "reason": OptionReason.OK
@@ -96,7 +101,7 @@ SIMULATION_OPTIONS = {
         "type": "text",
         "items": None,
         "events": False,
-        "group": "Chart Properties",
+        "group": GROUP_NAME_CHART_PROPERTIES,
         "required": False,
         "valid": True,
         "reason": OptionReason.OK
@@ -107,7 +112,7 @@ SIMULATION_OPTIONS = {
         "type": "decimal",
         "items": None,
         "events": False,
-        "group": "Chart Properties",
+        "group": GROUP_NAME_CHART_PROPERTIES,
         "required": True,
         "valid": False,
         "reason": OptionReason.EMPTY
@@ -118,7 +123,7 @@ SIMULATION_OPTIONS = {
         "type": "decimal",
         "items": None,
         "events": False,
-        "group": "Chart Properties",
+        "group": GROUP_NAME_CHART_PROPERTIES,
         "required": True,
         "valid": False,
         "reason": OptionReason.EMPTY
@@ -129,7 +134,7 @@ SIMULATION_OPTIONS = {
         "type": "decimal",
         "items": None,
         "events": False,
-        "group": "Chart Properties",
+        "group": GROUP_NAME_CHART_PROPERTIES,
         "required": True,
         "valid": False,
         "reason": OptionReason.EMPTY
@@ -140,7 +145,7 @@ SIMULATION_OPTIONS = {
         "type": "checkbox",
         "items": None,
         "events": False,
-        "group": "Chart Properties",
+        "group": GROUP_NAME_CHART_PROPERTIES,
         "required": True,
         "valid": True,
         "reason": OptionReason.OK
