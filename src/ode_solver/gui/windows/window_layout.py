@@ -86,6 +86,9 @@ def create_options_dialog(current_options):
                                 key=key)]
             elif option["type"] == "checkbox":
                 row = [sg.Checkbox(option["prompt"], enable_events=option["events"], default=option["value"], key=key)]
+            elif option["type"] == "textarea":
+                row = [sg.Multiline(size=(option["width"], option["height"]), font='courier 10',
+                                    default_text=option["value"], key=key)]
             else:
                 row = [sg.Text(option["prompt"], size=(15, None)),
                        sg.InputText(enable_events=option["events"], default_text=option["value"], key=key)]

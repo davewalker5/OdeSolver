@@ -1,5 +1,5 @@
 {
-    "function_file": "tests/data/example_function.py",
+    "function": "from decimal import Decimal\n\nA = Decimal(\"0.5\")\n\n\ndef f(_, y):\n    \"\"\"\n    dy/dx = Ay\n\n    :param _: Independent variable (not used in this example)\n    :param y: Dependent variable\n    :return: Next value of the dependent variable\n    \"\"\"\n    return A * y",
     "method": "4th-Order Runge-Kutta",
     "limit": "",
     "steps": "20",

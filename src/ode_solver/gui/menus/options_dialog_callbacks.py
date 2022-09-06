@@ -17,9 +17,11 @@ def options_select_file(window, _values):
                                  default_extension="py")
     window.reappear()
 
-    # If the filename is specified, update the filename text box
+    # If the filename is specified, load it and set the function definition from the contents
     if filename:
-        window["function_file"].Update(filename)
+        with open(filename, mode="rt", encoding="utf") as func_f:
+            function_definition = func_f.read()
+            window["function"].Update(function_definition)
     return False
 
 

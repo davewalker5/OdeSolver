@@ -60,11 +60,6 @@ Pre-requisites
 To run the application, a virtual environment should be created, the requirements should be installed using pip and the
 environment should be activated.
 
-Creating a Function Definition
-------------------------------
-
-TBC
-
 Running the Desktop Application
 -------------------------------
 
