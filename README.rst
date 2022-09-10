@@ -63,9 +63,6 @@ environment should be activated.
 Running the Desktop Application
 -------------------------------
 
-To run the unit tests, a virtual environment should be created, the requirements should be installed using pip and the
-environment should be activated.
-
 The application can then be run from the command line, at the root of the project folder, as follows:
 
 ::
