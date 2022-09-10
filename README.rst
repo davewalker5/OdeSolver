@@ -63,18 +63,121 @@ environment should be activated.
 Running the Desktop Application
 -------------------------------
 
-TBC
+To run the unit tests, a virtual environment should be created, the requirements should be installed using pip and the
+environment should be activated.
+
+The application can then be run from the command line, at the root of the project folder, as follows:
+
+::
+
+    export PYTHONPATH=`pwd`/src/
+    python -m ode_solver
+
+When the application starts, a window similar to the following will be displayed, though it will not contain a chart
+until solution options have been set and the solution has been run:
+
+.. image:: https://github.com/davewalker5/OdeSolver/blob/main/docs/images/chart_tab.png?raw=true
+    :width: 400
+    :alt: ODE Solver Main Window
 
 Setting and Saving Options
 --------------------------
 
-TBC
+From the "Simulation" menu, select "Options" to show a tabbed options dialog as follows:
+
+.. image:: https://github.com/davewalker5/OdeSolver/blob/main/docs/images/options_function_tab.png?raw=true
+    :width: 400
+    :alt: Options Dialog
+
+The following table summarises the available options:
+
++-----------------------+---------------------+------------------------------------------------------------+
+| Tab                   | Option              | Comments                                                   |
++-----------------------+---------------------+------------------------------------------------------------+
+| Chart Properties      | Title               | Chart title (optional)                                     |
++-----------------------+---------------------+------------------------------------------------------------+
+|                       | Y(min)              | Optional if automatic scaling is enabled                   |
++-----------------------+---------------------+------------------------------------------------------------+
+|                       | Y(max)              | Optional if automatic scaling is enabled                   |
++-----------------------+---------------------+------------------------------------------------------------+
+|                       | X(max)              | Optional if automatic scaling is enabled                   |
++-----------------------+---------------------+------------------------------------------------------------+
+|                       | Automatic scaling   | If ticked, chart axes are automatically scaled to the data |
++-----------------------+---------------------+------------------------------------------------------------+
+| Function              | Function definition | Definition of the ODE to solve, in Python (see below)      |
++-----------------------+---------------------+------------------------------------------------------------+
+| Simulation Parameters | Method              | Integration method to use                                  |
++-----------------------+---------------------+------------------------------------------------------------+
+|                       | Limit of x          | End the simulation when x reaches this limit or;           |
++-----------------------+---------------------+------------------------------------------------------------+
+|                       | No. steps           | End the simulation after this number of steps              |
++-----------------------+---------------------+------------------------------------------------------------+
+|                       | Initial step size   | Initial step size                                          |
++-----------------------+---------------------+------------------------------------------------------------+
+|                       | Initial y           | Initial value of y                                         |
++-----------------------+---------------------+------------------------------------------------------------+
+| Step Adjustment       | Tolerance           | Tolerance to be used when automatic step size is enabled   |
++-----------------------+---------------------+------------------------------------------------------------+
+|                       | Adjust step size    | If ticked, automatically adjust step size                  |
++-----------------------+---------------------+------------------------------------------------------------+
+
+Once set, options can be saved to a JSON format file using the "Save" option on the "File" menu. Saved settings
+can be loaded from the "Load" option, also on the "File" menu.
+
+The Function Definition
+-----------------------
+
+The ordinary differential equation to be solved is set on the "Function" tab of the options dialog, as
+illustrated above. It must conform to the following conventions:
+
+- It must be written in Python
+- It must be called "f" and must take two arguments; the current values of the independent variable and dependent variable, in that order
+- It must return a single Decimal value that is the value of the function calculated from the input parameters
+
+Additional supporting methods and constants may be defined in the function definition, if needed.
+
+The following is an example:
+
+::
+
+    from decimal import Decimal
+
+    A = Decimal("0.5")
+
+
+    def f(_, y):
+        """
+        dy/dx = Ay
+
+        :param _: Independent variable (not used in this example)
+        :param y: Dependent variable
+        :return: Next value of the dependent variable
+        """
+        return A * y
+
+
+Running the Solution
+--------------------
+
+To solve the current ODE using the current options, select the "Run" option from the "Simulation" menu.
+If the options are all valid, and all mandatory options have been specified, the solution is run and
+both the chart (see above) and the data table will be updated as each point is added to the solution.
+
+An example of the data table is hown below:
+
+.. image:: https://github.com/davewalker5/OdeSolver/blob/main/docs/images/data_table_tab.png?raw=true
+    :width: 400
+    :alt: Data Table
+
+If the options are invalid or incomplete when the solution is run, a warning message will be displayed,
+indicating which options have not been specified, and the solution will not run.
 
 Exporting Results
 -----------------
 
-TBC
-
+Once the solution has been run, the data can be exported from the "Export" option on the "File" menu. Supported
+formats are CSV, JSON and XML. If an export option is selected without having run the solution, a warning dialog
+is displayed.
 
 Unit Tests and Coverage
 =======================
