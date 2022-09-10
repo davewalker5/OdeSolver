@@ -70,6 +70,9 @@ The application can then be run from the command line, at the root of the projec
     export PYTHONPATH=`pwd`/src/
     python -m ode_solver
 
+The first command adds the source folder, containing the application source , to the PYTHONPATH environment variable
+so the packages will be found at run time. The command will need to be modified based on the current operating system.
+
 When the application starts, a window similar to the following will be displayed, though it will not contain a chart
 until solution options have been set and the solution has been run:
 
