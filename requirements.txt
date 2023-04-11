@@ -2,7 +2,7 @@ alabaster==0.7.12
 atomicwrites==1.4.1
 attrs==22.1.0
 Babel==2.10.3
-certifi==2022.6.15
+certifi==2022.12.07
 charset-normalizer==2.1.1
 colorama==0.4.5
 coverage==6.4.4
