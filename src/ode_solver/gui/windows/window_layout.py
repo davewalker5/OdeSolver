@@ -49,7 +49,7 @@ def create_main_window(menu_definition):
     ]
 
     # Create and return the window
-    window = sg.Window("ODE Solver v1.1.2",
+    window = sg.Window("ODE Solver v1.2.0",
                        layout,
                        resizable=True,
                        margins=(0, 0),
