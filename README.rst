@@ -223,10 +223,31 @@ The resulting documentation is written to the docs/build/html folder and can be 
 web browser.
 
 
-Dependencies
-============
+Bundled Dependencies
+====================
 
-The ODE Solver application has dependencies listed in requirements.txt.
+This project includes a copy of **PySimpleGUI v4.60.4** in the `vendor/` folder.
+
+PySimpleGUI 4.x was originally available on [PyPI](https://pypi.org/project/PySimpleGUI/) under the **LGPL-3.0-or-later** open-source license.  
+It has since been removed from PyPI, but remains under its original LGPL license, which permits redistribution.
+
+This wheel is included for the following reasons:
+- Ensure reproducible builds even though the package is no longer hosted on PyPI.
+- Avoid dependency breakage for existing users.
+- Allow offline installation.
+
+### License & Attribution
+- **PySimpleGUI v4.60.4** is © 2018–2024 Mike Boers and contributors.
+- Licensed under the [GNU Lesser General Public License v3.0 or later](vendor/LICENSE.PySimpleGUI.txt).
+- You are free to replace or update the bundled version with another LGPL-compatible version if you wish.
+
+### Installing with the bundled wheel
+To install from the bundled `vendor/` folder:
+
+::
+
+    pip install --no-index --find-links vendor -r requirements.txt
+
 
 
 License
@@ -236,7 +257,7 @@ This software is licensed under the MIT License:
 
 https://opensource.org/licenses/MIT
 
-Copyright 2022 David Walker
+Copyright 2022, 2023, 2024, 2025 David Walker
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
 documentation files (the "Software"), to deal in the Software without restriction, including without limitation the
