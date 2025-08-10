@@ -236,12 +236,16 @@ This wheel is included for the following reasons:
 - Avoid dependency breakage for existing users.
 - Allow offline installation.
 
-### License & Attribution
+License & Attribution
+---------------------
+
 - **PySimpleGUI v4.60.4** is © 2018–2024 Mike Boers and contributors.
 - Licensed under the [GNU Lesser General Public License v3.0 or later](vendor/LICENSE.PySimpleGUI.txt).
 - You are free to replace or update the bundled version with another LGPL-compatible version if you wish.
 
-### Installing with the bundled wheel
+Installing with the bundled 
+---------------------------
+
 To install from the bundled `vendor/` folder:
 
 ::
