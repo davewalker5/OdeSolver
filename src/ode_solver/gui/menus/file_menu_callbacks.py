@@ -19,7 +19,8 @@ def menu_load_options(_window, _values):
     Show a file selection dialog and load the simulation options from the selected file
     """
     simulation_options = load_options()
-    set_current_options_from_values(simulation_options)
+    if simulation_options:
+        set_current_options_from_values(simulation_options)
     return False
 
 
