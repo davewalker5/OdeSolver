@@ -202,6 +202,7 @@ def set_current_options_from_values(simulation_options):
 
     :param simulation_options: Dictionary of option key-value pairs
     """
-    for key, value in simulation_options.items():
-        if key in SIMULATION_OPTIONS.keys():
-            SIMULATION_OPTIONS[key]["value"] = value
+    if simulation_options:
+        for key, value in simulation_options.items():
+            if key in SIMULATION_OPTIONS.keys():
+                SIMULATION_OPTIONS[key]["value"] = value

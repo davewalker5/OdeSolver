@@ -1,4 +1,4 @@
-import PySimpleGUI as sg
+import FreeSimpleGUI as sg
 from ode_solver.gui.options import get_current_options, check_validity_of_all_options, capture_all_values
 
 

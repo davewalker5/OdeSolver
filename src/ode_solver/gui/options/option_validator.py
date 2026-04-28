@@ -1,5 +1,5 @@
 import os
-import PySimpleGUI as sg
+import FreeSimpleGUI as sg
 from decimal import Decimal, InvalidOperation
 from ode_solver.gui.options.option_reasons import OptionReason
 from ode_solver.gui.options.option_definitions import get_current_options, get_values_from_current_options
