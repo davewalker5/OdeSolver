@@ -1,5 +1,5 @@
 import pytest
-import PySimpleGUI as sg
+import FreeSimpleGUI as sg
 from tests.mocks import MockWindow
 from ode_solver.gui.windows import run_event_loop
 
