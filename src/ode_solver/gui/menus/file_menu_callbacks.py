@@ -1,4 +1,4 @@
-import PySimpleGUI as sg
+import FreeSimpleGUI as sg
 from ode_solver.gui.options import get_values_from_current_options, \
     set_current_options_from_values, save_options, load_options
 from ode_solver.gui.menus.simulation_menu_callbacks import get_history

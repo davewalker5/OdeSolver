@@ -40,7 +40,7 @@ def menu_run(window, _values):
 
     values = pre_run_validate_options()
     if values:
-        # Create a charting instance that integrates Matplotlib with PySimpleGUI canvas
+        # Create a charting instance that integrates Matplotlib with FreeSimpleGUI canvas
         if solution_chart is None:
             solution_chart = SolutionChart(window["chart"])
 

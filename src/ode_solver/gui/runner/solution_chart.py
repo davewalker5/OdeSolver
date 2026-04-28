@@ -1,8 +1,8 @@
 """
-The PySimpleGUI/Matplotlib integration. The code in this module draws on the advice from Jason
+The FreeSimpleGUI/Matplotlib integration. The code in this module draws on the advice from Jason
 Yang in the following GitHub issue:
 
-https://github.com/PySimpleGUI/PySimpleGUI/issues/5410
+https://github.com/FreeSimpleGUI/FreeSimpleGUI/issues/5410
 """
 from decimal import Decimal
 from matplotlib.figure import Figure
@@ -11,7 +11,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 class Canvas(FigureCanvasTkAgg):
     """
-    Implementation of a Matplotlib canvas under a tkinter/PySimpleGUI canvas
+    Implementation of a Matplotlib canvas under a tkinter/FreeSimpleGUI canvas
     """
     def __init__(self, figure=None, master=None):
         super().__init__(figure=figure, master=master)
@@ -24,7 +24,7 @@ class SolutionChart:
         """
         Initialiser
 
-        :param canvas: PySimpleGUI canvas in which to draw the chart
+        :param canvas: FreeSimpleGUI canvas in which to draw the chart
         """
         # Chart data
         self.data_x = []
@@ -45,7 +45,7 @@ class SolutionChart:
 
     def create_canvas(self):
         """
-        Create a Matplotlib figure and canvas underlying a PySimpleGUI canvas
+        Create a Matplotlib figure and canvas underlying a FreeSimpleGUI canvas
         """
         self.figure = Figure(dpi=100)
         self.canvas = Canvas(self.figure, self.psg_canvas.Widget)

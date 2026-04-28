@@ -1,5 +1,5 @@
 import json
-import PySimpleGUI as sg
+import FreeSimpleGUI as sg
 
 
 def save_options(simulation_options):
