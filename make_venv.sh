@@ -14,5 +14,4 @@ python -m venv venv
 pip install --upgrade pip
 
 # Install the requirements
-# pip install --no-index --find-links=vendor PySimpleGUI
-pip install -r requirements.txt
+pip install -e .
