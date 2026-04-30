@@ -5,6 +5,9 @@ from ode_solver.utils.callbacks import console_callback
 from ode_solver.utils.data_exchange import write_csv, write_json, write_xml
 from ode_solver.utils.function_loader import load_function_from_file, load_function_from_string
 
+PROGRAM_NAME = "ODE Solver"
+PROGRAM_DESCRIPTION = ""
+
 __all__ = [
     "RungeKutta4",
     "Euler",
@@ -14,5 +17,7 @@ __all__ = [
     "write_json",
     "write_xml",
     "load_function_from_file",
-    "load_function_from_string"
+    "load_function_from_string",
+    PROGRAM_NAME,
+    PROGRAM_DESCRIPTION
 ]
