@@ -136,22 +136,7 @@ def apply_validity_rules(step_adjustment, automatic_scaling, invalid_options):
         apply_chart_scaling_rules(invalid_options)
 
 
-def highlight_invalid_options(options, invalid_options, window):
-    """
-    Highlight any invalid options in the options dialog
-
-    :param options: Dictionary of option definitions
-    :param invalid_options: List of invalid option dictionaries
-    :param window: Calling window
-    """
-    invalid_option_keys = [o["name"] for o in invalid_options]
-    all_text_boxes_keys = [k for k, v in options.items() if v["type"] not in ["list", "checkbox"]]
-    for key in all_text_boxes_keys:
-        colour = "pink" if key in invalid_option_keys else "white"
-        window[key].update(background_color=colour)
-
-
-def check_validity_of_all_options(options, ignore_empty_values, window, values):
+def check_validity_of_all_options(options, ignore_empty_values, values):
     """
     Check the validity of all the options on the options dialog
 
@@ -165,8 +150,6 @@ def check_validity_of_all_options(options, ignore_empty_values, window, values):
     step_adjustment = values["adjust_step_size"]
     automatic_scaling = values["chart_auto_scale"]
     apply_validity_rules(step_adjustment, automatic_scaling, invalid_options)
-    if window:
-        highlight_invalid_options(options, invalid_options, window)
     return invalid_options
 
 
@@ -195,7 +178,7 @@ def pre_run_validate_options():
     # and use this to check the validity of all values
     current_options = get_current_options()
     current_values = get_values_from_current_options()
-    invalid_options = check_validity_of_all_options(current_options, False, None, current_values)
+    invalid_options = check_validity_of_all_options(current_options, False, current_values)
     valid = len(invalid_options) == 0
     if not valid:
         # Invalid parameters detected, so show a message box
