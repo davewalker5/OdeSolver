@@ -1,6 +1,6 @@
 import os
 from src.ode_solver.utils.function_loader import load_module_from_file, get_function_from_module
-from src.ode_solver.utils.callbacks import console_callback
+from src.ode_solver.utils.console_callback import console_callback
 from src.ode_solver.solvers.runge_kutta_4 import RungeKutta4
 from src.ode_solver.utils.data_exchange import write_csv
 

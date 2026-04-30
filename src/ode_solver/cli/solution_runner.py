@@ -3,7 +3,7 @@ from ode_solver.solvers.predictor_corrector import PredictorCorrector
 from ode_solver.solvers.runge_kutta_4 import RungeKutta4
 from ode_solver.utils.function_loader import load_module_from_string, get_function_from_module
 from ode_solver.utils.integration_methods import IntegrationMethods
-from ode_solver.utils.callbacks import console_callback
+from ode_solver.utils.live_table_callback import LiveTableCallback
 
 
 class SolutionRunner:
@@ -54,7 +54,8 @@ class SolutionRunner:
         :param f: Function to solve
         :return: Instance of the integrator
         """
-        callbacks = [console_callback]
+        table = LiveTableCallback(title=self.options["chart_title"])
+        callbacks = [table]
         method_id = IntegrationMethods.method_id(self.options["method"])
         if method_id == IntegrationMethods.EULER:
             integrator = Euler(f, pre_hook, post_hook, callbacks, 6)
