@@ -3,6 +3,9 @@ import json
 from ode_solver.utils.decimal_encoder import DecimalEncoder
 from xml.etree.ElementTree import Element, fromstring, tostring
 from xml.dom import minidom
+from pathlib import Path
+
+SUPPORTED_EXTENSIONS = [".csv", ".xml", ".json"]
 
 
 def write_csv(history, filepath):
@@ -67,3 +70,34 @@ def write_xml(history, filepath, root_tag="simulation", point_tag="point"):
     # Write the formatted XML string to the output file
     with open(filepath, mode="wt", encoding="utf-8") as xml_f:
         xml_f.write(xml_pretty)
+
+
+def check_export_format(filepath):
+    """
+    Check the file type for an export file is suported
+
+    :param filepath: Path to the output file
+    :returns: True if the format is supported
+    """
+    extension = Path(filepath).suffix.casefold()
+    return extension in SUPPORTED_EXTENSIONS
+
+
+def write_simulation(history, filepath):
+    """
+    Write a run history to a file, using the file extension to determine the type of file
+    to write
+
+    :param history: List of dictionaries representing points in the solution
+    :param filepath: Path to the output file
+    """
+    extension = Path(filepath).suffix.casefold()
+    if extension == ".csv":
+        write_csv(history, filepath)
+    elif extension == ".json":
+        write_json(history, filepath)
+    elif extension == ".xml":
+        write_xml(history, filepath)
+    else:
+        message = f"Invalid export file type '{extension}'"
+        raise ValueError(message)

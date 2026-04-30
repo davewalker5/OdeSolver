@@ -5,10 +5,11 @@ from ode_solver.gui.options.option_validator import validate_options_pre_run
 from ode_solver.gui.menus.options_dialog_callbacks import SIMULATION_OPTIONS_CALLBACKS
 from ode_solver.gui.runner.solution_runner import SolutionRunner
 from ode_solver.gui.runner.solution_chart import SolutionChart
+from ode_solver.gui import RUN_SIMULATION_EVENT, CHART_EXPORT_KEY, DATA_EXPORT_KEY
+from ode_solver.utils.data_exchange import write_simulation
 
 solution_chart = None
 solution_runner = None
-
 
 def get_history():
     """
@@ -32,12 +33,12 @@ def menu_options(_window, _values):
     return False
 
 
-def menu_run(window, _values):
+def menu_run(window, event_values):
     """
     Start a simulation with the current simulation properties
 
     :param window: Calling window
-    :param _values: Values read from calling window
+    :param event_values: Event values read from calling window
     """
     global solution_chart, solution_runner
 
@@ -53,6 +54,19 @@ def menu_run(window, _values):
         # Initialise the axes with the new values and run the solution
         solution_chart.initialise_chart(values)
         solution_runner.run(values)
+
+        # Handle post-run data and chart export
+        if isinstance(event_values, dict) and RUN_SIMULATION_EVENT in event_values.keys():
+            # Data export
+            export_file = event_values[RUN_SIMULATION_EVENT][DATA_EXPORT_KEY]
+            if export_file:
+                write_simulation(solution_runner.history, export_file)
+
+            # Chart export
+            chart_file = event_values[RUN_SIMULATION_EVENT][CHART_EXPORT_KEY]
+            if chart_file:
+                raise NotImplementedError(f"Chart export is not currently implemented")
+
     return False
 
 

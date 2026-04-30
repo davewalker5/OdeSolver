@@ -1,6 +1,9 @@
 import FreeSimpleGUI as sg
 import traceback
 from ode_solver.cli.parser import load_simulation_from_args
+from ode_solver.gui import RUN_SIMULATION_EVENT, CHART_EXPORT_KEY, DATA_EXPORT_KEY
+from ode_solver.utils.data_exchange import check_export_format
+from pathlib import Path
 
 
 def show_error_window(exception):
@@ -14,7 +17,7 @@ def show_error_window(exception):
             disabled=True,
             expand_x=True,
             expand_y=True,
-            autoscroll=False,   # 👈 don't jump to bottom
+            autoscroll=False,
         )],
         [sg.Button("Copy"), sg.Button("Close")]
     ]
@@ -65,30 +68,33 @@ def handle_args(args, window):
             show_argument_error(f"Missing or invalid simulation file:\n{args.simulation}\n")
             return False
 
+    # Handle the export flag
+    if args.export:
+        if not args.auto_run or not args.simulation:
+            show_argument_error(f"A simulation file and auto-run must be specified to use export")
+            return False
+
+        # Check export to a supported type has been requested
+        if not check_export_format(args.export):
+            show_argument_error(f"Invalid export format specified")
+            return False
+
+    # Handle the charting flag
+    if args.chart:
+        if not args.auto_run or not args.simulation:
+            show_argument_error(f"A simulation file and auto-run must be specified to export a chart")
+            return False
+
     # Handle auto-run
     if args.auto_run:
         if not args.simulation:
             show_argument_error(f"A simulation file must be specified to use auto-run")
             return False
-        window.write_event_value("Run", None)
 
-    # Handle the export flag
-    if args.export:
-        if not args.auto_run:
-            show_argument_error(f"A simulation file and auto-run must be specified to use export")
-            return False
-
-        show_argument_error(f"Command line export is not currently implemented")
-        return False
-
-    # Handle the charting flag
-    if args.chart:
-        if not args.auto_run:
-            show_argument_error(f"A simulation file and auto-run must be specified to export a chart")
-            return False
-
-        show_argument_error(f"Command line charting is not currently implemented")
-        return False
+        window.write_event_value(RUN_SIMULATION_EVENT, {
+            DATA_EXPORT_KEY: args.export,
+            CHART_EXPORT_KEY: args.chart
+        })
 
     return True
 
@@ -112,7 +118,6 @@ def run_event_loop(window, callbacks, args):
 
             # Check to see if the event is in the callbacks. If not, it's ignored. Otherwise,
             # get the callback function. If it's none, break out. Otherwise, call the function
-            print(event)
             if event in callbacks.keys():
                 callback = callbacks[event]
                 if callback:
