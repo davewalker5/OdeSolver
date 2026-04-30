@@ -1,11 +1,10 @@
-from ode_solver.gui.options.integration_methods import IntegrationMethods
-from ode_solver.gui.options.option_reasons import OptionReason
+from ode_solver.utils.integration_methods import IntegrationMethods
+from ode_solver.options.option_reasons import OptionReason
 
 GROUP_NAME_FUNCTION_DEFINITION = "Function"
 GROUP_NAME_SIMULATION_PARAMETERS = "Simulation Parameters"
 GROUP_NAME_STEP_ADJUSTMENT = "Step Adjustment"
 GROUP_NAME_CHART_PROPERTIES = "Chart Properties"
-
 
 SIMULATION_OPTIONS = {
     "function": {
@@ -184,6 +183,7 @@ def get_current_options():
 
     :return: Dictionary of options
     """
+    global SIMULATION_OPTIONS
     return SIMULATION_OPTIONS
 
 
@@ -192,6 +192,7 @@ def get_values_from_current_options():
     Return a dictionary of option key-value-pairs for the current simulation options,
     removing the menu configuration information from the dictionary of options
     """
+    global SIMULATION_OPTIONS
     simulation_options = {k: v["value"] for k, v in SIMULATION_OPTIONS.items()}
     return simulation_options
 
@@ -202,6 +203,7 @@ def set_current_options_from_values(simulation_options):
 
     :param simulation_options: Dictionary of option key-value pairs
     """
+    global SIMULATION_OPTIONS
     if simulation_options:
         for key, value in simulation_options.items():
             if key in SIMULATION_OPTIONS.keys():

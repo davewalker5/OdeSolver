@@ -1,13 +1,15 @@
 import os
 import pytest
-from ode_solver import RungeKutta4, load_function_from_file
+from src.ode_solver.solvers.runge_kutta_4 import RungeKutta4
+from src.ode_solver.utils.function_loader import load_module_from_file, get_function_from_module
 
 
 @pytest.fixture()
 def function():
     tests_folder = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
     module_path = os.path.join(tests_folder, "data", "example_function_1.py")
-    f = load_function_from_file(module_path, "function_to_solve", "f")
+    module = load_module_from_file(module_path, "function_to_solve")
+    f = get_function_from_module(module, "f")
     return f
 
 
@@ -117,7 +119,7 @@ def expected_solution():
 
 
 def test_rk4_solution(function, expected_solution):
-    rk4 = RungeKutta4(function, None, 6)
+    rk4 = RungeKutta4(function, None, None, None, 6)
     rk4.solve_for_steps(10, 0.5, 0.5)
 
     assert len(expected_solution) == len(rk4.history)

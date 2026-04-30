@@ -1,4 +1,6 @@
 import FreeSimpleGUI as sg
+from ode_solver import PROGRAM_NAME
+from ode_solver.utils.version import get_application_version
 
 
 def create_main_window(menu_definition):
@@ -49,7 +51,8 @@ def create_main_window(menu_definition):
     ]
 
     # Create and return the window
-    window = sg.Window("ODE Solver v2.0.0",
+    version = get_application_version()
+    window = sg.Window(f"{PROGRAM_NAME} v{version}",
                        layout,
                        resizable=True,
                        margins=(0, 0),

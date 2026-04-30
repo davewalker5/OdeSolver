@@ -1,0 +1,3 @@
+RUN_SIMULATION_EVENT = "Run"
+DATA_EXPORT_KEY = "DataExport"
+CHART_EXPORT_KEY = "ChartExport"

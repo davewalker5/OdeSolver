@@ -1,5 +1,7 @@
 import FreeSimpleGUI as sg
-from ode_solver.gui.options import get_current_options, check_validity_of_all_options, capture_all_values
+from ode_solver.options.option_definitions import get_current_options
+from ode_solver.gui.options.option_validator import validate_all_options
+from ode_solver.options.option_validator import capture_all_values
 
 
 def options_select_file(window, _values):
@@ -61,7 +63,7 @@ def options_ok(window, values):
     # At this stage, we exclude empty values from the validation process - this gives the user
     # the option to set some then come back and set others later
     current_options = get_current_options()
-    invalid_options = check_validity_of_all_options(current_options, True, window, values)
+    invalid_options = validate_all_options(current_options, True, window, values)
     if not invalid_options:
         capture_all_values(current_options, values)
 

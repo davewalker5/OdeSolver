@@ -1,6 +1,6 @@
 import pytest
-from ode_solver.gui.options import OptionReason
-from ode_solver.gui.options.option_validator import get_option_validity, determine_basic_validity, \
+from src.ode_solver.options.option_reasons import OptionReason
+from src.ode_solver.options.option_validator import get_option_validity, determine_basic_validity, \
     remove_invalid_option
 
 

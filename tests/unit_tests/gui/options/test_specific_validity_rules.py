@@ -1,6 +1,6 @@
 import pytest
-from ode_solver.gui.options import OptionReason
-from ode_solver.gui.options.option_validator import apply_solution_limit_rules, apply_chart_scaling_rules, \
+from src.ode_solver.options.option_reasons import OptionReason
+from src.ode_solver.options.option_validator import apply_solution_limit_rules, apply_chart_scaling_rules, \
     apply_validity_rules
 
 

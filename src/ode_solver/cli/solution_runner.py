@@ -3,10 +3,11 @@ from ode_solver.solvers.predictor_corrector import PredictorCorrector
 from ode_solver.solvers.runge_kutta_4 import RungeKutta4
 from ode_solver.utils.function_loader import load_module_from_string, get_function_from_module
 from ode_solver.utils.integration_methods import IntegrationMethods
+from ode_solver.utils.live_table_callback import LiveTableCallback
 
 
 class SolutionRunner:
-    def __init__(self, chart, data_table, window):
+    def __init__(self, quiet):
         """
         Initialiser
 
@@ -15,14 +16,9 @@ class SolutionRunner:
         :param window: Calling window
         """
         # Solution options
-        self.function = None
         self.options = None
         self.exception = None
-
-        # Output controls
-        self.window = window
-        self.data_table = data_table
-        self.chart = chart
+        self.quiet = quiet
 
         # Data to populate output controls
         self.data_table_content = []
@@ -51,50 +47,6 @@ class SolutionRunner:
         """
         return self.integrator.history if self.integrator else None
 
-    def refresh_window_callback(self, _method, _i, _t, _y, _step_size, _difference, _tolerance):
-        """
-        Callback to refresh the window as the solution progresses. The solution's on the main
-        thread as the chart updates must happen on that thread
-
-        :param _method: Method name
-        :param _i: Step number
-        :param _t: Independent variable
-        :param _y: Dependent variable
-        :param _step_size: Step size
-        :param _difference: Difference from the adjustable step size calculation
-        :param _tolerance: Tolerance for difference values
-        """
-        self.window.refresh()
-
-    def data_table_callback(self, _method, _i, t, y, step_size, difference, _tolerance):
-        """
-        Insert a row into the data table
-
-        :param _method: Method name
-        :param _i: Step number
-        :param t: Independent variable
-        :param y: Dependent variable
-        :param step_size: Step size
-        :param difference: Difference from the adjustable step size calculation
-        :param _tolerance: Tolerance for difference values
-        """
-        self.data_table_content.append([t, y, step_size, difference])
-        self.data_table.update(values=self.data_table_content)
-
-    def chart_callback(self, _method, _i, t, y, _step_size, _difference, _tolerance):
-        """
-        Add a point to the chart
-
-        :param _method: Method name
-        :param _i: Step number
-        :param t: Independent variable
-        :param y: Dependent variable
-        :param _step_size: Step size
-        :param _difference: Difference from the adjustable step size calculation
-        :param _tolerance: Tolerance for difference values
-        """
-        self.chart.add_point(t, y)
-
     def create_integrator(self, f, pre_hook, post_hook):
         """
         Create an instance of the integration class
@@ -102,7 +54,11 @@ class SolutionRunner:
         :param f: Function to solve
         :return: Instance of the integrator
         """
-        callbacks = [self.data_table_callback, self.chart_callback, self.refresh_window_callback]
+        if not self.quiet:
+            table = LiveTableCallback(title=self.options["chart_title"])
+            callbacks = [table]
+        else:
+            callbacks = None
         method_id = IntegrationMethods.method_id(self.options["method"])
         if method_id == IntegrationMethods.EULER:
             integrator = Euler(f, pre_hook, post_hook, callbacks, 6)

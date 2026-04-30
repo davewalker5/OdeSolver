@@ -1,8 +1,7 @@
-import os
 import pytest
 from decimal import Decimal
 from tests.mocks import MockWindow, MockChart, MockDataTable
-from ode_solver.gui.runner import SolutionRunner
+from src.ode_solver.gui.runner.solution_runner import SolutionRunner
 from tests.unit_tests.gui.runner.runner_test_helpers import load_function_definition
 
 

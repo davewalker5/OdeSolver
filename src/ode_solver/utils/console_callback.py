@@ -12,3 +12,4 @@ def console_callback(method, i, t, y, step_size, difference, tolerance):
     """
     print(f"{method}: Step {i}: t = {t}, y = {y}, step size = {step_size}, diff = {difference}, "
           f"tolerance = {tolerance}")
+
