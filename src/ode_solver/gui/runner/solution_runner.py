@@ -1,5 +1,5 @@
-from ode_solver import Euler, PredictorCorrector, RungeKutta4, load_function_from_string
-from ode_solver.gui.options import IntegrationMethods
+from ode_solver import Euler, PredictorCorrector, RungeKutta4, load_module_from_string, get_function_from_module
+from ode_solver.utils import IntegrationMethods
 
 
 class SolutionRunner:
@@ -32,7 +32,8 @@ class SolutionRunner:
         Run the solution
         """
         self.options = options
-        f = load_function_from_string(self.options["function"], "function_to_solve", "f")
+        module = load_module_from_string(self.options["function"], "simulation_module")
+        f = get_function_from_module(module, "f")
         self.integrator = self.create_integrator(f)
         self.solve(self.integrator)
 

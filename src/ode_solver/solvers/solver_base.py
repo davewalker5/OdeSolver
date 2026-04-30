@@ -156,6 +156,8 @@ class SolverBase:
             t, y = tf, yf
             self.notify(current_step, t, y, step_size_decimal, difference, tolerance_decimal)
 
+
+
     def solve_for_steps(self, steps, step_size, initial_value):
         """
         Solve the equation for the specified number of steps, starting at t = 0
