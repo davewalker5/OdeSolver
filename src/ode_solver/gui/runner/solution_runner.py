@@ -40,7 +40,7 @@ class SolutionRunner:
         pre_hook = get_function_from_module(module, "pre_hook")
         post_hook = get_function_from_module(module, "post_hook")
         self.integrator = self.create_integrator(f, pre_hook, post_hook)
-        self.solve(self.integrator)
+        self.solve()
 
     @property
     def history(self):
@@ -113,17 +113,37 @@ class SolutionRunner:
 
         return integrator
 
-    def solve(self, integrator):
+    def solve(self):
         """
         Run the solution using the specified integrator
         """
         if self.options["limit"]:
-            integrator.solve_for_range(self.options["limit"],
+            self.integrator.solve_for_range(self.options["limit"],
                                        self.options["step_size"],
                                        self.options["initial_value"],
                                        self.options["adjust_step_size"],
                                        self.options["tolerance"])
         else:
-            integrator.solve_for_steps(self.options["steps"],
+            self.integrator.solve_for_steps(self.options["steps"],
                                        self.options["step_size"],
                                        self.options["initial_value"])
+
+    def normalise(self):
+        """
+        Normalise Y values on a scale of 0.0 to 1.0
+        """
+        # Normalise the run history
+        self.integrator.normalise_y()
+
+        # Set Y-scale from 0 to 1.0
+        self.options["chart_min_y"] = 0
+        self.options["chart_max_y"] = 1.0
+        self.options["chart_auto_scale"] = False
+
+        # Re-initialise the chart
+        self.chart.initialise_chart(self.options)
+
+        # Re-plot each point
+        for p in self.history:
+            self.chart.add_point(p["t"], p["y_normalised"])
+            self.window.refresh()

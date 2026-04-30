@@ -85,6 +85,19 @@ SIMULATION_OPTIONS = {
         "valid": False,
         "reason": OptionReason.EMPTY
     },
+    "normalise": {
+        "value": False,
+        "prompt": "Normalise",
+        "type": "checkbox",
+        "width": 0,
+        "height": 0,
+        "items": None,
+        "events": False,
+        "group": GROUP_NAME_SIMULATION_PARAMETERS,
+        "required": True,
+        "valid": True,
+        "reason": OptionReason.OK
+    },
     "tolerance": {
         "value": "",
         "prompt": "Tolerance",
