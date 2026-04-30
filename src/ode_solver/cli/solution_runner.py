@@ -83,3 +83,9 @@ class SolutionRunner:
             integrator.solve_for_steps(self.options["steps"],
                                        self.options["step_size"],
                                        self.options["initial_value"])
+
+    def normalise(self):
+        """
+        Normalise Y values on a scale of 0.0 to 1.0
+        """
+        self.integrator.normalise_y()

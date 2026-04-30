@@ -75,6 +75,10 @@ def cli_main(args):
     solution_runner = SolutionRunner(args.quiet)
     solution_runner.run(simulation_options)
 
+    # If requested, normalise the data
+    if simulation_options["normalise"]:
+        solution_runner.normalise()
+
     # Data export
     if args.export:
         write_simulation(solution_runner.history, args.export)
