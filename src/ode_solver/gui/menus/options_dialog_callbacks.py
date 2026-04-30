@@ -1,7 +1,7 @@
 import FreeSimpleGUI as sg
-from src.ode_solver.options.option_definitions import get_current_options
-from src.ode_solver.gui.options.option_validator import validate_all_options
-from src.ode_solver.options.option_validator import capture_all_values
+from ode_solver.options.option_definitions import get_current_options
+from ode_solver.gui.options.option_validator import validate_all_options
+from ode_solver.options.option_validator import capture_all_values
 
 
 def options_select_file(window, _values):

@@ -1,7 +1,7 @@
 import pytest
 import FreeSimpleGUI as sg
 from tests.mocks import MockWindow
-from ode_solver.gui.windows import run_event_loop
+from src.ode_solver.gui.windows.event_loop import run_event_loop
 
 call_count = 0
 
@@ -44,7 +44,7 @@ def test_event_loop_runs_to_completion(mock_events):
     callbacks = {str(i): mock_callback_function for i in range(1, len(mock_events) + 1)}
     window = MockWindow(mock_events)
 
-    run_event_loop(window, callbacks)
+    run_event_loop(window, callbacks, None)
     assert len(mock_events) == call_count
 
 
@@ -54,7 +54,7 @@ def test_event_loop_ends_at_window_close_event(mock_events_with_window_closed_ev
     callbacks = {str(i): mock_callback_function for i in range(1, len(mock_events_with_window_closed_event) + 1)}
 
     window = MockWindow(mock_events_with_window_closed_event)
-    run_event_loop(window, callbacks)
+    run_event_loop(window, callbacks, None)
 
     assert 2 == call_count
     assert len(mock_events_with_window_closed_event) > call_count
@@ -66,7 +66,7 @@ def test_event_ends_at_none_callback(mock_events):
     callbacks = {str(i): None if i == 3 else mock_callback_function for i in range(1, len(mock_events) + 1)}
 
     window = MockWindow(mock_events)
-    run_event_loop(window, callbacks)
+    run_event_loop(window, callbacks, None)
 
     assert 2 == call_count
     assert len(mock_events) > call_count
@@ -85,6 +85,6 @@ def test_event_loop_ignores_unregistered_event(mock_events):
     })
 
     window = MockWindow(mock_events)
-    run_event_loop(window, callbacks)
+    run_event_loop(window, callbacks, None)
 
     assert len(mock_events) - 1 == call_count

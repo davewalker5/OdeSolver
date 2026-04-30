@@ -1,8 +1,8 @@
 import os
 import FreeSimpleGUI as sg
 from decimal import Decimal, InvalidOperation
-from src.ode_solver.options.option_reasons import OptionReason
-from src.ode_solver.options.option_definitions import get_current_options, get_values_from_current_options
+from ode_solver.options.option_reasons import OptionReason
+from ode_solver.options.option_definitions import get_current_options, get_values_from_current_options
 
 
 def get_option_validity(name, display_name, option_type, required, new_value):

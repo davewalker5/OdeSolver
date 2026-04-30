@@ -1,7 +1,7 @@
 from ode_solver.gui.windows.window_layout import create_options_dialog
 from ode_solver.gui.windows.event_loop import run_event_loop
-from src.ode_solver.options.option_definitions import get_current_options
-from src.ode_solver.gui.options.option_validator import validate_options_pre_run
+from ode_solver.options.option_definitions import get_current_options
+from ode_solver.gui.options.option_validator import validate_options_pre_run
 from ode_solver.gui.menus.options_dialog_callbacks import SIMULATION_OPTIONS_CALLBACKS
 from ode_solver.gui.runner.solution_runner import SolutionRunner
 from ode_solver.gui.runner.solution_chart import SolutionChart
@@ -28,7 +28,7 @@ def menu_options(_window, _values):
     """
     simulation_options = get_current_options()
     dialog = create_options_dialog(simulation_options)
-    run_event_loop(dialog, SIMULATION_OPTIONS_CALLBACKS)
+    run_event_loop(dialog, SIMULATION_OPTIONS_CALLBACKS, None)
     return False
 
 

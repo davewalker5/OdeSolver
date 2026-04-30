@@ -1,5 +1,5 @@
 import pytest
-from ode_solver.gui.options.option_validator import capture_all_values
+from src.ode_solver.options.option_validator import capture_all_values
 
 
 @pytest.fixture()

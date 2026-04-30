@@ -33,7 +33,6 @@ def validate_all_options(options, ignore_empty_values, window, values):
     return invalid_options
 
 
-
 def validate_options_pre_run():
     """
     Validate the current options before starting a solution run

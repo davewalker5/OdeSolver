@@ -1,4 +1,4 @@
-from ode_solver.gui.options import IntegrationMethods
+from src.ode_solver.utils.integration_methods import IntegrationMethods
 
 
 def test_can_get_method_map():

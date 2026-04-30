@@ -2,7 +2,7 @@ import pytest
 import os
 import json
 import xml.etree.ElementTree as etree
-from ode_solver import write_csv, write_json, write_xml
+from src.ode_solver.utils.data_exchange import write_csv, write_json, write_xml
 
 
 def get_test_file_path(extension):
