@@ -1,5 +1,8 @@
-from ode_solver import Euler, PredictorCorrector, RungeKutta4, load_module_from_string, get_function_from_module
-from ode_solver.utils import IntegrationMethods
+from ode_solver.solvers.euler import Euler
+from ode_solver.solvers.predictor_corrector import PredictorCorrector
+from ode_solver.solvers.runge_kutta_4 import RungeKutta4
+from ode_solver.utils.function_loader import load_module_from_string, get_function_from_module
+from ode_solver.utils.integration_methods import IntegrationMethods
 
 
 class SolutionRunner:
@@ -34,7 +37,9 @@ class SolutionRunner:
         self.options = options
         module = load_module_from_string(self.options["function"], "simulation_module")
         f = get_function_from_module(module, "f")
-        self.integrator = self.create_integrator(f)
+        pre_hook = get_function_from_module(module, "pre_hook")
+        post_hook = get_function_from_module(module, "post_hook")
+        self.integrator = self.create_integrator(f, pre_hook, post_hook)
         self.solve(self.integrator)
 
     @property
@@ -90,7 +95,7 @@ class SolutionRunner:
         """
         self.chart.add_point(t, y)
 
-    def create_integrator(self, f):
+    def create_integrator(self, f, pre_hook, post_hook):
         """
         Create an instance of the integration class
 
@@ -100,11 +105,11 @@ class SolutionRunner:
         callbacks = [self.data_table_callback, self.chart_callback, self.refresh_window_callback]
         method_id = IntegrationMethods.method_id(self.options["method"])
         if method_id == IntegrationMethods.EULER:
-            integrator = Euler(f, callbacks, 6)
+            integrator = Euler(f, pre_hook, post_hook, callbacks, 6)
         elif method_id == IntegrationMethods.PREDICTOR_CORRECTOR:
-            integrator = PredictorCorrector(f, callbacks, 6)
+            integrator = PredictorCorrector(f, pre_hook, post_hook, callbacks, 6)
         else:
-            integrator = RungeKutta4(f, callbacks, 6)
+            integrator = RungeKutta4(f, pre_hook, post_hook, callbacks, 6)
 
         return integrator
 

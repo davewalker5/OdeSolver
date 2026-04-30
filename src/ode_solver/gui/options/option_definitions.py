@@ -1,4 +1,4 @@
-from src.ode_solver.utils import IntegrationMethods
+from src.ode_solver.utils.integration_methods import IntegrationMethods
 from ode_solver.gui.options.option_reasons import OptionReason
 
 GROUP_NAME_FUNCTION_DEFINITION = "Function"

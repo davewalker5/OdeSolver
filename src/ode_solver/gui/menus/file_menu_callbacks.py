@@ -1,8 +1,9 @@
 import FreeSimpleGUI as sg
-from ode_solver.gui.options import get_values_from_current_options, \
-    set_current_options_from_values, save_options, load_options
+from ode_solver.gui.options.option_definitions import get_values_from_current_options, \
+    set_current_options_from_values
+from ode_solver.gui.options.options_io import save_options, load_options
 from ode_solver.gui.menus.simulation_menu_callbacks import get_history
-from ode_solver.utils import write_csv, write_json, write_xml
+from ode_solver.utils.data_exchange import write_csv, write_json, write_xml
 
 
 def menu_save_options(_window, _values):

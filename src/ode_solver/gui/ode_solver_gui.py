@@ -1,5 +1,6 @@
-from ode_solver.gui.menus import get_menu_definition, get_menu_callbacks
-from ode_solver.gui.windows import create_main_window, run_event_loop
+from ode_solver.gui.menus.menu_configuration import get_menu_definition, get_menu_callbacks
+from ode_solver.gui.windows.window_layout import create_main_window
+from ode_solver.gui.windows.event_loop import run_event_loop
 
 
 def main():

@@ -1,6 +1,6 @@
 import argparse
 from ode_solver import PROGRAM_NAME, PROGRAM_DESCRIPTION
-from ode_solver.utils import get_application_version
+from ode_solver.utils.version import get_application_version
 
 
 def main():

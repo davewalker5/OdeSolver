@@ -1,6 +1,6 @@
 import FreeSimpleGUI as sg
 from ode_solver import PROGRAM_NAME
-from ode_solver.utils import get_application_version
+from ode_solver.utils.version import get_application_version
 
 
 def create_main_window(menu_definition):

@@ -1,7 +1,10 @@
-from ode_solver.gui.windows import create_options_dialog, run_event_loop
-from ode_solver.gui.options import get_current_options, pre_run_validate_options
+from ode_solver.gui.windows.window_layout import create_options_dialog
+from ode_solver.gui.windows.event_loop import run_event_loop
+from ode_solver.gui.options.option_definitions import get_current_options
+from ode_solver.gui.options.option_validator import pre_run_validate_options
 from ode_solver.gui.menus.options_dialog_callbacks import SIMULATION_OPTIONS_CALLBACKS
-from ode_solver.gui.runner import SolutionRunner, SolutionChart
+from ode_solver.gui.runner.solution_runner import SolutionRunner
+from ode_solver.gui.runner.solution_chart import SolutionChart
 
 solution_chart = None
 solution_runner = None
