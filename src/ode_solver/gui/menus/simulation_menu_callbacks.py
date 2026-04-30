@@ -7,9 +7,12 @@ from ode_solver.gui.runner.solution_runner import SolutionRunner
 from ode_solver.gui.runner.solution_chart import SolutionChart
 from ode_solver.gui import RUN_SIMULATION_EVENT, CHART_EXPORT_KEY, DATA_EXPORT_KEY
 from ode_solver.utils.data_exchange import write_simulation
+from ode_solver.utils.chart import export_chart
+
 
 solution_chart = None
 solution_runner = None
+
 
 def get_history():
     """
@@ -65,7 +68,7 @@ def menu_run(window, event_values):
             # Chart export
             chart_file = event_values[RUN_SIMULATION_EVENT][CHART_EXPORT_KEY]
             if chart_file:
-                raise NotImplementedError(f"Chart export is not currently implemented")
+                export_chart(solution_runner.history, chart_file, values)
 
     return False
 
