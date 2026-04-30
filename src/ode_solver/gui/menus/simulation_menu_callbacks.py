@@ -58,6 +58,10 @@ def menu_run(window, event_values):
         solution_chart.initialise_chart(values)
         solution_runner.run(values)
 
+        # Normalise the run history, if required
+        if values["normalise"]:
+            solution_runner.normalise()
+
         # Handle post-run data and chart export
         if isinstance(event_values, dict) and RUN_SIMULATION_EVENT in event_values.keys():
             # Data export

@@ -71,21 +71,22 @@ options dialog as follows:
 
 The following table summarises the available options:
 
-| Tab                   | Option            | Comments                                                        |
-| --------------------- | ----------------- | --------------------------------------------------------------- |
-| Chart Properties      | Title             | Chart title (optional)                                          |
-|                       | Y(min)            | Optional if automatic scaling is enabled                        |
-|                       | Y(max)            | Optional if automatic scaling is enabled                        |
-|                       | X(max)            | Optional if automatic scaling is enabled                        |
-|                       | Automatic scaling | If ticked, chart axes are automatically scaled to the data      |
-| Function definition   | Function          | Definition of the ODE to solve and hooks, in Python (see below) |
-| Simulation Parameters | Method            | Integration method to use                                       |
-|                       | Limit of x        | End the simulation when x reaches thislimit or;                 |
-|                       | No. steps         | End the simulation after this number of steps                   |
-|                       | Initial step size | Initial step size                                               |
-|                       | Initial y         | Initial value of y                                              |
-| Step Adjustment       | Tolerance         | Tolerance to be used when automatic step size is enabled        |
-|                       | Adjust step size  | If ticked, automatically adjust step size                       |
+| Tab                   | Option            | Comments                                                                                 |
+| --------------------- | ----------------- | ---------------------------------------------------------------------------------------- |
+| Chart Properties      | Title             | Chart title (optional)                                                                   |
+|                       | Y(min)            | Optional if automatic scaling is enabled                                                 |
+|                       | Y(max)            | Optional if automatic scaling is enabled                                                 |
+|                       | X(max)            | Optional if automatic scaling is enabled                                                 |
+|                       | Automatic scaling | If ticked, chart axes are automatically scaled to the data                               |
+| Function definition   | Function          | Definition of the ODE to solve and hooks, in Python (see below)                          |
+| Simulation Parameters | Method            | Integration method to use                                                                |
+|                       | Limit of x        | End the simulation when x reaches thislimit or;                                          |
+|                       | No. steps         | End the simulation after this number of steps                                            |
+|                       | Initial step size | Initial step size                                                                        |
+|                       | Initial y         | Initial value of y                                                                       |
+|                       | Normalise         | If set, after the simulation completes Y values are re-mapped onto a scale of 0.0 to 1.0 |
+| Step Adjustment       | Tolerance         | Tolerance to be used when automatic step size is enabled                                 |
+|                       | Adjust step size  | If ticked, automatically adjust step size                                                |
 
 Once set, options can be saved to a JSON format file using the _Save_ option on the _File_ menu. Saved settings can be loaded from the _Load_ option, also on the _File_ menu.
 

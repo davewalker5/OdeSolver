@@ -104,7 +104,7 @@ class SolverBase:
     def adjust_step_size(self, t, y, step_size, tolerance):
         """
         Adjust the step size to find one that is as large as possible while still
-        giving a result that's within tolerance limits
+        giving a result that"s within tolerance limits
 
         :param t: Independent variable
         :param y: Dependent variable
@@ -131,7 +131,7 @@ class SolverBase:
         :param tolerance: Maximum acceptable variance in calculated values
         """
         # Initialise, clear the history and notify of the initial value
-        t = Decimal('0.0')
+        t = Decimal("0.0")
         y = Decimal(str(initial_value))
         limit_decimal = Decimal(str(limit))
         step_size_decimal = Decimal(str(step_size))
@@ -176,3 +176,27 @@ class SolverBase:
         """
         limit = (Decimal(steps) - 1) * Decimal(step_size)
         self.solve_for_range(limit, step_size, initial_value, False, 0)
+
+    def normalise_y(self):
+        """
+        Normalise "y" values in the current run history to the range [0, 1]
+        """
+        if not self.history:
+            return
+
+        # Extract the Y values and determine their range
+        y_values = [p["y"] for p in self.history if p.get("y") is not None]
+        y_min = min(y_values)
+        y_max = max(y_values)
+
+        # Avoid division by zero (flat signal)
+        if y_max == y_min:
+            for p in self.history:
+                p["y_normalised"] = Decimal("0.0")
+            return
+
+        # Calculate the length of the Y-scale and map the individual Y values into it
+        scale = y_max - y_min
+        for p in self.history:
+            y = p.get("y")
+            p["y_normalised"] = (y - y_min) / scale

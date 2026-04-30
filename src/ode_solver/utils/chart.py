@@ -16,8 +16,8 @@ def export_chart(history, filepath, simulation_options):
     :param title: Chart title
     """
     # Extract separate lists of the independent and dependent variable values
-    t = [d['t'] for d in history]
-    y = [d['y'] for d in history]
+    t = [d["t"] for d in history]
+    y = [d["y_normalised"] if simulation_options["normalise"] else d["y"] for d in history]
 
     # Determine scaling
     auto_scale = simulation_options["chart_auto_scale"]
@@ -38,7 +38,7 @@ def export_chart(history, filepath, simulation_options):
         ax.set_title(simulation_options["chart_title"])
 
         # Enable major grid lines
-        ax.grid(True, which='major', linestyle='--', linewidth=0.5)
+        ax.grid(True, which="major", linestyle="--", linewidth=0.5)
 
         fig.tight_layout()
         fig.savefig(filepath)
