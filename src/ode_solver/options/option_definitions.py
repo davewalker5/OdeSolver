@@ -1,5 +1,5 @@
-from src.ode_solver.utils.integration_methods import IntegrationMethods
-from ode_solver.gui.options.option_reasons import OptionReason
+from ode_solver.utils.integration_methods import IntegrationMethods
+from ode_solver.options.option_reasons import OptionReason
 
 GROUP_NAME_FUNCTION_DEFINITION = "Function"
 GROUP_NAME_SIMULATION_PARAMETERS = "Simulation Parameters"
