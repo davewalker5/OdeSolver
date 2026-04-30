@@ -1,4 +1,5 @@
-from ode_solver.options.option_validator import check_validity_of_all_options
+import FreeSimpleGUI as sg
+from ode_solver.options.option_validator import check_validity_of_all_options, pre_run_validate_options
 
 
 def highlight_invalid_options(options, invalid_options, window):
@@ -30,3 +31,21 @@ def validate_all_options(options, ignore_empty_values, window, values):
     if window:
         highlight_invalid_options(options, invalid_options, window)
     return invalid_options
+
+
+
+def validate_options_pre_run():
+    """
+    Validate the current options before starting a solution run
+
+    :return: The current values if they're valid, otherwise None
+    """
+    current_values, invalid_options = pre_run_validate_options()
+    if len(invalid_options) > 0:
+        # Invalid parameters detected, so show a message box
+        invalid_option_display_names = "\n".join([v["display_name"] for v in invalid_options])
+        message = f"Invalid values for the following options:\n\n{invalid_option_display_names}\n"
+        layout = [[sg.Text(message)], [sg.Button("Close")]]
+        sg.Window("Invalid Options", layout, modal=True, keep_on_top=True, finalize=True).read(close=True)
+
+    return current_values

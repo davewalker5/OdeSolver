@@ -1,7 +1,7 @@
 from ode_solver.gui.windows.window_layout import create_options_dialog
 from ode_solver.gui.windows.event_loop import run_event_loop
 from src.ode_solver.options.option_definitions import get_current_options
-from src.ode_solver.options.option_validator import pre_run_validate_options
+from src.ode_solver.gui.options.option_validator import validate_options_pre_run
 from ode_solver.gui.menus.options_dialog_callbacks import SIMULATION_OPTIONS_CALLBACKS
 from ode_solver.gui.runner.solution_runner import SolutionRunner
 from ode_solver.gui.runner.solution_chart import SolutionChart
@@ -41,7 +41,7 @@ def menu_run(window, _values):
     """
     global solution_chart, solution_runner
 
-    values = pre_run_validate_options()
+    values = validate_options_pre_run()
     if values:
         # Create a charting instance that integrates Matplotlib with FreeSimpleGUI canvas
         if solution_chart is None:

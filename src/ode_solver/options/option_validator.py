@@ -172,19 +172,12 @@ def pre_run_validate_options():
     """
     Validate the current options before starting a solution run
 
-    :return: The current values if they're valid, otherwise None
+    :return: The current values if they're valid, otherwise None, and a list of invalid options
     """
     # Get a dictionary of key:value pairs (excluding the menu configuration information)
     # and use this to check the validity of all values
     current_options = get_current_options()
     current_values = get_values_from_current_options()
     invalid_options = check_validity_of_all_options(current_options, False, current_values)
-    valid = len(invalid_options) == 0
-    if not valid:
-        # Invalid parameters detected, so show a message box
-        invalid_option_display_names = "\n".join([v["display_name"] for v in invalid_options])
-        message = f"Invalid values for the following options:\n\n{invalid_option_display_names}\n"
-        layout = [[sg.Text(message)], [sg.Button("Close")]]
-        sg.Window("Invalid Options", layout, modal=True, keep_on_top=True, finalize=True).read(close=True)
-
-    return current_values if valid else None
+    values_to_return = current_values if len(invalid_options) == 0 else None
+    return values_to_return, invalid_options
