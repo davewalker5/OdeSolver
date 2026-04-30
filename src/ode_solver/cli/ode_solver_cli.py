@@ -72,7 +72,7 @@ def cli_main(args):
             return
 
     # Run the solution
-    solution_runner = SolutionRunner()
+    solution_runner = SolutionRunner(args.quiet)
     solution_runner.run(simulation_options)
 
     # Data export

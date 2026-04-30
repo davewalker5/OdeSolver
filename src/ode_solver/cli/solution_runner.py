@@ -7,7 +7,7 @@ from ode_solver.utils.live_table_callback import LiveTableCallback
 
 
 class SolutionRunner:
-    def __init__(self):
+    def __init__(self, quiet):
         """
         Initialiser
 
@@ -16,9 +16,9 @@ class SolutionRunner:
         :param window: Calling window
         """
         # Solution options
-        self.function = None
         self.options = None
         self.exception = None
+        self.quiet = quiet
 
         # Data to populate output controls
         self.data_table_content = []
@@ -54,8 +54,11 @@ class SolutionRunner:
         :param f: Function to solve
         :return: Instance of the integrator
         """
-        table = LiveTableCallback(title=self.options["chart_title"])
-        callbacks = [table]
+        if not self.quiet:
+            table = LiveTableCallback(title=self.options["chart_title"])
+            callbacks = [table]
+        else:
+            callbacks = None
         method_id = IntegrationMethods.method_id(self.options["method"])
         if method_id == IntegrationMethods.EULER:
             integrator = Euler(f, pre_hook, post_hook, callbacks, 6)

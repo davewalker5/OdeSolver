@@ -53,6 +53,7 @@ The following table summarises the command line options supported by theODE Solv
 | --chart      | -c         | All     | Specify the path to a PNG file to export the simulation chart to on completion         |
 | --auto-run   | -ar        | GUI     | Automatically start the simulation specified using --simulation on startup             |
 | --no-gui     | -ng        | CLI     | Do not display the UI                                                                  |
+| --quiet      | -q         | CLI     | Suppress output of results to the console in CLI mode                                  |
 
 "Headless" mode, with _--no-gui_ specified, requires that, as a minimum, a simulation file is provided. For example, the following will run the simulation held in _simulation.json_, displaying the results on the console:
 

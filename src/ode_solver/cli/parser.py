@@ -17,6 +17,7 @@ def parse():
     parser.add_argument("-c", "--chart", help="Chart file path")
     parser.add_argument("-ar", "--auto-run", action="store_true", help="Automatically run the specified")
     parser.add_argument("-ng", "--no-gui", action="store_true", help="Suppress the UI")
+    parser.add_argument("-q", "--quiet", action="store_true", help="Suppress output of results to the console in CLI mode")
     args = parser.parse_args()
 
     return args
