@@ -1,0 +1,1222 @@
+[
+    {
+        "method": "RungeKutta4",
+        "step": 0,
+        "t": "0.0",
+        "y": "0",
+        "step_size": "0.1",
+        "difference": 0,
+        "tolerance": "0.01",
+        "y_normalised": "0E+6"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 1,
+        "t": "0.1",
+        "y": "9.2216E-8",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "1.37886E-7"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 2,
+        "t": "0.2",
+        "y": "1.94095E-7",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "2.90220E-7"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 3,
+        "t": "0.3",
+        "y": "3.21819E-7",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "4.81199E-7"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 4,
+        "t": "0.4",
+        "y": "4.94524E-7",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "7.39436E-7"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 5,
+        "t": "0.5",
+        "y": "7.37112E-7",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.00000110217"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 6,
+        "t": "0.6",
+        "y": "0.00000108371",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.00000162042"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 7,
+        "t": "0.7",
+        "y": "0.00000158227",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.00000236589"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 8,
+        "t": "0.8",
+        "y": "0.00000230089",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.00000344040"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 9,
+        "t": "0.9",
+        "y": "0.00000333671",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.00000498921"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 10,
+        "t": "1.0",
+        "y": "0.00000482831",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.00000721952"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 11,
+        "t": "1.1",
+        "y": "0.00000697346",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.0000104271"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 12,
+        "t": "1.2",
+        "y": "0.0000100541",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.0000150334"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 13,
+        "t": "1.3",
+        "y": "0.0000144716",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.0000216386"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 14,
+        "t": "1.4",
+        "y": "0.0000207964",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.0000310958"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 15,
+        "t": "1.5",
+        "y": "0.0000298383",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.0000446157"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 16,
+        "t": "1.6",
+        "y": "0.0000427453",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.0000639149"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 17,
+        "t": "1.7",
+        "y": "0.0000611425",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.0000914233"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 18,
+        "t": "1.8",
+        "y": "0.0000873268",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.000130575"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 19,
+        "t": "1.9",
+        "y": "0.000124540",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.000186218"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 20,
+        "t": "2.0",
+        "y": "0.000177349",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.000265181"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 21,
+        "t": "2.1",
+        "y": "0.000252182",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.000377075"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 22,
+        "t": "2.2",
+        "y": "0.000358066",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.000535398"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 23,
+        "t": "2.3",
+        "y": "0.000507656",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.000759072"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 24,
+        "t": "2.4",
+        "y": "0.000718668",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.00107459"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 25,
+        "t": "2.5",
+        "y": "0.00101583",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.00151892"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 26,
+        "t": "2.6",
+        "y": "0.00143360",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.00214359"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 27,
+        "t": "2.7",
+        "y": "0.00201982",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.00302013"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 28,
+        "t": "2.8",
+        "y": "0.00284071",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.00424757"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 29,
+        "t": "2.9",
+        "y": "0.00398749",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.00596229"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 30,
+        "t": "3.0",
+        "y": "0.00558513",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.00835116"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 31,
+        "t": "3.1",
+        "y": "0.00780355",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.0116682"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 32,
+        "t": "3.2",
+        "y": "0.0108714",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.0162554"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 33,
+        "t": "3.3",
+        "y": "0.0150925",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.0225670"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 34,
+        "t": "3.4",
+        "y": "0.0208628",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.0311951"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 35,
+        "t": "3.5",
+        "y": "0.0286857",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.0428923"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 36,
+        "t": "3.6",
+        "y": "0.0391788",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.0585821"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 37,
+        "t": "3.7",
+        "y": "0.0530628",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.0793421"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 38,
+        "t": "3.8",
+        "y": "0.0711203",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.106343"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 39,
+        "t": "3.9",
+        "y": "0.0941113",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.140720"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 40,
+        "t": "4.0",
+        "y": "0.122645",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.183385"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 41,
+        "t": "4.1",
+        "y": "0.157020",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.234784"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 42,
+        "t": "4.2",
+        "y": "0.197074",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.294675"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 43,
+        "t": "4.3",
+        "y": "0.242102",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.362003"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 44,
+        "t": "4.4",
+        "y": "0.290873",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.434928"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 45,
+        "t": "4.5",
+        "y": "0.341763",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.511021"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 46,
+        "t": "4.6",
+        "y": "0.392956",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.587567"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 47,
+        "t": "4.7",
+        "y": "0.442664",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.661893"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 48,
+        "t": "4.8",
+        "y": "0.489308",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.731637"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 49,
+        "t": "4.9",
+        "y": "0.531622",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.794907"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 50,
+        "t": "5.0",
+        "y": "0.568707",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.850358"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 51,
+        "t": "5.1",
+        "y": "0.600008",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.897161"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 52,
+        "t": "5.2",
+        "y": "0.625288",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.934961"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 53,
+        "t": "5.3",
+        "y": "0.644554",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.963769"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 54,
+        "t": "5.4",
+        "y": "0.657997",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.983869"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 55,
+        "t": "5.5",
+        "y": "0.665938",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.995743"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 56,
+        "t": "5.6",
+        "y": "0.668785",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "1"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 57,
+        "t": "5.7",
+        "y": "0.666987",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.997312"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 58,
+        "t": "5.8",
+        "y": "0.661010",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.988374"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 59,
+        "t": "5.9",
+        "y": "0.651320",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.973885"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 60,
+        "t": "6.0",
+        "y": "0.638367",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.954518"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 61,
+        "t": "6.1",
+        "y": "0.622578",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.930909"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 62,
+        "t": "6.2",
+        "y": "0.604353",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.903658"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 63,
+        "t": "6.3",
+        "y": "0.584058",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.873312"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 64,
+        "t": "6.4",
+        "y": "0.562032",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.840378"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 65,
+        "t": "6.5",
+        "y": "0.538586",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.805320"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 66,
+        "t": "6.6",
+        "y": "0.513999",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.768556"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 67,
+        "t": "6.7",
+        "y": "0.488526",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.730468"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 68,
+        "t": "6.8",
+        "y": "0.462396",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.691397"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 69,
+        "t": "6.9",
+        "y": "0.435812",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.651647"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 70,
+        "t": "7.0",
+        "y": "0.408958",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.611494"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 71,
+        "t": "7.1",
+        "y": "0.381996",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.571179"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 72,
+        "t": "7.2",
+        "y": "0.355068",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.530915"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 73,
+        "t": "7.3",
+        "y": "0.328295",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.490883"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 74,
+        "t": "7.4",
+        "y": "0.301784",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.451242"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 75,
+        "t": "7.5",
+        "y": "0.275625",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.412128"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 76,
+        "t": "7.6",
+        "y": "0.249893",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.373652"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 77,
+        "t": "7.7",
+        "y": "0.224657",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.335918"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 78,
+        "t": "7.8",
+        "y": "0.199986",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.299029"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 79,
+        "t": "7.9",
+        "y": "0.175958",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.263101"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 80,
+        "t": "8.0",
+        "y": "0.152681",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.228296"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 81,
+        "t": "8.1",
+        "y": "0.130308",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.194843"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 82,
+        "t": "8.2",
+        "y": "0.109057",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.163067"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 83,
+        "t": "8.3",
+        "y": "0.089217",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.133402"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 84,
+        "t": "8.4",
+        "y": "0.0711317",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.106360"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 85,
+        "t": "8.5",
+        "y": "0.0551518",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.0824657"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 86,
+        "t": "8.6",
+        "y": "0.0415576",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.0621390"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 87,
+        "t": "8.7",
+        "y": "0.0304787",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.0455732"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 88,
+        "t": "8.8",
+        "y": "0.0218487",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.0326692"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 89,
+        "t": "8.9",
+        "y": "0.0154155",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.0230500"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 90,
+        "t": "9.0",
+        "y": "0.0108055",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.0161569"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 91,
+        "t": "9.1",
+        "y": "0.00760602",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.0113729"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 92,
+        "t": "9.2",
+        "y": "0.00543374",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.00812479"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 93,
+        "t": "9.3",
+        "y": "0.00397319",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.00594091"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 94,
+        "t": "9.4",
+        "y": "0.00298717",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.00446656"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 95,
+        "t": "9.5",
+        "y": "0.00230920",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.00345283"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 96,
+        "t": "9.6",
+        "y": "0.00182845",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.00273399"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 97,
+        "t": "9.7",
+        "y": "0.00147421",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.00220431"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 98,
+        "t": "9.8",
+        "y": "0.00120269",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.00179832"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 99,
+        "t": "9.9",
+        "y": "0.000987305",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.00147627"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 100,
+        "t": "10.0",
+        "y": "0.000812038",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.00121420"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 101,
+        "t": "10.1",
+        "y": "0.000667082",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.000997454"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 102,
+        "t": "10.2",
+        "y": "0.000546222",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.000816738"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 103,
+        "t": "10.3",
+        "y": "0.000445238",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.000665742"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 104,
+        "t": "10.4",
+        "y": "0.000361024",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.000539821"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 105,
+        "t": "10.5",
+        "y": "0.000291107",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.000435277"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 106,
+        "t": "10.6",
+        "y": "0.000233399",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.000348990"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 107,
+        "t": "10.7",
+        "y": "0.000186081",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.000278237"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 108,
+        "t": "10.8",
+        "y": "0.000147547",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.000220619"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 109,
+        "t": "10.9",
+        "y": "0.000116379",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.000174016"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 110,
+        "t": "11.0",
+        "y": "0.0000913347",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.000136568"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 111,
+        "t": "11.1",
+        "y": "0.0000713382",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.000106668"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 112,
+        "t": "11.2",
+        "y": "0.0000554678",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.0000829382"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 113,
+        "t": "11.3",
+        "y": "0.0000429434",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.0000642111"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 114,
+        "t": "11.4",
+        "y": "0.0000331122",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.0000495110"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 115,
+        "t": "11.5",
+        "y": "0.0000254336",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.0000380296"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 116,
+        "t": "11.6",
+        "y": "0.0000194646",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.0000291044"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 117,
+        "t": "11.7",
+        "y": "0.0000148452",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.0000221973"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 118,
+        "t": "11.8",
+        "y": "0.0000112850",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.0000168739"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 119,
+        "t": "11.9",
+        "y": "0.00000855187",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.0000127872"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 120,
+        "t": "12.0",
+        "y": "0.00000629579",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.00000941377"
+    },
+    {
+        "method": "RungeKutta4",
+        "step": 121,
+        "t": "12.1",
+        "y": "0.00000410749",
+        "step_size": "0.1",
+        "difference": "0",
+        "tolerance": "0.01",
+        "y_normalised": "0.00000614172"
+    }
+]
