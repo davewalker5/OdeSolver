@@ -1,0 +1,9 @@
+{
+  "GROWTH": "2.0",
+  "DECAY": "1.5",
+  "OOS_DECAY": "3.0",
+  "SEASON_START": "5.44",
+  "SEASON_END": "9.25",
+  "SHARPNESS": "6.841",
+  "FORCING_PEAK": "4.03"
+}

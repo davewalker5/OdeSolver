@@ -40,7 +40,7 @@ The first command adds the source folder, containing the application source, to 
 
 When the application starts, a window similar to the following will be displayed, though it will not contain a chart until solution options have been set and the solution has been run:
 
-![ODE Solver Main Window](https://github.com/davewalker5/OdeSolver/blob/main/docs/images/chart_tab.png?raw=true){width="400px"}
+![ODE Solver Main Window](https://github.com/davewalker5/OdeSolver/blob/main/docs/images/chart_tab.png?raw=true)
 
 ## Command Line Options
 

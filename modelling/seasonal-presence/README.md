@@ -109,16 +109,22 @@ Given observed data (typically monthly presence or detectability), the parameter
 
 This produces a set of parameters that describe the species’ seasonal behaviour.
 
-### What the parameters mean
+## Interpreting the fitted parameters
 
-Fitted parameters are not arbitrary — they are interpretable, for example:
+The fitted parameters should be treated with caution.
 
-- SEASON_START &rarr; when the species begins to appear
-- SEASON_END &rarr; when it disappears
-- FORCING_PEAK &rarr; peak timing
-- SHARPNESS &rarr; how abrupt the seasonal transitions are
+Although the fitted curve closely matches the observed seasonal pattern, the individual parameter values should not yet be interpreted directly as ecological dates. The model output is produced by the combined interaction of the seasonal window, forcing curve, growth rate, decay terms, and sharpness parameter.
 
-These provide a compact way to compare species and patterns.
+For example, a fitted _FORCING_PEAK_ value does not necessarily correspond directly to the observed month of peak presence. Instead, it represents the phase of one component of the model which, together with the other parameters, produces the best-fitting curve.
+
+At this stage, the most reliable interpretation is therefore at the level of the fitted curve itself:
+
+- The timing of the simulated rise
+- The timing of the simulated peak
+- The timing of the decline
+- The width and shape of the simulated season
+
+The fitted parameters are useful for generating and comparing model behaviour, but should not yet be treated as direct biological measurements.
 
 ### Scoring
 
@@ -174,15 +180,15 @@ The script will report the latest "best" match as it progresses and on completio
 ```
 Best fit
 --------
-Score: 0.02419324807468518344653567672
+Score: 0.02819917785921372844725220239
 {
   "GROWTH": "2.0",
   "DECAY": "1.5",
   "OOS_DECAY": "3.0",
-  "SEASON_START": "3.97",
-  "SEASON_END": "7.26",
-  "SHARPNESS": "1.509",
-  "FORCING_PEAK": "8.42"
+  "SEASON_START": "5.79",
+  "SEASON_END": "9.82",
+  "SHARPNESS": "5.946",
+  "FORCING_PEAK": "2.77"
 }
 ```
 
