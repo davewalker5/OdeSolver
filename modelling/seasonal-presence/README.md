@@ -13,7 +13,7 @@ y(t) = observable activity / detection rate
 The governing equation is:
 
 ```
-dy/dt = GROWTH * S(t) * W(t) - decay(t) * y
+dy/dt = GROWTH - S(t) - W(t) - decay(t) - y
 ```
 
 Where:
@@ -101,45 +101,63 @@ The environment variable SEASONAL_PARAMS_FILE must be set to point to this file 
 
 Given observed data (typically monthly presence or detectability), the parameter fitting script:
 
-1. Generates a candidate set of model parameters
-2. Runs the ODE Solver in headless mode
-3. Compares the simulated curve to observed data
-4. Scores the match
-5. Repeats to find the best fit
+1. Analyses the observed data to infer a plausible seasonal window
+2. Generates candidate sets of model parameters within that constrained space
+3. Runs the ODE Solver in headless mode
+4. Compares the simulated curve to observed data
+5. Scores the match
+6. Repeats to identify the best-fitting parameter sets
 
 This produces a set of parameters that describe the species’ seasonal behaviour.
 
+To improve robustness, multiple fitting runs can be performed. The best-performing runs can then be summarised (e.g. using median values) to produce a stable parameter estimate.
+
 ## Interpreting the fitted parameters
 
-The fitted parameters should be treated with caution.
+The fitted parameters are now broadly interpretable in ecological terms, but should still be treated with appropriate caution.
 
-Although the fitted curve closely matches the observed seasonal pattern, the individual parameter values should not yet be interpreted directly as ecological dates. The model output is produced by the combined interaction of the seasonal window, forcing curve, growth rate, decay terms, and sharpness parameter.
+Because the parameter search is constrained using the observed data, key parameters tend to align with real seasonal features:
 
-For example, a fitted _FORCING_PEAK_ value does not necessarily correspond directly to the observed month of peak presence. Instead, it represents the phase of one component of the model which, together with the other parameters, produces the best-fitting curve.
+- SEASON_START &rarr; approximate onset of seasonal presence
+- SEASON_END &rarr; approximate end of the season
+- FORCING_PEAK &rarr; approximate timing of peak activity
+- SHARPNESS &rarr; how abruptly the season begins and ends
 
-At this stage, the most reliable interpretation is therefore at the level of the fitted curve itself:
+These parameters provide a compact and comparable description of seasonal behaviour across species.
 
-- The timing of the simulated rise
-- The timing of the simulated peak
-- The timing of the decline
-- The width and shape of the simulated season
+However, the model output still arises from the interaction of multiple components (seasonal window, forcing function, growth/decay dynamics). As a result:
 
-The fitted parameters are useful for generating and comparing model behaviour, but should not yet be treated as direct biological measurements.
+- Parameters should be interpreted as estimates, not exact dates
+- Different parameter combinations may still produce similar curves
+- Individual runs may vary slightly due to stochastic sampling
+
+For this reason, interpretation is most reliable when:
+
+- Considering multiple runs rather than a single fit
+- Summarising parameters (e.g. median and spread)
+- Validating against the fitted curve itself
+
+In practice, the most robust ecological interpretation combines both:
+
+- The fitted parameters
+- The shape and timing of the simulated curve
 
 ### Scoring
 
-Model fit is evaluated using:
+Model fit is evaluated using a combination of:
 
 - Mean Squared Error (MSE) — overall curve similarity
 - Additional penalties for:
-  - Peak timing mismatch
-  - Incorrect season start
-  - Incorrect season end
+    - Peak timing mismatch
+    - Incorrect season start
+    - Incorrect season end
 
 This ensures the model captures both:
 
 - The shape of the curve
 - The timing of the season
+
+By combining these components, the fitting process favours solutions that are not only mathematically close to the observed data, but also ecologically realistic.
 
 ### Running the Parameter Fitter
 

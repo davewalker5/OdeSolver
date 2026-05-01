@@ -7,6 +7,7 @@ import subprocess
 import tempfile
 from decimal import Decimal
 from pathlib import Path
+from datetime import datetime
 
 
 def D(value):
@@ -17,6 +18,225 @@ def D(value):
     :return: The Decimal conversion of that value
     """
     return Decimal(str(value))
+
+
+
+
+def circular_month_distance(a, b):
+    """
+    Calculate the shortest distance between two month-like values on a circular year.
+
+    :param a: First month
+    :param b: Second month
+    :return: Shortest distance in months
+    """
+    a = D(a)
+    b = D(b)
+    diff = abs(a - b)
+    return min(diff, D("12") - diff)
+
+
+def wrap_month(value):
+    """
+    Wrap a month-like value into the range 1..12.
+
+    This allows random search ranges to cross the year boundary. For example,
+    12.5 becomes 0.5 months into the next year, represented as 0.5 + 12 -> 12.5
+    during calculation and then wrapped back to 1..12 when stored.
+
+    :param value: Month-like value
+    :return: Month-like Decimal in the range 1..12
+    """
+    value = D(value)
+
+    while value < D("1"):
+        value += D("12")
+
+    while value > D("12"):
+        value -= D("12")
+
+    return value
+
+
+def month_range_around(centre, padding):
+    """
+    Create a circular month range around a centre month.
+
+    The result may wrap across the year boundary. For example, centre 1 with
+    padding 2 gives the range 11..3.
+
+    :param centre: Centre month
+    :param padding: Padding either side, in months
+    :return: Tuple of low, high month bounds
+    """
+    return wrap_month(D(centre) - D(padding)), wrap_month(D(centre) + D(padding))
+
+
+def random_month_in_range(low, high):
+    """
+    Select a random Decimal month from a possibly wrapped range.
+
+    Examples:
+    - 4..8 means April to August
+    - 10..3 means October to March, crossing the end of the year
+
+    :param low: Lower bound
+    :param high: Upper bound
+    :return: Random month-like Decimal in the range 1..12
+    """
+    low = D(low)
+    high = D(high)
+
+    if low <= high:
+        return D(round(random.uniform(float(low), float(high)), 2))
+
+    # Wrapped range, e.g. 10..3. Choose from 10..12 or 1..3, weighted by length.
+    late_length = D("12") - low
+    early_length = high - D("1")
+    total_length = late_length + early_length
+
+    if total_length <= 0:
+        return wrap_month(low)
+
+    if D(str(random.random())) < late_length / total_length:
+        return D(round(random.uniform(float(low), 12.0), 2))
+
+    return D(round(random.uniform(1.0, float(high)), 2))
+
+
+def month_is_between(month, start, end):
+    """
+    Test whether a month sits inside a possibly wrapped seasonal window.
+
+    :param month: Month to test
+    :param start: Season start
+    :param end: Season end
+    :return: True if the month is inside the window
+    """
+    month = D(month)
+    start = D(start)
+    end = D(end)
+
+    if start <= end:
+        return start <= month <= end
+
+    return month >= start or month <= end
+
+
+def random_month_between(start, end):
+    """
+    Pick a random month inside a possibly wrapped seasonal window.
+
+    :param start: Season start
+    :param end: Season end
+    :return: Random month-like Decimal
+    """
+    return random_month_in_range(start, end)
+
+
+def infer_active_season(observed, threshold=D("0.05")):
+    """
+    Infer the active season from observed monthly values.
+
+    The method treats the year as circular and finds the largest gap between
+    active months. The active season is then assumed to begin after that gap and
+    end before it. This works for both summer visitors and winter visitors.
+
+    :param observed: Dictionary of observed monthly values
+    :param threshold: Values above this are considered active
+    :return: Dictionary describing the inferred active season
+    """
+    active = sorted(m for m, v in observed.items() if v > threshold)
+
+    if not active:
+        raise ValueError("No active months detected in observed data")
+
+    # If the species appears active in every month, there is no bounded seasonal
+    # presence window. This fitter is probably the wrong model for that case.
+    if len(active) == 12:
+        raise ValueError(
+            "Observed data is active in every month; use the resident detectability model instead"
+        )
+
+    # Find the largest circular gap between active months.
+    gaps = []
+    for i, month in enumerate(active):
+        next_month = active[(i + 1) % len(active)]
+        gap = (next_month - month) % 12
+        if gap == 0:
+            gap = 12
+        gaps.append((gap, month, next_month))
+
+    _, gap_start, gap_end = max(gaps)
+
+    season_start = D(gap_end)
+    season_end = D(gap_start)
+    peak_month = D(max(observed, key=observed.get))
+    wraps_year = season_start > season_end
+
+    return {
+        "active_months": active,
+        "season_start_centre": season_start,
+        "season_end_centre": season_end,
+        "forcing_peak_centre": peak_month,
+        "wraps_year": wraps_year,
+    }
+
+
+def infer_search_space(observed, threshold=D("0.05"), padding=D("1.0"), peak_padding=D("1.5")):
+    """
+    Infer biologically plausible random-search bounds from the observed data.
+
+    This does not force the fitted curve to match the observations. It only
+    constrains the random search to a plausible seasonal region, making fitted
+    parameters more interpretable and allowing winter seasons to wrap across the
+    end of the year.
+
+    :param observed: Dictionary of observed monthly values
+    :param threshold: Values above this are treated as active
+    :param padding: Padding around inferred season start/end
+    :param peak_padding: Padding around observed peak month
+    :return: Dictionary describing the random search space
+    """
+    inferred = infer_active_season(observed, threshold)
+
+    start_range = month_range_around(inferred["season_start_centre"], padding)
+    end_range = month_range_around(inferred["season_end_centre"], padding)
+    peak_range = month_range_around(inferred["forcing_peak_centre"], peak_padding)
+
+    return {
+        **inferred,
+        "threshold": threshold,
+        "padding": padding,
+        "peak_padding": peak_padding,
+        "season_start_range": start_range,
+        "season_end_range": end_range,
+        "forcing_peak_range": peak_range,
+    }
+
+
+def format_search_space(search_space):
+    """
+    Format a search space for readable console output.
+
+    :param search_space: Search space dictionary
+    :return: Multi-line string
+    """
+    def fmt_range(r):
+        return f"{r[0]}..{r[1]}"
+
+    return "\n".join([
+        "Inferred search space",
+        "---------------------",
+        f"Active months:       {search_space['active_months']}",
+        f"Wraps year:          {search_space['wraps_year']}",
+        f"Season start centre: {search_space['season_start_centre']}",
+        f"Season end centre:   {search_space['season_end_centre']}",
+        f"Forcing peak centre: {search_space['forcing_peak_centre']}",
+        f"Season start range:  {fmt_range(search_space['season_start_range'])}",
+        f"Season end range:    {fmt_range(search_space['season_end_range'])}",
+        f"Forcing peak range:  {fmt_range(search_space['forcing_peak_range'])}",
+    ])
 
 
 def load_observed_csv(path):
@@ -139,6 +359,10 @@ def weighted_score(observed, simulated):
     - Peak month error
     - First/last active month error
 
+    The seasonal boundary errors are calculated using circular year logic, so they
+    work for both normal seasons, e.g. April..August, and wrapped seasons, e.g.
+    October..March.
+
     :param observed: Dictionary of observed data points
     :param simulated: Dictionary of simulated data points
     :return: Weighted error score
@@ -147,20 +371,26 @@ def weighted_score(observed, simulated):
     # Calculate the MSE across the curve
     curve_error = mse(observed, simulated)
 
-    # Determing the observed and simulated peaks and calculate the peak error
+    # Determine the observed and simulated peaks and calculate the peak error
     observed_peak = max(observed, key=observed.get)
     simulated_peak = max(simulated, key=simulated.get)
-    peak_error = D(abs(observed_peak - simulated_peak)) / D("12")
+    peak_error = circular_month_distance(observed_peak, simulated_peak) / D("12")
 
-    # Determine the observed and active months
-    observed_active = [m for m, v in observed.items() if v > D("0.05")]
-    simulated_active = [m for m, v in simulated.items() if v > D("0.05")]
+    try:
+        observed_season = infer_active_season(observed)
+        simulated_season = infer_active_season(simulated)
 
-    if observed_active and simulated_active:
-        # Determine errors in the positioning of the peaks
-        start_error = D(abs(min(observed_active) - min(simulated_active))) / D("12")
-        end_error = D(abs(max(observed_active) - max(simulated_active))) / D("12")
-    else:
+        start_error = circular_month_distance(
+            observed_season["season_start_centre"],
+            simulated_season["season_start_centre"],
+        ) / D("12")
+
+        end_error = circular_month_distance(
+            observed_season["season_end_centre"],
+            simulated_season["season_end_centre"],
+        ) / D("12")
+
+    except ValueError:
         start_error = D("1")
         end_error = D("1")
 
@@ -169,7 +399,6 @@ def weighted_score(observed, simulated):
     # of the curve but does penalise if the seasonality is wrong
     return curve_error + D("0.25") * peak_error + D("0.25") * start_error + D("0.25") * end_error
 
-
 def run_solver(simulation_file, params, solver_command):
     """
     Run the solution with the current set of parameters
@@ -177,6 +406,7 @@ def run_solver(simulation_file, params, solver_command):
     :param simulation_file: Path to the ODE Solver simulation file
     :param params: Dictionary of seasonal presence parameters
     :param solver_command: Command used to run the ODE Solver
+    :param search_space: Search space inferred from observed data
     :return: A dictionary of values binned by month
     """
     with tempfile.TemporaryDirectory() as tmp:
@@ -210,18 +440,36 @@ def run_solver(simulation_file, params, solver_command):
         # Load the JSON output by the ODE solver
         points = load_simulated_json(output_file)
 
-        # Conver the points to monthly bins
+        # Convert the points to monthly bins
         return monthly_average(points)
 
 
-def make_random_params():
+def make_random_params(search_space):
     """
-    Generate a random set of parameters for the seasonal model
+    Generate a random set of parameters for the seasonal model.
 
+    The random ranges are inferred from the observed data, allowing the fitter to
+    handle both summer visitors and winter visitors. For winter visitors, season
+    start/end can wrap across the end of the year, e.g. October..March.
+
+    :param search_space: Search space inferred from observed data
     :return: Dictionary of parameter values
     """
-    season_start = round(random.uniform(2.0, 7.0), 2)
-    season_end = round(random.uniform(season_start + 1.0, 11.5), 2)
+    season_start = random_month_in_range(*search_space["season_start_range"])
+    season_end = random_month_in_range(*search_space["season_end_range"])
+
+    # Choose a forcing peak close to the observed peak, but require it to sit
+    # inside the generated season window. If repeated attempts fail, fall back to
+    # a random month within the generated season window.
+    forcing_peak = None
+    for _ in range(20):
+        candidate = random_month_in_range(*search_space["forcing_peak_range"])
+        if month_is_between(candidate, season_start, season_end):
+            forcing_peak = candidate
+            break
+
+    if forcing_peak is None:
+        forcing_peak = random_month_between(season_start, season_end)
 
     return {
         "GROWTH": "2.0",
@@ -229,12 +477,11 @@ def make_random_params():
         "OOS_DECAY": "3.0",
         "SEASON_START": str(season_start),
         "SEASON_END": str(season_end),
-        "SHARPNESS": str(round(random.uniform(0.5, 8.0), 3)),
-        "FORCING_PEAK": str(round(random.uniform(1.0, 12.0), 2)),
+        "SHARPNESS": str(round(random.uniform(2.0, 8.0), 3)),
+        "FORCING_PEAK": str(forcing_peak),
     }
 
-
-def fit(observed, simulation_file, iterations, solver_command):
+def fit(observed, simulation_file, iterations, solver_command, search_space):
     """
     Parameter fitting loop
     
@@ -248,11 +495,11 @@ def fit(observed, simulation_file, iterations, solver_command):
 
     # Iterate the specified number of times
     for i in range(iterations):
-        # Generate a random parameter ste
-        params = make_random_params()
+        # Generate a random parameter set
+        params = make_random_params(search_space)
 
         try:
-            # Run the simulation and 
+            # Run the simulation and score the match
             simulated = run_solver(simulation_file, params, solver_command)
             score = weighted_score(observed, simulated)
 
@@ -276,6 +523,40 @@ def fit(observed, simulation_file, iterations, solver_command):
     return best
 
 
+def append_params_to_csv(params: dict, csv_path: str):
+    """
+    Append the fitted parameters to a CSV file, one row per run
+    
+    
+    """
+    columns = [
+        "TIMESTAMP",
+        "OBSERVED",
+        "GROWTH",
+        "DECAY",
+        "OOS_DECAY",
+        "SEASON_START",
+        "SEASON_END",
+        "SHARPNESS",
+        "FORCING_PEAK",
+        "SCORE",
+        "WRAPS_YEAR",
+    ]
+
+    file_exists = os.path.exists(csv_path)
+
+    with open(csv_path, mode="a", newline="") as f:
+        writer = csv.writer(f)
+
+        # Write header if file doesn't exist
+        if not file_exists:
+            writer.writerow(columns)
+
+        # Extract values in the correct order
+        row = [params.get(col, "") for col in columns]
+        writer.writerow(row)
+
+
 def main():
     """
     Main entry point for the seasonal presence parameter fitter
@@ -284,27 +565,49 @@ def main():
 
     parser.add_argument("-o", "--observed", required=True, help="CSV file containing month,value columns")
     parser.add_argument("-s", "--simulation", required=True, help="Simulation JSON file for ODE Solver")
-    parser.add_argument("-i", "--iterations", type=int, default=200, help="Number of parameter sets to test")
-    parser.add_argument("-sc", "--solver-command", help="ODE Solver command")
+    parser.add_argument("-i", "--iterations", type=int, default=200, help="Number of parameter sets to test per run")
+    parser.add_argument("-r", "--runs", type=int, default=1, help="Number of parameter fitting runs")
+    parser.add_argument("-sc", "--solver-command", required=True, help="ODE Solver command")
     parser.add_argument("-b", "--best-output", default="best_params.json", help="Where to write the best parameter file")
+    parser.add_argument("-c", "--csv", required=True, help="CSV file containing the accumulated data from multiple runs")
+    parser.add_argument("--active-threshold", default="0.05", help="Observed value threshold used to infer active months")
+    parser.add_argument("--season-padding", default="1.0", help="Padding around inferred season start/end, in months")
+    parser.add_argument("--peak-padding", default="1.5", help="Padding around observed peak month, in months")
     args = parser.parse_args()
 
-    observed = load_observed_csv(args.observed)
+    # Iterate over the parameter fitting runs
+    for r in range(0, args.runs):
+        print()
+        print(f"Starting parameter fitting run {r + 1}\n")
 
-    best = fit(observed, Path(args.simulation), args.iterations, args.solver_command)
+        # Load the observed data and find the parameters of best fit
+        observed = load_observed_csv(args.observed)
+        search_space = infer_search_space(observed, D(str(args.active_threshold)), D(str(args.season_padding)), D(str(args.peak_padding)))
+        best = fit(observed, Path(args.simulation), args.iterations, args.solver_command, search_space)
 
-    if best is None:
-        raise RuntimeError("No successful parameter set found")
+        if best is None:
+            raise RuntimeError("No successful parameter set found")
 
-    Path(args.best_output).write_text(json.dumps(best["params"], indent=2))
+        # Make sure the CSV containing observed data and the timestamp are represented in the parameters
+        best["params"]["TIMESTAMP"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        best["params"]["OBSERVED"] = Path(args.observed).name
+        best["params"]["SCORE"] = str(best["score"])
+        best["params"]["WRAPS_YEAR"] = str(search_space["wraps_year"])
 
-    print()
-    print("Best fit")
-    print("--------")
-    print(f"Score: {best['score']}")
-    print(json.dumps(best["params"], indent=2))
-    print()
-    print(f"Wrote: {args.best_output}")
+        # Write the best parameters file
+        Path(args.best_output).write_text(json.dumps(best["params"], indent=2))
+
+        # Append the best parameters to the CSV file
+        append_params_to_csv(best["params"], args.csv)
+
+        # Print the best fit parameters
+        print()
+        print("Best fit")
+        print("--------")
+        print(f"Score: {best['score']}")
+        print(json.dumps(best["params"], indent=2))
+        print()
+        print(f"Wrote: {args.best_output}")
 
 
 if __name__ == "__main__":
