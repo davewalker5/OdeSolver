@@ -14,9 +14,12 @@ fi
 # Get the project root folder
 export MODELLING_ROOT=$( cd "$( dirname "$0" )" && pwd )
 SIMULATION_FILE="$MODELLING_ROOT/simulations/seasonal_presence_generic.json"
+PARAMETERS_CSV="$MODELLING_ROOT/example/parameters.csv"
 
 # Run the fit
 python "$MODELLING_ROOT/parameter_fitting.py" \
     --observed "$1" \
     --simulation "$SIMULATION_FILE" \
-    --solver-command "$RUN_ODE_SOLVER"
+    --solver-command "$RUN_ODE_SOLVER" \
+    --csv "$PARAMETERS_CSV" \
+    --runs 20
