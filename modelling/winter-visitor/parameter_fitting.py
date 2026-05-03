@@ -363,7 +363,7 @@ def infer_winter_search_space(observed, peak_padding=D("1.5")):
         "winter_peak_centre": winter_peak_centre,
         "winter_peak_range": month_range_around(winter_peak_centre, peak_padding),
         "autumn_peak_centre": autumn_peak_centre,
-        "autumn_peak_range": month_range_around(autumn_peak_centre, D("1.0")),
+        "autumn_peak_range": month_range_around(D("12.2"), D("0.15")),
         "initial_y_centre": observed.get(1, D("0")),
     }
 
@@ -412,11 +412,11 @@ def make_random_params(search_space):
         "DECAY_RATE": str(random_decimal(D("0.40"), D("3.50"), 3)),
         "BASELINE": "0.0",
         "WINTER_WEIGHT": str(random_decimal(D("0.70"), D("1.50"), 3)),
-        "AUTUMN_WEIGHT": str(random_decimal(D("0.00"), D("0.80"), 3)),
+        "AUTUMN_WEIGHT": str(random_decimal(D("0.00"), D("0.18"), 3)),
         "WINTER_PEAK": str(winter_peak),
         "AUTUMN_PEAK": str(autumn_peak),
         "WINTER_WIDTH": str(random_decimal(D("0.80"), D("4.00"), 3)),
-        "AUTUMN_WIDTH": str(random_decimal(D("1.00"), D("6.00"), 3)),
+        "AUTUMN_WIDTH": str(random_decimal(D("6.00"), D("16.00"), 3)),
         "SUMMER_DIP": str(random_decimal(D("0.00"), D("0.40"), 3)),
         "SUMMER_LOW": str(random_decimal(D("5.50"), D("8.00"), 2)),
         "SUMMER_WIDTH": str(random_decimal(D("1.00"), D("5.00"), 3)),
