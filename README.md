@@ -97,12 +97,14 @@ The ODE Solver provides hooks for 2 functions:
 | Function Name | Mandatory | Signature                               | Return  | Description                            |
 | ------------- | --------- | --------------------------------------- | ------- | -------------------------------------- |
 | f             | Yes       | f(t: Decimal, y: Decimal) -> Decimal    | Decimal | The differential equation to be solved |
-| pre_hook      | No        | pre_hook()  -> None                     | None    | Implement pre-simulation actions       |
+| pre_hook      | No        | pre_hook(options: dict)  -> None        | None    | Implement pre-simulation actions       |
 | post_hook     | No        | post_hook(history: list[dict])  -> None | None    | Implement post-simulation actions      |
 
 All three are set in a single Python script on the _Function_ tab of the options dialog, as illustrated above.
 
 _f_, the equation being solved, must return a single Decimal value that is the value of the function calculated from the input parameters.
+
+The _pre_hook_ can be used to modify the simulation parameters and implement any other pre-simulation actions, as needed.
 
 Additional supporting methods and constants may be defined in the function definition, if needed.
 
@@ -114,7 +116,7 @@ from pprint import pprint as pp
 
 A = Decimal("0.5")
 
-def pre_hook() -> None:
+def pre_hook(options) -> None:
   print("Pre-simulation hook called")
 
 def post_hook(history: list[dict]) -> None:
