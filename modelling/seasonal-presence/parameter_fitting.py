@@ -20,8 +20,6 @@ def D(value):
     return Decimal(str(value))
 
 
-
-
 def circular_month_distance(a, b):
     """
     Calculate the shortest distance between two month-like values on a circular year.
@@ -489,6 +487,7 @@ def fit(observed, simulation_file, iterations, solver_command, search_space):
     :param simulation_file: Path to the ODE Solver simulation file
     :param iterations: Number of iterations in the fit
     :param solver_command: Command used to run the ODE Solver
+    :param search_space: Search space for random parameter generation
     :return: A dictionary of parameters yielding the best fit
     """
     best = None
@@ -527,7 +526,8 @@ def append_params_to_csv(params: dict, csv_path: str):
     """
     Append the fitted parameters to a CSV file, one row per run
     
-    
+    :params dict: Set of simulation run parameters
+    :params csv_path: CSV file to write to
     """
     columns = [
         "TIMESTAMP",
