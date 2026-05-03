@@ -11,5 +11,6 @@
   "AUTUMN_WIDTH": "4.0",
   "SUMMER_DIP": "0.15",
   "SUMMER_LOW": "7.0",
-  "SUMMER_WIDTH": "2.5"
+  "SUMMER_WIDTH": "2.5",
+  "SHARPNESS": "4.0"
 }

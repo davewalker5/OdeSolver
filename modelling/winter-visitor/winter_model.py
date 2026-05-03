@@ -84,7 +84,7 @@ def annual_bump(t: Decimal, peak: Decimal, width: Decimal) -> Decimal:
     if profile >= ONE:
         return ONE
 
-    return (width * profile.ln()).exp()
+    return profile ** get_parameter("SHARPNESS")
 
 
 def winter_visitor_target(t: Decimal) -> Decimal:

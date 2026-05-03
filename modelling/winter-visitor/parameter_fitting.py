@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Parameter fitter for the winter visitor model.
 
@@ -253,7 +252,37 @@ def active_months(data, threshold=D("0.05")):
     return sorted(m for m, v in data.items() if v > threshold)
 
 
-def weighted_score(observed, simulated, threshold=D("0.05")):
+def zero_month_penalty(observed, simulated, threshold=D("0.05")):
+    """
+    Penalise simulated presence in months where observed presence is effectively zero.
+
+    This is useful for winter visitors such as Redwing, where the fitted curve can
+    otherwise develop broad shoulders: lingering too long into spring or rising too
+    early in autumn.
+
+    The penalty is the mean squared simulated value for months where the observed
+    value is at or below the threshold. If there are no zero/near-zero observed
+    months, the penalty is zero.
+
+    :param observed: Observed monthly values
+    :param simulated: Simulated monthly values
+    :param threshold: Observed value at/below which a month is treated as inactive
+    :return: Mean squared false-presence penalty
+    """
+    zero_months = [m for m, v in observed.items() if v <= threshold]
+
+    if not zero_months:
+        return D("0")
+
+    return sum((simulated.get(m, D("0"))) ** 2 for m in zero_months) / D(len(zero_months))
+
+
+def weighted_score(
+    observed,
+    simulated,
+    threshold=D("0.05"),
+    zero_penalty_weight=D("0.75"),
+):
     """
     Score the fit for a winter visitor.
 
@@ -261,9 +290,14 @@ def weighted_score(observed, simulated, threshold=D("0.05")):
     - MSE curve error
     - peak month mismatch
     - active-month mismatch
+    - false-presence penalty for observed-zero months
 
     It avoids assuming a simple non-wrapped start/end window, because winter
     visitor presence naturally crosses the calendar boundary.
+
+    The zero-month penalty discourages broad fitted shoulders: for example, a
+    Redwing curve that lingers into April/May or rises too early in October/November
+    when the observed data is effectively zero.
     """
     curve_error = mse(observed, simulated)
 
@@ -279,7 +313,14 @@ def weighted_score(observed, simulated, threshold=D("0.05")):
     else:
         active_mismatch = D("1")
 
-    return curve_error + D("0.25") * peak_error + D("0.25") * active_mismatch
+    false_presence_error = zero_month_penalty(observed, simulated, threshold)
+
+    return (
+        curve_error
+        + D("0.25") * peak_error
+        + D("0.25") * active_mismatch
+        + D(zero_penalty_weight) * false_presence_error
+    )
 
 
 def infer_winter_search_space(observed, peak_padding=D("1.5")):
@@ -379,6 +420,7 @@ def make_random_params(search_space):
         "SUMMER_DIP": str(random_decimal(D("0.00"), D("0.40"), 3)),
         "SUMMER_LOW": str(random_decimal(D("5.50"), D("8.00"), 2)),
         "SUMMER_WIDTH": str(random_decimal(D("1.00"), D("5.00"), 3)),
+        "SHARPNESS": "4.0"
     }
 
 
@@ -410,7 +452,7 @@ def run_solver(simulation_file, params, solver_command, discard_months):
         return monthly_average(points, discard_months=discard_months)
 
 
-def fit(observed, simulation_file, iterations, solver_command, search_space, discard_months):
+def fit(observed, simulation_file, iterations, solver_command, search_space, discard_months, active_threshold, zero_penalty_weight):
     """
     Parameter fitting loop
     
@@ -420,6 +462,8 @@ def fit(observed, simulation_file, iterations, solver_command, search_space, dis
     :param solver_command: Command used to run the ODE Solver
     :param search_space: 
     :param discard_months: Number of months in the solution to discard
+    :param active_threshold: Threshold used to classify active/zero observed months
+    :param zero_penalty_weight: Weight applied to false-presence penalty
     :return: A dictionary of parameters yielding the best fit
     """
     best = None
@@ -429,7 +473,12 @@ def fit(observed, simulation_file, iterations, solver_command, search_space, dis
 
         try:
             simulated = run_solver(simulation_file, params, solver_command, discard_months)
-            score = weighted_score(observed, simulated)
+            score = weighted_score(
+                observed,
+                simulated,
+                threshold=active_threshold,
+                zero_penalty_weight=zero_penalty_weight,
+            )
 
         except Exception as e:
             print(f"Trial {i + 1}: failed: {e}")
@@ -481,8 +530,10 @@ def main():
     parser.add_argument("-sc", "--solver-command", required=True, help="ODE Solver command")
     parser.add_argument("-b", "--best-output", default="best_params.json", help="Where to write the best parameter file")
     parser.add_argument("-c", "--csv", required=True, help="CSV file to accumulate best parameters from multiple runs")
-    parser.add_argument("--peak-padding", type=Decimal, default=Decimal("1.5"), help="Search padding around observed winter peak")
-    parser.add_argument("--discard-months", type=Decimal, default=Decimal("0"), help="Ignore this many initial simulation months before binning output")
+    parser.add_argument("-pp", "--peak-padding", type=Decimal, default=Decimal("1.5"), help="Search padding around observed winter peak")
+    parser.add_argument("-d", "--discard-months", type=Decimal, default=Decimal("0"), help="Ignore this many initial simulation months before binning output")
+    parser.add_argument("-at", "--active-threshold", type=Decimal, default=Decimal("0.05"), help="Observed value at/below which a month is treated as inactive")
+    parser.add_argument("-z", "--zero-penalty-weight", type=Decimal, default=Decimal("1.50"), help="Weight applied to simulated presence in inactive observed months")
 
     args = parser.parse_args()
 
@@ -490,6 +541,11 @@ def main():
     search_space = infer_winter_search_space(observed, peak_padding=args.peak_padding)
 
     print(format_search_space(search_space))
+    print()
+    print("Scoring configuration")
+    print("---------------------")
+    print(f"Active threshold:    {args.active_threshold}")
+    print(f"Zero penalty weight: {args.zero_penalty_weight}")
 
     for r in range(args.runs):
         print()
@@ -502,6 +558,8 @@ def main():
             solver_command=args.solver_command,
             search_space=search_space,
             discard_months=args.discard_months,
+            active_threshold=args.active_threshold,
+            zero_penalty_weight=args.zero_penalty_weight,
         )
 
         if best is None:
