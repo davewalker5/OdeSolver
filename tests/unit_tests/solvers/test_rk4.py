@@ -119,7 +119,7 @@ def expected_solution():
 
 
 def test_rk4_solution(function, expected_solution):
-    rk4 = RungeKutta4(function, None, None, None, 6)
+    rk4 = RungeKutta4(function, None, 6)
     rk4.solve_for_steps(10, 0.5, 0.5)
 
     assert len(expected_solution) == len(rk4.history)

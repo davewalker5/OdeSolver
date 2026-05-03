@@ -119,7 +119,7 @@ def expected_solution():
 
 
 def test_euler_solution(function, expected_solution):
-    e = Euler(function, None, None, None, 6)
+    e = Euler(function, None, 6)
     e.solve_for_steps(10, 0.5, 0.5)
 
     assert len(expected_solution) == len(e.history)

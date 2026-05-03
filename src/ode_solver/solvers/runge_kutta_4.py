@@ -2,8 +2,8 @@ from ode_solver.solvers.solver_base import SolverBase
 
 
 class RungeKutta4(SolverBase):
-    def __init__(self, function, pre_hook, post_hook, notify_callbacks, precision):
-        super(RungeKutta4, self).__init__(function, pre_hook, post_hook, notify_callbacks, precision)
+    def __init__(self, function, notify_callbacks, precision):
+        super(RungeKutta4, self).__init__(function, notify_callbacks, precision)
 
     def solve_step(self, t, y, step_size):
         """

@@ -1,0 +1,15 @@
+{
+  "INITIAL_Y": 1.0,
+  "GROWTH_RATE": "0.75",
+  "DECAY_RATE": "1.25",
+  "BASELINE": "0.0",
+  "WINTER_WEIGHT": "1.0",
+  "AUTUMN_WEIGHT": "0.35",
+  "WINTER_PEAK": "2.0",
+  "AUTUMN_PEAK": "12.0",
+  "WINTER_WIDTH": "1.6",
+  "AUTUMN_WIDTH": "4.0",
+  "SUMMER_DIP": "0.15",
+  "SUMMER_LOW": "7.0",
+  "SUMMER_WIDTH": "2.5"
+}

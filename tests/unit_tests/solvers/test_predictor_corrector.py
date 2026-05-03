@@ -119,7 +119,7 @@ def expected_solution():
 
 
 def test_predictor_corrector_solution(function, expected_solution):
-    pc = PredictorCorrector(function, None, None, None, 6)
+    pc = PredictorCorrector(function, None, 6)
     pc.solve_for_steps(10, 0.5, 0.5)
 
     assert len(expected_solution) == len(pc.history)

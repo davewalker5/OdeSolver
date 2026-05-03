@@ -36,7 +36,7 @@ class SolutionRunner:
         pre_hook = get_function_from_module(module, "pre_hook")
         post_hook = get_function_from_module(module, "post_hook")
         self.integrator = self.create_integrator(f, pre_hook, post_hook)
-        self.solve(self.integrator)
+        self.solve(self.integrator, pre_hook, post_hook)
 
     @property
     def history(self):
@@ -47,7 +47,7 @@ class SolutionRunner:
         """
         return self.integrator.history if self.integrator else None
 
-    def create_integrator(self, f, pre_hook, post_hook):
+    def create_integrator(self, f):
         """
         Create an instance of the integration class
 
@@ -61,18 +61,25 @@ class SolutionRunner:
             callbacks = None
         method_id = IntegrationMethods.method_id(self.options["method"])
         if method_id == IntegrationMethods.EULER:
-            integrator = Euler(f, pre_hook, post_hook, callbacks, 6)
+            integrator = Euler(f, callbacks, 6)
         elif method_id == IntegrationMethods.PREDICTOR_CORRECTOR:
-            integrator = PredictorCorrector(f, pre_hook, post_hook, callbacks, 6)
+            integrator = PredictorCorrector(f, callbacks, 6)
         else:
-            integrator = RungeKutta4(f, pre_hook, post_hook, callbacks, 6)
+            integrator = RungeKutta4(f, callbacks, 6)
 
         return integrator
 
-    def solve(self, integrator):
+    def solve(self, integrator, pre_hook, post_hook):
         """
         Run the solution using the specified integrator
+
+        :param integrator: Instance of the integrator to use to solve the equation
+        :param pre_hook: Pre-simulation function or None
+        :param post_hook: Post-simulation function or None
         """
+        if pre_hook:
+            pre_hook(self.options)
+
         if self.options["limit"]:
             integrator.solve_for_range(self.options["limit"],
                                        self.options["step_size"],
@@ -83,6 +90,9 @@ class SolutionRunner:
             integrator.solve_for_steps(self.options["steps"],
                                        self.options["step_size"],
                                        self.options["initial_value"])
+
+        if post_hook:
+            post_hook(integrator.history)
 
     def normalise(self):
         """
