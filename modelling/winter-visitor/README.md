@@ -4,7 +4,7 @@ This module defines a simple first-order ordinary differential equation (ODE) in
 
 It's applicable to winter visitors that exhibit a single annual peak in presence that wraps around the end of the year. Examples are:
 
-- Redwing
+- Redwing (Turdus iliacus)
 
 ## Model overview
 

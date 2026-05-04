@@ -1,0 +1,542 @@
+#!/usr/bin/env python3
+"""
+Parameter fitter for the resident detectability model.
+
+This is intended for species such as Robin, Blackbird, Wren, etc. where the
+species is assumed to be present year-round, but observable activity /
+detectability varies seasonally.
+
+The fitter:
+
+- Loads observed monthly data from a CSV file containing month,value columns
+- Normalises observed values to 0..1
+- Infers useful peak/low centres from the observed curve
+- Generates random resident-model parameter sets
+- Runs the ODE Solver headlessly with SEASONAL_PARAMS_FILE
+- Scores the simulated curve against the observed curve
+- Repeats for N iterations and M runs
+- Writes the best parameters to JSON and appends best-per-run rows to CSV
+"""
+
+import argparse
+import csv
+import json
+import os
+import random
+import subprocess
+import tempfile
+from datetime import datetime
+from decimal import Decimal
+from pathlib import Path
+
+
+PARAMETER_COLUMNS = [
+    "TIMESTAMP",
+    "OBSERVED",
+    "SCORE",
+    "INITIAL_Y",
+    "GROWTH_RATE",
+    "DECAY_RATE",
+    "BASELINE",
+    "WINTER_WEIGHT",
+    "AUTUMN_WEIGHT",
+    "WINTER_PEAK",
+    "AUTUMN_PEAK",
+    "WINTER_WIDTH",
+    "AUTUMN_WIDTH",
+    "SUMMER_DIP",
+    "SUMMER_LOW",
+    "SUMMER_WIDTH",
+]
+
+
+def D(value):
+    """
+    Safely convert a value to a Decimal.
+
+    :param value: Value to convert
+    :return: Decimal conversion of that value
+    """
+    return Decimal(str(value))
+
+
+def random_decimal(low, high, places=3):
+    """
+    Return a random Decimal between low and high.
+
+    :param low: Minimum value
+    :param high: Maximum value
+    :param places: Number of decimal places
+    :return: Random Decimal meeting the specified criteria
+    """
+    value = random.uniform(float(low), float(high))
+    return D(round(value, places))
+
+
+def wrap_month(value):
+    """
+    Wrap a month-like value into the range 1..12.
+
+    :param value: Unwrapped month number
+    :return: Wrapped month number
+    """
+    value = D(value)
+
+    while value < D("1"):
+        value += D("12")
+
+    while value > D("12"):
+        value -= D("12")
+
+    return value
+
+
+def circular_month_distance(a, b):
+    """
+    Shortest distance between two month-like values on a circular year.
+
+    :param a: First month
+    :param b: Second month
+    :return: Shortest distance between the two months on a circular year
+    """
+    a = D(a)
+    b = D(b)
+    diff = abs(a - b)
+    return min(diff, D("12") - diff)
+
+
+def month_range_around(centre, padding):
+    """
+    Create a possibly wrapped month range around a centre month.
+
+    :param centre: Centre month
+    :param padding: Number of months either side of the centre
+    :return: Wrapped month range
+    """
+    return wrap_month(D(centre) - D(padding)), wrap_month(D(centre) + D(padding))
+
+
+def random_month_in_range(low, high):
+    """
+    Select a random Decimal month from a possibly wrapped range.
+
+    :param low: Initial month number
+    :param high: Final month number
+    :return: Wrapped random month number in the specified range
+    """
+    low = D(low)
+    high = D(high)
+
+    if low <= high:
+        return D(round(random.uniform(float(low), float(high)), 2))
+
+    # Wrapped range: choose from low..12 or 1..high, weighted by length.
+    late_length = D("12") - low
+    early_length = high - D("1")
+    total_length = late_length + early_length
+
+    if total_length <= 0:
+        return wrap_month(low)
+
+    if D(str(random.random())) < late_length / total_length:
+        return D(round(random.uniform(float(low), 12.0), 2))
+
+    return D(round(random.uniform(1.0, float(high)), 2))
+
+
+def load_observed_csv(path):
+    """
+    Load the observed data and normalise it into the range 0..1.
+
+    The CSV file is expected to contain:
+    - month: month number, 1..12
+    - value: observed presence/detectability/count value
+
+    :param path: Path to observed CSV
+    :return: Normalised observed data keyed by month
+    """
+    rows = {}
+
+    with open(path, newline="") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            month = int(row["month"])
+            value = D(row["value"])
+            rows[month] = value
+
+    max_value = max(rows.values())
+
+    if max_value == 0:
+        return {m: D("0") for m in rows}
+
+    return {month: value / max_value for month, value in rows.items()}
+
+
+def load_simulated_json(path):
+    """
+    Load JSON simulation output from the ODE Solver.
+
+    :param path: Path to simulation output file
+    :return: List of dictionaries, each containing t and y
+    """
+    with open(path) as f:
+        data = json.load(f)
+
+    points = []
+
+    for p in data:
+        y_key = "y_normalised" if "y_normalised" in p else "y"
+        points.append({"t": D(p["t"]), "y": D(p[y_key])})
+
+    return points
+
+
+def monthly_average(points, discard_months=D("0")):
+    """
+    Convert solver output points into monthly bins.
+
+    t = 0.0..0.999 -> month 1
+    t = 1.0..1.999 -> month 2
+    ...
+    t = 11.0..11.999 -> month 12
+
+    If discard_months is supplied, the initial portion of the simulation is
+    ignored before binning. This can be useful if the simulation is run with
+    a warm-up period.
+
+    :param points: List of solution points
+    :param discard_months: Number of initial simulation months to discard
+    :return: Dictionary of monthly averaged values
+    """
+    bins = {m: [] for m in range(1, 13)}
+    discard_months = D(discard_months)
+
+    for p in points:
+        t = p["t"]
+
+        if t < discard_months:
+            continue
+
+        adjusted_t = t - discard_months
+        month = int(adjusted_t % D("12")) + 1
+
+        if 1 <= month <= 12:
+            bins[month].append(p["y"])
+
+    return {
+        month: sum(values) / len(values)
+        for month, values in bins.items()
+        if values
+    }
+
+
+def mse(observed, simulated):
+    """
+    Calculate mean squared error between observed and simulated data.
+
+    MSE = (1 / N) * Σ (observed - simulated)²
+
+    :param observed: Observed monthly values
+    :param simulated: Simulated monthly values
+    :return: Mean squared error
+    """
+    months = sorted(set(observed) & set(simulated))
+
+    if not months:
+        raise ValueError("No overlapping months between observed and simulated data")
+
+    return sum((observed[m] - simulated[m]) ** 2 for m in months) / D(len(months))
+
+
+def weighted_score(observed, simulated):
+    """
+    Score the fit for a resident detectability model.
+
+    This combines:
+    - MSE curve error
+    - annual peak timing mismatch
+    - summer low timing mismatch
+
+    Unlike the winter visitor fitter, this does not penalise simulated presence
+    in zero/near-zero months. The resident model assumes the species is present
+    year-round and only detectability varies.
+    """
+    curve_error = mse(observed, simulated)
+
+    observed_peak = max(observed, key=observed.get)
+    simulated_peak = max(simulated, key=simulated.get)
+    peak_error = circular_month_distance(observed_peak, simulated_peak) / D("12")
+
+    observed_low = min(observed, key=observed.get)
+    simulated_low = min(simulated, key=simulated.get)
+    low_error = circular_month_distance(observed_low, simulated_low) / D("12")
+
+    return curve_error + D("0.20") * peak_error + D("0.20") * low_error
+
+
+def infer_resident_search_space(observed, peak_padding=D("1.5"), low_padding=D("1.5")):
+    """
+    Infer biologically plausible parameter ranges for a resident detectability
+    model from observed monthly data.
+
+    The observed data is used to identify:
+    - the strongest annual detectability peak
+    - the late-year / autumn peak or shoulder
+    - the lowest point in the year, usually a summer low
+
+    These inferred features are expanded into circular month ranges so random
+    search explores plausible seasonal structures while still allowing the model
+    to refine the exact timing.
+    """
+    winter_peak_centre = D(max(observed, key=observed.get))
+
+    late_year_candidates = {m: observed.get(m, D("0")) for m in [10, 11, 12]}
+    autumn_peak_centre = D(max(late_year_candidates, key=late_year_candidates.get))
+
+    # If there is no clear late-year shoulder, keep autumn around December as
+    # a harmless default. The weight may fit towards zero.
+    if late_year_candidates[int(autumn_peak_centre)] == 0:
+        autumn_peak_centre = D("12")
+
+    # For residents, the low point may be anywhere, but for common garden birds
+    # it is often in the summer. Infer it directly rather than forcing it.
+    summer_low_centre = D(min(observed, key=observed.get))
+
+    baseline_centre = min(observed.values())
+
+    # INITIAL_Y controls the starting state of the ODE integration. For a
+    # resident detectability model this is usually best searched around the
+    # first observed month, because the simulation normally starts in January.
+    # Keep the range deliberately broad so the solver can absorb transient
+    # behaviour where needed.
+    initial_y_centre = observed.get(1, baseline_centre)
+    initial_y_low = max(D("0.00"), initial_y_centre - D("0.60"))
+    initial_y_high = min(D("2.00"), initial_y_centre + D("0.90"))
+
+    return {
+        "winter_peak_centre": winter_peak_centre,
+        "winter_peak_range": month_range_around(winter_peak_centre, peak_padding),
+        "autumn_peak_centre": autumn_peak_centre,
+        "autumn_peak_range": month_range_around(autumn_peak_centre, D("1.5")),
+        "summer_low_centre": summer_low_centre,
+        "summer_low_range": month_range_around(summer_low_centre, low_padding),
+        "baseline_centre": baseline_centre,
+        "initial_y_centre": initial_y_centre,
+        "initial_y_range": (initial_y_low, initial_y_high),
+    }
+
+
+def format_search_space(search_space):
+    """
+    Format inferred search space for console output.
+
+    :param search_space: Search space for random parameter generation
+    :return: Formatted string
+    """
+    def fmt_range(r):
+        return f"{r[0]}..{r[1]}"
+
+    return "\n".join([
+        "Inferred resident detectability search space",
+        "-------------------------------------------",
+        f"Winter peak centre: {search_space['winter_peak_centre']}",
+        f"Winter peak range:  {fmt_range(search_space['winter_peak_range'])}",
+        f"Autumn peak centre: {search_space['autumn_peak_centre']}",
+        f"Autumn peak range:  {fmt_range(search_space['autumn_peak_range'])}",
+        f"Summer low centre:  {search_space['summer_low_centre']}",
+        f"Summer low range:   {fmt_range(search_space['summer_low_range'])}",
+        f"Baseline centre:    {search_space['baseline_centre']}",
+        f"Initial Y centre:   {search_space['initial_y_centre']}",
+        f"Initial Y range:    {fmt_range(search_space['initial_y_range'])}",
+    ])
+
+
+def make_random_params(search_space):
+    """
+    Generate a random set of parameters for the resident detectability model.
+
+    The model assumes year-round presence, so BASELINE is allowed to vary above
+    zero. Seasonal terms then modulate detectability around that baseline.
+    """
+    winter_peak = random_month_in_range(*search_space["winter_peak_range"])
+    autumn_peak = random_month_in_range(*search_space["autumn_peak_range"])
+    summer_low = random_month_in_range(*search_space["summer_low_range"])
+
+    baseline_centre = D(search_space["baseline_centre"])
+    baseline_low = max(D("0.05"), baseline_centre - D("0.25"))
+    baseline_high = min(D("0.90"), baseline_centre + D("0.35"))
+    initial_y_low, initial_y_high = search_space["initial_y_range"]
+
+    return {
+        "INITIAL_Y": str(random_decimal(initial_y_low, initial_y_high, 3)),
+        "GROWTH_RATE": str(random_decimal(D("0.15"), D("1.50"), 3)),
+        "DECAY_RATE": str(random_decimal(D("0.30"), D("2.50"), 3)),
+        "BASELINE": str(random_decimal(baseline_low, baseline_high, 3)),
+        "WINTER_WEIGHT": str(random_decimal(D("0.00"), D("1.20"), 3)),
+        "AUTUMN_WEIGHT": str(random_decimal(D("0.00"), D("0.80"), 3)),
+        "WINTER_PEAK": str(winter_peak),
+        "AUTUMN_PEAK": str(autumn_peak),
+        "WINTER_WIDTH": str(random_decimal(D("0.80"), D("5.00"), 3)),
+        "AUTUMN_WIDTH": str(random_decimal(D("1.00"), D("6.00"), 3)),
+        "SUMMER_DIP": str(random_decimal(D("0.00"), D("0.70"), 3)),
+        "SUMMER_LOW": str(summer_low),
+        "SUMMER_WIDTH": str(random_decimal(D("1.00"), D("6.00"), 3)),
+    }
+
+
+def run_solver(simulation_file, params, solver_command, discard_months):
+    """
+    Run ODE Solver with a temporary parameter file.
+
+    :param simulation_file: Path to the simulation JSON
+    :param params: Parameter dictionary
+    :param solver_command: ODE Solver command
+    :param discard_months: Initial months to discard when binning
+    :return: Monthly simulated values
+    """
+    with tempfile.TemporaryDirectory() as tmp:
+        tmp = Path(tmp)
+        params_file = tmp / "resident_params.json"
+        output_file = tmp / "output.json"
+
+        params_file.write_text(json.dumps(params, indent=2))
+
+        env = os.environ.copy()
+        env["SEASONAL_PARAMS_FILE"] = str(params_file)
+
+        subprocess.run(
+            [
+                solver_command,
+                "-s", str(simulation_file),
+                "-q",
+                "-ng",
+                "-e", str(output_file),
+            ],
+            check=True,
+            env=env,
+        )
+
+        points = load_simulated_json(output_file)
+        return monthly_average(points, discard_months=discard_months)
+
+
+def fit(observed, simulation_file, iterations, solver_command, search_space, discard_months):
+    """
+    Parameter fitting loop.
+
+    :param observed: Observed behaviour being matched
+    :param simulation_file: Path to ODE Solver simulation file
+    :param iterations: Number of iterations in the fit
+    :param solver_command: Command used to run ODE Solver
+    :param search_space: Inferred search space
+    :param discard_months: Initial simulation months to discard
+    :return: Dictionary containing best score, parameters, and simulation
+    """
+    best = None
+
+    for i in range(iterations):
+        params = make_random_params(search_space)
+
+        try:
+            simulated = run_solver(simulation_file, params, solver_command, discard_months)
+            score = weighted_score(observed, simulated)
+
+        except Exception as e:
+            print(f"Trial {i + 1}: failed: {e}")
+            continue
+
+        if best is None or score < best["score"]:
+            best = {
+                "score": score,
+                "params": params,
+                "simulated": simulated,
+            }
+
+            print()
+            print(f"New best at trial {i + 1}")
+            print(f"Score: {score}")
+            print(json.dumps(params, indent=2))
+
+    return best
+
+
+def append_params_to_csv(params, csv_path):
+    """
+    Append fitted parameters to a CSV file, one row per run.
+
+    :param params: Fitted simulation parameters
+    :param csv_path: CSV file to write to
+    """
+    file_exists = os.path.exists(csv_path)
+
+    with open(csv_path, mode="a", newline="") as f:
+        writer = csv.writer(f)
+
+        if not file_exists:
+            writer.writerow(PARAMETER_COLUMNS)
+
+        writer.writerow([params.get(col, "") for col in PARAMETER_COLUMNS])
+
+
+def main():
+    """
+    Main entry point for the resident detectability parameter fitter.
+    """
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument("-o", "--observed", required=True, help="CSV file containing month,value columns")
+    parser.add_argument("-s", "--simulation", required=True, help="Simulation JSON file for ODE Solver")
+    parser.add_argument("-i", "--iterations", type=int, default=200, help="Number of parameter sets to test per run")
+    parser.add_argument("-r", "--runs", type=int, default=1, help="Number of parameter fitting runs")
+    parser.add_argument("-sc", "--solver-command", required=True, help="ODE Solver command")
+    parser.add_argument("-b", "--best-output", default="best_params.json", help="Where to write the best parameter file")
+    parser.add_argument("-c", "--csv", required=True, help="CSV file to accumulate best parameters from multiple runs")
+    parser.add_argument("-pp", "--peak-padding", type=Decimal, default=Decimal("1.5"), help="Search padding around observed detectability peak")
+    parser.add_argument("-lp", "--low-padding", type=Decimal, default=Decimal("1.5"), help="Search padding around observed low point")
+    parser.add_argument("-d", "--discard-months", type=Decimal, default=Decimal("0"), help="Ignore this many initial simulation months before binning output")
+
+    args = parser.parse_args()
+
+    observed = load_observed_csv(args.observed)
+    search_space = infer_resident_search_space(
+        observed,
+        peak_padding=args.peak_padding,
+        low_padding=args.low_padding,
+    )
+
+    print(format_search_space(search_space))
+
+    for r in range(args.runs):
+        print()
+        print(f"Starting resident detectability parameter fitting run {r + 1}\n")
+
+        best = fit(
+            observed=observed,
+            simulation_file=Path(args.simulation),
+            iterations=args.iterations,
+            solver_command=args.solver_command,
+            search_space=search_space,
+            discard_months=args.discard_months,
+        )
+
+        if best is None:
+            raise RuntimeError("No successful parameter set found")
+
+        best["params"]["TIMESTAMP"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        best["params"]["OBSERVED"] = Path(args.observed).name
+        best["params"]["SCORE"] = str(best["score"])
+
+        Path(args.best_output).write_text(json.dumps(best["params"], indent=2) + "\n")
+        append_params_to_csv(best["params"], args.csv)
+
+        print()
+        print("Best fit")
+        print("--------")
+        print(f"Score: {best['score']}")
+        print(json.dumps(best["params"], indent=2))
+        print()
+        print(f"Wrote: {args.best_output}")
+
+
+if __name__ == "__main__":
+    main()

@@ -6,6 +6,9 @@ for reference.
 import os
 import json
 from decimal import Decimal
+from typing import Callable, TypeVar
+
+T = TypeVar("T")
 
 D = Decimal
 
@@ -17,18 +20,29 @@ TWO    = D("2")
 ONE    = D("1")
 ZERO   = D("0")
 
-def get_parameter(name: str) -> Decimal:
+def get_parameter(name: str, cast: Callable[[str], T] = Decimal) -> T:
     if not hasattr(get_parameter, "values"):
         file_path = os.environ["SEASONAL_PARAMS_FILE"]
         with open(file_path, mode="rt", encoding="utf-8") as json_f:
             get_parameter.values = json.load(json_f)
 
-    return Decimal(get_parameter.values[name])
+    if name not in get_parameter.values:
+        return None
+
+    return cast(get_parameter.values[name])
 
 
 def pre_hook(options):
+    # Get the initial value for Y
     value = get_parameter("INITIAL_Y")
     options["initial_value"] = value
+
+    # Get the species - if it's specified, use it to set the chart title. Note
+    # that this won't change the title in the UI for the first simulation pass
+    # but will be shown in normalised results and exported charts
+    species = get_parameter("SPECIES", str)
+    if species:
+        options["chart_title"] = f"Seasonal Winter Presence ({species})"
 
 
 def d_sin(x: Decimal) -> Decimal:

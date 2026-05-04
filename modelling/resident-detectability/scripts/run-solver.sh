@@ -24,7 +24,7 @@ echo "PYTHONPATH      : $PYTHONPATH"
 echo "Parameters File : $SEASONAL_PARAMS_FILE"
 
 python -m ode_solver \
-    --simulation "$MODELLING_FOLDER/model/winter_visitor_generic.json" \
+    --simulation "$MODELLING_FOLDER/model/resident_detectability_generic.json" \
     --auto-run \
     --export "$DATA_FOLDER/$1_simulated.csv" \
     --chart "$DATA_FOLDER/$1_simulated.png" \

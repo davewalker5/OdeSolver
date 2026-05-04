@@ -3,35 +3,13 @@ This contains the resident detectability model code extracted from the simulatio
 for reference.
 """
 
+import os
+import json
 from decimal import Decimal
+from typing import Callable, TypeVar
 
+T = TypeVar("T")
 D = Decimal
-
-# ------------------------------------------------------------
-# Main dynamic parameter
-# ------------------------------------------------------------
-
-RESPONSE_RATE = D("0.8")     # How quickly y tracks the seasonal target
-
-# ------------------------------------------------------------
-# Resident detectability profile parameters
-# ------------------------------------------------------------
-
-BASELINE       = D("0.45")   # Year-round minimum detectability
-WINTER_WEIGHT  = D("0.65")   # Winter / early-spring detectability contribution
-AUTUMN_WEIGHT  = D("0.30")   # Autumn / early-winter recovery contribution
-SUMMER_DIP     = D("0.35")   # Mid-year reduction in detectability
-
-WINTER_PEAK    = D("2.5")    # Peak of winter / early-spring detectability
-AUTUMN_PEAK    = D("12.5")   # Peak of autumn / early-winter detectability
-SUMMER_LOW     = D("7.5")    # Centre of the summer dip
-
-WINTER_WIDTH   = D("1.8")    # Lower = broader; higher = narrower
-AUTUMN_WIDTH   = D("3.8")
-SUMMER_WIDTH   = D("2.5")
-
-GROWTH_RATE = D("0.45")      # Growth rate
-DECAY_RATE  = D("1.0")       # Faster decay rate
 
 # Useful constants
 TWO_PI         = D("6.283185307179586476925286766559")
@@ -40,6 +18,31 @@ TWELVE         = D("12")
 TWO            = D("2")
 ONE            = D("1")
 ZERO           = D("0")
+
+def get_parameter(name: str, cast: Callable[[str], T] = Decimal) -> T:
+    if not hasattr(get_parameter, "values"):
+        file_path = os.environ["SEASONAL_PARAMS_FILE"]
+        with open(file_path, mode="rt", encoding="utf-8") as json_f:
+            get_parameter.values = json.load(json_f)
+
+    if name not in get_parameter.values:
+        return None
+
+    return cast(get_parameter.values[name])
+
+
+def pre_hook(options):
+    # Get the initial value for Y
+    value = get_parameter("INITIAL_Y")
+    options["initial_value"] = value
+
+    # Get the species - if it's specified, use it to set the chart title. Note
+    # that this won't change the title in the UI for the first simulation pass
+    # but will be shown in normalised results and exported charts
+    species = get_parameter("SPECIES", str)
+    if species:
+        options["chart_title"] = f"Resident Detectability ({species})"
+
 
 # Decimal sine via Taylor series
 def d_sin(x: Decimal) -> Decimal:
@@ -114,13 +117,13 @@ def resident_target(t: Decimal) -> Decimal:
     Resident seasonal detectability target.
 
     This is not a presence/absence model. It assumes the species is present all
-    year, with detectability varying around a persistent baseline.
+    year, with detectability varying around a persistent get_parameter("BASELINE").
     """
-    winter = annual_bump(t, WINTER_PEAK, WINTER_WIDTH)
-    autumn = annual_bump(t, AUTUMN_PEAK, AUTUMN_WIDTH)
-    summer = annual_bump(t, SUMMER_LOW, SUMMER_WIDTH)
+    winter = annual_bump(t, get_parameter("WINTER_PEAK"), get_parameter("WINTER_WIDTH"))
+    autumn = annual_bump(t, get_parameter("AUTUMN_PEAK"), get_parameter("AUTUMN_WIDTH"))
+    summer = annual_bump(t, get_parameter("SUMMER_LOW"), get_parameter("SUMMER_WIDTH"))
 
-    target = BASELINE + WINTER_WEIGHT * winter + AUTUMN_WEIGHT * autumn - SUMMER_DIP * summer
+    target = get_parameter("BASELINE") + get_parameter("WINTER_WEIGHT") * winter + get_parameter("AUTUMN_WEIGHT") * autumn - get_parameter("SUMMER_DIP") * summer
 
     # Keep the target non-negative in case parameters are pushed too far.
     if target < ZERO:
@@ -140,8 +143,8 @@ def f(t: Decimal, y: Decimal) -> Decimal:
     target = resident_target(t_mod)
 
     if target > y:
-        rate = GROWTH_RATE
+        rate = get_parameter("GROWTH_RATE")
     else:
-        rate = DECAY_RATE
+        rate = get_parameter("DECAY_RATE")
 
     return rate * (target - y)

@@ -57,9 +57,14 @@ def handle_args(args, window):
     :param args: Parsed command line arguments and values
     """
 
-    ## Handle "no GUI"
+    # Handle "no GUI"
     if args.no_gui:
         show_argument_error(f"The 'no GUI' flag is invalid in the current context")
+        return False
+
+    # Handle "normalise"
+    if args.normalise:
+        show_argument_error(f"The 'normalise' flag is invalid in the current context")
         return False
 
     # Load the simulation file, if specified
