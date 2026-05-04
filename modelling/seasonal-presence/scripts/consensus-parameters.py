@@ -13,7 +13,7 @@ PARAMETERS = [
     "SEASON_START",
     "SEASON_END",
     "SHARPNESS",
-    "FORCING_PEAK",
+    "FORCING_PEAK"
 ]
 
 
