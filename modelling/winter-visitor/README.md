@@ -8,15 +8,62 @@ It's applicable to winter visitors that exhibit a single annual peak in presence
 
 ## Model overview
 
-TBC
+A single state variable y(t) is modelled as:
+
+```
+y(t) = observable activity / detection rate
+```
+
+The governing equation is:
+
+```
+dy/dt = rate * (T(t) - y)
+```
+
+Where:
+
+| Term | Name            | Meaning                                                                                  |
+|------|-----------------|------------------------------------------------------------------------------------------|
+| T(t) | Seasonal target | A periodic function representing expected seasonal activity for a winter visitor         |
+| rate | Response rate   | Controls how quickly y responds to changes in the seasonal target                        |
+
+The seasonal target T(t) is constructed as a combination of:
+
+- A **winter component**, representing peak presence during the core winter months
+- An optional **autumn component**, representing arrival into the winter season
+- A **summer suppression component**, reducing activity during the off-season
+
+Each component is defined as a smooth periodic function over a 12-month cycle. Time is treated as circular, allowing the model to represent seasons that wrap across the end of the year (e.g. October–March).
 
 ## Units
 
-TBC
+All seasonal components are dimensionless shape functions.
+
+y(t) is a relative or scaled measure of activity, representing observable presence or detectability.
+
+Time is measured in months and treated as a circular quantity over a 12-month cycle.
+
+GROWTH_RATE and DECAY_RATE are time-scale parameters (units of 1/time) controlling how quickly the system responds to changes in the seasonal target.
 
 ## Key features
 
-TBC
+1. Circular time handling:<br/>
+   Time is wrapped onto a 12-month cycle using modulo arithmetic, allowing seasons to cross the calendar boundary.
+
+2. Composite seasonal structure:<br/>
+   The seasonal target combines winter, autumn, and summer components, allowing flexible modelling of arrival, peak presence, and absence.
+
+3. Smooth periodic forcing:<br/>
+   Raised-cosine style functions are used to produce continuous, differentiable seasonal curves without discontinuities.
+
+4. Asymmetric dynamics:<br/>
+   Separate growth and decay rates allow the model to represent faster decline after the winter peak.
+
+5. Explicit modelling of arrival phase:<br/>
+   A distinct autumn component allows the timing and shape of arrival into the winter season to be modelled independently.
+
+6. Active summer suppression:<br/>
+   A summer component reduces activity during the off-season, producing near-zero values where the species is absent.
 
 ## Numerical considerations
 
@@ -28,7 +75,27 @@ TBC
 
 This is a deliberately simplified "toy" model intended to explore whether simple mechanistic assumptions can reproduce observed seasonal patterns in wildlife records.
 
-TBC
+The model is particularly suited to species whose main period of presence crosses the calendar boundary (e.g. winter visitors such as Redwing and Fieldfare).
+
+The fitted parameters are now broadly interpretable in ecological terms, especially when derived from multiple fitting runs and summarised (e.g. using median values).
+
+Key parameters can be interpreted as follows:
+
+- WINTER_PEAK → approximate timing of peak winter presence
+- AUTUMN_PEAK → approximate timing of arrival into the winter season
+- WINTER_WIDTH → concentration of winter presence around the peak (higher values = narrower peak)
+- AUTUMN_WIDTH → spread of the autumn arrival phase
+- WINTER_WEIGHT → relative strength of winter presence
+- AUTUMN_WEIGHT → relative strength of the autumn arrival signal
+- SUMMER_DIP / SUMMER_LOW → timing and strength of summer absence
+
+These parameters provide a compact and comparable description of seasonal behaviour across species.
+
+However, the model output arises from the interaction of multiple components, and parameters should be interpreted as estimates rather than exact measurements. Interpretation is most robust when:
+
+- considering multiple fitting runs
+- summarising parameter values (e.g. median and spread)
+- validating against the fitted curve
 
 The model is not intended for precise prediction, but for pattern exploration and comparison with empirical data.
 
@@ -79,11 +146,47 @@ To improve robustness, multiple fitting runs can be performed. The best-performi
 
 ## Interpreting the fitted parameters
 
-TBC
+The fitted parameters are now broadly interpretable in ecological terms, particularly when derived from multiple fitting runs and summarised.
+
+Because the parameter search is constrained using the observed data, key parameters tend to align with real seasonal features:
+
+- WINTER_PEAK → timing of peak winter presence
+- AUTUMN_PEAK → timing of arrival into the winter season
+- WINTER_WIDTH → concentration of activity around the winter peak
+- AUTUMN_WIDTH → breadth of the arrival phase
+
+These parameters allow species to be compared in terms of:
+
+- Timing of peak presence
+- Timing of arrival
+- Sharpness or breadth of the winter season
+
+However:
+
+- Parameters should be interpreted as estimates, not exact dates
+- Different parameter combinations may produce similar curves
+- Individual runs may vary due to stochastic sampling
+
+As with the seasonal model, interpretation is most reliable when combining:
+
+- The fitted parameters
+- The shape of the simulated curve
 
 ### Scoring
 
-TBC
+Model fit is evaluated using a combination of:
+
+- Mean Squared Error (MSE) — overall curve similarity
+- Additional penalties for:
+  - Peak timing mismatch (using circular month distance)
+  - Incorrect seasonal positioning
+  - Simulated presence in months where observed values are near zero
+
+The use of circular month distance ensures that comparisons across the year boundary (e.g. December–January) are handled correctly.
+
+Penalising presence in inactive months helps prevent overly broad seasonal curves, ensuring that winter activity is both well-timed and appropriately constrained.
+
+This scoring approach favours solutions that are both mathematically close to the observed data and ecologically realistic.
 
 ### Running the Parameter Fitter
 
