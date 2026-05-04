@@ -7,6 +7,7 @@ from statistics import median
 
 
 PARAMETERS = [
+    "INITIAL_Y",
     "BASELINE",
     "WINTER_WEIGHT",
     "AUTUMN_WEIGHT",

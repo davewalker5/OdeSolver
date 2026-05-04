@@ -10,7 +10,7 @@ fi
 MODELLING_FOLDER=$( cd "$( dirname "$0" )/.." && pwd )
 PROJECT_FOLDER=$( cd "$MODELLING_FOLDER/../.." && pwd)
 RUN_ODE_SOLVER="$PROJECT_FOLDER/scripts/run-solver.sh"
-SIMULATION_FILE="$MODELLING_FOLDER/model/winter_visitor_generic.json"
+SIMULATION_FILE="$MODELLING_FOLDER/model/resident_detectability_generic.json"
 OBSERVED_CSV="$MODELLING_FOLDER/data/$1_observed.csv"
 PARAMETERS_CSV="$MODELLING_FOLDER/data/$1_parameters.csv"
 PARAMETERS_JSON="$MODELLING_FOLDER/data/$1_best.json"

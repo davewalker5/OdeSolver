@@ -1,5 +1,5 @@
 from datetime import datetime
-from ode_solver.cli.parser import parse, load_simulation_from_args
+from ode_solver.cli.parser import parse, load_simulation_from_args, NORMALISE_TRUE
 from ode_solver.utils.data_exchange import check_export_format
 from ode_solver.options.option_validator import pre_run_validate_options
 from ode_solver.cli.solution_runner import SolutionRunner
@@ -74,6 +74,11 @@ def cli_main(args):
     # Run the solution
     solution_runner = SolutionRunner(args.quiet)
     solution_runner.run(simulation_options)
+
+    # Override the simulation's normalisation option, if the normalisation flag has been
+    # supplied
+    if args.normalise:
+        simulation_options["normalise"] = args.normalise in NORMALISE_TRUE
 
     # If requested, normalise the data
     if simulation_options["normalise"]:

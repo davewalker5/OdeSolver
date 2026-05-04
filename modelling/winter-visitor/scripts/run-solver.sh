@@ -27,4 +27,7 @@ python -m ode_solver \
     --simulation "$MODELLING_FOLDER/model/winter_visitor_generic.json" \
     --auto-run \
     --export "$DATA_FOLDER/$1_simulated.csv" \
-    --chart "$DATA_FOLDER/$1_simulated.png"
+    --chart "$DATA_FOLDER/$1_simulated.png" \
+    --no-gui \
+    --normalise false \
+    --quiet
