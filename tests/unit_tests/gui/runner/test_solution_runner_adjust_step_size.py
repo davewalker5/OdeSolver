@@ -362,7 +362,7 @@ def expected_solution():
 
 
 def test_solution_runner_adjusting_step_size(function, expected_solution):
-    e = RungeKutta4(function, None, None, None, 6)
+    e = RungeKutta4(function, None, 6)
     e.solve_for_range(20, 0.5, 0.5, True, 0.01)
 
     assert len(expected_solution) == len(e.history)

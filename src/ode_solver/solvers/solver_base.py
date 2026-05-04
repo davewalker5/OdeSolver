@@ -3,7 +3,7 @@ from decimal import Decimal, getcontext
 
 
 class SolverBase:
-    def __init__(self, function, pre_hook, post_hook, notify_callbacks, precision):
+    def __init__(self, function, notify_callbacks, precision):
         """
         Initialiser
 
@@ -13,8 +13,6 @@ class SolverBase:
         """
         getcontext().prec = precision
         self._function = function
-        self._pre_hook = pre_hook
-        self._post_hook = post_hook
         self._history = []
 
         # Add the history recording callback to the notification callbacks
@@ -141,10 +139,6 @@ class SolverBase:
         self._history = []
         self.notify(0, t, y, step_size_decimal, 0, tolerance_decimal)
 
-        # If a pre-simulation hook has been specified, call it
-        if self._pre_hook:
-            self._pre_hook()
-
         # Iterate over the specified range of the independent variable
         while t <= limit_decimal:
             current_step = current_step + 1
@@ -161,10 +155,6 @@ class SolverBase:
             # Capture the new values at this step and send the new value notifications
             t, y = tf, yf
             self.notify(current_step, t, y, step_size_decimal, difference, tolerance_decimal)
-
-        # If a post-simulation hook has been specified, call it passing the simulation result
-        if self._post_hook:
-            self._post_hook(self.history)
 
     def solve_for_steps(self, steps, step_size, initial_value):
         """

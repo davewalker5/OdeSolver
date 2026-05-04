@@ -57,7 +57,7 @@ The emphasis is on:
 
 ### 3. Parameter fitting
 
-Parameter fitting is currently implemented only for the model for seasonally present species, rather than residents where observations are driven by detectability changes.
+Parameter fitting is currently implemented for the model for seasonally present and winter visitor models, rather than residents where observations are driven by detectability changes.
 
 Given observed data (typically monthly presence or detectability), we:
 
@@ -73,18 +73,18 @@ This produces a set of parameters that describe the species’ seasonal behaviou
 
 ### seasonal-presence/
 
-Models species that are absent outside a defined season, such as:
+Models species that are absent outside a defined season, where that season doesn't wrap the boundaries of the year, such as:
 
 - Swifts (Apus apus)
 - Swallows (Hirundo rustica)
 - Flowering plants such as the bluebell (Hyacinthoides non-scripta)
 
-Includes:
+### winter-visitor/
 
-- Model definition (seasonal_model.py)
-- Simulation configurations
-- Observed data examples
-- Parameter fitting script
+Models species that are absent outside the autumn/winter season, such as:
+
+- Redwing (Turdus iliacus)
+- Fieldfare (Turdus pilaris)
 
 ### resident-detectability/
 

@@ -2,6 +2,12 @@
 
 This module defines a simple first-order ordinary differential equation (ODE) intended to model the observable activity or detectability of a wildlife species over time, driven by seasonal forcing.
 
+It's applicable to species that exhibit a single annual peak in presence that doesn't wrap around the end of the year. Examples are:
+
+- Migratory birds
+- Flowers with a single flowering period
+- Butterflies with a single flight period
+
 ## Model overview
 
 A single state variable y(t) is modelled as:
@@ -74,24 +80,21 @@ The model is not intended for precise prediction, but for pattern exploration an
 
 The following ODE Solver simulation files are provided in the "simulations" folder:
 
-| File                            | Species                              | Comments                                                                          |
-| ------------------------------- | ------------------------------------ | --------------------------------------------------------------------------------- |
-| seasonal_params.json            | -                                    | Example species parameters file for the seasonal_presence_generic.json simulation |
-| seasonal_presence_bluebell.json | Bluebell (Hyacinthoides non-scripta) | Simulation for the bluebell, species parameters embedded                          |
-| seasonal_presence_generic.json  | -                                    | Simulation that loads species from the external parameters JSON file              |
-| seasonal_presence_swift.json    | Swift (Apus apus)                    | Simulation for the swift, species parameters embedded                             |
+| File                           | Species | Comments                                                             |
+| ------------------------------ | ------- | -------------------------------------------------------------------- |
+| seasonal_presence_generic.json | -       | Simulation that loads species from the external parameters JSON file |
 
 The "generic" model loads species parameters from a separate JSON file pointed at run-time. That file has the following format:
 
 ```json
 {
-  "GROWTH": "2.0",
+  "GROWTH": "2",
   "DECAY": "1.5",
-  "OOS_DECAY": "3.0",
-  "SEASON_START": "5.11",
-  "SEASON_END": "9.61",
-  "SHARPNESS": "3.421",
-  "FORCING_PEAK": "3.65"
+  "OOS_DECAY": "3",
+  "SEASON_START": "4.905",
+  "SEASON_END": "8.73",
+  "SHARPNESS": "6.175",
+  "FORCING_PEAK": "5.21"
 }
 ```
 
@@ -161,13 +164,25 @@ By combining these components, the fitting process favours solutions that are no
 
 ### Running the Parameter Fitter
 
-Before attempting to run the parameter fitter, the following environment variable must be set:
+#### Overview
 
-```
-export RUN_ODE_SOLVER=/path/to/ODE/solver/run-solver.sh
-```
+The parameter fitting workflow is illustrated below:
 
-A CSV file containing the observed data for the species of interest should be prepared. For example:
+![Parameter Fitting](https://github.com/davewalker5/OdeSolver/blob/main/docs/images/parameter-fitting.png?raw=true)
+
+The following summarises
+
+| File              | Naming                          | Type      | Location    |
+| ----------------- | ------------------------------- | --------- | ----------- |
+| observed.csv      | <em>species</em>_observed.csv   | Input     | data folder |
+| parameters.csv    | <em>species</em>_parameters.csv | Generated | data folder |
+| consensus.json    | <em>species</em>consensus.json  | Generated | data folder |
+| simulated results | <em>species</em>simulated.csv   | Generated | data folder |
+| simulated results | <em>species</em>simulated.png   | Generated | data folder |
+
+Where _species_ is the name of the species of interest e.g. swift, swallow etc.
+
+Files marked as "generated" are created by the parameter fitting and related scripts. The input file should be prepared beforehand and should contain a month column, with values 1 to 12, and a value column indicating the observed value in that month:
 
 ```csv
 month,value
@@ -187,27 +202,32 @@ month,value
 
 The value may be total counts or "presence" values (for more information on presence, see _Seasonal Analyses_ in the _Wildlife_ section of the [Field Notes &nearr;](https://davidwalker.uk/) site).
 
-The parameter fit can then be run as follows
+#### 1. Parameter Fitting
+
+The parameter fitting step is run using:
 
 ```bash
-run-fit.sh /path/to/observed/data.csv
+./scripts/run-fit.sh <species>
 ```
 
-The script will report the latest "best" match as it progresses and on completion will report the parameters yielding the best fit:
+This outputs the <em>species_parameters.csv</em> file and the best-fit parameters to <em>data/species_best.json</em>, both in the _data_ folder.
 
-```
-Best fit
---------
-Score: 0.02819917785921372844725220239
-{
-  "GROWTH": "2.0",
-  "DECAY": "1.5",
-  "OOS_DECAY": "3.0",
-  "SEASON_START": "5.79",
-  "SEASON_END": "9.82",
-  "SHARPNESS": "5.946",
-  "FORCING_PEAK": "2.77"
-}
+#### 2. Consensus Parameter Generation
+
+Once the fit has been completed, the consensus parameter calculation can be run using:
+
+```bash
+./scripts/run-consensus.sh <species>
 ```
 
-Those parameters are also written to the file _best_params.json_.
+This outputs the _species_consensus.json_ file in the _data_ folder.
+
+#### 3. Running the Solution
+
+Once the consensus parameters have been generated, the solution can be run with those parameters using:
+
+```bash
+./scripts/run-solver.sh <species>
+```
+
+This runs the ODE Solver UI to view the simulation and writes the <em>species_simulated.csv</em> and <em>species_simulated.png</em> files to the _data_ folder.
