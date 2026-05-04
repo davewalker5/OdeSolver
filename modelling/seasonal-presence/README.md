@@ -2,6 +2,12 @@
 
 This module defines a simple first-order ordinary differential equation (ODE) intended to model the observable activity or detectability of a wildlife species over time, driven by seasonal forcing.
 
+It's applicable to species that exhibit a single annual peak in presence that doesn't wrap around the end of the year. Examples are:
+
+- Migratory birds
+- Flowers with a single flowering period
+- Butterflies with a single flight period
+
 ## Model overview
 
 A single state variable y(t) is modelled as:

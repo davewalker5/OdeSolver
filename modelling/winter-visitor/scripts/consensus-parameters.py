@@ -20,6 +20,7 @@ PARAMETERS = [
     "SUMMER_DIP",
     "SUMMER_LOW",
     "SUMMER_WIDTH",
+    "SHARPNESS",
 ]
 
 
@@ -61,7 +62,6 @@ def main():
 
     # Load the parameters CSV file
     rows = load_rows(args.input)
-    return
     if not rows:
         raise ValueError("Input CSV contains no rows")
 
