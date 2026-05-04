@@ -1,0 +1,16 @@
+{
+  "SPECIES": "Blackbird",
+  "INITIAL_Y": "0.822",
+  "BASELINE": "0.48",
+  "WINTER_WEIGHT": "0.44",
+  "AUTUMN_WEIGHT": "0.32",
+  "SUMMER_DIP": "0.478",
+  "WINTER_PEAK": "3.34",
+  "AUTUMN_PEAK": "11.22",
+  "SUMMER_LOW": "9.07",
+  "WINTER_WIDTH": "1.194",
+  "AUTUMN_WIDTH": "3.394",
+  "SUMMER_WIDTH": "4.683",
+  "GROWTH_RATE": "1.33",
+  "DECAY_RATE": "1.348"
+}

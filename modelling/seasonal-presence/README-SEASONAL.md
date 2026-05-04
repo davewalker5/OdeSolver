@@ -19,7 +19,7 @@ y(t) = observable activity / detection rate
 The governing equation is:
 
 ```
-dy/dt = GROWTH - S(t) - W(t) - decay(t) * y
+dy/dt = GROWTH - S(t) - W(t) - decay(t) - y
 ```
 
 Where:
