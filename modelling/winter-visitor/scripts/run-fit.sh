@@ -6,19 +6,17 @@ if (( $# != 1 )); then
     exit 1
 fi
 
-if [[ -z "${RUN_ODE_SOLVER+x}" ]]; then
-  echo "The RUN_ODE_SOLVER environment variable must be set with the path to the ODE Solver run script"
-  exit 1
-fi
-
 # Set the environment
 MODELLING_FOLDER=$( cd "$( dirname "$0" )/.." && pwd )
+PROJECT_FOLDER=$( cd "$MODELLING_FOLDER/../.." && pwd)
+RUN_ODE_SOLVER="$PROJECT_FOLDER/scripts/run-solver.sh"
 SIMULATION_FILE="$MODELLING_FOLDER/model/winter_visitor_generic.json"
 OBSERVED_CSV="$MODELLING_FOLDER/data/$1_observed.csv"
 PARAMETERS_CSV="$MODELLING_FOLDER/data/$1_parameters.csv"
+PARAMETERS_JSON="$MODELLING_FOLDER/data/$1_best.json"
 
 echo "Modelling Folder   : $MODELLING_FOLDER"
-echo "ODE Solver Command : $SEASONAL_PARAMS_FILE"
+echo "ODE Solver Command : $RUN_ODE_SOLVER"
 echo "Observed Data File : $OBSERVED_CSV"
 echo "Simulation File    : $SIMULATION_FILE"
 echo "Parameters File    : $PARAMETERS_CSV"
@@ -29,5 +27,5 @@ python "$MODELLING_FOLDER/scripts/parameter_fitting.py" \
     --simulation "$SIMULATION_FILE" \
     --solver-command "$RUN_ODE_SOLVER" \
     --csv "$PARAMETERS_CSV" \
-    --runs 1 \
-    --best-output "$MODELLING_FOLDER/data/best_params.json" \
+    --runs 20 \
+    --best-output "$PARAMETERS_JSON"
