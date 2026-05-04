@@ -8,15 +8,63 @@ This module defines a simple first-order ordinary differential equation (ODE) in
 
 ## Model overview
 
-TBC
+A single state variable y(t) is modelled as:
+
+```
+y(t) = observable activity / detection rate
+```
+
+The governing equation is:
+
+```
+dy/dt = rate * (T(t) - y)
+```
+
+Where:
+
+| Term | Name            | Meaning                                                                                  |
+|------|-----------------|------------------------------------------------------------------------------------------|
+| T(t) | Seasonal target | A periodic function representing expected seasonal detectability for a resident species |
+| rate | Response rate   | Controls how quickly y responds to changes in the seasonal target                        |
+
+The seasonal target T(t) is constructed as a combination of:
+
+- A **baseline level**, representing year-round presence
+- A **winter component**, representing increased detectability during winter
+- An optional **autumn component**, representing late-year behavioural changes
+- A **summer suppression component**, representing reduced detectability in summer
+
+Each component is defined as a smooth periodic function over a 12-month cycle. Time is treated as circular, allowing the model to represent continuous seasonal variation without a true "on/off" season.
 
 ## Units
 
-TBC
+All seasonal components are dimensionless shape functions.
+
+y(t) is a relative or scaled measure of activity, representing observable presence or detectability.
+
+Time is measured in months and treated as a circular quantity over a 12-month cycle.
+
+GROWTH_RATE and DECAY_RATE are time-scale parameters (units of 1/time) controlling how quickly the system responds to changes in the seasonal target.
 
 ## Key features
 
-TBC
+1. Continuous presence:<br/>
+   The model assumes the species is present year-round, with no seasonal shutdown.
+
+2. Circular time handling:<br/>
+   Time is wrapped onto a 12-month cycle using modulo arithmetic.
+
+3. Composite seasonal structure:<br/>
+   Detectability is modelled as the combination of baseline, winter, autumn, and summer components.
+
+4. Smooth periodic forcing:<br/>
+   Raised-cosine style functions produce continuous, differentiable seasonal curves without discontinuities.
+
+5. Explicit summer low:<br/>
+   A summer component allows modelling of reduced detectability during quieter periods.
+
+6. Asymmetric dynamics:<br/>
+   Separate growth and decay rates allow the model to represent differing rates of increase and decline in detectability.
 
 ## Numerical considerations
 
@@ -90,11 +138,44 @@ To improve robustness, multiple fitting runs can be performed. The best-performi
 
 ## Interpreting the fitted parameters
 
-TBC
+The fitted parameters are broadly interpretable in ecological terms, particularly when derived from multiple fitting runs and summarised.
+
+Because the parameter search is constrained using the observed data, key parameters tend to align with real seasonal features:
+
+- WINTER_PEAK &rarr; timing of highest detectability (typically mid-winter)
+- AUTUMN_PEAK &rarr; timing of late-year increase in detectability
+- SUMMER_LOW &rarr; timing of lowest detectability
+- WINTER_WIDTH &rarr; concentration of winter detectability around the peak
+- AUTUMN_WIDTH &rarr; breadth of the autumn increase
+- SUMMER_WIDTH &rarr; breadth of the summer low
+
+These parameters describe how detectability varies through the year rather than when the species is present.
+
+However:
+
+- Parameters should be interpreted as estimates, not exact dates
+- Different parameter combinations may produce similar curves
+- Individual runs may vary due to stochastic sampling
+
+Interpretation is most reliable when combining:
+
+- The fitted parameters
+- The shape of the simulated curve
 
 ### Scoring
 
-TBC
+Model fit is evaluated using a combination of:
+
+- Mean Squared Error (MSE) — overall curve similarity
+- Additional penalties for:
+  - Peak timing mismatch (using circular month distance)
+  - Incorrect timing of seasonal high and low points
+
+Unlike the seasonal and winter visitor models, no penalty is applied for simulated presence in low-value months, as the species is assumed to be present year-round.
+
+The use of circular month distance ensures that comparisons across the year boundary (e.g. December–January) are handled correctly.
+
+This scoring approach favours solutions that capture both the shape of the detectability curve and the timing of seasonal variation.
 
 
 ### Running the Parameter Fitter
