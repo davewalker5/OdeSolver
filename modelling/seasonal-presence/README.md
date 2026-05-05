@@ -231,3 +231,13 @@ Once the consensus parameters have been generated, the solution can be run with 
 ```
 
 This runs the ODE Solver UI to view the simulation and writes the <em>species_simulated.csv</em> and <em>species_simulated.png</em> files to the _data_ folder.
+
+#### 4. Generate the Synthesised Chart
+
+Once the solver has completed, generate the synthesised data:
+
+```bash
+./scripts/synthesise.sh <species>
+```
+
+This generates synthesised data, scaled per the observed data but following the curve of the simulated output, and writes the <em>species_synthesised.csv</em> and <em>species_synthesised.png</em> files to the _data_ folder. The chart is particularly useful as a visual comparison of how well the model and parameter fitting has worked for the species in question.
