@@ -5,7 +5,7 @@ MODELLING_FOLDER=$( cd "$( dirname "$0" )/.." && pwd )
 # Build the species list - a species needs to be modelled if it's "observed" data file is
 # present but the simulated output isn;t
 species_list=()
-for observed_file in "$MODELLING_FOLDER/data/*_observed.csv"; do
+for observed_file in "$MODELLING_FOLDER"/data/*_observed.csv; do
     [[ -e "$observed_file" ]] || continue
 
     filename=$(basename "$observed_file")

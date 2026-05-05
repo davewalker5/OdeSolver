@@ -1,10 +1,10 @@
 {
-  "SPECIES": "Swift",
   "GROWTH": "2",
   "DECAY": "1.5",
   "OOS_DECAY": "3",
-  "SEASON_START": "4.905",
-  "SEASON_END": "8.73",
-  "SHARPNESS": "6.175",
-  "FORCING_PEAK": "5.21"
+  "SEASON_START": "4.615",
+  "SEASON_END": "8.72",
+  "SHARPNESS": "5.134",
+  "FORCING_PEAK": "5.32",
+  "SPECIES": "Swift"
 }

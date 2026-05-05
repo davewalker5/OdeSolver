@@ -1,0 +1,16 @@
+{
+  "INITIAL_Y": "0.678",
+  "BASELINE": "0.352",
+  "WINTER_WEIGHT": "0.718",
+  "AUTUMN_WEIGHT": "0.252",
+  "SUMMER_DIP": "0.25",
+  "WINTER_PEAK": "2.815",
+  "AUTUMN_PEAK": "11.03",
+  "SUMMER_LOW": "7.08",
+  "WINTER_WIDTH": "2.578",
+  "AUTUMN_WIDTH": "2.984",
+  "SUMMER_WIDTH": "2.873",
+  "GROWTH_RATE": "0.804",
+  "DECAY_RATE": "1.32",
+  "SPECIES": "Blue Tit"
+}

@@ -1,0 +1,16 @@
+{
+  "INITIAL_Y": "0.714",
+  "BASELINE": "0.262",
+  "WINTER_WEIGHT": "0.743",
+  "AUTUMN_WEIGHT": "0.166",
+  "SUMMER_DIP": "0.218",
+  "WINTER_PEAK": "3.725",
+  "AUTUMN_PEAK": "10.87",
+  "SUMMER_LOW": "7.745",
+  "WINTER_WIDTH": "2.444",
+  "AUTUMN_WIDTH": "3.103",
+  "SUMMER_WIDTH": "3.509",
+  "GROWTH_RATE": "1.056",
+  "DECAY_RATE": "1.276",
+  "SPECIES": "Great Tit"
+}

@@ -524,21 +524,19 @@ def run_solver(simulation_file, params, solver_command, discard_months):
         return monthly_average(points, discard_months=discard_months)
 
 
-def fit(
-    observed_csv,
-    parameters_csv,
-    observed,
-    simulation_file,
-    iterations,
-    solver_command,
-    search_space,
-    discard_months,
-    initial_y_weight,
-    initial_month,
-    underestimation_weight,
-    min_simulated_floor,
-    floor_weight,
-):
+def fit(observed_csv,
+        parameters_csv,
+        observed,
+        simulation_file,
+        iterations,
+        solver_command,
+        search_space,
+        discard_months,
+        initial_y_weight,
+        initial_month,
+        underestimation_weight,
+        min_simulated_floor,
+        floor_weight):
     """
     Parameter fitting loop.
 

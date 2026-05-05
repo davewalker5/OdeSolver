@@ -1,0 +1,16 @@
+{
+  "INITIAL_Y": "0.278",
+  "BASELINE": "0.234",
+  "WINTER_WEIGHT": "0.712",
+  "AUTUMN_WEIGHT": "0.265",
+  "SUMMER_DIP": "0.182",
+  "WINTER_PEAK": "4.165",
+  "AUTUMN_PEAK": "10.84",
+  "SUMMER_LOW": "8.225",
+  "WINTER_WIDTH": "3.513",
+  "AUTUMN_WIDTH": "4.05",
+  "SUMMER_WIDTH": "3.34",
+  "GROWTH_RATE": "1.001",
+  "DECAY_RATE": "1.594",
+  "SPECIES": "Wren"
+}

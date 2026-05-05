@@ -1,0 +1,16 @@
+{
+  "INITIAL_Y": "0.23",
+  "BASELINE": "0.208",
+  "WINTER_WEIGHT": "0.804",
+  "AUTUMN_WEIGHT": "0.19",
+  "SUMMER_DIP": "0.18",
+  "WINTER_PEAK": "4.035",
+  "AUTUMN_PEAK": "9.91",
+  "SUMMER_LOW": "2.235",
+  "WINTER_WIDTH": "2.905",
+  "AUTUMN_WIDTH": "3.592",
+  "SUMMER_WIDTH": "3.29",
+  "GROWTH_RATE": "1.039",
+  "DECAY_RATE": "1.312",
+  "SPECIES": "Skylark"
+}

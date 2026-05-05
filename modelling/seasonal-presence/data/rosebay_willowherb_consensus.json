@@ -1,0 +1,10 @@
+{
+  "GROWTH": "2",
+  "DECAY": "1.5",
+  "OOS_DECAY": "3",
+  "SEASON_START": "6.38",
+  "SEASON_END": "9.125",
+  "SHARPNESS": "5.555",
+  "FORCING_PEAK": "7.91",
+  "SPECIES": "Rosebay Willowherb"
+}

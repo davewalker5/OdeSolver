@@ -1,0 +1,16 @@
+{
+  "INITIAL_Y": "0.723",
+  "BASELINE": "0.752",
+  "WINTER_WEIGHT": "0.479",
+  "AUTUMN_WEIGHT": "0.212",
+  "SUMMER_DIP": "0.202",
+  "WINTER_PEAK": "1.865",
+  "AUTUMN_PEAK": "11.19",
+  "SUMMER_LOW": "9.76",
+  "WINTER_WIDTH": "2.445",
+  "AUTUMN_WIDTH": "4.212",
+  "SUMMER_WIDTH": "2.88",
+  "GROWTH_RATE": "0.987",
+  "DECAY_RATE": "1.35",
+  "SPECIES": "Woodpigeon"
+}

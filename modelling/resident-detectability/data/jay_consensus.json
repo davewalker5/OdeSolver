@@ -1,0 +1,16 @@
+{
+  "INITIAL_Y": "0.982",
+  "BASELINE": "0.214",
+  "WINTER_WEIGHT": "0.579",
+  "AUTUMN_WEIGHT": "0.2",
+  "SUMMER_DIP": "0.232",
+  "WINTER_PEAK": "10.51",
+  "AUTUMN_PEAK": "9.88",
+  "SUMMER_LOW": "7.9",
+  "WINTER_WIDTH": "2.065",
+  "AUTUMN_WIDTH": "3.236",
+  "SUMMER_WIDTH": "3.156",
+  "GROWTH_RATE": "0.816",
+  "DECAY_RATE": "0.776",
+  "SPECIES": "Jay"
+}

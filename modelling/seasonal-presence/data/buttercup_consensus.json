@@ -1,0 +1,10 @@
+{
+  "GROWTH": "2",
+  "DECAY": "1.5",
+  "OOS_DECAY": "3",
+  "SEASON_START": "3.215",
+  "SEASON_END": "1E+1",
+  "SHARPNESS": "4.941",
+  "FORCING_PEAK": "4.075",
+  "SPECIES": "Buttercup"
+}

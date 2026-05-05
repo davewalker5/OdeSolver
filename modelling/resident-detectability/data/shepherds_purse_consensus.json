@@ -1,0 +1,16 @@
+{
+  "INITIAL_Y": "0.148",
+  "BASELINE": "0.273",
+  "WINTER_WEIGHT": "0.791",
+  "AUTUMN_WEIGHT": "0.192",
+  "SUMMER_DIP": "0.16",
+  "WINTER_PEAK": "4.08",
+  "AUTUMN_PEAK": "10.585",
+  "SUMMER_LOW": "1.86",
+  "WINTER_WIDTH": "3.493",
+  "AUTUMN_WIDTH": "4.126",
+  "SUMMER_WIDTH": "3.002",
+  "GROWTH_RATE": "1.017",
+  "DECAY_RATE": "1.422",
+  "SPECIES": "Shepherds Purse"
+}
