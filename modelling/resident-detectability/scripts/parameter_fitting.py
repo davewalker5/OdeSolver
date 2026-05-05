@@ -248,7 +248,26 @@ def mse(observed, simulated):
     return sum((observed[m] - simulated[m]) ** 2 for m in months) / D(len(months))
 
 
-def weighted_score(observed, simulated):
+def initial_condition_penalty(observed, simulated, initial_month=1):
+    """
+    Penalise mismatch between the first observed month and the corresponding
+    simulated monthly value.
+
+    This is useful for resident species where the initial state represents a
+    real baseline detectability level rather than an arbitrary transient.
+
+    :param observed: Observed monthly values
+    :param simulated: Simulated monthly values
+    :param initial_month: Month to anchor, normally 1 because t=0 is January
+    :return: Squared initial-condition error
+    """
+    if initial_month not in observed or initial_month not in simulated:
+        return D("0")
+
+    return (observed[initial_month] - simulated[initial_month]) ** 2
+
+
+def weighted_score(observed, simulated, initial_y_weight=D("10.0"), initial_month=1):
     """
     Score the fit for a resident detectability model.
 
@@ -256,12 +275,22 @@ def weighted_score(observed, simulated):
     - MSE curve error
     - annual peak timing mismatch
     - summer low timing mismatch
+    - explicit initial-condition mismatch penalty
 
     Unlike the winter visitor fitter, this does not penalise simulated presence
     in zero/near-zero months. The resident model assumes the species is present
     year-round and only detectability varies.
+
+    The initial-condition penalty is deliberately separate from MSE. Without it,
+    a low INITIAL_Y can be hidden by later growth/relaxation, especially when
+    the rest of the seasonal curve is a good match.
     """
     curve_error = mse(observed, simulated)
+    initial_error = initial_condition_penalty(
+        observed,
+        simulated,
+        initial_month=initial_month,
+    )
 
     observed_peak = max(observed, key=observed.get)
     simulated_peak = max(simulated, key=simulated.get)
@@ -271,7 +300,12 @@ def weighted_score(observed, simulated):
     simulated_low = min(simulated, key=simulated.get)
     low_error = circular_month_distance(observed_low, simulated_low) / D("12")
 
-    return curve_error + D("0.20") * peak_error + D("0.20") * low_error
+    return (
+        curve_error
+        + D("0.20") * peak_error
+        + D("0.20") * low_error
+        + D(initial_y_weight) * initial_error
+    )
 
 
 def infer_resident_search_space(observed, peak_padding=D("1.5"), low_padding=D("1.5")):
@@ -420,7 +454,7 @@ def run_solver(simulation_file, params, solver_command, discard_months):
         return monthly_average(points, discard_months=discard_months)
 
 
-def fit(observed, simulation_file, iterations, solver_command, search_space, discard_months):
+def fit(observed, simulation_file, iterations, solver_command, search_space, discard_months, initial_y_weight, initial_month):
     """
     Parameter fitting loop.
 
@@ -430,6 +464,8 @@ def fit(observed, simulation_file, iterations, solver_command, search_space, dis
     :param solver_command: Command used to run ODE Solver
     :param search_space: Inferred search space
     :param discard_months: Initial simulation months to discard
+    :param initial_y_weight: Weight applied to initial-condition mismatch
+    :param initial_month: Month used for the initial-condition anchor
     :return: Dictionary containing best score, parameters, and simulation
     """
     best = None
@@ -439,7 +475,12 @@ def fit(observed, simulation_file, iterations, solver_command, search_space, dis
 
         try:
             simulated = run_solver(simulation_file, params, solver_command, discard_months)
-            score = weighted_score(observed, simulated)
+            score = weighted_score(
+                observed,
+                simulated,
+                initial_y_weight=initial_y_weight,
+                initial_month=initial_month,
+            )
 
         except Exception as e:
             print(f"Trial {i + 1}: failed: {e}")
@@ -494,6 +535,8 @@ def main():
     parser.add_argument("-pp", "--peak-padding", type=Decimal, default=Decimal("1.5"), help="Search padding around observed detectability peak")
     parser.add_argument("-lp", "--low-padding", type=Decimal, default=Decimal("1.5"), help="Search padding around observed low point")
     parser.add_argument("-d", "--discard-months", type=Decimal, default=Decimal("0"), help="Ignore this many initial simulation months before binning output")
+    parser.add_argument("-iw", "--initial-y-weight", type=Decimal, default=Decimal("5.0"), help="Weight applied to the initial-condition mismatch penalty. Use 0 to disable. Default: 10.0")
+    parser.add_argument("-im", "--initial-month", type=int, default=1, help="Month used as the initial-condition anchor. Default: 1 / January")
 
     args = parser.parse_args()
 
@@ -517,6 +560,8 @@ def main():
             solver_command=args.solver_command,
             search_space=search_space,
             discard_months=args.discard_months,
+            initial_y_weight=args.initial_y_weight,
+            initial_month=args.initial_month,
         )
 
         if best is None:
