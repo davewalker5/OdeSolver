@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Parameter fitter for the resident detectability model.
 
@@ -25,6 +24,7 @@ import os
 import random
 import subprocess
 import tempfile
+import sys
 from datetime import datetime
 from decimal import Decimal
 from pathlib import Path
@@ -47,6 +47,7 @@ PARAMETER_COLUMNS = [
     "SUMMER_DIP",
     "SUMMER_LOW",
     "SUMMER_WIDTH",
+    "SCALE",
 ]
 
 
@@ -230,22 +231,62 @@ def monthly_average(points, discard_months=D("0")):
     }
 
 
-def mse(observed, simulated):
+def scale_simulated(simulated, scale):
     """
-    Calculate mean squared error between observed and simulated data.
+    Apply a fitted vertical scale to the simulated monthly values.
 
-    MSE = (1 / N) * Σ (observed - simulated)²
+    The resident model often gets the seasonal shape broadly right but sits too
+    low or too high overall. SCALE is a fitter-side correction that lets the
+    random search compare curves at the right vertical level without changing
+    the seasonal-shape parameters themselves.
+
+    :param simulated: Simulated monthly values
+    :param scale: Multiplicative scale factor
+    :return: Scaled simulated monthly values
+    """
+    scale = D(scale)
+    return {month: D(value) * scale for month, value in simulated.items()}
+
+
+def curve_error(
+    observed,
+    simulated,
+    underestimation_weight=D("2.5"),
+    min_simulated_floor=None,
+    floor_weight=D("5.0"),
+):
+    """
+    Calculate weighted curve error between observed and simulated data.
+
+    This replaces plain MSE for resident species where false collapses are more
+    damaging than modest overestimates. Months where the simulation is below
+    the observation can be penalised more strongly, and an optional floor can
+    discourage unrealistically deep dips.
 
     :param observed: Observed monthly values
     :param simulated: Simulated monthly values
-    :return: Mean squared error
+    :param underestimation_weight: Extra multiplier when simulated < observed
+    :param min_simulated_floor: Optional minimum acceptable simulated value
+    :param floor_weight: Penalty multiplier for falling below the floor
+    :return: Mean weighted squared error
     """
     months = sorted(set(observed) & set(simulated))
 
     if not months:
         raise ValueError("No overlapping months between observed and simulated data")
 
-    return sum((observed[m] - simulated[m]) ** 2 for m in months) / D(len(months))
+    total = D("0")
+
+    for month in months:
+        diff = D(simulated[month]) - D(observed[month])
+        weight = D(underestimation_weight) if diff < 0 else D("1.0")
+        total += weight * (diff ** 2)
+
+        if min_simulated_floor is not None and D(simulated[month]) < D(min_simulated_floor):
+            floor_diff = D(min_simulated_floor) - D(simulated[month])
+            total += D(floor_weight) * (floor_diff ** 2)
+
+    return total / D(len(months))
 
 
 def initial_condition_penalty(observed, simulated, initial_month=1):
@@ -267,7 +308,15 @@ def initial_condition_penalty(observed, simulated, initial_month=1):
     return (observed[initial_month] - simulated[initial_month]) ** 2
 
 
-def weighted_score(observed, simulated, initial_y_weight=D("10.0"), initial_month=1):
+def weighted_score(
+    observed,
+    simulated,
+    initial_y_weight=D("10.0"),
+    initial_month=1,
+    underestimation_weight=D("2.5"),
+    min_simulated_floor=None,
+    floor_weight=D("5.0"),
+):
     """
     Score the fit for a resident detectability model.
 
@@ -285,7 +334,13 @@ def weighted_score(observed, simulated, initial_y_weight=D("10.0"), initial_mont
     a low INITIAL_Y can be hidden by later growth/relaxation, especially when
     the rest of the seasonal curve is a good match.
     """
-    curve_error = mse(observed, simulated)
+    error = curve_error(
+        observed,
+        simulated,
+        underestimation_weight=underestimation_weight,
+        min_simulated_floor=min_simulated_floor,
+        floor_weight=floor_weight,
+    )
     initial_error = initial_condition_penalty(
         observed,
         simulated,
@@ -301,7 +356,7 @@ def weighted_score(observed, simulated, initial_y_weight=D("10.0"), initial_mont
     low_error = circular_month_distance(observed_low, simulated_low) / D("12")
 
     return (
-        curve_error
+        error
         + D("0.20") * peak_error
         + D("0.20") * low_error
         + D(initial_y_weight) * initial_error
@@ -347,6 +402,13 @@ def infer_resident_search_space(observed, peak_padding=D("1.5"), low_padding=D("
     initial_y_low = max(D("0.00"), initial_y_centre - D("0.60"))
     initial_y_high = min(D("2.00"), initial_y_centre + D("0.90"))
 
+    # SCALE is searched by the fitter and applied to simulated output before
+    # scoring.  Values above 1.0 are deliberately allowed because the common
+    # failure mode for resident species such as House Sparrow is a curve with
+    # the right shape but too little vertical amplitude.
+    scale_low = D("0.80")
+    scale_high = D("1.80")
+
     return {
         "winter_peak_centre": winter_peak_centre,
         "winter_peak_range": month_range_around(winter_peak_centre, peak_padding),
@@ -357,6 +419,7 @@ def infer_resident_search_space(observed, peak_padding=D("1.5"), low_padding=D("
         "baseline_centre": baseline_centre,
         "initial_y_centre": initial_y_centre,
         "initial_y_range": (initial_y_low, initial_y_high),
+        "scale_range": (scale_low, scale_high),
     }
 
 
@@ -371,8 +434,8 @@ def format_search_space(search_space):
         return f"{r[0]}..{r[1]}"
 
     return "\n".join([
-        "Inferred resident detectability search space",
-        "-------------------------------------------",
+        "\nInferred Resident Detectability Search Space",
+        "--------------------------------------------",
         f"Winter peak centre: {search_space['winter_peak_centre']}",
         f"Winter peak range:  {fmt_range(search_space['winter_peak_range'])}",
         f"Autumn peak centre: {search_space['autumn_peak_centre']}",
@@ -382,6 +445,8 @@ def format_search_space(search_space):
         f"Baseline centre:    {search_space['baseline_centre']}",
         f"Initial Y centre:   {search_space['initial_y_centre']}",
         f"Initial Y range:    {fmt_range(search_space['initial_y_range'])}",
+        f"Scale range:        {fmt_range(search_space['scale_range'])}",
+        "\n"
     ])
 
 
@@ -400,6 +465,7 @@ def make_random_params(search_space):
     baseline_low = max(D("0.05"), baseline_centre - D("0.25"))
     baseline_high = min(D("0.90"), baseline_centre + D("0.35"))
     initial_y_low, initial_y_high = search_space["initial_y_range"]
+    scale_low, scale_high = search_space["scale_range"]
 
     return {
         "INITIAL_Y": str(random_decimal(initial_y_low, initial_y_high, 3)),
@@ -407,14 +473,15 @@ def make_random_params(search_space):
         "DECAY_RATE": str(random_decimal(D("0.30"), D("2.50"), 3)),
         "BASELINE": str(random_decimal(baseline_low, baseline_high, 3)),
         "WINTER_WEIGHT": str(random_decimal(D("0.00"), D("1.20"), 3)),
-        "AUTUMN_WEIGHT": str(random_decimal(D("0.00"), D("0.80"), 3)),
+        "AUTUMN_WEIGHT": str(random_decimal(D("0.00"), D("0.35"), 3)),
         "WINTER_PEAK": str(winter_peak),
         "AUTUMN_PEAK": str(autumn_peak),
         "WINTER_WIDTH": str(random_decimal(D("0.80"), D("5.00"), 3)),
         "AUTUMN_WIDTH": str(random_decimal(D("1.00"), D("6.00"), 3)),
-        "SUMMER_DIP": str(random_decimal(D("0.00"), D("0.70"), 3)),
+        "SUMMER_DIP": str(random_decimal(D("0.00"), D("0.35"), 3)),
         "SUMMER_LOW": str(summer_low),
-        "SUMMER_WIDTH": str(random_decimal(D("1.00"), D("6.00"), 3)),
+        "SUMMER_WIDTH": str(random_decimal(D("1.00"), D("5.00"), 3)),
+        "SCALE": str(random_decimal(scale_low, scale_high, 3)),
     }
 
 
@@ -433,7 +500,10 @@ def run_solver(simulation_file, params, solver_command, discard_months):
         params_file = tmp / "resident_params.json"
         output_file = tmp / "output.json"
 
-        params_file.write_text(json.dumps(params, indent=2))
+        # SCALE is used by the fitter after simulation.  Do not pass it to the
+        # ODE solver unless the model explicitly supports it.
+        solver_params = {k: v for k, v in params.items() if k != "SCALE"}
+        params_file.write_text(json.dumps(solver_params, indent=2))
 
         env = os.environ.copy()
         env["SEASONAL_PARAMS_FILE"] = str(params_file)
@@ -454,10 +524,26 @@ def run_solver(simulation_file, params, solver_command, discard_months):
         return monthly_average(points, discard_months=discard_months)
 
 
-def fit(observed, simulation_file, iterations, solver_command, search_space, discard_months, initial_y_weight, initial_month):
+def fit(
+    observed_csv,
+    parameters_csv,
+    observed,
+    simulation_file,
+    iterations,
+    solver_command,
+    search_space,
+    discard_months,
+    initial_y_weight,
+    initial_month,
+    underestimation_weight,
+    min_simulated_floor,
+    floor_weight,
+):
     """
     Parameter fitting loop.
 
+    :param observed_csv: Path to the observed data file
+    :param parameters_csv: Path to the output parameters CSV file
     :param observed: Observed behaviour being matched
     :param simulation_file: Path to ODE Solver simulation file
     :param iterations: Number of iterations in the fit
@@ -466,39 +552,40 @@ def fit(observed, simulation_file, iterations, solver_command, search_space, dis
     :param discard_months: Initial simulation months to discard
     :param initial_y_weight: Weight applied to initial-condition mismatch
     :param initial_month: Month used for the initial-condition anchor
-    :return: Dictionary containing best score, parameters, and simulation
+    :param min_simulated_floor: 
+    :param floor_weight: 
     """
-    best = None
 
     for i in range(iterations):
+        progress = (i + 1) / iterations
+        bar = int(40 * progress)
+        sys.stdout.write(f"\r[{'#' * bar}{'.' * (40 - bar)}] {i+1}/{iterations}")
+        sys.stdout.flush()
+
         params = make_random_params(search_space)
 
         try:
-            simulated = run_solver(simulation_file, params, solver_command, discard_months)
+            raw_simulated = run_solver(simulation_file, params, solver_command, discard_months)
+            simulated = scale_simulated(raw_simulated, params.get("SCALE", "1.0"))
             score = weighted_score(
                 observed,
                 simulated,
-                initial_y_weight=initial_y_weight,
-                initial_month=initial_month,
+                initial_y_weight,
+                initial_month,
+                underestimation_weight,
+                min_simulated_floor,
+                floor_weight,
             )
+
+            params["TIMESTAMP"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            params["OBSERVED"] = Path(observed_csv).name
+            params["SCORE"] = str(score)
+
+            append_params_to_csv(params, parameters_csv)
 
         except Exception as e:
             print(f"Trial {i + 1}: failed: {e}")
             continue
-
-        if best is None or score < best["score"]:
-            best = {
-                "score": score,
-                "params": params,
-                "simulated": simulated,
-            }
-
-            print()
-            print(f"New best at trial {i + 1}")
-            print(f"Score: {score}")
-            print(json.dumps(params, indent=2))
-
-    return best
 
 
 def append_params_to_csv(params, csv_path):
@@ -530,57 +617,37 @@ def main():
     parser.add_argument("-i", "--iterations", type=int, default=200, help="Number of parameter sets to test per run")
     parser.add_argument("-r", "--runs", type=int, default=1, help="Number of parameter fitting runs")
     parser.add_argument("-sc", "--solver-command", required=True, help="ODE Solver command")
-    parser.add_argument("-b", "--best-output", default="best_params.json", help="Where to write the best parameter file")
     parser.add_argument("-c", "--csv", required=True, help="CSV file to accumulate best parameters from multiple runs")
     parser.add_argument("-pp", "--peak-padding", type=Decimal, default=Decimal("1.5"), help="Search padding around observed detectability peak")
     parser.add_argument("-lp", "--low-padding", type=Decimal, default=Decimal("1.5"), help="Search padding around observed low point")
     parser.add_argument("-d", "--discard-months", type=Decimal, default=Decimal("0"), help="Ignore this many initial simulation months before binning output")
-    parser.add_argument("-iw", "--initial-y-weight", type=Decimal, default=Decimal("5.0"), help="Weight applied to the initial-condition mismatch penalty. Use 0 to disable. Default: 10.0")
+    parser.add_argument("-iw", "--initial-y-weight", type=Decimal, default=Decimal("0.5"), help="Weight applied to the initial-condition mismatch penalty. Use 0 to disable. Default: 10.0")
     parser.add_argument("-im", "--initial-month", type=int, default=1, help="Month used as the initial-condition anchor. Default: 1 / January")
+    parser.add_argument("-uw", "--underestimation-weight", type=Decimal, default=Decimal("2.5"), help="Penalty multiplier when simulated values fall below observed values. Default: 2.5")
+    parser.add_argument("-mf", "--min-simulated-floor", type=Decimal, default=Decimal("0.4"), help="Optional floor for scaled simulated monthly values. Useful for resident species with no true seasonal absence, e.g. 0.40")
+    parser.add_argument("-fw", "--floor-weight", type=Decimal, default=Decimal("5.0"), help="Penalty multiplier for falling below --min-simulated-floor. Default: 5.0")
 
     args = parser.parse_args()
 
     observed = load_observed_csv(args.observed)
-    search_space = infer_resident_search_space(
-        observed,
-        peak_padding=args.peak_padding,
-        low_padding=args.low_padding,
-    )
+    search_space = infer_resident_search_space(observed, args.peak_padding, args.low_padding)
 
     print(format_search_space(search_space))
 
-    for r in range(args.runs):
-        print()
-        print(f"Starting resident detectability parameter fitting run {r + 1}\n")
-
-        best = fit(
-            observed=observed,
-            simulation_file=Path(args.simulation),
-            iterations=args.iterations,
-            solver_command=args.solver_command,
-            search_space=search_space,
-            discard_months=args.discard_months,
-            initial_y_weight=args.initial_y_weight,
-            initial_month=args.initial_month,
-        )
-
-        if best is None:
-            raise RuntimeError("No successful parameter set found")
-
-        best["params"]["TIMESTAMP"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        best["params"]["OBSERVED"] = Path(args.observed).name
-        best["params"]["SCORE"] = str(best["score"])
-
-        Path(args.best_output).write_text(json.dumps(best["params"], indent=2) + "\n")
-        append_params_to_csv(best["params"], args.csv)
-
-        print()
-        print("Best fit")
-        print("--------")
-        print(f"Score: {best['score']}")
-        print(json.dumps(best["params"], indent=2))
-        print()
-        print(f"Wrote: {args.best_output}")
+    fit(args.observed,
+        args.csv,
+        observed,
+        Path(args.simulation),
+        args.iterations,
+        args.solver_command,
+        search_space,
+        args.discard_months,
+        args.initial_y_weight,
+        args.initial_month,
+        args.underestimation_weight,
+        args.min_simulated_floor,
+        args.floor_weight,
+    )
 
 
 if __name__ == "__main__":
