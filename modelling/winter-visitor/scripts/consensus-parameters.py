@@ -57,6 +57,7 @@ def main():
 
     parser.add_argument("-i", "--input", required=True, help="Input parameters CSV")
     parser.add_argument("-o", "--output", required=True, help="Output parameters JSON")
+    parser.add_argument("-s", "--species", required=True, help="Species name")
     parser.add_argument("-tp", "--top-percent", type=Decimal, default=Decimal("20"), help="Top percentage of rows to use, sorted by SCORE. Default: 20")
     args = parser.parse_args()
 
@@ -76,6 +77,7 @@ def main():
 
     # Calculate consensus parameters and write the consensus file
     params = consensus(best_rows)
+    params["SPECIES"] = args.species.replace("_", " ").title()
     Path(args.output).write_text(json.dumps(params, indent=2) + "\n")
 
     print(f"Read {len(rows)} rows")

@@ -1,0 +1,16 @@
+{
+  "INITIAL_Y": "0.871",
+  "BASELINE": "0.406",
+  "WINTER_WEIGHT": "0.578",
+  "AUTUMN_WEIGHT": "0.159",
+  "SUMMER_DIP": "0.251",
+  "WINTER_PEAK": "2.065",
+  "AUTUMN_PEAK": "10.615",
+  "SUMMER_LOW": "4.85",
+  "WINTER_WIDTH": "2.89",
+  "AUTUMN_WIDTH": "3.195",
+  "SUMMER_WIDTH": "3.03",
+  "GROWTH_RATE": "1.024",
+  "DECAY_RATE": "1.404",
+  "SPECIES": "Mute Swan"
+}

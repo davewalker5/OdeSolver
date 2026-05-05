@@ -1,0 +1,10 @@
+{
+  "GROWTH": "2",
+  "DECAY": "1.5",
+  "OOS_DECAY": "3",
+  "SEASON_START": "2.87",
+  "SEASON_END": "7.055",
+  "SHARPNESS": "5.345",
+  "FORCING_PEAK": "3.395",
+  "SPECIES": "Chiffchaff"
+}

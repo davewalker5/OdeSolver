@@ -1,0 +1,16 @@
+{
+  "INITIAL_Y": "0.638",
+  "BASELINE": "0.472",
+  "WINTER_WEIGHT": "0.59",
+  "AUTUMN_WEIGHT": "0.208",
+  "SUMMER_DIP": "0.189",
+  "WINTER_PEAK": "4.545",
+  "AUTUMN_PEAK": "11.05",
+  "SUMMER_LOW": "9.67",
+  "WINTER_WIDTH": "2.12",
+  "AUTUMN_WIDTH": "3.727",
+  "SUMMER_WIDTH": "3.252",
+  "GROWTH_RATE": "0.904",
+  "DECAY_RATE": "1.274",
+  "SPECIES": "House Sparrow"
+}

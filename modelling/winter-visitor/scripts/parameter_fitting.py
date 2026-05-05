@@ -24,6 +24,7 @@ import os
 import random
 import subprocess
 import tempfile
+import sys
 from datetime import datetime
 from decimal import Decimal
 from pathlib import Path
@@ -344,6 +345,7 @@ def format_search_space(search_space):
         f"Autumn peak centre: {search_space['autumn_peak_centre']}",
         f"Autumn peak range:  {fmt_range(search_space['autumn_peak_range'])}",
         f"Initial Y centre:   {search_space['initial_y_centre']}",
+        "\n"
     ])
 
 
@@ -410,7 +412,14 @@ def run_solver(simulation_file, params, solver_command, discard_months):
         return monthly_average(points, discard_months=discard_months)
 
 
-def fit(observed, simulation_file, iterations, solver_command, search_space, discard_months):
+def fit(observed_csv,
+        parameters_csv,
+        observed,
+        simulation_file,
+        iterations,
+        solver_command,
+        search_space,
+        discard_months):
     """
     Parameter fitting loop
     
@@ -420,34 +429,29 @@ def fit(observed, simulation_file, iterations, solver_command, search_space, dis
     :param solver_command: Command used to run the ODE Solver
     :param search_space: 
     :param discard_months: Number of months in the solution to discard
-    :return: A dictionary of parameters yielding the best fit
     """
-    best = None
 
     for i in range(iterations):
+        progress = (i + 1) / iterations
+        bar = int(40 * progress)
+        sys.stdout.write(f"\r[{'#' * bar}{'.' * (40 - bar)}] {i+1}/{iterations}")
+        sys.stdout.flush()
+
         params = make_random_params(search_space)
 
         try:
             simulated = run_solver(simulation_file, params, solver_command, discard_months)
             score = weighted_score(observed, simulated)
 
+            params["TIMESTAMP"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            params["OBSERVED"] = Path(observed_csv).name
+            params["SCORE"] = str(score)
+
+            append_params_to_csv(params, parameters_csv)
+
         except Exception as e:
             print(f"Trial {i + 1}: failed: {e}")
             continue
-
-        if best is None or score < best["score"]:
-            best = {
-                "score": score,
-                "params": params,
-                "simulated": simulated,
-            }
-
-            print()
-            print(f"New best at trial {i + 1}")
-            print(f"Score: {score}")
-            print(json.dumps(params, indent=2))
-
-    return best
 
 
 def append_params_to_csv(params, csv_path):
@@ -479,7 +483,6 @@ def main():
     parser.add_argument("-i", "--iterations", type=int, default=200, help="Number of parameter sets to test per run")
     parser.add_argument("-r", "--runs", type=int, default=1, help="Number of parameter fitting runs")
     parser.add_argument("-sc", "--solver-command", required=True, help="ODE Solver command")
-    parser.add_argument("-b", "--best-output", default="best_params.json", help="Where to write the best parameter file")
     parser.add_argument("-c", "--csv", required=True, help="CSV file to accumulate best parameters from multiple runs")
     parser.add_argument("--peak-padding", type=Decimal, default=Decimal("1.5"), help="Search padding around observed winter peak")
     parser.add_argument("--discard-months", type=Decimal, default=Decimal("0"), help="Ignore this many initial simulation months before binning output")
@@ -491,36 +494,13 @@ def main():
 
     print(format_search_space(search_space))
 
-    for r in range(args.runs):
-        print()
-        print(f"Starting winter visitor parameter fitting run {r + 1}\n")
-
-        best = fit(
-            observed=observed,
-            simulation_file=Path(args.simulation),
-            iterations=args.iterations,
-            solver_command=args.solver_command,
-            search_space=search_space,
-            discard_months=args.discard_months,
-        )
-
-        if best is None:
-            raise RuntimeError("No successful parameter set found")
-
-        best["params"]["TIMESTAMP"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        best["params"]["OBSERVED"] = Path(args.observed).name
-        best["params"]["SCORE"] = str(best["score"])
-
-        Path(args.best_output).write_text(json.dumps(best["params"], indent=2) + "\n")
-        append_params_to_csv(best["params"], args.csv)
-
-        print()
-        print("Best fit")
-        print("--------")
-        print(f"Score: {best['score']}")
-        print(json.dumps(best["params"], indent=2))
-        print()
-        print(f"Wrote: {args.best_output}")
+    fit(args.observed,
+        args.csv,observed,
+        Path(args.simulation),
+        args.iterations,
+        args.solver_command,
+        search_space,
+        args.discard_months)
 
 
 if __name__ == "__main__":

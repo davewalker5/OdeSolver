@@ -10,7 +10,7 @@
     "adjust_step_size": false,
     "chart_title": "Seasonal Winter Presence",
     "chart_min_y": "0",
-    "chart_max_y": "",
+    "chart_max_y": "1.5",
     "chart_max_x": "12",
-    "chart_auto_scale": true
+    "chart_auto_scale": false
 }

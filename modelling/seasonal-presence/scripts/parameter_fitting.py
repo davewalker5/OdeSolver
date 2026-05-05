@@ -5,6 +5,7 @@ import os
 import random
 import subprocess
 import tempfile
+import sys
 from decimal import Decimal
 from pathlib import Path
 from datetime import datetime
@@ -234,6 +235,7 @@ def format_search_space(search_space):
         f"Season start range:  {fmt_range(search_space['season_start_range'])}",
         f"Season end range:    {fmt_range(search_space['season_end_range'])}",
         f"Forcing peak range:  {fmt_range(search_space['forcing_peak_range'])}",
+        "\n"
     ])
 
 
@@ -479,21 +481,31 @@ def make_random_params(search_space):
         "FORCING_PEAK": str(forcing_peak),
     }
 
-def fit(observed, simulation_file, iterations, solver_command, search_space):
+def fit(observed_csv,
+        parameters_csv,
+        observed,
+        simulation_file,
+        iterations,
+        solver_command,
+        search_space):
     """
     Parameter fitting loop
     
+    :param observed_csv: Path to the observed data file
+    :param parameters_csv: Path to the output parameters CSV file
     :param observed: Observed behaviour being matched
     :param simulation_file: Path to the ODE Solver simulation file
     :param iterations: Number of iterations in the fit
     :param solver_command: Command used to run the ODE Solver
     :param search_space: Search space for random parameter generation
-    :return: A dictionary of parameters yielding the best fit
     """
-    best = None
 
-    # Iterate the specified number of times
     for i in range(iterations):
+        progress = (i + 1) / iterations
+        bar = int(40 * progress)
+        sys.stdout.write(f"\r[{'#' * bar}{'.' * (40 - bar)}] {i+1}/{iterations}")
+        sys.stdout.flush()
+
         # Generate a random parameter set
         params = make_random_params(search_space)
 
@@ -502,24 +514,15 @@ def fit(observed, simulation_file, iterations, solver_command, search_space):
             simulated = run_solver(simulation_file, params, solver_command)
             score = weighted_score(observed, simulated)
 
+            params["TIMESTAMP"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            params["OBSERVED"] = Path(observed_csv).name
+            params["SCORE"] = str(score)
+
+            append_params_to_csv(params, parameters_csv)
+
         except Exception as e:
             print(f"Trial {i + 1}: failed: {e}")
             continue
-
-        # If this is the best fit so far, capture it
-        if best is None or score < best["score"]:
-            best = {
-                "score": score,
-                "params": params,
-                "simulated": simulated,
-            }
-
-            print()
-            print(f"New best at trial {i + 1}")
-            print(f"Score: {score}")
-            print(json.dumps(params, indent=2))
-
-    return best
 
 
 def append_params_to_csv(params: dict, csv_path: str):
@@ -568,46 +571,24 @@ def main():
     parser.add_argument("-i", "--iterations", type=int, default=200, help="Number of parameter sets to test per run")
     parser.add_argument("-r", "--runs", type=int, default=1, help="Number of parameter fitting runs")
     parser.add_argument("-sc", "--solver-command", required=True, help="ODE Solver command")
-    parser.add_argument("-b", "--best-output", default="best_params.json", help="Where to write the best parameter file")
     parser.add_argument("-c", "--csv", required=True, help="CSV file containing the accumulated data from multiple runs")
     parser.add_argument("--active-threshold", default="0.05", help="Observed value threshold used to infer active months")
     parser.add_argument("--season-padding", default="1.0", help="Padding around inferred season start/end, in months")
     parser.add_argument("--peak-padding", default="1.5", help="Padding around observed peak month, in months")
     args = parser.parse_args()
 
-    # Iterate over the parameter fitting runs
-    for r in range(0, args.runs):
-        print()
-        print(f"Starting parameter fitting run {r + 1}\n")
+    observed = load_observed_csv(args.observed)
+    search_space = infer_search_space(observed, D(str(args.active_threshold)), D(str(args.season_padding)), D(str(args.peak_padding)))
 
-        # Load the observed data and find the parameters of best fit
-        observed = load_observed_csv(args.observed)
-        search_space = infer_search_space(observed, D(str(args.active_threshold)), D(str(args.season_padding)), D(str(args.peak_padding)))
-        best = fit(observed, Path(args.simulation), args.iterations, args.solver_command, search_space)
+    print(format_search_space(search_space))
 
-        if best is None:
-            raise RuntimeError("No successful parameter set found")
-
-        # Make sure the CSV containing observed data and the timestamp are represented in the parameters
-        best["params"]["TIMESTAMP"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        best["params"]["OBSERVED"] = Path(args.observed).name
-        best["params"]["SCORE"] = str(best["score"])
-        best["params"]["WRAPS_YEAR"] = str(search_space["wraps_year"])
-
-        # Write the best parameters file
-        Path(args.best_output).write_text(json.dumps(best["params"], indent=2))
-
-        # Append the best parameters to the CSV file
-        append_params_to_csv(best["params"], args.csv)
-
-        # Print the best fit parameters
-        print()
-        print("Best fit")
-        print("--------")
-        print(f"Score: {best['score']}")
-        print(json.dumps(best["params"], indent=2))
-        print()
-        print(f"Wrote: {args.best_output}")
+    fit(args.observed,
+        args.csv,
+        observed,
+        Path(args.simulation),
+        args.iterations,
+        args.solver_command,
+        search_space)
 
 
 if __name__ == "__main__":

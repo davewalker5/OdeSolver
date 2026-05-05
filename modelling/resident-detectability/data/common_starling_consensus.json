@@ -1,0 +1,16 @@
+{
+  "INITIAL_Y": "0.739",
+  "BASELINE": "0.668",
+  "WINTER_WEIGHT": "0.486",
+  "AUTUMN_WEIGHT": "0.182",
+  "SUMMER_DIP": "0.174",
+  "WINTER_PEAK": "1.83",
+  "AUTUMN_PEAK": "11.155",
+  "SUMMER_LOW": "7.035",
+  "WINTER_WIDTH": "2.042",
+  "AUTUMN_WIDTH": "3.285",
+  "SUMMER_WIDTH": "3.612",
+  "GROWTH_RATE": "0.848",
+  "DECAY_RATE": "1.232",
+  "SPECIES": "Common Starling"
+}

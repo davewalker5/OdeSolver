@@ -1,0 +1,10 @@
+{
+  "GROWTH": "2",
+  "DECAY": "1.5",
+  "OOS_DECAY": "3",
+  "SEASON_START": "10.57",
+  "SEASON_END": "6.35",
+  "SHARPNESS": "5.27",
+  "FORCING_PEAK": "4.125",
+  "SPECIES": "Common Cleavers"
+}
