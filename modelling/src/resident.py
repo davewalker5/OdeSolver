@@ -1,33 +1,17 @@
-"""
-Parameter fitter for the resident detectability model.
-
-This is intended for species such as Robin, Blackbird, Wren, etc. where the
-species is assumed to be present year-round, but observable activity /
-detectability varies seasonally.
-
-The fitter:
-
-- Loads observed monthly data from a CSV file containing month,value columns
-- Normalises observed values to 0..1
-- Infers useful peak/low centres from the observed curve
-- Generates random resident-model parameter sets, including asymmetric seasonal bump widths and a smooth autumn onset gate
-- Runs the ODE Solver headlessly with SEASONAL_PARAMS_FILE
-- Scores the simulated curve against the observed curve
-- Repeats for N iterations and M runs
-- Writes the best parameters to JSON and appends best-per-run rows to CSV
-"""
-
 import argparse
-import csv
-import json
-import os
 import random
-import subprocess
-import tempfile
 import sys
 from datetime import datetime
 from decimal import Decimal
 from pathlib import Path
+
+from fitting.utils import D, random_decimal, show_progress
+from fitting.calendar import circular_month_distance, month_range_around, random_month_in_range
+from fitting.solver import run_solver, export_simulation
+from fitting.io import append_params_to_csv, load_and_normalise_observed_csv
+from fitting.consensus import write_consensus_parameters
+from fitting.synthesise import synthesise
+from fitting.tabulate import print_args_table, print_dict_table
 
 
 PARAMETER_COLUMNS = [
@@ -59,29 +43,6 @@ PARAMETER_COLUMNS = [
 ]
 
 
-def D(value):
-    """
-    Safely convert a value to a Decimal.
-
-    :param value: Value to convert
-    :return: Decimal conversion of that value
-    """
-    return Decimal(str(value))
-
-
-def random_decimal(low, high, places=3):
-    """
-    Return a random Decimal between low and high.
-
-    :param low: Minimum value
-    :param high: Maximum value
-    :param places: Number of decimal places
-    :return: Random Decimal meeting the specified criteria
-    """
-    value = random.uniform(float(low), float(high))
-    return D(round(value, places))
-
-
 def asymmetric_width_pair(low, high, places=3, asymmetry_chance=0.85):
     """
     Return rise/fall width parameters for an asymmetric seasonal bump.
@@ -101,163 +62,6 @@ def asymmetric_width_pair(low, high, places=3, asymmetry_chance=0.85):
     rise = random_decimal(low, high, places)
     fall = random_decimal(low, high, places)
     return rise, fall
-
-
-def wrap_month(value):
-    """
-    Wrap a month-like value into the range 1..12.
-
-    :param value: Unwrapped month number
-    :return: Wrapped month number
-    """
-    value = D(value)
-
-    while value < D("1"):
-        value += D("12")
-
-    while value > D("12"):
-        value -= D("12")
-
-    return value
-
-
-def circular_month_distance(a, b):
-    """
-    Shortest distance between two month-like values on a circular year.
-
-    :param a: First month
-    :param b: Second month
-    :return: Shortest distance between the two months on a circular year
-    """
-    a = D(a)
-    b = D(b)
-    diff = abs(a - b)
-    return min(diff, D("12") - diff)
-
-
-def month_range_around(centre, padding):
-    """
-    Create a possibly wrapped month range around a centre month.
-
-    :param centre: Centre month
-    :param padding: Number of months either side of the centre
-    :return: Wrapped month range
-    """
-    return wrap_month(D(centre) - D(padding)), wrap_month(D(centre) + D(padding))
-
-
-def random_month_in_range(low, high):
-    """
-    Select a random Decimal month from a possibly wrapped range.
-
-    :param low: Initial month number
-    :param high: Final month number
-    :return: Wrapped random month number in the specified range
-    """
-    low = D(low)
-    high = D(high)
-
-    if low <= high:
-        return D(round(random.uniform(float(low), float(high)), 2))
-
-    # Wrapped range: choose from low..12 or 1..high, weighted by length.
-    late_length = D("12") - low
-    early_length = high - D("1")
-    total_length = late_length + early_length
-
-    if total_length <= 0:
-        return wrap_month(low)
-
-    if D(str(random.random())) < late_length / total_length:
-        return D(round(random.uniform(float(low), 12.0), 2))
-
-    return D(round(random.uniform(1.0, float(high)), 2))
-
-
-def load_observed_csv(path):
-    """
-    Load the observed data and normalise it into the range 0..1.
-
-    The CSV file is expected to contain:
-    - month: month number, 1..12
-    - value: observed presence/detectability/count value
-
-    :param path: Path to observed CSV
-    :return: Normalised observed data keyed by month
-    """
-    rows = {}
-
-    with open(path, newline="") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            month = int(row["month"])
-            value = D(row["value"])
-            rows[month] = value
-
-    max_value = max(rows.values())
-
-    if max_value == 0:
-        return {m: D("0") for m in rows}
-
-    return {month: value / max_value for month, value in rows.items()}
-
-
-def load_simulated_json(path):
-    """
-    Load JSON simulation output from the ODE Solver.
-
-    :param path: Path to simulation output file
-    :return: List of dictionaries, each containing t and y
-    """
-    with open(path) as f:
-        data = json.load(f)
-
-    points = []
-
-    for p in data:
-        y_key = "y_normalised" if "y_normalised" in p else "y"
-        points.append({"t": D(p["t"]), "y": D(p[y_key])})
-
-    return points
-
-
-def monthly_average(points, discard_months=D("0")):
-    """
-    Convert solver output points into monthly bins.
-
-    t = 0.0..0.999 -> month 1
-    t = 1.0..1.999 -> month 2
-    ...
-    t = 11.0..11.999 -> month 12
-
-    If discard_months is supplied, the initial portion of the simulation is
-    ignored before binning. This can be useful if the simulation is run with
-    a warm-up period.
-
-    :param points: List of solution points
-    :param discard_months: Number of initial simulation months to discard
-    :return: Dictionary of monthly averaged values
-    """
-    bins = {m: [] for m in range(1, 13)}
-    discard_months = D(discard_months)
-
-    for p in points:
-        t = p["t"]
-
-        if t < discard_months:
-            continue
-
-        adjusted_t = t - discard_months
-        month = int(adjusted_t % D("12")) + 1
-
-        if 1 <= month <= 12:
-            bins[month].append(p["y"])
-
-    return {
-        month: sum(values) / len(values)
-        for month, values in bins.items()
-        if values
-    }
 
 
 def scale_simulated(simulated, scale):
@@ -466,34 +270,6 @@ def infer_resident_search_space(observed, peak_padding=D("1.5"), low_padding=D("
     }
 
 
-def format_search_space(search_space):
-    """
-    Format inferred search space for console output.
-
-    :param search_space: Search space for random parameter generation
-    :return: Formatted string
-    """
-    def fmt_range(r):
-        return f"{r[0]}..{r[1]}"
-
-    return "\n".join([
-        "\nInferred Resident Detectability Search Space",
-        "--------------------------------------------",
-        f"Winter peak centre: {search_space['winter_peak_centre']}",
-        f"Winter peak range:  {fmt_range(search_space['winter_peak_range'])}",
-        f"Autumn peak centre: {search_space['autumn_peak_centre']}",
-        f"Autumn peak range:  {fmt_range(search_space['autumn_peak_range'])}",
-        f"Autumn onset range: {fmt_range(search_space['autumn_onset_range'])}",
-        f"Summer low centre:  {search_space['summer_low_centre']}",
-        f"Summer low range:   {fmt_range(search_space['summer_low_range'])}",
-        f"Baseline centre:    {search_space['baseline_centre']}",
-        f"Initial Y centre:   {search_space['initial_y_centre']}",
-        f"Initial Y range:    {fmt_range(search_space['initial_y_range'])}",
-        f"Scale range:        {fmt_range(search_space['scale_range'])}",
-        "\n"
-    ])
-
-
 def make_random_params(search_space):
     """
     Generate a random set of parameters for the resident detectability model.
@@ -566,45 +342,6 @@ def make_random_params(search_space):
     }
 
 
-def run_solver(simulation_file, params, solver_command, discard_months):
-    """
-    Run ODE Solver with a temporary parameter file.
-
-    :param simulation_file: Path to the simulation JSON
-    :param params: Parameter dictionary
-    :param solver_command: ODE Solver command
-    :param discard_months: Initial months to discard when binning
-    :return: Monthly simulated values
-    """
-    with tempfile.TemporaryDirectory() as tmp:
-        tmp = Path(tmp)
-        params_file = tmp / "resident_params.json"
-        output_file = tmp / "output.json"
-
-        # SCALE is used by the fitter after simulation.  Do not pass it to the
-        # ODE solver unless the model explicitly supports it.
-        solver_params = {k: v for k, v in params.items() if k != "SCALE"}
-        params_file.write_text(json.dumps(solver_params, indent=2))
-
-        env = os.environ.copy()
-        env["SEASONAL_PARAMS_FILE"] = str(params_file)
-
-        subprocess.run(
-            [
-                solver_command,
-                "-s", str(simulation_file),
-                "-q",
-                "-ng",
-                "-e", str(output_file),
-            ],
-            check=True,
-            env=env,
-        )
-
-        points = load_simulated_json(output_file)
-        return monthly_average(points, discard_months=discard_months)
-
-
 def fit(observed_csv,
         parameters_csv,
         observed,
@@ -631,16 +368,13 @@ def fit(observed_csv,
     :param discard_months: Initial simulation months to discard
     :param initial_y_weight: Weight applied to initial-condition mismatch
     :param initial_month: Month used for the initial-condition anchor
+    :param underestimation_weight:
     :param min_simulated_floor: 
     :param floor_weight: 
     """
 
     for i in range(iterations):
-        progress = (i + 1) / iterations
-        bar = int(40 * progress)
-        sys.stdout.write(f"\r[{'#' * bar}{'.' * (40 - bar)}] {i+1}/{iterations}")
-        sys.stdout.flush()
-
+        show_progress(i, iterations)
         params = make_random_params(search_space)
 
         try:
@@ -660,29 +394,11 @@ def fit(observed_csv,
             params["OBSERVED"] = Path(observed_csv).name
             params["SCORE"] = str(score)
 
-            append_params_to_csv(params, parameters_csv)
+            append_params_to_csv(params, PARAMETER_COLUMNS, parameters_csv)
 
         except Exception as e:
             print(f"Trial {i + 1}: failed: {e}")
             continue
-
-
-def append_params_to_csv(params, csv_path):
-    """
-    Append fitted parameters to a CSV file, one row per run.
-
-    :param params: Fitted simulation parameters
-    :param csv_path: CSV file to write to
-    """
-    file_exists = os.path.exists(csv_path)
-
-    with open(csv_path, mode="a", newline="") as f:
-        writer = csv.writer(f)
-
-        if not file_exists:
-            writer.writerow(PARAMETER_COLUMNS)
-
-        writer.writerow([params.get(col, "") for col in PARAMETER_COLUMNS])
 
 
 def main():
@@ -691,12 +407,21 @@ def main():
     """
     parser = argparse.ArgumentParser()
 
+    parser.add_argument("-sp", "--species", required="True", help="Species name")
     parser.add_argument("-o", "--observed", required=True, help="CSV file containing month,value columns")
     parser.add_argument("-s", "--simulation", required=True, help="Simulation JSON file for ODE Solver")
     parser.add_argument("-i", "--iterations", type=int, default=200, help="Number of parameter sets to test per run")
-    parser.add_argument("-r", "--runs", type=int, default=1, help="Number of parameter fitting runs")
     parser.add_argument("-sc", "--solver-command", required=True, help="ODE Solver command")
-    parser.add_argument("-c", "--csv", required=True, help="CSV file to accumulate best parameters from multiple runs")
+    parser.add_argument("-c", "--csv", required=True, help="CSV file to accumulate the parameters from each iteration")
+    parser.add_argument("-cj", "--consensus-json", required=True, help="JSON file to write the consensus parameters to")
+    parser.add_argument("-esi", "--export-simulated", required=True, help="CSV file containing the simulated output")
+    parser.add_argument("-psi", "--plot-simulated", required=True, help="PNG file containing the simulated chart")
+    parser.add_argument("-esy", "--export-synthesised", required=True, help="CSV file containing the synthesised output")
+    parser.add_argument("-psy", "--plot-synthesised", required=True, help="PNG file containing the synthesised chart")
+    parser.add_argument("-sm", "--scale-method", choices=["least_squares", "max", "sum"], default="least_squares", help="How to rescale the simulated shape onto the observed scale")
+    parser.add_argument("-a", "--aggregation", choices=["mean", "max", "last"], default="mean", help="How to convert the solver's sub-monthly output into monthly values")
+    parser.add_argument("-r", "--round", action="store_true", help="Round synthesised values to integer counts")
+    parser.add_argument("-tp", "--top-percent", type=Decimal, default=Decimal("20"), help="Top percentage of rows to use in the consensus, sorted by SCORE")
     parser.add_argument("-pp", "--peak-padding", type=Decimal, default=Decimal("1.5"), help="Search padding around observed detectability peak")
     parser.add_argument("-lp", "--low-padding", type=Decimal, default=Decimal("1.5"), help="Search padding around observed low point")
     parser.add_argument("-d", "--discard-months", type=Decimal, default=Decimal("0"), help="Ignore this many initial simulation months before binning output")
@@ -705,14 +430,16 @@ def main():
     parser.add_argument("-uw", "--underestimation-weight", type=Decimal, default=Decimal("2.5"), help="Penalty multiplier when simulated values fall below observed values. Default: 2.5")
     parser.add_argument("-mf", "--min-simulated-floor", type=Decimal, default=Decimal("0.60"), help="Optional floor for scaled simulated monthly values. Useful for high-baseline residents, e.g. 0.60")
     parser.add_argument("-fw", "--floor-weight", type=Decimal, default=Decimal("5.0"), help="Penalty multiplier for falling below --min-simulated-floor. Default: 5.0")
-
     args = parser.parse_args()
+    print_args_table(args, "Resident Detectability Model Arguments")
 
-    observed = load_observed_csv(args.observed)
+    # Load the observed data and calculate the search space
+    observed = load_and_normalise_observed_csv(args.observed)
     search_space = infer_resident_search_space(observed, args.peak_padding, args.low_padding)
+    print_dict_table(search_space, "Inferred Search Space")
 
-    print(format_search_space(search_space))
-
+    # Generate the parameter fitting CSV
+    print()
     fit(args.observed,
         args.csv,
         observed,
@@ -727,6 +454,15 @@ def main():
         args.min_simulated_floor,
         args.floor_weight,
     )
+
+    # Write the consensus parameter set
+    write_consensus_parameters(args.csv, args.consensus_json, args.species, PARAMETER_COLUMNS, args.top_percent)
+
+    # Run the solution using the consensus parameters and export the simulated results CSV and chart
+    export_simulation(args.solver_command, args.consensus_json, args.simulation, args.export_simulated, args.plot_simulated)
+
+    # Generate the synthesised data
+    synthesise(args.species, args.observed, args.export_simulated, args.export_synthesised, args.plot_synthesised, args.scale_method, args.aggregation, args.round)
 
 
 if __name__ == "__main__":
