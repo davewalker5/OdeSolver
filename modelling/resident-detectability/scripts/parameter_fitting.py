@@ -10,7 +10,7 @@ The fitter:
 - Loads observed monthly data from a CSV file containing month,value columns
 - Normalises observed values to 0..1
 - Infers useful peak/low centres from the observed curve
-- Generates random resident-model parameter sets, including asymmetric seasonal bump widths
+- Generates random resident-model parameter sets, including asymmetric seasonal bump widths and a smooth autumn onset gate
 - Runs the ODE Solver headlessly with SEASONAL_PARAMS_FILE
 - Scores the simulated curve against the observed curve
 - Repeats for N iterations and M runs
@@ -42,6 +42,8 @@ PARAMETER_COLUMNS = [
     "AUTUMN_WEIGHT",
     "WINTER_PEAK",
     "AUTUMN_PEAK",
+    "AUTUMN_ONSET",
+    "AUTUMN_GATE_SHARPNESS",
     "WINTER_WIDTH",
     "WINTER_RISE_WIDTH",
     "WINTER_FALL_WIDTH",
@@ -446,6 +448,11 @@ def infer_resident_search_space(observed, peak_padding=D("1.5"), low_padding=D("
         "winter_peak_range": month_range_around(winter_peak_centre, peak_padding),
         "autumn_peak_centre": autumn_peak_centre,
         "autumn_peak_range": month_range_around(autumn_peak_centre, D("1.5")),
+        # Soft autumn gate: normally allow the late-year component to start
+        # emerging sometime after the summer low and before the autumn/winter
+        # peak. Keep this deliberately broad so it remains a fitted property,
+        # not a hard ecological rule.
+        "autumn_onset_range": (D("6.50"), D("11.25")),
         "summer_low_centre": summer_low_centre,
         "summer_low_range": month_range_around(summer_low_centre, low_padding),
         "baseline_centre": baseline_centre,
@@ -476,6 +483,7 @@ def format_search_space(search_space):
         f"Winter peak range:  {fmt_range(search_space['winter_peak_range'])}",
         f"Autumn peak centre: {search_space['autumn_peak_centre']}",
         f"Autumn peak range:  {fmt_range(search_space['autumn_peak_range'])}",
+        f"Autumn onset range: {fmt_range(search_space['autumn_onset_range'])}",
         f"Summer low centre:  {search_space['summer_low_centre']}",
         f"Summer low range:   {fmt_range(search_space['summer_low_range'])}",
         f"Baseline centre:    {search_space['baseline_centre']}",
@@ -497,6 +505,7 @@ def make_random_params(search_space):
     winter_peak = random_month_in_range(*search_space["winter_peak_range"])
     autumn_peak = random_month_in_range(*search_space["autumn_peak_range"])
     summer_low = random_month_in_range(*search_space["summer_low_range"])
+    autumn_onset = random_decimal(*search_space["autumn_onset_range"], 2)
 
     baseline_centre = D(search_space["baseline_centre"])
 
@@ -540,6 +549,8 @@ def make_random_params(search_space):
         "AUTUMN_WEIGHT": str(random_decimal(D("0.00"), D("0.45"), 3)),
         "WINTER_PEAK": str(winter_peak),
         "AUTUMN_PEAK": str(autumn_peak),
+        "AUTUMN_ONSET": str(autumn_onset),
+        "AUTUMN_GATE_SHARPNESS": str(random_decimal(D("0.50"), D("8.00"), 3)),
         "WINTER_WIDTH": str(winter_width.quantize(D("0.001"))),
         "WINTER_RISE_WIDTH": str(winter_rise_width),
         "WINTER_FALL_WIDTH": str(winter_fall_width),

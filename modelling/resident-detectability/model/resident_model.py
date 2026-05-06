@@ -144,6 +144,36 @@ def asymmetric_annual_bump(
     return (width * profile.ln()).exp()
 
 
+
+def autumn_onset_gate(t: Decimal, onset: Decimal, sharpness: Decimal) -> Decimal:
+    """
+    Smooth gate for the autumn component.
+
+    Returns a value in the range 0..1. The gate is close to 0 before the
+    fitted onset month and approaches 1 after it. This is deliberately a soft
+    transition rather than a hard month constraint.
+
+    Higher sharpness values make the transition faster; lower values make the
+    transition more gradual.
+    """
+    if onset is None or sharpness is None:
+        return ONE
+
+    sharpness = D(sharpness)
+
+    if sharpness <= ZERO:
+        return ONE
+
+    x = sharpness * (D(t) - D(onset))
+
+    # Avoid unnecessary Decimal.exp work at extremes.
+    if x > D("40"):
+        return ONE
+    if x < D("-40"):
+        return ZERO
+
+    return ONE / (ONE + (-x).exp())
+
 def resident_target(t: Decimal) -> Decimal:
     """
     Resident seasonal detectability target.
@@ -154,6 +184,12 @@ def resident_target(t: Decimal) -> Decimal:
     The seasonal bumps are asymmetric. Older single-width parameter files still
     work because *_RISE_WIDTH and *_FALL_WIDTH fall back to the corresponding
     *_WIDTH value.
+
+    The autumn bump can also be multiplied by a smooth onset gate. This lets
+    the fitter delay the late-year rise without imposing a hard calendar-month
+    cut-off. Older parameter files remain compatible: if AUTUMN_ONSET or
+    AUTUMN_GATE_SHARPNESS is absent, the gate returns 1 and the model behaves
+    like the asymmetric v2 model.
     """
     winter_width = get_parameter("WINTER_WIDTH")
     autumn_width = get_parameter("AUTUMN_WIDTH")
@@ -170,6 +206,11 @@ def resident_target(t: Decimal) -> Decimal:
         get_parameter("AUTUMN_PEAK"),
         get_parameter_or("AUTUMN_RISE_WIDTH", autumn_width),
         get_parameter_or("AUTUMN_FALL_WIDTH", autumn_width),
+    )
+    autumn *= autumn_onset_gate(
+        t,
+        get_parameter("AUTUMN_ONSET"),
+        get_parameter("AUTUMN_GATE_SHARPNESS"),
     )
     summer = asymmetric_annual_bump(
         t,
