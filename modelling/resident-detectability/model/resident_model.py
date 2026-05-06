@@ -219,10 +219,18 @@ def resident_target(t: Decimal) -> Decimal:
         get_parameter_or("SUMMER_FALL_WIDTH", summer_width),
     )
 
+    year_end = asymmetric_annual_bump(
+        t,
+        get_parameter("YEAR_END_PEAK"),
+        get_parameter_or("YEAR_END_RISE_WIDTH", get_parameter("YEAR_END_WIDTH")),
+        get_parameter_or("YEAR_END_FALL_WIDTH", get_parameter("YEAR_END_WIDTH")),
+    )
+
     target = (
         get_parameter("BASELINE")
         + get_parameter("WINTER_WEIGHT") * winter
         + get_parameter("AUTUMN_WEIGHT") * autumn
+        + get_parameter("YEAR_END_WEIGHT") * year_end
         - get_parameter("SUMMER_DIP") * summer
     )
 
