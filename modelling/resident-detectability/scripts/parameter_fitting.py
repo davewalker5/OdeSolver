@@ -10,7 +10,7 @@ The fitter:
 - Loads observed monthly data from a CSV file containing month,value columns
 - Normalises observed values to 0..1
 - Infers useful peak/low centres from the observed curve
-- Generates random resident-model parameter sets
+- Generates random resident-model parameter sets, including asymmetric seasonal bump widths
 - Runs the ODE Solver headlessly with SEASONAL_PARAMS_FILE
 - Scores the simulated curve against the observed curve
 - Repeats for N iterations and M runs
@@ -43,10 +43,16 @@ PARAMETER_COLUMNS = [
     "WINTER_PEAK",
     "AUTUMN_PEAK",
     "WINTER_WIDTH",
+    "WINTER_RISE_WIDTH",
+    "WINTER_FALL_WIDTH",
     "AUTUMN_WIDTH",
+    "AUTUMN_RISE_WIDTH",
+    "AUTUMN_FALL_WIDTH",
     "SUMMER_DIP",
     "SUMMER_LOW",
     "SUMMER_WIDTH",
+    "SUMMER_RISE_WIDTH",
+    "SUMMER_FALL_WIDTH",
     "SCALE",
 ]
 
@@ -72,6 +78,27 @@ def random_decimal(low, high, places=3):
     """
     value = random.uniform(float(low), float(high))
     return D(round(value, places))
+
+
+def asymmetric_width_pair(low, high, places=3, asymmetry_chance=0.85):
+    """
+    Return rise/fall width parameters for an asymmetric seasonal bump.
+
+    Most trials are allowed to be asymmetric; some are deliberately near-
+    symmetric so the fitter can still rediscover the old model shape where it
+    is appropriate. Higher values mean a narrower/steeper side of the bump.
+    """
+    base = random_decimal(low, high, places)
+
+    if random.random() > asymmetry_chance:
+        jitter = random_decimal(D("0.85"), D("1.15"), places)
+        rise = max(D(low), min(D(high), base * jitter))
+        fall = max(D(low), min(D(high), base / jitter))
+        return rise.quantize(D("0.001")), fall.quantize(D("0.001"))
+
+    rise = random_decimal(low, high, places)
+    fall = random_decimal(low, high, places)
+    return rise, fall
 
 
 def wrap_month(value):
@@ -404,8 +431,12 @@ def infer_resident_search_space(observed, peak_padding=D("1.5"), low_padding=D("
         baseline_margin_high = D("0.35")
 
     initial_y_centre = observed.get(1, baseline_centre)
-    initial_y_low = max(D("0.00"), initial_y_centre - D("0.60"))
-    initial_y_high = min(D("2.00"), initial_y_centre + D("0.90"))
+    # For resident birds with a January maximum, the initial value is not a
+    # throwaway transient: it is part of the annual cycle.  Give the fitter
+    # enough room to start high rather than forcing the solution to climb
+    # towards a February peak.
+    initial_y_low = max(D("0.00"), initial_y_centre - D("0.25"))
+    initial_y_high = min(D("2.00"), initial_y_centre + D("0.35"))
 
     scale_low = D("0.80")
     scale_high = D("1.80")
@@ -483,20 +514,43 @@ def make_random_params(search_space):
     initial_y_low, initial_y_high = search_space["initial_y_range"]
     scale_low, scale_high = search_space["scale_range"]
 
+    # Broader search than v1.  Magpie / woodpigeon-like residents often need
+    # a sharp post-winter fall but only weak overall modulation.
+    winter_rise_width, winter_fall_width = asymmetric_width_pair(D("0.35"), D("20.00"), 3)
+    autumn_rise_width, autumn_fall_width = asymmetric_width_pair(D("0.35"), D("14.00"), 3)
+    summer_rise_width, summer_fall_width = asymmetric_width_pair(D("0.35"), D("14.00"), 3)
+
+    # Keep the old single-width parameters as harmless compatibility values.
+    # The asymmetric model uses the explicit *_RISE_WIDTH and *_FALL_WIDTH
+    # values; older model files will simply ignore those extra keys.
+    winter_width = (winter_rise_width + winter_fall_width) / D("2")
+    autumn_width = (autumn_rise_width + autumn_fall_width) / D("2")
+    summer_width = (summer_rise_width + summer_fall_width) / D("2")
+
     return {
         "INITIAL_Y": str(random_decimal(initial_y_low, initial_y_high, 3)),
-        "GROWTH_RATE": str(random_decimal(D("0.15"), D("1.50"), 3)),
-        "DECAY_RATE": str(random_decimal(D("0.30"), D("2.50"), 3)),
+        # Wider rates let the solution track a January/December high without
+        # being dragged into an artificial February maximum by relaxation lag.
+        "GROWTH_RATE": str(random_decimal(D("0.25"), D("4.00"), 3)),
+        "DECAY_RATE": str(random_decimal(D("0.50"), D("6.00"), 3)),
         "BASELINE": str(random_decimal(baseline_low, baseline_high, 3)),
-        "WINTER_WEIGHT": str(random_decimal(D("0.00"), D("1.20"), 3)),
-        "AUTUMN_WEIGHT": str(random_decimal(D("0.00"), D("0.35"), 3)),
+        # Bias towards high-baseline residents: mostly present all year, with
+        # seasonal modulation rather than seasonal near-absence.
+        "WINTER_WEIGHT": str(random_decimal(D("0.00"), D("0.75"), 3)),
+        "AUTUMN_WEIGHT": str(random_decimal(D("0.00"), D("0.45"), 3)),
         "WINTER_PEAK": str(winter_peak),
         "AUTUMN_PEAK": str(autumn_peak),
-        "WINTER_WIDTH": str(random_decimal(D("0.80"), D("5.00"), 3)),
-        "AUTUMN_WIDTH": str(random_decimal(D("1.00"), D("6.00"), 3)),
-        "SUMMER_DIP": str(random_decimal(D("0.00"), D("0.35"), 3)),
+        "WINTER_WIDTH": str(winter_width.quantize(D("0.001"))),
+        "WINTER_RISE_WIDTH": str(winter_rise_width),
+        "WINTER_FALL_WIDTH": str(winter_fall_width),
+        "AUTUMN_WIDTH": str(autumn_width.quantize(D("0.001"))),
+        "AUTUMN_RISE_WIDTH": str(autumn_rise_width),
+        "AUTUMN_FALL_WIDTH": str(autumn_fall_width),
+        "SUMMER_DIP": str(random_decimal(D("0.00"), D("0.25"), 3)),
         "SUMMER_LOW": str(summer_low),
-        "SUMMER_WIDTH": str(random_decimal(D("1.00"), D("5.00"), 3)),
+        "SUMMER_WIDTH": str(summer_width.quantize(D("0.001"))),
+        "SUMMER_RISE_WIDTH": str(summer_rise_width),
+        "SUMMER_FALL_WIDTH": str(summer_fall_width),
         "SCALE": str(random_decimal(scale_low, scale_high, 3)),
     }
 
@@ -635,10 +689,10 @@ def main():
     parser.add_argument("-pp", "--peak-padding", type=Decimal, default=Decimal("1.5"), help="Search padding around observed detectability peak")
     parser.add_argument("-lp", "--low-padding", type=Decimal, default=Decimal("1.5"), help="Search padding around observed low point")
     parser.add_argument("-d", "--discard-months", type=Decimal, default=Decimal("0"), help="Ignore this many initial simulation months before binning output")
-    parser.add_argument("-iw", "--initial-y-weight", type=Decimal, default=Decimal("0.5"), help="Weight applied to the initial-condition mismatch penalty. Use 0 to disable. Default: 10.0")
+    parser.add_argument("-iw", "--initial-y-weight", type=Decimal, default=Decimal("4.0"), help="Weight applied to the initial-condition mismatch penalty. Use 0 to disable. Default: 4.0")
     parser.add_argument("-im", "--initial-month", type=int, default=1, help="Month used as the initial-condition anchor. Default: 1 / January")
     parser.add_argument("-uw", "--underestimation-weight", type=Decimal, default=Decimal("2.5"), help="Penalty multiplier when simulated values fall below observed values. Default: 2.5")
-    parser.add_argument("-mf", "--min-simulated-floor", type=Decimal, default=Decimal("0.4"), help="Optional floor for scaled simulated monthly values. Useful for resident species with no true seasonal absence, e.g. 0.40")
+    parser.add_argument("-mf", "--min-simulated-floor", type=Decimal, default=Decimal("0.60"), help="Optional floor for scaled simulated monthly values. Useful for high-baseline residents, e.g. 0.60")
     parser.add_argument("-fw", "--floor-weight", type=Decimal, default=Decimal("5.0"), help="Penalty multiplier for falling below --min-simulated-floor. Default: 5.0")
 
     args = parser.parse_args()

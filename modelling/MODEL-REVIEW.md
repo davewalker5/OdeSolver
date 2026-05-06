@@ -2,25 +2,24 @@
 
 ## Resident Detectability Model
 
-| Model    | Species          | Fit        | Comments                                                                |
-| -------- | ---------------- | ---------- | ----------------------------------------------------------------------- |
-| Resident | Blackbird        | Acceptable | Initial peak is damped a little too much                                |
-| Resident | Blue Tit         | Good       | No issues                                                               |
-| Resident | Common Cleavers  | Good       | Autumn decay is too gentle but shape and peak are reasonable            |
-| Resident | Common Starling  | Acceptable | Initial peak is too high and damps a little too much                    |
-| Resident | Dunnock          | Good       | No issues                                                               |
-| Resident | Goldfinch        | Poor       | Spring phase mis-alignment; over smooth decline; autumn bump too simple |
-| Resident | Great Tit        | Good       | No issues                                                               |
-| Resident | House Sparrow    | Good       | No issues                                                               |
-| Resident | Jay              | No match   | Model mismatch                                                          |
-| Resident | Magpie           | No match   | Model mismatch                                                          |
-| Resident | Mute Swan        | Acceptable | Smooths jagged profile which is likely correct                          |
-| Resident | Robin            | Acceptable | Smooths jagged profile which is likely correct                          |
-| Resident | Shepherd’s Purse | Acceptable | Decline from initial peak is not sufficient to match observed data      |
-| Resident | Skylark          | Acceptable | Decline from initial peak is not sufficient to match observed data      |
-| Resident | Song Thrush      | Good       | No issues                                                               |
-| Resident | Woodpigeon       | No match   | Model mismatch                                                          |
-| Resident | Wren             | Good       | No issues                                                               |
+| Model    | Species          | Fit        | Comments                                                                                   |
+| -------- | ---------------- | ---------- | ------------------------------------------------------------------------------------------ |
+| Resident | Blackbird        | Acceptable | Initial peak is damped a little too much; end of year rise is a little too eager           |
+| Resident | Blue Tit         | Acceptable | Initial peak is damped a little too much; end of year rise is a little too eager           |
+| Resident | Common Starling  | Good       | No issues                                                                                  |
+| Resident | Dunnock          | Acceptable | Initial peak is damped a little too much; end of year rise is a little too eager           |
+| Resident | Goldfinch        | Poor       | Year start good; end of year rise is a little too eager; mid-section is wrong              |
+| Resident | Great Tit        | Acceptable | Initial peak is damped a little too much; end of year rise is a little too eager           |
+| Resident | House Sparrow    | Acceptable | First half of year peak is too sharp; end of year rise is a little too eager               |
+| Resident | Jay              | No match   | Model mismatch                                                                             |
+| Resident | Magpie           | Acceptable | Reasonable match to observed curve shape; late summer dip too low                          |
+| Resident | Mute Swan        | Good       | No issues                                                                                  |
+| Resident | Robin            | Acceptable | First half of year dips too much; end of year rise is a little too eager                   |
+| Resident | Shepherd’s Purse | Acceptable | Shape is correct; initial peak is damped a little too much; late summer dip isn’t modelled |
+| Resident | Skylark          | Acceptable | Initial peak is damped a little too much; end of year rise is a little too eager           |
+| Resident | Song Thrush      | Good       | Decline from initial peak is a little too steep                                            |
+| Resident | Woodpigeon       | Acceptable | Shape is correct ; late summer dip is a little too severe                                  |
+| Resident | Wren             | Acceptable | First half of year peak is too sharp; end of year rise is a little too eager               |
 
 ## Seasonal Presence Model
 
