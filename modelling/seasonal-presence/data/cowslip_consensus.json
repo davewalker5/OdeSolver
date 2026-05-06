@@ -1,10 +1,12 @@
 {
-  "GROWTH": "2",
-  "DECAY": "1.5",
-  "OOS_DECAY": "3",
-  "SEASON_START": "3.485",
-  "SEASON_END": "4.95",
-  "SHARPNESS": "5.396",
-  "FORCING_PEAK": "4.28",
+  "GROWTH": "2.319",
+  "DECAY": "1.644",
+  "OOS_DECAY": "4.986",
+  "POST_PEAK_DECAY": "4.726",
+  "POST_PEAK_SHARPNESS": "5.332",
+  "SEASON_START": "3.41",
+  "SEASON_END": "5.49",
+  "SHARPNESS": "8.21",
+  "FORCING_PEAK": "4.265",
   "SPECIES": "Cowslip"
 }

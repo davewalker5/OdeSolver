@@ -1,10 +1,12 @@
 {
-  "GROWTH": "2",
-  "DECAY": "1.5",
-  "OOS_DECAY": "3",
-  "SEASON_START": "1.995",
-  "SEASON_END": "9.235",
-  "SHARPNESS": "5.064",
-  "FORCING_PEAK": "3.255",
+  "GROWTH": "3.144",
+  "DECAY": "1.744",
+  "OOS_DECAY": "4.923",
+  "POST_PEAK_DECAY": "4.209",
+  "POST_PEAK_SHARPNESS": "5.448",
+  "SEASON_START": "2.295",
+  "SEASON_END": "9.265",
+  "SHARPNESS": "6.121",
+  "FORCING_PEAK": "4.065",
   "SPECIES": "Brimstone Butterfly"
 }

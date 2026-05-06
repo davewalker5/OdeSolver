@@ -1,10 +1,12 @@
 {
-  "GROWTH": "2",
-  "DECAY": "1.5",
-  "OOS_DECAY": "3",
-  "SEASON_START": "4.415",
-  "SEASON_END": "10.24",
-  "SHARPNESS": "5.637",
-  "FORCING_PEAK": "5.09",
+  "GROWTH": "3.018",
+  "DECAY": "1.792",
+  "OOS_DECAY": "4.074",
+  "POST_PEAK_DECAY": "4.417",
+  "POST_PEAK_SHARPNESS": "3.494",
+  "SEASON_START": "4.95",
+  "SEASON_END": "10.215",
+  "SHARPNESS": "8.773",
+  "FORCING_PEAK": "6.39",
   "SPECIES": "Common Poppy"
 }

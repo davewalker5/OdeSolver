@@ -1,10 +1,12 @@
 {
-  "GROWTH": "2",
-  "DECAY": "1.5",
-  "OOS_DECAY": "3",
-  "SEASON_START": "10.57",
-  "SEASON_END": "6.35",
-  "SHARPNESS": "5.27",
-  "FORCING_PEAK": "4.125",
+  "GROWTH": "3.238",
+  "DECAY": "1.713",
+  "OOS_DECAY": "4.924",
+  "POST_PEAK_DECAY": "4.888",
+  "POST_PEAK_SHARPNESS": "3.883",
+  "SEASON_START": "10.605",
+  "SEASON_END": "6.255",
+  "SHARPNESS": "7.264",
+  "FORCING_PEAK": "4.22",
   "SPECIES": "Common Cleavers"
 }

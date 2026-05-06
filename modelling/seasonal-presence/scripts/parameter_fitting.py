@@ -472,12 +472,14 @@ def make_random_params(search_space):
         forcing_peak = random_month_between(season_start, season_end)
 
     return {
-        "GROWTH": "2.0",
-        "DECAY": "1.5",
-        "OOS_DECAY": "3.0",
+        "GROWTH": str(round(random.uniform(1.0, 5.0), 3)),
+        "DECAY": str(round(random.uniform(0.5, 3.0), 3)),
+        "OOS_DECAY": str(round(random.uniform(1.0, 8.0), 3)),
+        "POST_PEAK_DECAY": str(round(random.uniform(0.0, 8.0), 3)),
+        "POST_PEAK_SHARPNESS": str(round(random.uniform(1.0, 10.0), 3)),
         "SEASON_START": str(season_start),
         "SEASON_END": str(season_end),
-        "SHARPNESS": str(round(random.uniform(2.0, 8.0), 3)),
+        "SHARPNESS": str(round(random.uniform(1.0, 15.0), 3)),
         "FORCING_PEAK": str(forcing_peak),
     }
 
@@ -538,6 +540,8 @@ def append_params_to_csv(params: dict, csv_path: str):
         "GROWTH",
         "DECAY",
         "OOS_DECAY",
+        "POST_PEAK_DECAY",
+        "POST_PEAK_SHARPNESS",
         "SEASON_START",
         "SEASON_END",
         "SHARPNESS",

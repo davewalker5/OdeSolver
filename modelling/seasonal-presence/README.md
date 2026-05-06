@@ -18,17 +18,37 @@ y(t) = observable activity / detection rate
 
 The governing equation is:
 
-```
-dy/dt = GROWTH - S(t) - W(t) - decay(t) - y
+```text
+dy/dt = growth(t) - effective_decay(t) * y
 ```
 
 Where:
 
-| Term     | Name                                     | Meaning                                                                                                                                                                   |
-| -------- | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| S(t)     | Seasonal forcing (sinusoidal)            | Represents underlying environmental drivers such as day length, temperature, or resource availability                                                                     |
-| W(t)     | Seasonal window (logistic rise and fall) | Constrains activity to a biologically plausible time window (e.g. breeding season, flowering period, migration presence)                                                  |
-| decay(t) | State-dependent damping                  | Controls how quickly activity declines. Increased outside the seasonal window to simulate rapid shutdown (e.g. senescence,dispersal, mortality, or behavioural switching) |
+```text
+growth(t) = GROWTH × S(t) × W(t)
+```
+
+and:
+
+```text
+effective_decay(t) =
+    DECAY
+    + OOS_DECAY × (1 - W(t))
+    + POST_PEAK_DECAY × P(t)
+```
+
+Where:
+
+| Term            | Meaning                             |
+| --------------- | ----------------------------------- |
+| S(t)            | Seasonal forcing function           |
+| W(t)            | Seasonal activity window            |
+| P(t)            | Smooth post-season suppression gate |
+| DECAY           | Baseline decay rate                 |
+| OOS_DECAY       | Additional out-of-season decay      |
+| POST_PEAK_DECAY | Additional post-season suppression  |
+
+The state variable y(t) represents relative observable activity or detectability.
 
 ## Units
 
@@ -44,17 +64,37 @@ characteristic timescale of rise and decay in the system.
 
 ## Key features
 
-1. Periodic forcing:<br/>
-   Time is wrapped onto a 12-month cycle using modulo arithmetic.
+### 1. Periodic forcing
 
-2. Raised-cosine seasonal forcing:<br/>
-   The seasonal forcing is scaled onto the range 0..1, giving a smooth annual curve without a hard zero at the start of the year.
+Time is wrapped onto a 12-month cycle using modulo arithmetic.
 
-3. Smooth seasonal window:<br/>
-   Logistic functions are used for both onset and decline of the active period, avoiding discontinuities.
+### 2. Raised-cosine seasonal forcing
 
-4. Enhanced out-of-season decay:<br/>
-   Activity is actively suppressed outside the window, not just passively decaying.
+The seasonal forcing is scaled onto the range 0..1, giving a smooth annual curve without a hard zero at the start of the year.
+
+### 3. Smooth seasonal window
+
+Logistic functions are used for both onset and decline of the active period, avoiding discontinuities.
+
+### 4. Enhanced out-of-season decay
+
+Activity is actively suppressed outside the window, not just passively decaying.
+
+### 5. Post-season suppression
+
+An additional smooth suppression term is activated near the end of the seasonal window. This allows the model to reproduce species that exhibit relatively rapid seasonal collapse after peak activity, reducing unrealistically persistent late-season tails.
+
+The suppression gate is implemented using a logistic transition function:
+
+```text
+P(t) = 1 / (1 + exp(-k(t - SEASON_END)))
+```
+
+Where k controls how abruptly post-season suppression activates.
+
+### 6. Asymmetric seasonal behaviour
+
+The combination of seasonal forcing, logistic windowing, and post-season suppression allows the model to reproduce asymmetric seasonal curves, including rapid post-peak collapse while preserving realistic peak amplitude.
 
 
 ## Numerical considerations
@@ -66,13 +106,24 @@ characteristic timescale of rise and decay in the system.
 
 ## Interpretation
 
-This is a deliberately simplified "toy" model intended to explore whether simple mechanistic assumptions can reproduce observed seasonal patterns in wildlife records.
+This is a deliberately simplified mechanistic model intended to explore whether a compact set of seasonal processes can reproduce observed patterns in wildlife records.
 
 Parameters such as GROWTH, DECAY, SEASON_START, and SEASON_END can be tuned to represent different ecological strategies:
 
 - Narrow window, high decay -> short-lived or highly seasonal species
 - Broad window, low decay -> resident or persistent species
 - High growth -> strong seasonal signal
+
+The post-season suppression mechanism reflects the fact that many biological systems do not merely stop growing at the end of the active season, but instead undergo active decline processes such as:
+
+- Senescence
+- Adult mortality
+- Resource exhaustion
+- Behavioural switching
+- Dispersal
+- Environmental threshold effects
+
+This produces more realistic asymmetric seasonal curves, particularly for species with rapid post-peak decline.
 
 The model is not intended for precise prediction, but for pattern exploration and comparison with empirical data.
 
@@ -88,13 +139,16 @@ The "generic" model loads species parameters from a separate JSON file pointed a
 
 ```json
 {
-  "GROWTH": "2",
-  "DECAY": "1.5",
-  "OOS_DECAY": "3",
-  "SEASON_START": "4.905",
-  "SEASON_END": "8.73",
-  "SHARPNESS": "6.175",
-  "FORCING_PEAK": "5.21"
+  "GROWTH": "3.144",
+  "DECAY": "1.744",
+  "OOS_DECAY": "4.923",
+  "POST_PEAK_DECAY": "4.209",
+  "POST_PEAK_SHARPNESS": "5.448",
+  "SEASON_START": "2.295",
+  "SEASON_END": "9.265",
+  "SHARPNESS": "6.121",
+  "FORCING_PEAK": "4.065",
+  "SPECIES": "Brimstone Butterfly"
 }
 ```
 
@@ -125,6 +179,8 @@ Because the parameter search is constrained using the observed data, key paramet
 - SEASON_END &rarr; approximate end of the season
 - FORCING_PEAK &rarr; approximate timing of peak activity
 - SHARPNESS &rarr; how abruptly the season begins and ends
+- POST_PEAK_DECAY &rarr; strength of active post-season suppression
+- POST_PEAK_SHARPNESS &rarr; how abruptly post-season decline begins
 
 These parameters provide a compact and comparable description of seasonal behaviour across species.
 
