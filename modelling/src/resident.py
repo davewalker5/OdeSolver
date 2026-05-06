@@ -40,6 +40,11 @@ PARAMETER_COLUMNS = [
     "SUMMER_RISE_WIDTH",
     "SUMMER_FALL_WIDTH",
     "SCALE",
+    "YEAR_END_WEIGHT",
+    "YEAR_END_PEAK",
+    "YEAR_END_WIDTH",
+    "YEAR_END_RISE_WIDTH",
+    "YEAR_END_FALL_WIDTH",
 ]
 
 
@@ -141,6 +146,176 @@ def initial_condition_penalty(observed, simulated, initial_month=1):
     return (observed[initial_month] - simulated[initial_month]) ** 2
 
 
+def early_autumn_rise_penalty(
+    observed,
+    simulated,
+    autumn_onset,
+    weight=D("1.5"),
+):
+    """
+    Penalise simulated late-year recovery that starts before the observed
+    autumn onset.
+
+    This is deliberately one-sided: it penalises being too high too early,
+    but does not punish a cautious/delayed autumn rise.
+    """
+    if autumn_onset is None:
+        return D("0")
+
+    total = D("0")
+    count = D("0")
+
+    for month in range(7, 12):
+        if D(month) >= D(autumn_onset):
+            continue
+
+        if month not in observed or month not in simulated:
+            continue
+
+        excess = D(simulated[month]) - D(observed[month])
+
+        if excess > 0:
+            total += excess ** 2
+            count += D("1")
+
+    if count == 0:
+        return D("0")
+
+    return D(weight) * total / count
+
+
+def late_year_slope_penalty(
+    observed,
+    simulated,
+    months=(8, 9, 10, 11),
+    weight=D("2.0"),
+):
+    """
+    Penalise simulated month-to-month rises that are steeper than observed
+    during the late-year recovery period.
+    """
+    total = D("0")
+    count = D("0")
+
+    for m1, m2 in zip(months, months[1:]):
+        if m1 not in observed or m2 not in observed:
+            continue
+        if m1 not in simulated or m2 not in simulated:
+            continue
+
+        obs_rise = D(observed[m2]) - D(observed[m1])
+        sim_rise = D(simulated[m2]) - D(simulated[m1])
+
+        excess_rise = sim_rise - obs_rise
+
+        if excess_rise > 0:
+            total += excess_rise ** 2
+            count += D("1")
+
+    if count == 0:
+        return D("0")
+
+    return D(weight) * total / count
+
+
+def premature_late_year_peak_penalty(
+    observed,
+    simulated,
+    months=(9, 10, 11, 12),
+    weight=D("4.0"),
+):
+    """
+    Penalise simulations where the late-year recovery peaks before the observed
+    late-year peak.
+
+    Useful for residents where the model lifts November too strongly instead
+    of keeping the main recovery into December.
+    """
+    obs_late_peak = max(months, key=lambda m: observed.get(m, D("0")))
+    sim_late_peak = max(months, key=lambda m: simulated.get(m, D("0")))
+
+    if sim_late_peak < obs_late_peak:
+        return D(weight) * D(obs_late_peak - sim_late_peak) ** 2
+
+    return D("0")
+
+
+def pre_december_recovery_penalty(
+    observed,
+    simulated,
+    months=(9, 10, 11),
+    weight=D("3.0"),
+):
+    """
+    Penalise the model for rising too high before December.
+
+    This helps species where the observed curve remains low/flat through
+    autumn, then recovers sharply at year end.
+    """
+    total = D("0")
+    count = D("0")
+
+    for month in months:
+        if month not in observed or month not in simulated:
+            continue
+
+        excess = D(simulated[month]) - D(observed[month])
+
+        if excess > 0:
+            total += excess ** 2
+            count += D("1")
+
+    if count == 0:
+        return D("0")
+
+    return D(weight) * total / count
+
+
+def november_overfit_penalty(
+    observed,
+    simulated,
+    weight=D("4.0"),
+):
+    if 11 not in observed or 11 not in simulated:
+        return D("0")
+
+    excess = D(simulated[11]) - D(observed[11])
+
+    if excess <= 0:
+        return D("0")
+
+    return D(weight) * excess ** 2
+
+
+def autumn_shelf_penalty(
+    observed,
+    simulated,
+    months=(8, 9, 10),
+    weight=D("6.0"),
+):
+    """
+    Penalise the model for creating a broad autumn shelf before the true
+    year-end recovery.
+    """
+    total = D("0")
+    count = D("0")
+
+    for month in months:
+        if month not in observed or month not in simulated:
+            continue
+
+        excess = D(simulated[month]) - D(observed[month])
+
+        if excess > 0:
+            total += excess ** 2
+            count += D("1")
+
+    if count == 0:
+        return D("0")
+
+    return D(weight) * total / count
+
+
 def weighted_score(
     observed,
     simulated,
@@ -149,6 +324,8 @@ def weighted_score(
     underestimation_weight=D("2.5"),
     min_simulated_floor=None,
     floor_weight=D("5.0"),
+    autumn_onset=None,
+    early_autumn_weight=D("1.5"),
 ):
     """
     Score the fit for a resident detectability model.
@@ -188,12 +365,84 @@ def weighted_score(
     simulated_low = min(simulated, key=simulated.get)
     low_error = circular_month_distance(observed_low, simulated_low) / D("12")
 
+    early_autumn_error = early_autumn_rise_penalty(
+        observed,
+        simulated,
+        autumn_onset,
+        early_autumn_weight,
+    )
+
+    late_year_slope_error = late_year_slope_penalty(
+        observed,
+        simulated,
+        weight=D("2.0"),
+    )
+
+    late_peak_error = premature_late_year_peak_penalty(
+        observed,
+        simulated,
+        weight=D("4.0"),
+    )
+
+    pre_december_error = pre_december_recovery_penalty(
+        observed,
+        simulated,
+        weight=D("3.0"),
+    )
+
+    november_error = november_overfit_penalty(observed, simulated)
+
+    autumn_shelf_error = autumn_shelf_penalty(
+        observed,
+        simulated,
+        weight=D("6.0"),
+    )
+
     return (
         error
         + D("0.20") * peak_error
         + D("0.20") * low_error
         + D(initial_y_weight) * initial_error
+        + early_autumn_error
+        + late_year_slope_error
+        + late_peak_error
+        + pre_december_error
+        + november_error
+        + autumn_shelf_error
     )
+
+
+def infer_autumn_onset_from_observed(observed, summer_low_month):
+    """
+    Estimate when the observed late-year rise begins.
+
+    Looks after the summer low and finds the first month where the observed
+    value has recovered meaningfully from the summer low towards the late-year
+    high.
+    """
+    summer_low_month = int(summer_low_month)
+
+    candidate_months = [m for m in range(summer_low_month, 13)]
+    if not candidate_months:
+        return D("10")
+
+    summer_low_value = observed.get(summer_low_month, min(observed.values()))
+
+    late_year_months = [10, 11, 12]
+    late_year_peak_value = max(observed.get(m, D("0")) for m in late_year_months)
+
+    recovery = late_year_peak_value - summer_low_value
+
+    if recovery <= D("0.05"):
+        return D("11")
+
+    threshold = summer_low_value + recovery * D("0.35")
+
+    for month in candidate_months:
+        if observed.get(month, D("0")) >= threshold:
+            return D(month)
+
+    return D("11")
 
 
 def infer_resident_search_space(observed, peak_padding=D("1.5"), low_padding=D("1.5")):
@@ -210,6 +459,7 @@ def infer_resident_search_space(observed, peak_padding=D("1.5"), low_padding=D("
         autumn_peak_centre = D("12")
 
     summer_low_centre = D(min(observed, key=observed.get))
+    observed_autumn_onset = infer_autumn_onset_from_observed(observed, summer_low_centre)
 
     values = list(observed.values())
     max_value = max(values)
@@ -255,8 +505,11 @@ def infer_resident_search_space(observed, peak_padding=D("1.5"), low_padding=D("
         # Soft autumn gate: normally allow the late-year component to start
         # emerging sometime after the summer low and before the autumn/winter
         # peak. Keep this deliberately broad so it remains a fitted property,
-        # not a hard ecological rule.
-        "autumn_onset_range": (D("6.50"), D("11.25")),
+        # not a hard ecological rule."observed_autumn_onset": observed_autumn_onset,
+        "autumn_onset_range": (
+            max(D("8.25"), summer_low_centre + D("1.25")),
+            D("11.50"),
+        ),
         "summer_low_centre": summer_low_centre,
         "summer_low_range": month_range_around(summer_low_centre, low_padding),
         "baseline_centre": baseline_centre,
@@ -267,6 +520,7 @@ def infer_resident_search_space(observed, peak_padding=D("1.5"), low_padding=D("
         "initial_y_centre": initial_y_centre,
         "initial_y_range": (initial_y_low, initial_y_high),
         "scale_range": (scale_low, scale_high),
+        "year_end_peak_range": month_range_around(D("12"), D("0.75")),
     }
 
 
@@ -312,6 +566,11 @@ def make_random_params(search_space):
     autumn_width = (autumn_rise_width + autumn_fall_width) / D("2")
     summer_width = (summer_rise_width + summer_fall_width) / D("2")
 
+    year_end_peak = random_decimal(D("12.00"), D("12.30"), 3)
+    year_end_rise_width = random_decimal(D("80.00"), D("240.00"), 3)
+    year_end_fall_width = random_decimal(D("4.00"), D("16.00"), 3)
+    year_end_width = (year_end_rise_width + year_end_fall_width) / D("2")
+
     return {
         "INITIAL_Y": str(random_decimal(initial_y_low, initial_y_high, 3)),
         # Wider rates let the solution track a January/December high without
@@ -322,11 +581,11 @@ def make_random_params(search_space):
         # Bias towards high-baseline residents: mostly present all year, with
         # seasonal modulation rather than seasonal near-absence.
         "WINTER_WEIGHT": str(random_decimal(D("0.00"), D("0.75"), 3)),
-        "AUTUMN_WEIGHT": str(random_decimal(D("0.00"), D("0.45"), 3)),
+        "AUTUMN_WEIGHT": str(random_decimal(D("0.00"), D("0.05"), 3)),
         "WINTER_PEAK": str(winter_peak),
         "AUTUMN_PEAK": str(autumn_peak),
         "AUTUMN_ONSET": str(autumn_onset),
-        "AUTUMN_GATE_SHARPNESS": str(random_decimal(D("0.50"), D("8.00"), 3)),
+        "AUTUMN_GATE_SHARPNESS": str(random_decimal(D("2.00"), D("12.00"), 3)),
         "WINTER_WIDTH": str(winter_width.quantize(D("0.001"))),
         "WINTER_RISE_WIDTH": str(winter_rise_width),
         "WINTER_FALL_WIDTH": str(winter_fall_width),
@@ -339,6 +598,11 @@ def make_random_params(search_space):
         "SUMMER_RISE_WIDTH": str(summer_rise_width),
         "SUMMER_FALL_WIDTH": str(summer_fall_width),
         "SCALE": str(random_decimal(scale_low, scale_high, 3)),
+        "YEAR_END_WEIGHT": str(random_decimal(D("0.00"), D("0.35"), 3)),
+        "YEAR_END_PEAK": str(year_end_peak),
+        "YEAR_END_WIDTH": str(year_end_width.quantize(D("0.001"))),
+        "YEAR_END_RISE_WIDTH": str(year_end_rise_width),
+        "YEAR_END_FALL_WIDTH": str(year_end_fall_width),
     }
 
 
@@ -388,6 +652,7 @@ def fit(observed_csv,
                 underestimation_weight,
                 min_simulated_floor,
                 floor_weight,
+                search_space.get("observed_autumn_onset"),
             )
 
             params["TIMESTAMP"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -428,7 +693,7 @@ def main():
     parser.add_argument("-iw", "--initial-y-weight", type=Decimal, default=Decimal("4.0"), help="Weight applied to the initial-condition mismatch penalty. Use 0 to disable. Default: 4.0")
     parser.add_argument("-im", "--initial-month", type=int, default=1, help="Month used as the initial-condition anchor. Default: 1 / January")
     parser.add_argument("-uw", "--underestimation-weight", type=Decimal, default=Decimal("2.5"), help="Penalty multiplier when simulated values fall below observed values. Default: 2.5")
-    parser.add_argument("-mf", "--min-simulated-floor", type=Decimal, default=Decimal("0.60"), help="Optional floor for scaled simulated monthly values. Useful for high-baseline residents, e.g. 0.60")
+    parser.add_argument("-mf", "--min-simulated-floor", type=Decimal, default=Decimal("0.20"), help="Optional floor for scaled simulated monthly values. Useful for high-baseline residents, e.g. 0.60")
     parser.add_argument("-fw", "--floor-weight", type=Decimal, default=Decimal("5.0"), help="Penalty multiplier for falling below --min-simulated-floor. Default: 5.0")
     args = parser.parse_args()
     print_args_table(args, "Resident Detectability Model Arguments")
