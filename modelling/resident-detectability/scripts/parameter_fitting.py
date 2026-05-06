@@ -367,45 +367,46 @@ def infer_resident_search_space(observed, peak_padding=D("1.5"), low_padding=D("
     """
     Infer biologically plausible parameter ranges for a resident detectability
     model from observed monthly data.
-
-    The observed data is used to identify:
-    - the strongest annual detectability peak
-    - the late-year / autumn peak or shoulder
-    - the lowest point in the year, usually a summer low
-
-    These inferred features are expanded into circular month ranges so random
-    search explores plausible seasonal structures while still allowing the model
-    to refine the exact timing.
     """
     winter_peak_centre = D(max(observed, key=observed.get))
 
     late_year_candidates = {m: observed.get(m, D("0")) for m in [10, 11, 12]}
     autumn_peak_centre = D(max(late_year_candidates, key=late_year_candidates.get))
 
-    # If there is no clear late-year shoulder, keep autumn around December as
-    # a harmless default. The weight may fit towards zero.
     if late_year_candidates[int(autumn_peak_centre)] == 0:
         autumn_peak_centre = D("12")
 
-    # For residents, the low point may be anywhere, but for common garden birds
-    # it is often in the summer. Infer it directly rather than forcing it.
     summer_low_centre = D(min(observed, key=observed.get))
 
-    baseline_centre = min(observed.values())
+    values = list(observed.values())
+    max_value = max(values)
+    min_value = min(values)
 
-    # INITIAL_Y controls the starting state of the ODE integration. For a
-    # resident detectability model this is usually best searched around the
-    # first observed month, because the simulation normally starts in January.
-    # Keep the range deliberately broad so the solver can absorb transient
-    # behaviour where needed.
+    zero_months = sum(1 for v in values if v == 0)
+
+    # Detect resident-like species whose record pattern has a strong seasonal
+    # spike but little or no off-season detectability.
+    near_zero_baseline = (
+        min_value == 0
+        or zero_months >= 3
+        or min_value <= max_value * D("0.05")
+    )
+
+    if near_zero_baseline:
+        baseline_centre = D("0.01")
+        baseline_floor = D("0.00")
+        baseline_margin_low = D("0.01")
+        baseline_margin_high = D("0.08")
+    else:
+        baseline_centre = min_value
+        baseline_floor = D("0.05")
+        baseline_margin_low = D("0.25")
+        baseline_margin_high = D("0.35")
+
     initial_y_centre = observed.get(1, baseline_centre)
     initial_y_low = max(D("0.00"), initial_y_centre - D("0.60"))
     initial_y_high = min(D("2.00"), initial_y_centre + D("0.90"))
 
-    # SCALE is searched by the fitter and applied to simulated output before
-    # scoring.  Values above 1.0 are deliberately allowed because the common
-    # failure mode for resident species such as House Sparrow is a curve with
-    # the right shape but too little vertical amplitude.
     scale_low = D("0.80")
     scale_high = D("1.80")
 
@@ -417,6 +418,10 @@ def infer_resident_search_space(observed, peak_padding=D("1.5"), low_padding=D("
         "summer_low_centre": summer_low_centre,
         "summer_low_range": month_range_around(summer_low_centre, low_padding),
         "baseline_centre": baseline_centre,
+        "baseline_floor": baseline_floor,
+        "baseline_margin_low": baseline_margin_low,
+        "baseline_margin_high": baseline_margin_high,
+        "near_zero_baseline": near_zero_baseline,
         "initial_y_centre": initial_y_centre,
         "initial_y_range": (initial_y_low, initial_y_high),
         "scale_range": (scale_low, scale_high),
@@ -454,16 +459,27 @@ def make_random_params(search_space):
     """
     Generate a random set of parameters for the resident detectability model.
 
-    The model assumes year-round presence, so BASELINE is allowed to vary above
-    zero. Seasonal terms then modulate detectability around that baseline.
+    Supports both ordinary resident species with a positive baseline and
+    'resident-like' species with near-zero off-season detectability, such as
+    spring-spiking persistent annuals.
     """
     winter_peak = random_month_in_range(*search_space["winter_peak_range"])
     autumn_peak = random_month_in_range(*search_space["autumn_peak_range"])
     summer_low = random_month_in_range(*search_space["summer_low_range"])
 
     baseline_centre = D(search_space["baseline_centre"])
-    baseline_low = max(D("0.05"), baseline_centre - D("0.25"))
-    baseline_high = min(D("0.90"), baseline_centre + D("0.35"))
+
+    baseline_floor = D(search_space.get("baseline_floor", "0.05"))
+    baseline_margin_low = D(search_space.get("baseline_margin_low", "0.25"))
+    baseline_margin_high = D(search_space.get("baseline_margin_high", "0.35"))
+
+    baseline_low = max(baseline_floor, baseline_centre - baseline_margin_low)
+    baseline_high = min(D("0.90"), baseline_centre + baseline_margin_high)
+
+    # Safety: if the inferred centre is very low, allow a small but usable range
+    if baseline_high <= baseline_low:
+        baseline_high = baseline_low + D("0.10")
+
     initial_y_low, initial_y_high = search_space["initial_y_range"]
     scale_low, scale_high = search_space["scale_range"]
 

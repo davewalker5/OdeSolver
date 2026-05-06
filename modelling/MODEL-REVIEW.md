@@ -6,6 +6,7 @@
 | -------- | ---------------- | ---------- | ----------------------------------------------------------------------- |
 | Resident | Blackbird        | Acceptable | Initial peak is damped a little too much                                |
 | Resident | Blue Tit         | Good       | No issues                                                               |
+| Seasonal | Common Cleavers  | Good       | Autumn decay is too gentle but shape and peak are reasonable            |
 | Resident | Common Starling  | Acceptable | Initial peak is too high and damps a little too much                    |
 | Resident | Dunnock          | Good       | No issues                                                               |
 | Resident | Goldfinch        | Poor       | Spring phase mis-alignment; over smooth decline; autumn bump too simple |
@@ -29,7 +30,6 @@
 | Seasonal | Brimstone Butterfly     | Good       | No issues                                                              |
 | Seasonal | Buttercup               | Good       | No issues                                                              |
 | Seasonal | Chiffchaff              | Good       | No issues                                                              |
-| Seasonal | Common Cleavers         | No match   | Peak amplitude and position is wrong                                   |
 | Seasonal | Common Poppy            | Good       | No issues                                                              |
 | Seasonal | Cow Parsley             | Good       | No issues                                                              |
 | Seasonal | Cowslip                 | Good       | No issues                                                              |
