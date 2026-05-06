@@ -1,0 +1,12 @@
+{
+  "GROWTH": "2.658",
+  "DECAY": "1.524",
+  "OOS_DECAY": "3.661",
+  "POST_PEAK_DECAY": "3.653",
+  "POST_PEAK_SHARPNESS": "6.014",
+  "SEASON_START": "4.005",
+  "SEASON_END": "5.675",
+  "SHARPNESS": "8.995",
+  "FORCING_PEAK": "4.815",
+  "SPECIES": "Bluebell"
+}

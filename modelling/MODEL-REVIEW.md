@@ -25,6 +25,7 @@
 
 | Model    | Species                 | Fit        | Comments                                                               |
 | -------- | ----------------------- | ---------- | ---------------------------------------------------------------------- |
+| Seasonal | Bluebell                | Good       | No issues                                                              |
 | Seasonal | Brimstone Butterfly     | Good       | No issues                                                              |
 | Seasonal | Buttercup               | Good       | No issues                                                              |
 | Seasonal | Chiffchaff              | Good       | No issues                                                              |
