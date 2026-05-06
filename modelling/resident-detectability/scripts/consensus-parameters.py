@@ -8,18 +8,25 @@ from statistics import median
 
 PARAMETERS = [
     "INITIAL_Y",
+    "GROWTH_RATE",
+    "DECAY_RATE",
     "BASELINE",
     "WINTER_WEIGHT",
     "AUTUMN_WEIGHT",
-    "SUMMER_DIP",
     "WINTER_PEAK",
     "AUTUMN_PEAK",
-    "SUMMER_LOW",
     "WINTER_WIDTH",
+    "WINTER_RISE_WIDTH",
+    "WINTER_FALL_WIDTH",
     "AUTUMN_WIDTH",
+    "AUTUMN_RISE_WIDTH",
+    "AUTUMN_FALL_WIDTH",
+    "SUMMER_DIP",
+    "SUMMER_LOW",
     "SUMMER_WIDTH",
-    "GROWTH_RATE",
-    "DECAY_RATE"
+    "SUMMER_RISE_WIDTH",
+    "SUMMER_FALL_WIDTH",
+    "SCALE"
 ]
 
 
