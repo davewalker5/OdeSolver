@@ -1,10 +1,12 @@
 {
-  "GROWTH": "2",
-  "DECAY": "1.5",
-  "OOS_DECAY": "3",
-  "SEASON_START": "2.3",
-  "SEASON_END": "11.475",
-  "SHARPNESS": "4.799",
-  "FORCING_PEAK": "3.175",
+  "GROWTH": "2.868",
+  "DECAY": "1.916",
+  "OOS_DECAY": "4.3",
+  "POST_PEAK_DECAY": "3.838",
+  "POST_PEAK_SHARPNESS": "5.904",
+  "SEASON_START": "2.35",
+  "SEASON_END": "10.74",
+  "SHARPNESS": "7.842",
+  "FORCING_PEAK": "4.165",
   "SPECIES": "Red Dead Nettle"
 }

@@ -78,8 +78,10 @@ def seasonal_window(t: Decimal) -> Decimal:
     return rise * fall
 
 
-def calculate_decay(w: Decimal) -> Decimal:
-    return get_parameter("DECAY") + get_parameter("OOS_DECAY") * (ONE - w)
+def calculate_decay(w: Decimal, t: Decimal) -> Decimal:
+    post_peak_gate = ONE / (ONE + d_exp(-get_parameter("POST_PEAK_SHARPNESS") * (t - get_parameter("FORCING_PEAK"))))
+    effective_decay = get_parameter("DECAY") + get_parameter("OOS_DECAY") * (ONE - w) + get_parameter("POST_PEAK_DECAY") * post_peak_gate
+    return effective_decay
 
 
 def f(t: Decimal, y: Decimal) -> Decimal:
@@ -95,7 +97,7 @@ def f(t: Decimal, y: Decimal) -> Decimal:
     W = seasonal_window(t_mod)
 
     # Decay factor
-    decay = calculate_decay(W)
+    decay = calculate_decay(W, t)
 
     # Seasonal forcing (pure Decimal raised cosine).
     # This gives a smooth 0..1 annual forcing curve with its maximum at

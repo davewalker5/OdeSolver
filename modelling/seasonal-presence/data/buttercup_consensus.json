@@ -1,10 +1,12 @@
 {
-  "GROWTH": "2",
-  "DECAY": "1.5",
-  "OOS_DECAY": "3",
-  "SEASON_START": "3.215",
-  "SEASON_END": "1E+1",
-  "SHARPNESS": "4.941",
-  "FORCING_PEAK": "4.075",
+  "GROWTH": "3.05",
+  "DECAY": "1.711",
+  "OOS_DECAY": "4.352",
+  "POST_PEAK_DECAY": "2.951",
+  "POST_PEAK_SHARPNESS": "6.449",
+  "SEASON_START": "3.225",
+  "SEASON_END": "10.135",
+  "SHARPNESS": "6.744",
+  "FORCING_PEAK": "5.21",
   "SPECIES": "Buttercup"
 }

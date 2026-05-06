@@ -1,10 +1,12 @@
 {
-  "GROWTH": "2",
-  "DECAY": "1.5",
-  "OOS_DECAY": "3",
-  "SEASON_START": "4.16",
-  "SEASON_END": "6.355",
-  "SHARPNESS": "4.662",
-  "FORCING_PEAK": "5.425",
+  "GROWTH": "2.828",
+  "DECAY": "2.286",
+  "OOS_DECAY": "4.636",
+  "POST_PEAK_DECAY": "3.708",
+  "POST_PEAK_SHARPNESS": "4.57",
+  "SEASON_START": "4.19",
+  "SEASON_END": "7.155",
+  "SHARPNESS": "7.184",
+  "FORCING_PEAK": "5.285",
   "SPECIES": "Cow Parsley"
 }

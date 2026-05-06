@@ -1,10 +1,12 @@
 {
-  "GROWTH": "2",
-  "DECAY": "1.5",
-  "OOS_DECAY": "3",
-  "SEASON_START": "2.745",
-  "SEASON_END": "11.39",
-  "SHARPNESS": "5.779",
-  "FORCING_PEAK": "7.07",
+  "GROWTH": "3.209",
+  "DECAY": "1.888",
+  "OOS_DECAY": "4.615",
+  "POST_PEAK_DECAY": "2.633",
+  "POST_PEAK_SHARPNESS": "4.702",
+  "SEASON_START": "2.945",
+  "SEASON_END": "11.51",
+  "SHARPNESS": "8.826",
+  "FORCING_PEAK": "7.745",
   "SPECIES": "Red Admiral Butterfly"
 }

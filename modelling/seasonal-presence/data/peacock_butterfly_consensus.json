@@ -1,10 +1,12 @@
 {
-  "GROWTH": "2",
-  "DECAY": "1.5",
-  "OOS_DECAY": "3",
-  "SEASON_START": "2.315",
-  "SEASON_END": "8.1",
-  "SHARPNESS": "4.972",
-  "FORCING_PEAK": "3.21",
+  "GROWTH": "3.287",
+  "DECAY": "1.544",
+  "OOS_DECAY": "4.774",
+  "POST_PEAK_DECAY": "3.746",
+  "POST_PEAK_SHARPNESS": "6.104",
+  "SEASON_START": "2.445",
+  "SEASON_END": "8.26",
+  "SHARPNESS": "6.104",
+  "FORCING_PEAK": "4.015",
   "SPECIES": "Peacock Butterfly"
 }

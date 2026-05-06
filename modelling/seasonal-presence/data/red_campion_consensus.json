@@ -1,10 +1,12 @@
 {
-  "GROWTH": "2",
-  "DECAY": "1.5",
-  "OOS_DECAY": "3",
-  "SEASON_START": "3.43",
-  "SEASON_END": "10.97",
-  "SHARPNESS": "5.376",
-  "FORCING_PEAK": "4.415",
+  "GROWTH": "3.036",
+  "DECAY": "1.771",
+  "OOS_DECAY": "4.118",
+  "POST_PEAK_DECAY": "3.728",
+  "POST_PEAK_SHARPNESS": "4.868",
+  "SEASON_START": "4.095",
+  "SEASON_END": "11.095",
+  "SHARPNESS": "9.645",
+  "FORCING_PEAK": "5.165",
   "SPECIES": "Red Campion"
 }

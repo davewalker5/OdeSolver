@@ -1,10 +1,12 @@
 {
-  "GROWTH": "2",
-  "DECAY": "1.5",
-  "OOS_DECAY": "3",
+  "GROWTH": "2.808",
+  "DECAY": "1.852",
+  "OOS_DECAY": "4.939",
+  "POST_PEAK_DECAY": "1.472",
+  "POST_PEAK_SHARPNESS": "4.796",
   "SEASON_START": "2.345",
-  "SEASON_END": "11.605",
-  "SHARPNESS": "4.576",
-  "FORCING_PEAK": "3.195",
+  "SEASON_END": "11.55",
+  "SHARPNESS": "7.6",
+  "FORCING_PEAK": "4.505",
   "SPECIES": "Dandelion"
 }

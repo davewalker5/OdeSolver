@@ -1,10 +1,12 @@
 {
-  "GROWTH": "2",
-  "DECAY": "1.5",
-  "OOS_DECAY": "3",
-  "SEASON_START": "3.975",
-  "SEASON_END": "8.91",
-  "SHARPNESS": "4.629",
-  "FORCING_PEAK": "7.705",
+  "GROWTH": "2.767",
+  "DECAY": "1.702",
+  "OOS_DECAY": "5.364",
+  "POST_PEAK_DECAY": "2.789",
+  "POST_PEAK_SHARPNESS": "6.356",
+  "SEASON_START": "3.92",
+  "SEASON_END": "9.31",
+  "SHARPNESS": "6.809",
+  "FORCING_PEAK": "7.815",
   "SPECIES": "Cuckoo Pint"
 }

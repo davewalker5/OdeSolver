@@ -1,10 +1,12 @@
 {
-  "GROWTH": "2",
-  "DECAY": "1.5",
-  "OOS_DECAY": "3",
-  "SEASON_START": "3.66",
-  "SEASON_END": "9.58",
-  "SHARPNESS": "5.106",
-  "FORCING_PEAK": "8.25",
+  "GROWTH": "3.008",
+  "DECAY": "1.846",
+  "OOS_DECAY": "3.893",
+  "POST_PEAK_DECAY": "4.006",
+  "POST_PEAK_SHARPNESS": "6.707",
+  "SEASON_START": "3.595",
+  "SEASON_END": "10.08",
+  "SHARPNESS": "9.182",
+  "FORCING_PEAK": "8.435",
   "SPECIES": "Speckled Wood Butterfly"
 }

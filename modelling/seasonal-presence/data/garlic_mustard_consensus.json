@@ -1,10 +1,12 @@
 {
-  "GROWTH": "2",
-  "DECAY": "1.5",
-  "OOS_DECAY": "3",
-  "SEASON_START": "4.065",
-  "SEASON_END": "5.98",
-  "SHARPNESS": "4.376",
-  "FORCING_PEAK": "5.13",
+  "GROWTH": "3.247",
+  "DECAY": "1.84",
+  "OOS_DECAY": "3.979",
+  "POST_PEAK_DECAY": "3.41",
+  "POST_PEAK_SHARPNESS": "4.854",
+  "SEASON_START": "3.945",
+  "SEASON_END": "6.345",
+  "SHARPNESS": "8.961",
+  "FORCING_PEAK": "5.07",
   "SPECIES": "Garlic Mustard"
 }
