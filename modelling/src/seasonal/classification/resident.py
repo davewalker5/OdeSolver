@@ -7,22 +7,9 @@ from decimal import Decimal, InvalidOperation
 from pathlib import Path
 from typing import Any, Mapping, Optional
 
-D = Decimal
+from seasonal.support.utils import D
+from seasonal.support.calendar import MONTH_NAMES
 
-MONTH_NAMES = {
-    1: "January",
-    2: "February",
-    3: "March",
-    4: "April",
-    5: "May",
-    6: "June",
-    7: "July",
-    8: "August",
-    9: "September",
-    10: "October",
-    11: "November",
-    12: "December",
-}
 
 REQUIRED_PARAMETERS = [
     "INITIAL_Y",
@@ -106,7 +93,6 @@ class ResidentClassificationError(ValueError):
 def classify_resident_model_to_json(
     parameters: Mapping[str, Any],
     output_path: str | Path,
-    *,
     species: Optional[str] = None,
     score: Optional[Any] = None,
     options: ResidentClassificationOptions | None = None,

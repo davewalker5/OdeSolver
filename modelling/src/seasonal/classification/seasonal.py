@@ -6,22 +6,9 @@ from decimal import Decimal, InvalidOperation
 from pathlib import Path
 from typing import Any, Mapping, Optional
 
-D = Decimal
+from seasonal.support.utils import D
+from seasonal.support.calendar import MONTH_NAMES
 
-MONTH_NAMES = {
-    1: "January",
-    2: "February",
-    3: "March",
-    4: "April",
-    5: "May",
-    6: "June",
-    7: "July",
-    8: "August",
-    9: "September",
-    10: "October",
-    11: "November",
-    12: "December",
-}
 
 REQUIRED_PARAMETERS = [
     "GROWTH",
@@ -117,7 +104,6 @@ def classify_seasonal_model_to_json(
 
 def classify_seasonal_model(
     parameters: Mapping[str, Any],
-    *,
     species: Optional[str] = None,
     score: Optional[Any] = None,
     options: SeasonalClassificationOptions | None = None,
