@@ -1,0 +1,49 @@
+{
+  "schema_version": "seasonal-classification/v1",
+  "species": "Dandelion",
+  "model_family": "seasonal_presence",
+  "classification": {
+    "primary_class": "extended_spring_seasonal_presence",
+    "timing": "spring",
+    "season_width": "very_broad",
+    "window_shape": "moderate",
+    "post_peak_decline": "weak",
+    "offseason_suppression": "strong",
+    "peak_alignment": "early",
+    "traits": [
+      "spring_peak",
+      "very_broad_season",
+      "moderate_seasonal_window",
+      "weak_post_peak_decline",
+      "strong_offseason_suppression",
+      "early_peak_alignment"
+    ],
+    "confidence": "medium"
+  },
+  "derived_metrics": {
+    "season_start_month": 2.345,
+    "season_end_month": 11.55,
+    "forcing_peak_month": 4.505,
+    "season_width_months": 9.205,
+    "season_midpoint_month": 6.9475,
+    "season_start_label": "February",
+    "season_end_label": "December",
+    "forcing_peak_label": "May"
+  },
+  "parameter_evidence": {
+    "GROWTH": 2.808,
+    "DECAY": 1.852,
+    "OOS_DECAY": 4.939,
+    "POST_PEAK_DECAY": 1.472,
+    "POST_PEAK_SHARPNESS": 4.796,
+    "SEASON_START": 2.345,
+    "SEASON_END": 11.55,
+    "SHARPNESS": 7.6,
+    "FORCING_PEAK": 4.505
+  },
+  "fit": {
+    "score": null
+  },
+  "warnings": [],
+  "summary": "Dandelion is classified as extended spring seasonal presence. The fitted seasonal window runs from about February to December, with a spring peak around May. The season is very_broad, with a moderate active window, weak post-peak decline, and strong off-season suppression."
+}

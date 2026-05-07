@@ -1,0 +1,49 @@
+{
+  "schema_version": "seasonal-classification/v1",
+  "species": "Speckled Wood Butterfly",
+  "model_family": "seasonal_presence",
+  "classification": {
+    "primary_class": "extended_summer_seasonal_presence",
+    "timing": "summer",
+    "season_width": "very_broad",
+    "window_shape": "sharp",
+    "post_peak_decline": "strong",
+    "offseason_suppression": "moderate",
+    "peak_alignment": "late",
+    "traits": [
+      "summer_peak",
+      "very_broad_season",
+      "sharp_seasonal_window",
+      "strong_post_peak_decline",
+      "moderate_offseason_suppression",
+      "late_peak_alignment"
+    ],
+    "confidence": "medium"
+  },
+  "derived_metrics": {
+    "season_start_month": 3.595,
+    "season_end_month": 10.08,
+    "forcing_peak_month": 8.435,
+    "season_width_months": 6.485,
+    "season_midpoint_month": 6.8375,
+    "season_start_label": "April",
+    "season_end_label": "October",
+    "forcing_peak_label": "August"
+  },
+  "parameter_evidence": {
+    "GROWTH": 3.008,
+    "DECAY": 1.846,
+    "OOS_DECAY": 3.893,
+    "POST_PEAK_DECAY": 4.006,
+    "POST_PEAK_SHARPNESS": 6.707,
+    "SEASON_START": 3.595,
+    "SEASON_END": 10.08,
+    "SHARPNESS": 9.182,
+    "FORCING_PEAK": 8.435
+  },
+  "fit": {
+    "score": null
+  },
+  "warnings": [],
+  "summary": "Speckled Wood Butterfly is classified as extended summer seasonal presence. The fitted seasonal window runs from about April to October, with a summer peak around August. The season is very_broad, with a sharp active window, strong post-peak decline, and moderate off-season suppression."
+}

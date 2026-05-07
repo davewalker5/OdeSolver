@@ -1,0 +1,49 @@
+{
+  "schema_version": "seasonal-classification/v1",
+  "species": "Swift",
+  "model_family": "seasonal_presence",
+  "classification": {
+    "primary_class": "extended_summer_seasonal_presence",
+    "timing": "summer",
+    "season_width": "broad",
+    "window_shape": "sharp",
+    "post_peak_decline": "strong",
+    "offseason_suppression": "strong",
+    "peak_alignment": "early",
+    "traits": [
+      "summer_peak",
+      "broad_season",
+      "sharp_seasonal_window",
+      "strong_post_peak_decline",
+      "strong_offseason_suppression",
+      "early_peak_alignment"
+    ],
+    "confidence": "medium"
+  },
+  "derived_metrics": {
+    "season_start_month": 4.975,
+    "season_end_month": 9.575,
+    "forcing_peak_month": 6.065,
+    "season_width_months": 4.6,
+    "season_midpoint_month": 7.275,
+    "season_start_label": "May",
+    "season_end_label": "October",
+    "forcing_peak_label": "June"
+  },
+  "parameter_evidence": {
+    "GROWTH": 2.796,
+    "DECAY": 1.754,
+    "OOS_DECAY": 4.39,
+    "POST_PEAK_DECAY": 4.216,
+    "POST_PEAK_SHARPNESS": 3.994,
+    "SEASON_START": 4.975,
+    "SEASON_END": 9.575,
+    "SHARPNESS": 10.005,
+    "FORCING_PEAK": 6.065
+  },
+  "fit": {
+    "score": null
+  },
+  "warnings": [],
+  "summary": "Swift is classified as extended summer seasonal presence. The fitted seasonal window runs from about May to October, with a summer peak around June. The season is broad, with a sharp active window, strong post-peak decline, and strong off-season suppression."
+}

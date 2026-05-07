@@ -1,0 +1,49 @@
+{
+  "schema_version": "seasonal-classification/v1",
+  "species": "Buttercup",
+  "model_family": "seasonal_presence",
+  "classification": {
+    "primary_class": "extended_spring_seasonal_presence",
+    "timing": "spring",
+    "season_width": "very_broad",
+    "window_shape": "moderate",
+    "post_peak_decline": "moderate",
+    "offseason_suppression": "strong",
+    "peak_alignment": "early",
+    "traits": [
+      "spring_peak",
+      "very_broad_season",
+      "moderate_seasonal_window",
+      "moderate_post_peak_decline",
+      "strong_offseason_suppression",
+      "early_peak_alignment"
+    ],
+    "confidence": "medium"
+  },
+  "derived_metrics": {
+    "season_start_month": 3.225,
+    "season_end_month": 10.135,
+    "forcing_peak_month": 5.21,
+    "season_width_months": 6.91,
+    "season_midpoint_month": 6.68,
+    "season_start_label": "March",
+    "season_end_label": "October",
+    "forcing_peak_label": "May"
+  },
+  "parameter_evidence": {
+    "GROWTH": 3.05,
+    "DECAY": 1.711,
+    "OOS_DECAY": 4.352,
+    "POST_PEAK_DECAY": 2.951,
+    "POST_PEAK_SHARPNESS": 6.449,
+    "SEASON_START": 3.225,
+    "SEASON_END": 10.135,
+    "SHARPNESS": 6.744,
+    "FORCING_PEAK": 5.21
+  },
+  "fit": {
+    "score": null
+  },
+  "warnings": [],
+  "summary": "Buttercup is classified as extended spring seasonal presence. The fitted seasonal window runs from about March to October, with a spring peak around May. The season is very_broad, with a moderate active window, moderate post-peak decline, and strong off-season suppression."
+}

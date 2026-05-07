@@ -3,7 +3,7 @@ import json
 from decimal import Decimal
 from pathlib import Path
 from statistics import median
-from fitting.utils import D, format_decimal
+from seasonal.support.utils import D, format_decimal
 
 
 def load_rows(path):
@@ -50,6 +50,7 @@ def write_consensus_parameters(
     :param output: Output parameters JSON path
     :param top_percent: % of runs to keep
     :param parameters: List of parameter names to include in the consensus
+    :return: Consensus parameters
     """
 
     # Load the parameters CSV file
@@ -70,3 +71,5 @@ def write_consensus_parameters(
     params = consensus(best_rows, parameters)
     params["SPECIES"] = species.replace("_", " ").title()
     Path(output).write_text(json.dumps(params, indent=2) + "\n")
+
+    return params

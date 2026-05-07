@@ -1,4 +1,4 @@
-from fitting.utils import D
+from seasonal.support.utils import D
 
 
 def mse(observed, simulated):

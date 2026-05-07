@@ -1,0 +1,49 @@
+{
+  "schema_version": "seasonal-classification/v1",
+  "species": "Cow Parsley",
+  "model_family": "seasonal_presence",
+  "classification": {
+    "primary_class": "moderate_spring_seasonal_presence",
+    "timing": "spring",
+    "season_width": "moderate",
+    "window_shape": "moderate",
+    "post_peak_decline": "strong",
+    "offseason_suppression": "strong",
+    "peak_alignment": "central",
+    "traits": [
+      "spring_peak",
+      "moderate_season",
+      "moderate_seasonal_window",
+      "strong_post_peak_decline",
+      "strong_offseason_suppression",
+      "central_peak_alignment"
+    ],
+    "confidence": "medium"
+  },
+  "derived_metrics": {
+    "season_start_month": 4.19,
+    "season_end_month": 7.155,
+    "forcing_peak_month": 5.285,
+    "season_width_months": 2.965,
+    "season_midpoint_month": 5.6725,
+    "season_start_label": "April",
+    "season_end_label": "July",
+    "forcing_peak_label": "May"
+  },
+  "parameter_evidence": {
+    "GROWTH": 2.828,
+    "DECAY": 2.286,
+    "OOS_DECAY": 4.636,
+    "POST_PEAK_DECAY": 3.708,
+    "POST_PEAK_SHARPNESS": 4.57,
+    "SEASON_START": 4.19,
+    "SEASON_END": 7.155,
+    "SHARPNESS": 7.184,
+    "FORCING_PEAK": 5.285
+  },
+  "fit": {
+    "score": null
+  },
+  "warnings": [],
+  "summary": "Cow Parsley is classified as moderate spring seasonal presence. The fitted seasonal window runs from about April to July, with a spring peak around May. The season is moderate, with a moderate active window, strong post-peak decline, and strong off-season suppression."
+}
