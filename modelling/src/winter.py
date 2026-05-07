@@ -1,5 +1,4 @@
 import argparse
-import sys
 from datetime import datetime
 from decimal import Decimal
 from pathlib import Path

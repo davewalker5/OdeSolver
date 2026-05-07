@@ -21,6 +21,13 @@ PARAMETER_COLUMNS = [
     "INITIAL_Y",
     "GROWTH_RATE",
     "DECAY_RATE",
+    "SUMMER_DECAY_BOOST",
+    "PRE_SUMMER_DECAY_REDUCTION",
+    "PRE_SUMMER_DECAY_END",
+    "PRE_SUMMER_DECAY_SHARPNESS",
+    "SPRING_CARRYOVER_WEIGHT",
+    "SPRING_CARRYOVER_END",
+    "SPRING_CARRYOVER_SHARPNESS",
     "BASELINE",
     "WINTER_WEIGHT",
     "AUTUMN_WEIGHT",
@@ -36,6 +43,10 @@ PARAMETER_COLUMNS = [
     "AUTUMN_FALL_WIDTH",
     "SUMMER_DIP",
     "SUMMER_LOW",
+    "SUMMER_ONSET",
+    "SUMMER_GATE_SHARPNESS",
+    "SUMMER_DECAY_ONSET",
+    "SUMMER_DECAY_GATE_SHARPNESS",
     "SUMMER_WIDTH",
     "SUMMER_RISE_WIDTH",
     "SUMMER_FALL_WIDTH",
@@ -497,6 +508,29 @@ def infer_resident_search_space(observed, peak_padding=D("1.5"), low_padding=D("
     scale_low = D("0.80")
     scale_high = D("1.80")
 
+    # Data-informed guard for the optional spring carry-over term.
+    #
+    # Blackbird-like residents keep a high proportion of their spring
+    # detectability into June/July; blue-tit-like residents are already in a
+    # steep decline by June.  In the latter case, a large positive carry-over
+    # can make June artificially high.  This caps the optional carry-over
+    # according to the observed spring -> June retention, while still allowing
+    # blackbird-like curves to use the full range.
+    spring_reference = max(
+        observed.get(3, D("0")),
+        observed.get(4, D("0")),
+        observed.get(5, D("0")),
+        D("0.0001"),
+    )
+    june_retention_ratio = observed.get(6, D("0")) / spring_reference
+
+    if june_retention_ratio < D("0.50"):
+        spring_carryover_weight_range = (D("0.00"), D("0.10"))
+    elif june_retention_ratio < D("0.70"):
+        spring_carryover_weight_range = (D("0.00"), D("0.22"))
+    else:
+        spring_carryover_weight_range = (D("0.00"), D("0.45"))
+
     return {
         "winter_peak_centre": winter_peak_centre,
         "winter_peak_range": month_range_around(winter_peak_centre, peak_padding),
@@ -512,6 +546,14 @@ def infer_resident_search_space(observed, peak_padding=D("1.5"), low_padding=D("
         ),
         "summer_low_centre": summer_low_centre,
         "summer_low_range": month_range_around(summer_low_centre, low_padding),
+        # Summer onset controls when the summer dip is allowed to start
+        # materially affecting the curve. This is deliberately inferred from
+        # the observed low rather than hard-coded, so species with earlier
+        # dips can still fit normally.
+        "summer_onset_range": (
+            max(D("3.50"), summer_low_centre - D("3.00")),
+            max(D("5.00"), summer_low_centre - D("0.50")),
+        ),
         "baseline_centre": baseline_centre,
         "baseline_floor": baseline_floor,
         "baseline_margin_low": baseline_margin_low,
@@ -521,6 +563,21 @@ def infer_resident_search_space(observed, peak_padding=D("1.5"), low_padding=D("
         "initial_y_range": (initial_y_low, initial_y_high),
         "scale_range": (scale_low, scale_high),
         "year_end_peak_range": month_range_around(D("12"), D("0.75")),
+        # For blackbird-like residents, allow the fitted solution to retain
+        # winter/spring detectability until late spring / early summer before
+        # the sharp summer collapse begins.  The reduction itself can still fit
+        # to zero for species such as blue tit.
+        # Allow retention to last through June for blackbird-like curves.
+        # Species that do not need this can still fit PRE_SUMMER_DECAY_REDUCTION
+        # close to zero.
+        "pre_summer_decay_end_range": (D("6.25"), D("7.75")),
+        # Positive carry-over support for species whose spring/early-summer
+        # detectability stays high until just before the summer trough.
+        # This should be able to cover May-July for blackbird while still
+        # switching off sharply enough to permit the August low.
+        "spring_carryover_end_range": (D("6.50"), D("7.65")),
+        "spring_carryover_weight_range": spring_carryover_weight_range,
+        "june_retention_ratio": june_retention_ratio,
     }
 
 
@@ -535,6 +592,7 @@ def make_random_params(search_space):
     winter_peak = random_month_in_range(*search_space["winter_peak_range"])
     autumn_peak = random_month_in_range(*search_space["autumn_peak_range"])
     summer_low = random_month_in_range(*search_space["summer_low_range"])
+    summer_onset = random_decimal(*search_space["summer_onset_range"], 2)
     autumn_onset = random_decimal(*search_space["autumn_onset_range"], 2)
 
     baseline_centre = D(search_space["baseline_centre"])
@@ -557,7 +615,11 @@ def make_random_params(search_space):
     # a sharp post-winter fall but only weak overall modulation.
     winter_rise_width, winter_fall_width = asymmetric_width_pair(D("0.35"), D("20.00"), 3)
     autumn_rise_width, autumn_fall_width = asymmetric_width_pair(D("0.35"), D("14.00"), 3)
-    summer_rise_width, summer_fall_width = asymmetric_width_pair(D("0.35"), D("14.00"), 3)
+    # The pre-low side of the summer dip often needs to be much sharper than
+    # the old range allowed. Blackbird-like curves should stay high through
+    # spring/early summer, then collapse quickly into the summer trough.
+    summer_rise_width = random_decimal(D("0.35"), D("80.00"), 3)
+    summer_fall_width = random_decimal(D("0.35"), D("20.00"), 3)
 
     # Keep the old single-width parameters as harmless compatibility values.
     # The asymmetric model uses the explicit *_RISE_WIDTH and *_FALL_WIDTH
@@ -576,7 +638,21 @@ def make_random_params(search_space):
         # Wider rates let the solution track a January/December high without
         # being dragged into an artificial February maximum by relaxation lag.
         "GROWTH_RATE": str(random_decimal(D("0.25"), D("4.00"), 3)),
-        "DECAY_RATE": str(random_decimal(D("0.50"), D("6.00"), 3)),
+        # Base decay may now be very slow; SUMMER_DECAY_BOOST can provide the
+        # sharp summer collapse where the observed data need it.  The range is
+        # deliberately backwards-compatible because it still includes the old
+        # 0.50..6.00 behaviour.
+        "DECAY_RATE": str(random_decimal(D("0.05"), D("6.00"), 3)),
+        "SUMMER_DECAY_BOOST": str(random_decimal(D("0.00"), D("8.00"), 3)),
+        "PRE_SUMMER_DECAY_REDUCTION": str(random_decimal(D("0.00"), D("0.95"), 3)),
+        "PRE_SUMMER_DECAY_END": str(random_decimal(*search_space["pre_summer_decay_end_range"], 2)),
+        "PRE_SUMMER_DECAY_SHARPNESS": str(random_decimal(D("3.00"), D("16.00"), 3)),
+        # Positive spring/early-summer support.  This is the key additional
+        # degree of freedom for blackbird-like curves: May-July can be held up
+        # without globally slowing decay or weakening the true summer dip.
+        "SPRING_CARRYOVER_WEIGHT": str(random_decimal(*search_space["spring_carryover_weight_range"], 3)),
+        "SPRING_CARRYOVER_END": str(random_decimal(*search_space["spring_carryover_end_range"], 2)),
+        "SPRING_CARRYOVER_SHARPNESS": str(random_decimal(D("6.00"), D("28.00"), 3)),
         "BASELINE": str(random_decimal(baseline_low, baseline_high, 3)),
         # Bias towards high-baseline residents: mostly present all year, with
         # seasonal modulation rather than seasonal near-absence.
@@ -594,6 +670,13 @@ def make_random_params(search_space):
         "AUTUMN_FALL_WIDTH": str(autumn_fall_width),
         "SUMMER_DIP": str(random_decimal(D("0.00"), D("0.25"), 3)),
         "SUMMER_LOW": str(summer_low),
+        "SUMMER_ONSET": str(summer_onset),
+        "SUMMER_GATE_SHARPNESS": str(random_decimal(D("0.80"), D("8.00"), 3)),
+        # Separate timing for the *rate acceleration* into the dip.  This is
+        # deliberately later and sharper than SUMMER_ONSET so May/June can stay
+        # high while July/August still collapse.
+        "SUMMER_DECAY_ONSET": str(random_decimal(D("6.60"), D("7.60"), 2)),
+        "SUMMER_DECAY_GATE_SHARPNESS": str(random_decimal(D("6.00"), D("24.00"), 3)),
         "SUMMER_WIDTH": str(summer_width.quantize(D("0.001"))),
         "SUMMER_RISE_WIDTH": str(summer_rise_width),
         "SUMMER_FALL_WIDTH": str(summer_fall_width),
