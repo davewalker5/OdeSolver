@@ -2,25 +2,25 @@
 
 ## Resident Detectability Model
 
-| Model    | Species          | Fit        | Comments                                                                                                  |
-| -------- | ---------------- | ---------- | --------------------------------------------------------------------------------------------------------- |
-| Resident | Blackbird        | Poor       | Initial peak decays rather than becoming a slow decline to August; end of year rise is a little too eager |
-| Resident | Blue Tit         | Good       | No issues                                                                                                 |
-| Resident | Common Cleavers  | Good       | End of year tail slightly too high (Aug-Dec)                                                              |
-| Resident | Common Starling  | Acceptable | Averages through a jagged signal ; End of year matches                                                    |
-| Resident | Dunnock          | Good       | No issues                                                                                                 |
-| Resident | Goldfinch        | Poor       | Averages through a jagged signal ; End of year matches                                                    |
-| Resident | Great Tit        | Good       | End of year tail slightly too high (Aug-Dec)                                                              |
-| Resident | House Sparrow    | Good       | December too high                                                                                         |
-| Resident | Jay              | Poor       | Jan too high                                                                                              |
-| Resident | Magpie           | Good       | No issues                                                                                                 |
-| Resident | Mute Swan        | Good       | No issues                                                                                                 |
-| Resident | Robin            | Acceptable | Apr and May a little too low                                                                              |
-| Resident | Shepherd’s Purse | Poor       | Aug and Sep too high                                                                                      |
-| Resident | Skylark          | Good       | No issues                                                                                                 |
-| Resident | Song Thrush      | Good       | Jun a little low                                                                                          |
-| Resident | Woodpigeon       | Acceptable | Feb too high ; Sep-Oct too low                                                                            |
-| Resident | Wren             | Acceptable | Early year (to July) too sharp ; Aug-Dec good                                                             |
+| Model    | Species          | Fit        | Comments                                                       |
+| -------- | ---------------- | ---------- | -------------------------------------------------------------- |
+| Resident | Blackbird        | Good       | No Issues                                                      |
+| Resident | Blue Tit         | Good       | No Issues                                                      |
+| Resident | Common Cleavers  | Good       | January is a little high                                       |
+| Resident | Common Starling  | Acceptable | Follows the curve; Feb/Mar too high, Aug-Dec too low           |
+| Resident | Dunnock          | Acceptable | Aug-Dec a little high                                          |
+| Resident | Goldfinch        | Good       | Fits through ragged signal                                     |
+| Resident | Great Tit        | Good       | Aug-Dec a little high                                          |
+| Resident | House Sparrow    | Good       | No Issues                                                      |
+| Resident | Jay              | Good       | Fits through ragged signal                                     |
+| Resident | Magpie           | Acceptable | Feb-Jun a little high; Aug-Dec a little low                    |
+| Resident | Mute Swan        | Good       | Fits through ragged signal                                     |
+| Resident | Robin            | Good       | No Issues                                                      |
+| Resident | Shepherd’s Purse | Ace        | Jan too high ; Late summer dip not low enough; Oct-Dec too low |
+| Resident | Skylark          | Good       | No Issues                                                      |
+| Resident | Song Thrush      | Good       | No Issues                                                      |
+| Resident | Woodpigeon       | Acceptable | Feb-Jun a little high; Aug-Dec a little low                    |
+| Resident | Wren             | Good       | No Issues                                                      |
 
 ## Seasonal Presence Model
 
