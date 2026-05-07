@@ -1,6 +1,5 @@
 import argparse
 import random
-import sys
 from pathlib import Path
 from datetime import datetime
 from decimal import Decimal

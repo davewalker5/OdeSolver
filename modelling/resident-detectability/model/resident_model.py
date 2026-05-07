@@ -145,6 +145,45 @@ def asymmetric_annual_bump(
 
 
 
+def logistic_onset_gate(t: Decimal, onset: Decimal, sharpness: Decimal) -> Decimal:
+    """
+    Smooth annual onset gate in the range 0..1.
+
+    Values are close to 0 before onset and close to 1 after onset.
+    This version uses signed month distance, so it can be used on annual
+    components without creating a hard discontinuity at December/January.
+    """
+    if onset is None or sharpness is None:
+        return ONE
+
+    sharpness = D(sharpness)
+
+    if sharpness <= ZERO:
+        return ONE
+
+    # Signed month distance after the onset, in the range -6..+6.
+    delta = signed_month_distance(D(t), D(onset))
+    x = sharpness * delta
+
+    if x > D("40"):
+        return ONE
+    if x < D("-40"):
+        return ZERO
+
+    return ONE / (ONE + (-x).exp())
+
+
+def inverse_logistic_onset_gate(t: Decimal, onset: Decimal, sharpness: Decimal) -> Decimal:
+    """
+    Smooth annual gate that is high before onset and low after onset.
+
+    This is useful for modelling retained winter/spring detectability: the
+    model can decay slowly before the summer-collapse period, then return to
+    ordinary decay dynamics once the true summer dip begins.
+    """
+    return ONE - logistic_onset_gate(t, onset, sharpness)
+
+
 def autumn_onset_gate(t: Decimal, onset: Decimal, sharpness: Decimal) -> Decimal:
     """
     Smooth gate for the autumn component.
@@ -174,9 +213,9 @@ def autumn_onset_gate(t: Decimal, onset: Decimal, sharpness: Decimal) -> Decimal
 
     return ONE / (ONE + (-x).exp())
 
-def resident_target(t: Decimal) -> Decimal:
+def resident_target_components(t: Decimal):
     """
-    Resident seasonal detectability target.
+    Resident seasonal detectability target and its named seasonal components.
 
     This is not a presence/absence model. It assumes the species is present all
     year, with detectability varying around a persistent BASELINE.
@@ -218,6 +257,11 @@ def resident_target(t: Decimal) -> Decimal:
         get_parameter_or("SUMMER_RISE_WIDTH", summer_width),
         get_parameter_or("SUMMER_FALL_WIDTH", summer_width),
     )
+    summer *= logistic_onset_gate(
+        t,
+        get_parameter("SUMMER_ONSET"),
+        get_parameter("SUMMER_GATE_SHARPNESS"),
+    )
 
     year_end = asymmetric_annual_bump(
         t,
@@ -226,18 +270,54 @@ def resident_target(t: Decimal) -> Decimal:
         get_parameter_or("YEAR_END_FALL_WIDTH", get_parameter("YEAR_END_WIDTH")),
     )
 
+    # Optional spring / early-summer carry-over support.
+    #
+    # This is deliberately a positive support term rather than another penalty
+    # or a further decay-rate hack.  Some residents, especially blackbird-like
+    # curves, remain highly detectable through late spring and early summer,
+    # then drop very rapidly into the moult / summer trough.  A winter bump plus
+    # relaxation lag can struggle to keep May-July high enough without spoiling
+    # the autumn/winter shape.
+    #
+    # The inverse gate is close to 1 before SPRING_CARRYOVER_END and falls
+    # towards 0 afterwards.  Species that do not need it, such as blue tit, can
+    # simply fit SPRING_CARRYOVER_WEIGHT close to zero.
+    spring_carryover = inverse_logistic_onset_gate(
+        t,
+        get_parameter_or("SPRING_CARRYOVER_END", D("6.75")),
+        get_parameter_or("SPRING_CARRYOVER_SHARPNESS", D("10.0")),
+    )
+
     target = (
         get_parameter("BASELINE")
         + get_parameter("WINTER_WEIGHT") * winter
         + get_parameter("AUTUMN_WEIGHT") * autumn
         + get_parameter("YEAR_END_WEIGHT") * year_end
+        + get_parameter_or("SPRING_CARRYOVER_WEIGHT", ZERO) * spring_carryover
         - get_parameter("SUMMER_DIP") * summer
     )
 
     # Keep the target non-negative in case parameters are pushed too far.
     if target < ZERO:
-        return ZERO
+        target = ZERO
 
+    return target, {
+        "winter": winter,
+        "autumn": autumn,
+        "summer": summer,
+        "year_end": year_end,
+        "spring_carryover": spring_carryover,
+    }
+
+
+def resident_target(t: Decimal) -> Decimal:
+    """
+    Resident seasonal detectability target.
+
+    Kept as a wrapper so older plotting/export code that calls resident_target()
+    continues to work unchanged.
+    """
+    target, _components = resident_target_components(t)
     return target
 
 
@@ -247,13 +327,64 @@ def f(t: Decimal, y: Decimal) -> Decimal:
 
     y relaxes towards a seasonal target rather than being created and destroyed
     by a seasonal growth/decay window.
+
+    The decay side has an optional summer-specific boost:
+
+        effective_decay = DECAY_RATE + SUMMER_DECAY_BOOST * summer
+
+    This allows species such as blackbird to have a slow spring/early-summer
+    relaxation followed by a sharper detectability collapse near the summer
+    trough, without forcing every downward movement to use the same global
+    DECAY_RATE.
+
+    SUMMER_ONSET / SUMMER_GATE_SHARPNESS can also delay the summer dip itself,
+    preventing the broad summer component from pulling April-July down too soon.
+    If these parameters are absent, older parameter files behave as before.
     """
     t_mod = month_from_t(t)
-    target = resident_target(t_mod)
+    target, components = resident_target_components(t_mod)
 
     if target > y:
         rate = get_parameter("GROWTH_RATE")
     else:
-        rate = get_parameter("DECAY_RATE")
+        summer = components["summer"]
+
+        # Some residents, especially blackbird-like curves, retain high
+        # winter/spring detectability for several months and only then collapse
+        # into the summer trough.  A single DECAY_RATE has to compromise between
+        # slow Jan-Jun relaxation and fast Jul-Aug collapse.  The pre-summer
+        # retention gate lets decay be reduced before the fitted end month, but
+        # leaves ordinary residents unchanged when PRE_SUMMER_DECAY_REDUCTION is
+        # fitted close to zero.
+        pre_summer_retention = inverse_logistic_onset_gate(
+            t_mod,
+            get_parameter("PRE_SUMMER_DECAY_END"),
+            get_parameter("PRE_SUMMER_DECAY_SHARPNESS"),
+        )
+        decay_reduction = get_parameter_or("PRE_SUMMER_DECAY_REDUCTION", ZERO)
+        if decay_reduction < ZERO:
+            decay_reduction = ZERO
+        if decay_reduction > D("0.95"):
+            decay_reduction = D("0.95")
+
+        retained_decay = get_parameter("DECAY_RATE") * (ONE - decay_reduction * pre_summer_retention)
+
+        # Do not let the summer-specific decay acceleration start just because
+        # the broad summer target component is beginning to form.  Blackbird-like
+        # curves often need to remain high through June, then collapse quickly
+        # into July/August.  This separate gate lets the target dip and the
+        # decay acceleration have different timings.  Older parameter files
+        # behave as before because the fallback onset is SUMMER_ONSET.
+        summer_decay_gate = logistic_onset_gate(
+            t_mod,
+            get_parameter_or("SUMMER_DECAY_ONSET", get_parameter("SUMMER_ONSET")),
+            get_parameter_or("SUMMER_DECAY_GATE_SHARPNESS", get_parameter("SUMMER_GATE_SHARPNESS")),
+        )
+        summer_decay_drive = summer * summer_decay_gate
+
+        rate = (
+            retained_decay
+            + get_parameter_or("SUMMER_DECAY_BOOST", ZERO) * summer_decay_drive
+        )
 
     return rate * (target - y)
