@@ -17,24 +17,31 @@ y(t) = observable activity / detection rate
 The governing equation is:
 
 ```
-dy/dt = rate * (T(t) - y)
+dy/dt = rate - (T(t) - y)
 ```
 
 Where:
 
-| Term | Name            | Meaning                                                                                  |
-|------|-----------------|------------------------------------------------------------------------------------------|
+| Term | Name            | Meaning                                                                                 |
+| ---- | --------------- | --------------------------------------------------------------------------------------- |
 | T(t) | Seasonal target | A periodic function representing expected seasonal detectability for a resident species |
-| rate | Response rate   | Controls how quickly y responds to changes in the seasonal target                        |
+| rate | Response rate   | Controls how quickly y responds to changes in the seasonal target                       |
 
 The seasonal target T(t) is constructed as a combination of:
 
-- A **baseline level**, representing year-round presence
-- A **winter component**, representing increased detectability during winter
-- An optional **autumn component**, representing late-year behavioural changes
-- A **summer suppression component**, representing reduced detectability in summer
+- A baseline level, representing year-round presence
+- A winter component, representing increased detectability during winter
+- An optional autumn component, representing late-year behavioural changes
+- A summer suppression component, representing reduced detectability during quieter summer periods
+- An optional spring carry-over component, allowing detectability to remain elevated through spring and early summer before entering the summer low
 
-Each component is defined as a smooth periodic function over a 12-month cycle. Time is treated as circular, allowing the model to represent continuous seasonal variation without a true "on/off" season.
+The model also supports:
+
+- Delayed onset of rapid summer decline
+- Reduced pre-summer decay
+- Asymmetric recovery behaviour
+
+These mechanisms allow the model to represent species whose detectability declines gradually through spring before entering a sharper summer reduction phase.
 
 ## Units
 
@@ -66,6 +73,30 @@ GROWTH_RATE and DECAY_RATE are time-scale parameters (units of 1/time) controlli
 6. Asymmetric dynamics:<br/>
    Separate growth and decay rates allow the model to represent differing rates of increase and decline in detectability.
 
+## Extended seasonal dynamics
+
+Some resident species exhibit a prolonged spring decline followed by a relatively abrupt late-summer reduction in detectability.
+
+To support this behaviour, the model includes additional optional mechanisms:
+
+| Mechanism                  | Purpose                                                               |
+| -------------------------- | --------------------------------------------------------------------- |
+| Pre-summer decay reduction | Slows the decline in detectability during spring and early summer     |
+| Delayed summer decay onset | Prevents rapid summer collapse from beginning too early               |
+| Summer decay boost         | Allows sharper summer suppression once the summer low begins          |
+| Spring carry-over          | Maintains elevated detectability through spring before summer decline |
+
+These mechanisms are particularly useful for species such as:
+
+- Common Blackbird
+- European Robin
+
+while still allowing simpler resident patterns for species such as:
+
+- Eurasian Blue Tit
+
+The parameter fitting system constrains these behaviours automatically based on the observed seasonal signal.
+
 ## Numerical considerations
 
 - All calculations are performed using Decimal for deterministic and high-precision arithmetic
@@ -88,34 +119,71 @@ The structure reflects this distinction:
 - No growth-from-zero behaviour
 - Continuous tracking of a seasonal signal
 
+### Additional Resident Dynamics Parameters
+
+Some fitted parameters describe the persistence and timing of seasonal decline rather than the timing of seasonal peaks.
+
+Examples include:
+
+- PRE_SUMMER_DECAY_REDUCTION &rarr; strength of retained spring detectability
+- SUMMER_DECAY_ONSET &rarr; timing of rapid summer decline
+- SUMMER_DECAY_BOOST &rarr; intensity of summer suppression
+- SPRING_CARRYOVER_WEIGHT &rarr; persistence of elevated detectability through spring
+
+These parameters are especially important for species with broad seasonal plateaus or delayed summer decline.
+
 ## Simulation Files
 
 The following ODE Solver simulation files are provided in the "simulations" folder:
 
-| File                        | Species | Comments                                                             |
-| --------------------------- | ------- | -------------------------------------------------------------------- |
+| File                                | Species | Comments                                                             |
+| ----------------------------------- | ------- | -------------------------------------------------------------------- |
 | resident_detectability_generic.json | -       | Simulation that loads species from the external parameters JSON file |
 
 The "generic" model loads species parameters from a separate JSON file pointed at run-time. That file has the following format:
 
 ```json
 {
-  "INITIAL_Y": "1.525",
-  "GROWTH_RATE": "1.294",
-  "DECAY_RATE": "0.648",
-  "BASELINE": "0.51",
-  "WINTER_WEIGHT": "1.035",
-  "AUTUMN_WEIGHT": "0.171",
-  "WINTER_PEAK": "1.73",
-  "AUTUMN_PEAK": "10.77",
-  "WINTER_WIDTH": "2.754",
-  "AUTUMN_WIDTH": "2.365",
-  "SUMMER_DIP": "0.613",
-  "SUMMER_LOW": "6.0",
-  "SUMMER_WIDTH": "1.292",
-  "TIMESTAMP": "2026-05-04 11:20:33",
-  "OBSERVED": "robin_observed.csv",
-  "SCORE": "0.04686333499774545355656549744"
+  "SCORE": "0.255",
+  "INITIAL_Y": "0.915",
+  "GROWTH_RATE": "1.666",
+  "DECAY_RATE": "3.141",
+  "SUMMER_DECAY_BOOST": "3.932",
+  "PRE_SUMMER_DECAY_REDUCTION": "0.49",
+  "PRE_SUMMER_DECAY_END": "7.05",
+  "PRE_SUMMER_DECAY_SHARPNESS": "9.225",
+  "SPRING_CARRYOVER_WEIGHT": "0.051",
+  "SPRING_CARRYOVER_END": "7.04",
+  "SPRING_CARRYOVER_SHARPNESS": "15.53",
+  "BASELINE": "0.327",
+  "WINTER_WEIGHT": "0.426",
+  "AUTUMN_WEIGHT": "0.02",
+  "WINTER_PEAK": "3.06",
+  "AUTUMN_PEAK": "10.9",
+  "AUTUMN_ONSET": "9.815",
+  "AUTUMN_GATE_SHARPNESS": "7.692",
+  "WINTER_WIDTH": "9.748",
+  "WINTER_RISE_WIDTH": "10.241",
+  "WINTER_FALL_WIDTH": "10.266",
+  "AUTUMN_WIDTH": "7.559",
+  "AUTUMN_RISE_WIDTH": "6.348",
+  "AUTUMN_FALL_WIDTH": "8.598",
+  "SUMMER_DIP": "0.156",
+  "SUMMER_LOW": "7.595",
+  "SUMMER_ONSET": "5.455",
+  "SUMMER_GATE_SHARPNESS": "4.603",
+  "SUMMER_DECAY_ONSET": "7.13",
+  "SUMMER_DECAY_GATE_SHARPNESS": "14.938",
+  "SUMMER_WIDTH": "21.02",
+  "SUMMER_RISE_WIDTH": "33.129",
+  "SUMMER_FALL_WIDTH": "9.624",
+  "SCALE": "1.298",
+  "YEAR_END_WEIGHT": "0.156",
+  "YEAR_END_PEAK": "12.132",
+  "YEAR_END_WIDTH": "90.288",
+  "YEAR_END_RISE_WIDTH": "172.07",
+  "YEAR_END_FALL_WIDTH": "10.192",
+  "SPECIES": "Blue Tit"
 }
 ```
 
