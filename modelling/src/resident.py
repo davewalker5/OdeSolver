@@ -24,6 +24,7 @@ def main():
     parser.add_argument("-sc", "--solver-command", required=True, help="ODE Solver command")
     parser.add_argument("-c", "--csv", required=True, help="CSV file to accumulate the parameters from each iteration")
     parser.add_argument("-cj", "--consensus-json", required=True, help="JSON file to write the consensus parameters to")
+    parser.add_argument("-cl", "--classification-json", required=True, help="JSON file to write the classification to")
     parser.add_argument("-esi", "--export-simulated", required=True, help="CSV file containing the simulated output")
     parser.add_argument("-psi", "--plot-simulated", required=True, help="PNG file containing the simulated chart")
     parser.add_argument("-esy", "--export-synthesised", required=True, help="CSV file containing the synthesised output")
