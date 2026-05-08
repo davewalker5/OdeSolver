@@ -26,6 +26,7 @@ case "$1" in
         ;;
 esac
 
+rm -f "$MODEL_FOLDER/data/$2_classification.json"
 rm -f "$MODEL_FOLDER/data/$2_consensus.json"
 rm -f "$MODEL_FOLDER/data/$2_parameters.csv"
 rm -f "$MODEL_FOLDER/data/$2_simulated.csv"

@@ -1,0 +1,49 @@
+{
+  "schema_version": "seasonal-classification/v1",
+  "species": "Common Poppy",
+  "model_family": "seasonal_presence",
+  "classification": {
+    "primary_class": "extended_summer_seasonal_presence",
+    "timing": "summer",
+    "season_width": "broad",
+    "window_shape": "sharp",
+    "post_peak_decline": "strong",
+    "offseason_suppression": "strong",
+    "peak_alignment": "early",
+    "traits": [
+      "summer_peak",
+      "broad_season",
+      "sharp_seasonal_window",
+      "strong_post_peak_decline",
+      "strong_offseason_suppression",
+      "early_peak_alignment"
+    ],
+    "confidence": "medium"
+  },
+  "derived_metrics": {
+    "season_start_month": 4.95,
+    "season_end_month": 10.215,
+    "forcing_peak_month": 6.39,
+    "season_width_months": 5.265,
+    "season_midpoint_month": 7.5825,
+    "season_start_label": "May",
+    "season_end_label": "October",
+    "forcing_peak_label": "June"
+  },
+  "parameter_evidence": {
+    "GROWTH": 3.018,
+    "DECAY": 1.792,
+    "OOS_DECAY": 4.074,
+    "POST_PEAK_DECAY": 4.417,
+    "POST_PEAK_SHARPNESS": 3.494,
+    "SEASON_START": 4.95,
+    "SEASON_END": 10.215,
+    "SHARPNESS": 8.773,
+    "FORCING_PEAK": 6.39
+  },
+  "fit": {
+    "score": null
+  },
+  "warnings": [],
+  "summary": "Common Poppy is classified as extended summer seasonal presence. The fitted seasonal window runs from about May to October, with a summer peak around June. The season is broad, with a sharp active window, strong post-peak decline, and strong off-season suppression."
+}

@@ -38,6 +38,7 @@ python "$MODELLING_ROOT/src/$1.py" \
     --solver-command "$PROJECT_FOLDER/scripts/run-solver.sh" \
     --csv "$MODEL_FOLDER/data/$2_parameters.csv" \
     --consensus-json "$MODEL_FOLDER/data/$2_consensus.json" \
+    --classification-json "$MODEL_FOLDER/data/$2_classification.json" \
     --export-simulated "$MODEL_FOLDER/data/$2_simulated.csv" \
     --plot-simulated "$MODEL_FOLDER/data/$2_simulated.png" \
     --export-synthesised "$MODEL_FOLDER/data/$2_synthesised.csv" \

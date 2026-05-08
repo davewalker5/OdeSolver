@@ -4,8 +4,8 @@ import os
 import subprocess
 from pathlib import Path
 from typing import Any
-from fitting.utils import D
-from fitting.io import load_simulated_json
+from seasonal.support.utils import D
+from seasonal.support.io import load_simulated_json
 
 
 def _run_solver(solver_command: str, params_file: str, simulation_file: str, output_file: str, chart_file: str):

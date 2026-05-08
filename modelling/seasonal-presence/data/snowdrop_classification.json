@@ -1,0 +1,49 @@
+{
+  "schema_version": "seasonal-classification/v1",
+  "species": "Snowdrop",
+  "model_family": "seasonal_presence",
+  "classification": {
+    "primary_class": "narrow_winter_seasonal_presence",
+    "timing": "winter",
+    "season_width": "narrow",
+    "window_shape": "moderate",
+    "post_peak_decline": "moderate",
+    "offseason_suppression": "strong",
+    "peak_alignment": "central",
+    "traits": [
+      "winter_peak",
+      "narrow_season",
+      "moderate_seasonal_window",
+      "moderate_post_peak_decline",
+      "strong_offseason_suppression",
+      "central_peak_alignment"
+    ],
+    "confidence": "medium"
+  },
+  "derived_metrics": {
+    "season_start_month": 1.52,
+    "season_end_month": 3.41,
+    "forcing_peak_month": 2.275,
+    "season_width_months": 1.89,
+    "season_midpoint_month": 2.465,
+    "season_start_label": "February",
+    "season_end_label": "March",
+    "forcing_peak_label": "February"
+  },
+  "parameter_evidence": {
+    "GROWTH": 3.272,
+    "DECAY": 1.729,
+    "OOS_DECAY": 4.959,
+    "POST_PEAK_DECAY": 3.388,
+    "POST_PEAK_SHARPNESS": 5.46,
+    "SEASON_START": 1.52,
+    "SEASON_END": 3.41,
+    "SHARPNESS": 7.746,
+    "FORCING_PEAK": 2.275
+  },
+  "fit": {
+    "score": null
+  },
+  "warnings": [],
+  "summary": "Snowdrop is classified as narrow winter seasonal presence. The fitted seasonal window runs from about February to March, with a winter peak around February. The season is narrow, with a moderate active window, moderate post-peak decline, and strong off-season suppression."
+}

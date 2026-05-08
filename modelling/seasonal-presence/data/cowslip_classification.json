@@ -1,0 +1,49 @@
+{
+  "schema_version": "seasonal-classification/v1",
+  "species": "Cowslip",
+  "model_family": "seasonal_presence",
+  "classification": {
+    "primary_class": "moderate_spring_seasonal_presence",
+    "timing": "spring",
+    "season_width": "moderate",
+    "window_shape": "sharp",
+    "post_peak_decline": "strong",
+    "offseason_suppression": "strong",
+    "peak_alignment": "central",
+    "traits": [
+      "spring_peak",
+      "moderate_season",
+      "sharp_seasonal_window",
+      "strong_post_peak_decline",
+      "strong_offseason_suppression",
+      "central_peak_alignment"
+    ],
+    "confidence": "medium"
+  },
+  "derived_metrics": {
+    "season_start_month": 3.41,
+    "season_end_month": 5.49,
+    "forcing_peak_month": 4.265,
+    "season_width_months": 2.08,
+    "season_midpoint_month": 4.45,
+    "season_start_label": "March",
+    "season_end_label": "May",
+    "forcing_peak_label": "April"
+  },
+  "parameter_evidence": {
+    "GROWTH": 2.319,
+    "DECAY": 1.644,
+    "OOS_DECAY": 4.986,
+    "POST_PEAK_DECAY": 4.726,
+    "POST_PEAK_SHARPNESS": 5.332,
+    "SEASON_START": 3.41,
+    "SEASON_END": 5.49,
+    "SHARPNESS": 8.21,
+    "FORCING_PEAK": 4.265
+  },
+  "fit": {
+    "score": null
+  },
+  "warnings": [],
+  "summary": "Cowslip is classified as moderate spring seasonal presence. The fitted seasonal window runs from about March to May, with a spring peak around April. The season is moderate, with a sharp active window, strong post-peak decline, and strong off-season suppression."
+}

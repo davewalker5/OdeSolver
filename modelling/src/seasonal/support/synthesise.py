@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
-from fitting.io import load_observed_csv, load_and_aggregate_simulated_json
+from seasonal.support.io import load_observed_csv, load_and_aggregate_simulated_json
 
 
 def calculate_scale(observed: pd.Series, simulated: pd.Series, method: str) -> float:

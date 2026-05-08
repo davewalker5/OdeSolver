@@ -3,7 +3,7 @@ import csv
 import json
 import pandas as pd
 from pathlib import Path
-from fitting.utils import D
+from seasonal.support.utils import D
 
 
 def append_params_to_csv(params: dict, colums: list, csv_path: str) -> None:
