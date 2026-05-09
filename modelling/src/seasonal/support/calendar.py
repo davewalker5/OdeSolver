@@ -116,7 +116,7 @@ def month_label(value: Decimal) -> str:
 	:param value: Decimal month value to round and label
 	:return: Month name from ``MONTH_NAMES``
 	"""
-    rounded = int(value.to_integral_value(rounding="ROUND_HALF_UP"))
+    rounded = int(D(value).to_integral_value(rounding="ROUND_HALF_UP"))
     rounded = max(1, min(12, rounded))
     return MONTH_NAMES[rounded]
 
@@ -128,5 +128,5 @@ def rounded_month(value: Decimal) -> int:
 	:param value: Decimal month value to round
 	:return: Integer month number clamped to 1..12
 	"""
-    rounded = int(value.to_integral_value(rounding="ROUND_HALF_UP"))
+    rounded = int(D(value).to_integral_value(rounding="ROUND_HALF_UP"))
     return max(1, min(12, rounded))
