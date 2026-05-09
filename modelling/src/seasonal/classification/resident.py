@@ -7,8 +7,9 @@ from decimal import Decimal, InvalidOperation
 from pathlib import Path
 from typing import Any, Mapping, Optional
 
-from seasonal.support.utils import D
+from seasonal.support.utils import D, coerce_json_value, decimal_to_float, safe_ratio
 from seasonal.support.calendar import MONTH_NAMES
+from seasonal.classification.utils import normalise_parameters, validate_month
 
 
 REQUIRED_PARAMETERS = [
@@ -144,7 +145,7 @@ def classify_resident_model(
     """
 
     options = options or ResidentClassificationOptions()
-    p = _normalise_parameters(parameters)
+    p = normalise_parameters(parameters, REQUIRED_PARAMETERS, ResidentClassificationError)
 
     species_name = species or str(parameters.get("SPECIES", "Unknown species"))
     fit_score = score if score is not None else parameters.get("SCORE")
@@ -161,7 +162,7 @@ def classify_resident_model(
         "PRE_SUMMER_DECAY_END",
         "SPRING_CARRYOVER_END",
     ]:
-        _validate_month(name, p[name], warnings)
+        validate_month(name, p[name], warnings)
 
     if p["BASELINE"] < 0:
         warnings.append(
@@ -192,10 +193,10 @@ def classify_resident_model(
         p["PRE_SUMMER_DECAY_REDUCTION"], options
     )
     autumn_component = _classify_autumn_component(
-        _safe_ratio(p["AUTUMN_WEIGHT"], p["WINTER_WEIGHT"]), options
+        safe_ratio(p["AUTUMN_WEIGHT"], p["WINTER_WEIGHT"]), options
     )
     year_end_component = _classify_year_end_component(
-        _safe_ratio(p["YEAR_END_WEIGHT"], p["WINTER_WEIGHT"]), options
+        safe_ratio(p["YEAR_END_WEIGHT"], p["WINTER_WEIGHT"]), options
     )
     peak_timing = _classify_timing(D(peak_month))
     trough_timing = _classify_timing(D(trough_month))
@@ -266,91 +267,33 @@ def classify_resident_model(
             "target_peak_label": MONTH_NAMES[peak_month],
             "target_trough_month": trough_month,
             "target_trough_label": MONTH_NAMES[trough_month],
-            "target_peak_value": _decimal_to_float(peak_value),
-            "target_trough_value": _decimal_to_float(trough_value),
-            "target_mean_value": _decimal_to_float(mean_value),
-            "target_amplitude": _decimal_to_float(amplitude),
-            "baseline_to_peak_ratio": _decimal_to_float(
-                _safe_ratio(p["BASELINE"], peak_value)
+            "target_peak_value": decimal_to_float(peak_value),
+            "target_trough_value": decimal_to_float(trough_value),
+            "target_mean_value": decimal_to_float(mean_value),
+            "target_amplitude": decimal_to_float(amplitude),
+            "baseline_to_peak_ratio": decimal_to_float(
+                safe_ratio(p["BASELINE"], peak_value)
             ),
-            "autumn_to_winter_weight_ratio": _decimal_to_float(
-                _safe_ratio(p["AUTUMN_WEIGHT"], p["WINTER_WEIGHT"])
+            "autumn_to_winter_weight_ratio": decimal_to_float(
+                safe_ratio(p["AUTUMN_WEIGHT"], p["WINTER_WEIGHT"])
             ),
-            "year_end_to_winter_weight_ratio": _decimal_to_float(
-                _safe_ratio(p["YEAR_END_WEIGHT"], p["WINTER_WEIGHT"])
+            "year_end_to_winter_weight_ratio": decimal_to_float(
+                safe_ratio(p["YEAR_END_WEIGHT"], p["WINTER_WEIGHT"])
             ),
-            "decay_to_growth_ratio": _decimal_to_float(
-                _safe_ratio(p["DECAY_RATE"], p["GROWTH_RATE"])
+            "decay_to_growth_ratio": decimal_to_float(
+                safe_ratio(p["DECAY_RATE"], p["GROWTH_RATE"])
             ),
             "monthly_target": {
-                MONTH_NAMES[m]: _decimal_to_float(v) for m, v in monthly_target.items()
+                MONTH_NAMES[m]: decimal_to_float(v) for m, v in monthly_target.items()
             },
         },
         "parameter_evidence": {
-            name: _decimal_to_float(value) for name, value in p.items()
+            name: decimal_to_float(value) for name, value in p.items()
         },
-        "fit": {"score": _coerce_json_value(fit_score)},
+        "fit": {"score": coerce_json_value(fit_score)},
         "warnings": warnings,
         "summary": summary,
     }
-
-
-def _normalise_parameters(parameters: Mapping[str, Any]) -> dict[str, Decimal]:
-    """
-    Validate and normalise required resident-model parameters
-
-    :param parameters: Raw parameter mapping read from a fitted parameter JSON file or equivalent source
-    :return: Dictionary containing each required parameter converted to ``Decimal``
-    :raises ResidentClassificationError: If any required parameter is missing or cannot be converted
-    """
-    missing = [name for name in REQUIRED_PARAMETERS if name not in parameters]
-    if missing:
-        raise ResidentClassificationError(
-            f"Missing required resident parameters: {', '.join(missing)}"
-        )
-    return {name: _to_decimal(parameters[name], name) for name in REQUIRED_PARAMETERS}
-
-
-def _to_decimal(value: Any, name: str) -> Decimal:
-    """
-    Convert one raw parameter value to ``Decimal``
-
-    :param value: Raw value to convert, usually a number or numeric string from JSON
-    :param name: Parameter name used in error messages
-    :return: Converted ``Decimal`` value
-    :raises ResidentClassificationError: If conversion fails
-    """
-    try:
-        return value if isinstance(value, Decimal) else Decimal(str(value))
-    except (InvalidOperation, TypeError) as exc:
-        raise ResidentClassificationError(
-            f"Parameter {name!r} cannot be converted to Decimal: {value!r}"
-        ) from exc
-
-
-def _validate_month(name: str, value: Decimal, warnings: list[str]) -> None:
-    """
-    Append a warning if a month-valued parameter lies outside the expected 1..12 range
-
-    :param name: Name of the parameter being checked
-    :param value: Month-like value to validate
-    :param warnings: Mutable list that receives warning messages
-    """
-    if not (D("1") <= value <= D("12.999")):
-        warnings.append(f"{name} lies outside the expected 1..12 month range.")
-
-
-def _safe_ratio(numerator: Decimal, denominator: Decimal) -> Decimal:
-    """
-    Return a ratio while avoiding division by zero
-
-    :param numerator: Value to divide
-    :param denominator: Value to divide by
-    :return: ``numerator / denominator`` when possible, otherwise ``Decimal("0")``
-    """
-    if denominator == 0:
-        return D("0")
-    return numerator / denominator
 
 
 def _monthly_target_values(p: Mapping[str, Decimal]) -> dict[int, Decimal]:
@@ -608,7 +551,7 @@ def _classify_response_dynamics(
     :param summer_boost: Fitted additional summer decay boost
     :return: Response-dynamics category label
     """
-    ratio = _safe_ratio(decay + summer_boost, growth)
+    ratio = safe_ratio(decay + summer_boost, growth)
     if ratio >= D("3"):
         return "rapid_decline_biased"
     if ratio >= D("2"):
@@ -747,16 +690,6 @@ def _build_summary(
     )
 
 
-def _decimal_to_float(value: Decimal) -> float:
-    """
-    Convert a ``Decimal`` to a JSON-friendly float
-
-    :param value: Decimal value to convert
-    :return: Float representation of ``value``
-    """
-    return float(value)
-
-
 def _try_decimal(value: Any) -> Decimal | None:
     """
     Attempt to convert a value to ``Decimal`` without raising classification errors
@@ -770,19 +703,3 @@ def _try_decimal(value: Any) -> Decimal | None:
         return value if isinstance(value, Decimal) else Decimal(str(value))
     except (InvalidOperation, TypeError):
         return None
-
-
-def _coerce_json_value(value: Any) -> Any:
-    """
-    Convert values into JSON-friendly scalar representations
-
-    :param value: Value that may include ``Decimal`` or other non-JSON-native types
-    :return: JSON-friendly value suitable for inclusion in the classification output
-    """
-    if isinstance(value, Decimal):
-        return float(value)
-    try:
-        Decimal(str(value))
-        return float(value)
-    except Exception:
-        return value
