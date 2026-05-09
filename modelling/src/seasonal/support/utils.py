@@ -1,7 +1,24 @@
-from decimal import Decimal
+from decimal import Decimal, InvalidOperation
 from typing import Any
 import random
 import sys
+
+
+def to_decimal(value: Any, name: str = None, error_type: type[Exception] = InvalidOperation) -> Decimal:
+    """
+    Convert one raw parameter value to ``Decimal``
+
+    :param value: Raw value to convert, usually a number or numeric string from JSON
+    :param name: Parameter name used in error messages
+    :param error_type: Exception class to raise on failure
+    :return: Converted ``Decimal`` value
+    """
+    try:
+        return value if isinstance(value, Decimal) else Decimal(str(value))
+    except (InvalidOperation, TypeError) as exc:
+        prefix = f"Parameter {name!r}" if name else "Value"
+        message = f"{prefix} cannot be converted to Decimal: {value!r}"
+        raise error_type(message) from exc
 
 
 def D(value: Any) -> Decimal:
@@ -11,7 +28,7 @@ def D(value: Any) -> Decimal:
     :param value: Value to convert
     :return: Decimal conversion of that value
     """
-    return Decimal(str(value))
+    return to_decimal(value)
 
 
 def format_decimal(value: Any, places: int=3) -> str:
@@ -67,3 +84,42 @@ def show_progress(step_number: int, total_steps: int) -> None:
     bar = int(40 * progress)
     sys.stdout.write(f"\r[{'#' * bar}{'.' * (40 - bar)}] {step_number + 1}/{total_steps}")
     sys.stdout.flush()
+
+
+def coerce_json_value(value: Any) -> Any:
+    """
+    Convert values into JSON-friendly scalar representations
+
+    :param value: Value that may include ``Decimal`` or other non-JSON-native types
+    :return: JSON-friendly value suitable for inclusion in the classification output
+    """
+    if isinstance(value, Decimal):
+        return float(value)
+    try:
+        Decimal(str(value))
+        return float(value)
+    except Exception:
+        return value
+
+
+def decimal_to_float(value: Decimal) -> float:
+    """
+    Convert a ``Decimal`` to a JSON-friendly float
+
+	:param value: Decimal value to convert
+	:return: Float representation of ``value``
+	"""
+    return float(value)
+
+
+def safe_ratio(numerator: Decimal, denominator: Decimal) -> Decimal:
+    """
+    Return a ratio while avoiding division by zero
+
+	:param numerator: Value to divide
+	:param denominator: Value to divide by
+	:return: ``numerator / denominator`` when possible, otherwise ``Decimal("0")``
+	"""
+    if denominator == 0:
+        return D("0")
+    return numerator / denominator
