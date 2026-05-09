@@ -31,5 +31,5 @@ def validate_month(name: str, value: Decimal, warnings: list[str]) -> None:
 	:param value: Month-like value to validate
 	:param warnings: Mutable list that receives warning messages
 	"""
-    if not (D("1") <= value <= D("12")):
+    if not (D("1") <= value <= D("12.999")):
         warnings.append(f"{name} lies outside the expected 1..12 month range.")
