@@ -6,8 +6,9 @@ from decimal import Decimal, InvalidOperation
 from pathlib import Path
 from typing import Any, Mapping, Optional
 
-from seasonal.support.utils import D
-from seasonal.support.calendar import MONTH_NAMES
+from seasonal.classification.utils import normalise_parameters
+from seasonal.support.utils import D, coerce_json_value, decimal_to_float
+from seasonal.support.calendar import month_label
 
 
 REQUIRED_PARAMETERS = [
@@ -106,7 +107,7 @@ def classify_seasonal_model(
 	"""
 
     options = options or SeasonalClassificationOptions()
-    p = _normalise_parameters(parameters)
+    p = normalise_parameters(parameters, REQUIRED_PARAMETERS, SeasonalClassificationError)
 
     species_name = species or str(parameters.get("SPECIES", "Unknown species"))
     fit_score = score if score is not None else parameters.get("SCORE")
@@ -173,54 +174,24 @@ def classify_seasonal_model(
             "confidence": confidence,
         },
         "derived_metrics": {
-            "season_start_month": _decimal_to_float(start),
-            "season_end_month": _decimal_to_float(end),
-            "forcing_peak_month": _decimal_to_float(peak),
-            "season_width_months": _decimal_to_float(width),
-            "season_midpoint_month": _decimal_to_float(midpoint),
-            "season_start_label": _month_label(start),
-            "season_end_label": _month_label(end),
-            "forcing_peak_label": _month_label(peak),
+            "season_start_month": decimal_to_float(start),
+            "season_end_month": decimal_to_float(end),
+            "forcing_peak_month": decimal_to_float(peak),
+            "season_width_months": decimal_to_float(width),
+            "season_midpoint_month": decimal_to_float(midpoint),
+            "season_start_label": month_label(start),
+            "season_end_label": month_label(end),
+            "forcing_peak_label": month_label(peak),
         },
         "parameter_evidence": {
-            name: _decimal_to_float(value) for name, value in p.items()
+            name: decimal_to_float(value) for name, value in p.items()
         },
         "fit": {
-            "score": _coerce_json_value(fit_score),
+            "score": coerce_json_value(fit_score),
         },
         "warnings": warnings,
         "summary": summary,
     }
-
-
-def _normalise_parameters(parameters: Mapping[str, Any]) -> dict[str, Decimal]:
-    """
-    Validate and normalise required seasonal-model parameters
-
-	:param parameters: Raw parameter mapping read from a fitted parameter JSON file or equivalent source
-	:return: Dictionary containing each required parameter converted to ``Decimal``
-	:raises SeasonalClassificationError: If any required parameter is missing or cannot be converted
-	"""
-    missing = [name for name in REQUIRED_PARAMETERS if name not in parameters]
-    if missing:
-        raise SeasonalClassificationError(f"Missing required seasonal parameters: {', '.join(missing)}")
-
-    return {name: _to_decimal(parameters[name], name) for name in REQUIRED_PARAMETERS}
-
-
-def _to_decimal(value: Any, name: str) -> Decimal:
-    """
-    Convert one raw parameter value to ``Decimal``
-
-	:param value: Raw value to convert, usually a number or numeric string from JSON
-	:param name: Parameter name used in error messages
-	:return: Converted ``Decimal`` value
-	:raises SeasonalClassificationError: If conversion fails
-	"""
-    try:
-        return value if isinstance(value, Decimal) else Decimal(str(value))
-    except (InvalidOperation, TypeError) as exc:
-        raise SeasonalClassificationError(f"Parameter {name!r} cannot be converted to Decimal: {value!r}") from exc
 
 
 def _classify_timing(peak: Decimal) -> str:
@@ -403,47 +374,8 @@ def _build_summary(
     readable_class = primary_class.replace("_", " ")
     return (
         f"{species_name} is classified as {readable_class}. "
-        f"The fitted seasonal window runs from about {_month_label(start)} to {_month_label(end)}, "
-        f"with a {timing.replace('_', ' ')} peak around {_month_label(peak)}. "
+        f"The fitted seasonal window runs from about {month_label(start)} to {month_label(end)}, "
+        f"with a {timing.replace('_', ' ')} peak around {month_label(peak)}. "
         f"The season is {season_width}, with a {window_shape} active window, "
         f"{decline} post-peak decline, and {offseason_suppression} off-season suppression."
     )
-
-
-def _month_label(value: Decimal) -> str:
-    """
-    Convert a month-like value to a calendar month name
-
-	:param value: Decimal month value to round and label
-	:return: Month name from ``MONTH_NAMES``
-	"""
-    rounded = int(value.to_integral_value(rounding="ROUND_HALF_UP"))
-    rounded = max(1, min(12, rounded))
-    return MONTH_NAMES[rounded]
-
-
-def _decimal_to_float(value: Decimal) -> float:
-    """
-    Convert a ``Decimal`` to a JSON-friendly float
-
-	:param value: Decimal value to convert
-	:return: Float representation of ``value``
-	"""
-    return float(value)
-
-
-def _coerce_json_value(value: Any) -> Any:
-    """
-    Convert values into JSON-friendly scalar representations
-
-	:param value: Value that may include ``Decimal`` or other non-JSON-native types
-	:return: JSON-friendly value suitable for inclusion in the classification output
-	"""
-    if value is None:
-        return None
-    if isinstance(value, Decimal):
-        return float(value)
-    try:
-        return float(value)
-    except (TypeError, ValueError):
-        return value
