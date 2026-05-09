@@ -1,3 +1,4 @@
+from decimal import Decimal
 from seasonal.support.utils import D
 import random
 
@@ -106,3 +107,26 @@ def month_is_between(month, start, end):
         return start <= month <= end
 
     return month >= start or month <= end
+
+
+def month_label(value: Decimal) -> str:
+    """
+    Convert a month-like value to a calendar month name
+
+	:param value: Decimal month value to round and label
+	:return: Month name from ``MONTH_NAMES``
+	"""
+    rounded = int(value.to_integral_value(rounding="ROUND_HALF_UP"))
+    rounded = max(1, min(12, rounded))
+    return MONTH_NAMES[rounded]
+
+
+def rounded_month(value: Decimal) -> int:
+    """
+    Round a decimal month into the valid calendar month range
+
+	:param value: Decimal month value to round
+	:return: Integer month number clamped to 1..12
+	"""
+    rounded = int(value.to_integral_value(rounding="ROUND_HALF_UP"))
+    return max(1, min(12, rounded))
