@@ -4,6 +4,7 @@ import argparse
 from pathlib import Path
 
 from seasonal.features.species_similarity import build_species_similarity, save_similarity_summary
+from seasonal.features.species_similarity_heatmap import generate_species_similarity_heatmap
 from seasonal.features.feature_matrix import build_feature_table, find_input_files, write_csv
 from seasonal.support.console import print_error, print_message
 from seasonal.support.json import write_json
@@ -67,11 +68,11 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("-i", "--input-dirs", nargs="+", type=Path, required=True,
                         help="Directory containing classification JSON files")
-    parser.add_argument("-oj", "--output-json", type=Path, required=True, help="Canonical feature matrix JSON output path")
-    parser.add_argument("-oc", "--output-csv", type=Path, help="Companion CSV output path. Use --no-csv to skip")
-    parser.add_argument("-oss", "--output-species-similarity", type=Path, required=True,
-                        help="Species similarity JSON output path")
-    parser.add_argument("-ossu", "--output-similarity-summary", type=Path, help="Species similarity summary file path")
+    parser.add_argument("-j", "--json", type=Path, required=True, help="Canonical feature matrix JSON output path")
+    parser.add_argument("-c", "--csv", type=Path, help="Companion CSV output path. Use --no-csv to skip")
+    parser.add_argument("-s", "--similarity", type=Path, required=True, help="Species similarity JSON output path")
+    parser.add_argument("-su", "--summary", type=Path, help="Species similarity summary file path")
+    parser.add_argument("-hm", "--heatmap", type=Path, help="Species similarity summary file path")
     args = parser.parse_args()
 
     # Look for JSON classification files in the specified input folders
@@ -86,20 +87,24 @@ def main() -> None:
     print_message(f"Feature matrix contains {feature_matrix['n_species']} species")
 
     # Write the matrix to the canonical JSON file
-    write_json(args.output_json, feature_matrix)
-    print_message(f"Feature matrix written to {Path(args.output_json).name}")
+    write_json(args.json, feature_matrix)
+    print_message(f"Feature matrix written to {Path(args.json).name}")
 
     # If requested, write the human-friendly CSV file
-    if args.output_csv:
-        write_csv(args.output_csv, feature_matrix["features"], CORE_COLUMNS)
-        print_message(f"Feature matrix written to {Path(args.output_csv).name}")
+    if args.csv:
+        write_csv(args.csv, feature_matrix["features"], CORE_COLUMNS)
+        print_message(f"Feature matrix written to {Path(args.csv).name}")
 
     # Build the species similarity matrix
-    similarity = build_species_similarity(feature_matrix, args.output_species_similarity)
-    print_message(f"Species similarity written to {Path(args.output_species_similarity).name}")
-    if args.output_similarity_summary:
-        save_similarity_summary(similarity, args.output_similarity_summary)
-        print_message(f"Species similarity text dump written to {Path(args.output_similarity_summary).name}")
+    similarity = build_species_similarity(feature_matrix, args.similarity)
+    print_message(f"Species similarity written to {Path(args.similarity).name}")
+    if args.summary:
+        save_similarity_summary(similarity, args.summary)
+        print_message(f"Species similarity text dump written to {Path(args.summary).name}")
+
+    # Generate the species similarity heatmap
+    generate_species_similarity_heatmap(similarity, args.heatmap)
+    print_message(f"Species similarity heatmap written to {Path(args.heatmap).name}")
 
 
 if __name__ == "__main__":

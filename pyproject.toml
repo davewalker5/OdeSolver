@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ode-solver"
-version = "2.6.0"
+version = "2.7.0"
 description = "ODE Solver"
 readme = "README.md"
 requires-python = ">=3.13"
@@ -19,7 +19,8 @@ dependencies = [
   "pytest==9.0.3",
   "pytest-cov",
   "rich==15.0.0",
-  "vulture==2.16"
+  "vulture==2.16",
+  "scipy"
 ]
 
 [tool.setuptools]

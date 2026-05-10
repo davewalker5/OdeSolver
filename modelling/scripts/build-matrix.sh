@@ -6,9 +6,12 @@ if (( $# > 1 )); then
     exit 1
 fi
 
-
 # Get the path to the modelling folder
 MODELLING_ROOT=$( cd "$( dirname "$0" )/.." && pwd )
+
+# Activate the virtuall environment
+PROJECT_FOLDER=$( cd "$MODELLING_ROOT/.." && pwd)
+source "$PROJECT_FOLDER/venv/bin/activate"
 
 # Build the paths to the per-model data folders
 RESIDENT_DATA="$MODELLING_ROOT/resident-detectability/data"
@@ -39,6 +42,7 @@ fi
 # Build the feature matrix
 python "$MODELLING_ROOT/src/feature_matrix.py" \
     --input  "$RESIDENT_DATA" "$SEASONAL_DATA" "$WINTER_DATA" \
-    --output-json "$MODELLING_ROOT/data/feature_matrix.json" \
-    --output-species-similarity "$MODELLING_ROOT/data/species_similarity.json" \
-    --output-similarity-summary "$MODELLING_ROOT/data/species_similarity.txt" $WRITE_CSV
+    --json "$MODELLING_ROOT/data/feature_matrix.json" \
+    --similarity "$MODELLING_ROOT/data/species_similarity.json" \
+    --summary "$MODELLING_ROOT/data/species_similarity.txt" \
+    --heatmap "$MODELLING_ROOT/data/species_similarity_heatmap.png" $WRITE_CSV
