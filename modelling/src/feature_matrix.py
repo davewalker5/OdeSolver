@@ -61,7 +61,33 @@ CORE_COLUMNS = [
 ]
 
 
+def print_message(message):
+    """
+    Show a timestamped message
+
+    :param message: Message text
+    """
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    print(f"{timestamp} : {message}")
+
+
+def print_error(message):
+    """
+    Show a timestamped error message
+
+    :param message: Message text
+    """
+    print_message(f"ERROR: {message}")
+
+
 def first_present(mapping: Dict[str, Any], keys: Iterable[str]) -> Any:
+    """
+    Return the first non-null value found for a sequence of keys
+
+    :param mapping: Source mapping to search
+    :param keys: Ordered keys to test
+    :return: First present non-null value or None
+    """
     for key in keys:
         if key in mapping and mapping[key] is not None:
             return mapping[key]
@@ -69,6 +95,12 @@ def first_present(mapping: Dict[str, Any], keys: Iterable[str]) -> Any:
 
 
 def normalise_traits(classification: Dict[str, Any]) -> List[str]:
+    """
+    Normalise classification trait values to a list of strings
+
+    :param classification: Classification block from a species record
+    :return: List of trait strings
+    """
     traits = classification.get("traits", [])
     if traits is None:
         return []
@@ -79,11 +111,14 @@ def normalise_traits(classification: Dict[str, Any]) -> List[str]:
 
 def harmonise_peak_month(model_family: str, derived: Dict[str, Any]) -> Any:
     """
-    Pick a comparable peak month across model families.
+    Pick a comparable peak month across model families
 
-    For resident and winter models, target_peak_month represents the peak of
-    the fitted monthly target curve. For seasonal visitors, forcing_peak_month
-    is the most comparable value.
+    For resident and winter models, target_peak_month represents the peak of the fitted monthly
+    target curve. For seasonal visitors, forcing_peak_month is the most comparable value
+
+    :param model_family: Model family identifier
+    :param derived: Derived metrics block
+    :return: Harmonised peak month value
     """
     if model_family == "seasonal_presence":
         return first_present(derived, ["forcing_peak_month", "target_peak_month"])
@@ -91,6 +126,14 @@ def harmonise_peak_month(model_family: str, derived: Dict[str, Any]) -> Any:
 
 
 def harmonise_peak_label(model_family: str, derived: Dict[str, Any], peak_month: Any) -> Optional[str]:
+    """
+    Pick a comparable peak month label across model families
+
+    :param model_family: Model family identifier
+    :param derived: Derived metrics block
+    :param peak_month: Harmonised peak month value
+    :return: Harmonised peak month label
+    """
     if model_family == "seasonal_presence":
         label = first_present(derived, ["forcing_peak_label", "target_peak_label"])
     else:
@@ -99,6 +142,13 @@ def harmonise_peak_label(model_family: str, derived: Dict[str, Any], peak_month:
 
 
 def extract_feature_record(path: Path, data: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Extract a harmonised feature record from a classification JSON structure
+
+    :param path: Source classification file path
+    :param data: Loaded classification JSON data
+    :return: Harmonised feature record
+    """
     classification = data.get("classification", {}) or {}
     derived = data.get("derived_metrics", {}) or {}
     fit = data.get("fit", {}) or {}
@@ -114,7 +164,7 @@ def extract_feature_record(path: Path, data: Dict[str, Any]) -> Dict[str, Any]:
     active_month_count = len(active_months) if isinstance(active_months, list) else None
 
     # These are intentionally broad and sparse. Not every model family has
-    # every feature; missing values are expected and useful.
+    # every feature; missing values are expected and useful
     record: Dict[str, Any] = {
         "species": data.get("species"),
         "model_family": model_family,
@@ -164,12 +214,24 @@ def extract_feature_record(path: Path, data: Dict[str, Any]) -> Dict[str, Any]:
 
 
 def flatten_for_csv(record: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Flatten complex record fields into CSV-friendly values
+
+    :param record: Feature record
+    :return: Flattened record suitable for CSV output
+    """
     flat = dict(record)
     flat["traits"] = ";".join(record.get("traits", []))
     return flat
 
 
 def build_feature_table(input_paths: List[Path]) -> Dict[str, Any]:
+    """
+    Build the complete feature matrix from classification files
+
+    :param input_paths: Input classification JSON paths
+    :return: Feature matrix structure
+    """
     records: List[Dict[str, Any]] = []
     source_files: List[str] = []
 
@@ -192,9 +254,15 @@ def build_feature_table(input_paths: List[Path]) -> Dict[str, Any]:
 
 
 def write_csv(path: Path, records: List[Dict[str, Any]]) -> None:
+    """
+    Write feature records to a human-readable CSV file
+
+    :param path: Output CSV path
+    :param records: Feature records to write
+    """
     path.parent.mkdir(parents=True, exist_ok=True)
 
-    # Keep core columns first, then include any future extra keys at the end.
+    # Keep core columns first, then include any future extra keys at the end
     all_keys = set()
     for record in records:
         all_keys.update(record.keys())
@@ -210,16 +278,25 @@ def write_csv(path: Path, records: List[Dict[str, Any]]) -> None:
 
 
 def find_input_files(input_dirs: list[Path]) -> List[Path]:
+    """
+    Find classification JSON files within input directories
+
+    :param input_dirs: Directories to search
+    :return: De-duplicated list of classification file paths
+    """
     paths: List[Path] = []
     for input_dir in input_dirs:
         paths.extend(input_dir.glob("*_classification.json"))
 
-    # De-duplicate while preserving sorted deterministic output later.
+    # De-duplicate while preserving sorted deterministic output later
     unique = {p.resolve(): p for p in paths}
     return list(unique.values())
 
 
 def main() -> None:
+    """
+    Main entry point for the feature matrix builder
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument("-i", "--input-dirs", nargs="+", type=Path, required=True,
                         help="Directory containing classification JSON files")
@@ -227,20 +304,25 @@ def main() -> None:
     parser.add_argument("-oc", "--output-csv", type=Path, help="Companion CSV output path. Use --no-csv to skip")
     args = parser.parse_args()
 
+    # Look for JSON classification files in the specified input folders
     input_files = find_input_files(args.input_dirs)
     if not input_files:
-        raise SystemExit("No input JSON files found. Supply files or use --input-dir.")
+        print_error("No classification JSON files found")
+        return
 
-    feature_table = build_feature_table(input_files)
+    # Build the feature maxtrix
+    print_message(f"Building feature matrix from {len(input_files)} classification files")
+    feature_matrix = build_feature_table(input_files)
+    print_message(f"Feature matrix contains {feature_matrix['n_species']} species")
 
-    write_json(args.output_json, feature_table)
+    # Write the matrix to the canonical JSON file
+    write_json(args.output_json, feature_matrix)
+    print_message(f"Feature matrix written to {Path(args.output_json).name}")
 
+    # If requested, write the human-friendly CSV file
     if args.output_csv:
-        write_csv(args.output_csv, feature_table["features"])
-
-    print(f"Wrote {args.output_json} with {feature_table['n_species']} species.")
-    if args.output_csv:
-        print(f"Wrote {args.output_csv}.")
+        write_csv(args.output_csv, feature_matrix["features"])
+        print_message(f"Feature matrix written to {Path(args.output_csv).name}")
 
 
 if __name__ == "__main__":
