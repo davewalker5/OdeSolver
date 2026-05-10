@@ -3,7 +3,8 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-from seasonal.features.matrix import build_feature_table, find_input_files, write_csv
+from seasonal.features.species_similarity import build_species_similarity
+from seasonal.features.feature_matrix import build_feature_table, find_input_files, write_csv
 from seasonal.support.console import print_error, print_message
 from seasonal.support.json import write_json
 
@@ -66,8 +67,10 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("-i", "--input-dirs", nargs="+", type=Path, required=True,
                         help="Directory containing classification JSON files")
-    parser.add_argument("-oj", "--output-json", type=Path, required=True, help="Canonical JSON output path")
+    parser.add_argument("-oj", "--output-json", type=Path, required=True, help="Canonical feature matrix JSON output path")
     parser.add_argument("-oc", "--output-csv", type=Path, help="Companion CSV output path. Use --no-csv to skip")
+    parser.add_argument("-oss", "--output-species-similarity", type=Path, required=True,
+                        help="Species similarity JSON output path")
     args = parser.parse_args()
 
     # Look for JSON classification files in the specified input folders
@@ -89,6 +92,10 @@ def main() -> None:
     if args.output_csv:
         write_csv(args.output_csv, feature_matrix["features"], CORE_COLUMNS)
         print_message(f"Feature matrix written to {Path(args.output_csv).name}")
+
+    # Build the species similarity matrix
+    build_species_similarity(feature_matrix, args.output_species_similarity)
+    print_message(f"Species similarity written to {Path(args.output_species_similarity).name}")
 
 
 if __name__ == "__main__":

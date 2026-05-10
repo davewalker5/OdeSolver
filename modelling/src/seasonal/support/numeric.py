@@ -1,5 +1,5 @@
 from decimal import Decimal, InvalidOperation
-from typing import Any
+from typing import Any, Optional
 import random
 import sys
 
@@ -90,3 +90,27 @@ def safe_ratio(numerator: Decimal, denominator: Decimal) -> Decimal:
     if denominator == 0:
         return D("0")
     return numerator / denominator
+
+
+def round_float(value: Optional[float], digits: int = 6) -> Optional[float]:
+    """
+    Round a floating point value to the specified number of digits, handling None inputs
+
+    :param value: Value to round
+    :param digits: Number of digits to round to
+    :return: Rounded value or None
+    """
+    if value is None:
+        return None
+    return round(float(value), digits)
+
+
+def clamp(value: float, minimum: float = 0.0, maximum: float = 1.0) -> float:
+    """
+    Clip a floating point number to a range
+    
+    :param value: Value to clip
+    :param minimum: Minimum of range
+    :param maximum: Maximum of range
+    """
+    return max(minimum, min(maximum, value))
