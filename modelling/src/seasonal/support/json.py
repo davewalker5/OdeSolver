@@ -1,8 +1,25 @@
 import json
 import pandas as pd
+from decimal import Decimal
 from pathlib import Path
 from typing import Any
-from seasonal.support.utils import D
+from seasonal.support.numeric import D
+
+
+def coerce_json_value(value: Any) -> Any:
+    """
+    Convert values into JSON-friendly scalar representations
+
+    :param value: Value that may include ``Decimal`` or other non-JSON-native types
+    :return: JSON-friendly value suitable for inclusion in the classification output
+    """
+    if isinstance(value, Decimal):
+        return float(value)
+    try:
+        Decimal(str(value))
+        return float(value)
+    except Exception:
+        return value
 
 
 def load_json(path: Path) -> dict[str, Any]:

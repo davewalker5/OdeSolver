@@ -1,0 +1,312 @@
+
+Blackbird
+---------
+ 1. Goldfinch                    similarity=0.851 distance=0.149
+ 2. Blue Tit                     similarity=0.782 distance=0.218
+ 3. Dunnock                      similarity=0.780 distance=0.220
+ 4. Magpie                       similarity=0.775 distance=0.225
+ 5. Common Starling              similarity=0.731 distance=0.269
+
+Blue Tit
+--------
+ 1. Dunnock                      similarity=0.878 distance=0.122
+ 2. Great Tit                    similarity=0.845 distance=0.155
+ 3. Daisy                        similarity=0.789 distance=0.211
+ 4. Wren                         similarity=0.782 distance=0.218
+ 5. Blackbird                    similarity=0.782 distance=0.218
+
+Common Cleavers
+---------------
+ 1. Skylark                      similarity=0.868 distance=0.132
+ 2. Song Thrush                  similarity=0.832 distance=0.168
+ 3. Shepherds Purse              similarity=0.805 distance=0.195
+ 4. Wren                         similarity=0.774 distance=0.226
+ 5. Daisy                        similarity=0.723 distance=0.277
+
+Common Starling
+---------------
+ 1. Magpie                       similarity=0.897 distance=0.103
+ 2. Mute Swan                    similarity=0.813 distance=0.187
+ 3. Woodpigeon                   similarity=0.809 distance=0.191
+ 4. Goldfinch                    similarity=0.797 distance=0.203
+ 5. Robin                        similarity=0.754 distance=0.246
+
+Daisy
+-----
+ 1. Song Thrush                  similarity=0.862 distance=0.138
+ 2. Great Tit                    similarity=0.861 distance=0.139
+ 3. Dunnock                      similarity=0.860 distance=0.140
+ 4. Shepherds Purse              similarity=0.811 distance=0.189
+ 5. Blue Tit                     similarity=0.789 distance=0.211
+
+Dunnock
+-------
+ 1. Blue Tit                     similarity=0.878 distance=0.122
+ 2. Daisy                        similarity=0.860 distance=0.140
+ 3. Great Tit                    similarity=0.846 distance=0.154
+ 4. Song Thrush                  similarity=0.794 distance=0.206
+ 5. Robin                        similarity=0.783 distance=0.217
+
+Goldfinch
+---------
+ 1. Blackbird                    similarity=0.851 distance=0.149
+ 2. Magpie                       similarity=0.842 distance=0.158
+ 3. Woodpigeon                   similarity=0.809 distance=0.191
+ 4. Common Starling              similarity=0.797 distance=0.203
+ 5. Mute Swan                    similarity=0.771 distance=0.229
+
+Great Tit
+---------
+ 1. Daisy                        similarity=0.861 distance=0.139
+ 2. Dunnock                      similarity=0.846 distance=0.154
+ 3. Blue Tit                     similarity=0.845 distance=0.155
+ 4. Shepherds Purse              similarity=0.835 distance=0.165
+ 5. Song Thrush                  similarity=0.834 distance=0.166
+
+House Sparrow
+-------------
+ 1. Shepherds Purse              similarity=0.696 distance=0.304
+ 2. Common Cleavers              similarity=0.675 distance=0.325
+ 3. Skylark                      similarity=0.665 distance=0.335
+ 4. Mute Swan                    similarity=0.644 distance=0.356
+ 5. Great Tit                    similarity=0.634 distance=0.366
+
+Jay
+---
+ 1. Mute Swan                    similarity=0.630 distance=0.370
+ 2. Robin                        similarity=0.575 distance=0.425
+ 3. Skylark                      similarity=0.566 distance=0.434
+ 4. Blue Tit                     similarity=0.548 distance=0.452
+ 5. Shepherds Purse              similarity=0.536 distance=0.464
+
+Magpie
+------
+ 1. Common Starling              similarity=0.897 distance=0.103
+ 2. Goldfinch                    similarity=0.842 distance=0.158
+ 3. Mute Swan                    similarity=0.806 distance=0.194
+ 4. Woodpigeon                   similarity=0.780 distance=0.220
+ 5. Blackbird                    similarity=0.775 distance=0.225
+
+Mute Swan
+---------
+ 1. Robin                        similarity=0.827 distance=0.173
+ 2. Common Starling              similarity=0.813 distance=0.187
+ 3. Magpie                       similarity=0.806 distance=0.194
+ 4. Blue Tit                     similarity=0.772 distance=0.228
+ 5. Goldfinch                    similarity=0.771 distance=0.229
+
+Robin
+-----
+ 1. Mute Swan                    similarity=0.827 distance=0.173
+ 2. Great Tit                    similarity=0.806 distance=0.194
+ 3. Dunnock                      similarity=0.783 distance=0.217
+ 4. Blue Tit                     similarity=0.778 distance=0.222
+ 5. Magpie                       similarity=0.762 distance=0.238
+
+Shepherds Purse
+---------------
+ 1. Skylark                      similarity=0.875 distance=0.125
+ 2. Great Tit                    similarity=0.835 distance=0.165
+ 3. Daisy                        similarity=0.811 distance=0.189
+ 4. Common Cleavers              similarity=0.805 distance=0.195
+ 5. Blue Tit                     similarity=0.748 distance=0.252
+
+Skylark
+-------
+ 1. Shepherds Purse              similarity=0.875 distance=0.125
+ 2. Common Cleavers              similarity=0.868 distance=0.132
+ 3. Song Thrush                  similarity=0.806 distance=0.194
+ 4. Great Tit                    similarity=0.764 distance=0.236
+ 5. Wren                         similarity=0.751 distance=0.249
+
+Song Thrush
+-----------
+ 1. Daisy                        similarity=0.862 distance=0.138
+ 2. Great Tit                    similarity=0.834 distance=0.166
+ 3. Common Cleavers              similarity=0.832 distance=0.168
+ 4. Wren                         similarity=0.831 distance=0.169
+ 5. Skylark                      similarity=0.806 distance=0.194
+
+Woodpigeon
+----------
+ 1. Goldfinch                    similarity=0.809 distance=0.191
+ 2. Common Starling              similarity=0.809 distance=0.191
+ 3. Magpie                       similarity=0.780 distance=0.220
+ 4. Mute Swan                    similarity=0.712 distance=0.288
+ 5. Blackbird                    similarity=0.702 distance=0.298
+
+Wren
+----
+ 1. Song Thrush                  similarity=0.831 distance=0.169
+ 2. Great Tit                    similarity=0.809 distance=0.191
+ 3. Blue Tit                     similarity=0.782 distance=0.218
+ 4. Common Cleavers              similarity=0.774 distance=0.226
+ 5. Daisy                        similarity=0.761 distance=0.239
+
+Bluebell
+--------
+ 1. Garlic Mustard               similarity=0.783 distance=0.217
+ 2. Cowslip                      similarity=0.782 distance=0.218
+ 3. Orange Tip Butterfly         similarity=0.772 distance=0.228
+ 4. Chiffchaff                   similarity=0.706 distance=0.294
+ 5. Cow Parsley                  similarity=0.694 distance=0.306
+
+Brimstone Butterfly
+-------------------
+ 1. Red Dead Nettle              similarity=0.918 distance=0.082
+ 2. Peacock Butterfly            similarity=0.872 distance=0.128
+ 3. Buttercup                    similarity=0.866 distance=0.134
+ 4. Red Campion                  similarity=0.827 distance=0.173
+ 5. Swallow                      similarity=0.814 distance=0.186
+
+Buttercup
+---------
+ 1. Swallow                      similarity=0.949 distance=0.051
+ 2. Brimstone Butterfly          similarity=0.866 distance=0.134
+ 3. Red Dead Nettle              similarity=0.840 distance=0.160
+ 4. Red Campion                  similarity=0.832 distance=0.168
+ 5. Dandelion                    similarity=0.808 distance=0.192
+
+Chiffchaff
+----------
+ 1. Peacock Butterfly            similarity=0.803 distance=0.197
+ 2. Orange Tip Butterfly         similarity=0.726 distance=0.274
+ 3. Buttercup                    similarity=0.715 distance=0.285
+ 4. Swallow                      similarity=0.711 distance=0.289
+ 5. Garlic Mustard               similarity=0.710 distance=0.290
+
+Common Poppy
+------------
+ 1. Swift                        similarity=0.957 distance=0.043
+ 2. Cuckoo Pint                  similarity=0.773 distance=0.227
+ 3. Speckled Wood Butterfly      similarity=0.734 distance=0.266
+ 4. Red Campion                  similarity=0.730 distance=0.270
+ 5. Swallow                      similarity=0.673 distance=0.327
+
+Cow Parsley
+-----------
+ 1. Orange Tip Butterfly         similarity=0.867 distance=0.133
+ 2. Cowslip                      similarity=0.828 distance=0.172
+ 3. Garlic Mustard               similarity=0.782 distance=0.218
+ 4. Peacock Butterfly            similarity=0.704 distance=0.296
+ 5. Bluebell                     similarity=0.694 distance=0.306
+
+Cowslip
+-------
+ 1. Orange Tip Butterfly         similarity=0.961 distance=0.039
+ 2. Cow Parsley                  similarity=0.828 distance=0.172
+ 3. Garlic Mustard               similarity=0.818 distance=0.182
+ 4. Bluebell                     similarity=0.782 distance=0.218
+ 5. Chiffchaff                   similarity=0.696 distance=0.304
+
+Cuckoo Pint
+-----------
+ 1. Common Poppy                 similarity=0.773 distance=0.227
+ 2. Swift                        similarity=0.758 distance=0.242
+ 3. Speckled Wood Butterfly      similarity=0.716 distance=0.284
+ 4. Swallow                      similarity=0.704 distance=0.296
+ 5. Red Admiral Butterfly        similarity=0.694 distance=0.306
+
+Dandelion
+---------
+ 1. Red Dead Nettle              similarity=0.881 distance=0.119
+ 2. Buttercup                    similarity=0.808 distance=0.192
+ 3. Brimstone Butterfly          similarity=0.800 distance=0.200
+ 4. Swallow                      similarity=0.770 distance=0.230
+ 5. Red Campion                  similarity=0.750 distance=0.250
+
+Garlic Mustard
+--------------
+ 1. Orange Tip Butterfly         similarity=0.851 distance=0.149
+ 2. Cowslip                      similarity=0.818 distance=0.182
+ 3. Bluebell                     similarity=0.783 distance=0.217
+ 4. Cow Parsley                  similarity=0.782 distance=0.218
+ 5. Chiffchaff                   similarity=0.710 distance=0.290
+
+Orange Tip Butterfly
+--------------------
+ 1. Cowslip                      similarity=0.961 distance=0.039
+ 2. Cow Parsley                  similarity=0.867 distance=0.133
+ 3. Garlic Mustard               similarity=0.851 distance=0.149
+ 4. Bluebell                     similarity=0.772 distance=0.228
+ 5. Chiffchaff                   similarity=0.726 distance=0.274
+
+Peacock Butterfly
+-----------------
+ 1. Brimstone Butterfly          similarity=0.872 distance=0.128
+ 2. Chiffchaff                   similarity=0.803 distance=0.197
+ 3. Red Dead Nettle              similarity=0.792 distance=0.208
+ 4. Buttercup                    similarity=0.756 distance=0.244
+ 5. Swallow                      similarity=0.753 distance=0.247
+
+Red Admiral Butterfly
+---------------------
+ 1. Speckled Wood Butterfly      similarity=0.735 distance=0.265
+ 2. Cuckoo Pint                  similarity=0.694 distance=0.306
+ 3. Red Campion                  similarity=0.677 distance=0.323
+ 4. Buttercup                    similarity=0.670 distance=0.330
+ 5. Common Poppy                 similarity=0.664 distance=0.336
+
+Red Campion
+-----------
+ 1. Buttercup                    similarity=0.832 distance=0.168
+ 2. Swallow                      similarity=0.829 distance=0.171
+ 3. Brimstone Butterfly          similarity=0.827 distance=0.173
+ 4. Red Dead Nettle              similarity=0.820 distance=0.180
+ 5. Dandelion                    similarity=0.750 distance=0.250
+
+Red Dead Nettle
+---------------
+ 1. Brimstone Butterfly          similarity=0.918 distance=0.082
+ 2. Dandelion                    similarity=0.881 distance=0.119
+ 3. Buttercup                    similarity=0.840 distance=0.160
+ 4. Red Campion                  similarity=0.820 distance=0.180
+ 5. Swallow                      similarity=0.793 distance=0.207
+
+Rosebay Willowherb
+------------------
+ 1. Swift                        similarity=0.680 distance=0.320
+ 2. Common Poppy                 similarity=0.661 distance=0.339
+ 3. Cow Parsley                  similarity=0.641 distance=0.359
+ 4. Orange Tip Butterfly         similarity=0.624 distance=0.376
+ 5. Speckled Wood Butterfly      similarity=0.614 distance=0.386
+
+Snowdrop
+--------
+ 1. Bluebell                     similarity=0.648 distance=0.352
+ 2. Robin                        similarity=0.611 distance=0.389
+ 3. Cowslip                      similarity=0.605 distance=0.395
+ 4. Common Starling              similarity=0.591 distance=0.409
+ 5. Goldfinch                    similarity=0.591 distance=0.409
+
+Speckled Wood Butterfly
+-----------------------
+ 1. Red Admiral Butterfly        similarity=0.735 distance=0.265
+ 2. Common Poppy                 similarity=0.734 distance=0.266
+ 3. Cuckoo Pint                  similarity=0.716 distance=0.284
+ 4. Swift                        similarity=0.705 distance=0.295
+ 5. Red Campion                  similarity=0.689 distance=0.311
+
+Swallow
+-------
+ 1. Buttercup                    similarity=0.949 distance=0.051
+ 2. Red Campion                  similarity=0.829 distance=0.171
+ 3. Brimstone Butterfly          similarity=0.814 distance=0.186
+ 4. Red Dead Nettle              similarity=0.793 distance=0.207
+ 5. Dandelion                    similarity=0.770 distance=0.230
+
+Swift
+-----
+ 1. Common Poppy                 similarity=0.957 distance=0.043
+ 2. Cuckoo Pint                  similarity=0.758 distance=0.242
+ 3. Speckled Wood Butterfly      similarity=0.705 distance=0.295
+ 4. Chiffchaff                   similarity=0.703 distance=0.297
+ 5. Red Campion                  similarity=0.701 distance=0.299
+
+Redwing
+-------
+ 1. Snowdrop                     similarity=0.441 distance=0.559
+ 2. Robin                        similarity=0.373 distance=0.627
+ 3. Mute Swan                    similarity=0.364 distance=0.636
+ 4. Bluebell                     similarity=0.360 distance=0.640
+ 5. Blue Tit                     similarity=0.343 distance=0.657

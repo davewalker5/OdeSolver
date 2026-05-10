@@ -2,7 +2,7 @@ import os
 import csv
 import pandas as pd
 from pathlib import Path
-from seasonal.support.utils import D
+from seasonal.support.numeric import D
 
 
 def append_params_to_csv(params: dict, colums: list, csv_path: str) -> None:

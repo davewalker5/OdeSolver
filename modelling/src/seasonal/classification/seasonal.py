@@ -6,8 +6,8 @@ from pathlib import Path
 from typing import Any, Mapping, Optional
 
 from seasonal.classification.utils import normalise_parameters
-from seasonal.support.utils import D, coerce_json_value, decimal_to_float
-from seasonal.support.json import write_json
+from seasonal.support.numeric import D, decimal_to_float
+from seasonal.support.json import write_json, coerce_json_value
 from seasonal.support.calendar import month_label
 
 

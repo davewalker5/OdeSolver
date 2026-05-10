@@ -1,7 +1,7 @@
 import csv
 from decimal import Decimal
 from statistics import median
-from seasonal.support.utils import D, format_decimal
+from seasonal.support.numeric import D, format_decimal
 from seasonal.support.json import write_json
 
 

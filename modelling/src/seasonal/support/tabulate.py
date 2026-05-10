@@ -30,9 +30,30 @@ def print_dict_table(
     :param sort_keys: If true, sort before tabulating
     """
 
-    if not values:
-        print(f"{title}: <none>")
-        return
+    table_rows = build_dict_table(values, title, key_header, value_header, sort_keys)
+    for row in table_rows:
+        print(row)
+
+
+def build_dict_table(
+    values: Mapping[str, Any],
+    title: str = "Values",
+    key_header: str = "Option",
+    value_header: str = "Value",
+    sort_keys: bool = True
+) -> None:
+    """
+    Build a text-based table from a dictionary-like object
+
+    :param values: Dictionary of values
+    :param title: Table title
+    :param key_header: Column header for the keys column
+    :param value_header: Column header for the values column
+    :param sort_keys: If true, sort before tabulating
+    :return: List of strings representing rows in the output
+    """
+
+    table_rows = []
 
     items = values.items()
 
@@ -58,24 +79,26 @@ def print_dict_table(
     table_width = len(border)
 
     if len(title) < table_width:
-        print(f"\n{title.center(table_width)}")
+        table_rows.append(f"\n{title.center(table_width)}")
     else:
-        print(f"\n{title}")
+        table_rows.append(f"\n{title}")
 
-    print(border)
-    print(
+    table_rows.append(border)
+    table_rows.append(
         f"| {key_header.ljust(key_width)} "
         f"| {value_header.ljust(value_width)} |"
     )
-    print(border)
+    table_rows.append(border)
 
     for key, value in rows:
-        print(
+        table_rows.append(
             f"| {key.ljust(key_width)} "
             f"| {value.ljust(value_width)} |"
         )
 
-    print(border)
+    table_rows.append(border)
+
+    return table_rows
 
 
 def format_value(value: Any) -> str:

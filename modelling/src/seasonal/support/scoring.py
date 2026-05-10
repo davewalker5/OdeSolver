@@ -1,4 +1,4 @@
-from seasonal.support.utils import D
+from seasonal.support.numeric import D
 
 
 def mse(observed, simulated):

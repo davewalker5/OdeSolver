@@ -3,7 +3,7 @@ import os
 import subprocess
 from pathlib import Path
 from typing import Any
-from seasonal.support.utils import D
+from seasonal.support.numeric import D
 from seasonal.support.json import load_simulated_json, write_json
 
 

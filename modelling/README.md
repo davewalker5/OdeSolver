@@ -1,6 +1,6 @@
 # Wildlife Seasonal Pattern Modelling
 
-This folder contains a set of simple mathematical models and supporting tools used to explore seasonal patterns in wildlife observations.
+This folder contains a set of interpretable mathematical models and supporting analysis tools used to explore seasonal patterns in wildlife observations.
 
 The aim is not to produce perfect predictions, but to build interpretable models that help answer a straightforward question:
 
@@ -20,7 +20,9 @@ This folder contains:
 
 - Models of seasonal behaviour
 - Simulation configurations for the ODE Solver
-- A parameter fitting system that matches models to observed data
+- Parameter fitting systems that match models to observed data
+- Feature extraction tools that convert fitted models into ecological descriptors
+- Species similarity analysis tools for comparing seasonal ecology across taxa
 
 ## Key Ideas
 
@@ -48,6 +50,7 @@ They are designed to be:
 - Interpretable
 - Stable
 - Easy to compare across species
+- Suitable for downstream ecological analysis
 
 The emphasis is on:
 
@@ -69,6 +72,64 @@ Given observed data (typically monthly presence or detectability), we:
 
 This produces a set of parameters that describe the species’ seasonal behaviour.
 
+### 4. Feature extraction
+
+Once species have been fitted, the resulting parameter sets and observed seasonal characteristics can be converted into a structured feature matrix.
+
+The feature matrix acts as a common ecological description layer across all species and model families.
+
+Features may include:
+
+- Peak timing
+- Seasonal width
+- Detectability persistence
+- Seasonal symmetry/asymmetry
+- Occupancy characteristics
+- Classification labels
+- Derived ecological traits
+
+The goal is to move from:
+
+> Individual fitted models
+
+into:
+
+> A comparable ecological feature space
+
+This allows species from different model families to be analysed together using a consistent representation.
+
+### 5. Species similarity analysis
+
+The similarity system compares species using weighted ecological distance metrics derived from the feature matrix.
+
+Different feature types are handled differently:
+
+- Circular month features account for year-boundary wrapping
+- Numeric features are min-max scaled
+- Categorical features use binary matching
+- Trait collections use Jaccard distance
+
+The resulting similarity mappings can be used to:
+
+- Identify ecologically similar species
+- Explore seasonal guilds and assemblages
+- Build nearest-neighbour structures
+- Support clustering and dimensionality-reduction workflows
+- Compare seasonal structure across unrelated taxa
+- Investigate phenological synchrony within the wider ecological community
+
+Importantly, similarity in this system does not necessarily imply taxonomic similarity or direct biological interaction.
+
+Instead, the system primarily measures similarity of seasonal ecological signal — shared timing structure, seasonal occupancy, detectability dynamics, flowering periods, migration windows, emergence timing, and other temporally expressed ecological behaviours.
+
+This allows comparisons not only within groups (e.g. bird-to-bird or plant-to-plant), but also across domains of the ecosystem. For example, a butterfly flight period may align strongly with flowering periods or migratory arrival windows, potentially revealing shared seasonal forcing, phenological synchrony, or broader ecological coupling.
+
+As a result, the similarity system can be viewed not simply as a species comparison tool, but as a framework for analysing the seasonal structure of the ecological community as a whole.
+
+A key design goal is interpretability.
+
+Rather than producing opaque embeddings or black-box similarity scores, the system attempts to preserve ecological meaning at every stage of the comparison process. Component distances remain inspectable, allowing similarities to be understood in terms of timing, amplitude, seasonal width, suppression dynamics, classification structure, and trait overlap.
+
 ## Folder Structure
 
 ### seasonal-presence/
@@ -79,12 +140,16 @@ Models species that are absent outside a defined season, where that season doesn
 - Swallows (Hirundo rustica)
 - Flowering plants such as the bluebell (Hyacinthoides non-scripta)
 
+The _data/_ sub-folder contains the observed and simulated data, consensus parameter file and classification file for each species modelled using the seasonal model. The _model/_ sub-folder contains the ODE Solver simulation file and an extracted version of the models Python script. 
+
 ### winter-visitor/
 
 Models species that are absent outside the autumn/winter season, such as:
 
 - Redwing (Turdus iliacus)
 - Fieldfare (Turdus pilaris)
+
+The _data/_ sub-folder contains the observed and simulated data, consensus parameter file and classification file for each species modelled using the seasonal model. The _model/_ sub-folder contains the ODE Solver simulation file and an extracted version of the models Python script.
 
 ### resident-detectability/
 
@@ -94,6 +159,12 @@ Models species that are present year-round, but vary in detectability, such as:
 - Other resident birds
 
 The focus here is on variation in visibility or activity, rather than presence/absence.
+
+The _data/_ sub-folder contains the observed and simulated data, consensus parameter file and classification file for each species modelled using the seasonal model. The _model/_ sub-folder contains the ODE Solver simulation file and an extracted version of the models Python script.
+
+### data/
+
+Contains the feature matrices and species similarity artifacts.
 
 ## Why this exists
 
@@ -105,5 +176,19 @@ By fitting simple models to real data, we can:
 
 - Compare seasonal patterns across species
 - Classify types of behaviour (resident, migrant, seasonal)
+- Explore ecological similarity and grouping
+- Analyse seasonal structure at community scale
 - Explore changes over time
 - Move from description &rarr; explanation
+
+
+## Design philosophy
+
+This project intentionally favours:
+
+- Interpretable models over highly optimised black-box approaches
+- Ecological meaning over abstract statistical performance
+- Transparent calculations over opaque pipelines
+- Long-term maintainability over rapid experimentation
+
+The aim is not simply to generate predictions, but to build a computational natural history framework that remains understandable, inspectable, and scientifically interpretable.

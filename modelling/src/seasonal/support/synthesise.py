@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
-from modelling.src.seasonal.support.csv import load_observed_csv
+from seasonal.support.csv import load_observed_csv
 from seasonal.support.json import load_and_aggregate_simulated_json
 
 

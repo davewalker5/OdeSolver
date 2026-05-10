@@ -2,12 +2,12 @@ import random
 from pathlib import Path
 from datetime import datetime
 
-from seasonal.support.utils import D, show_progress
+from seasonal.support.numeric import D, show_progress
 from seasonal.support.calendar import circular_month_distance, month_range_around, random_month_in_range, \
     month_is_between
 from seasonal.support.scoring import mse
 from seasonal.support.solver import run_solver
-from modelling.src.seasonal.support.csv import append_params_to_csv
+from seasonal.support.csv import append_params_to_csv
 
 
 PARAMETER_COLUMNS = [
