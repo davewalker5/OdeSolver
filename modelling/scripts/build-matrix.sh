@@ -40,4 +40,5 @@ fi
 python "$MODELLING_ROOT/src/feature_matrix.py" \
     --input  "$RESIDENT_DATA" "$SEASONAL_DATA" "$WINTER_DATA" \
     --output-json "$MODELLING_ROOT/data/feature_matrix.json" \
-    --output-species-similarity "$MODELLING_ROOT/data/species_similarity.json" $WRITE_CSV
+    --output-species-similarity "$MODELLING_ROOT/data/species_similarity.json" \
+    --output-similarity-summary "$MODELLING_ROOT/data/species_similarity.txt" $WRITE_CSV

@@ -3,7 +3,7 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-from seasonal.features.species_similarity import build_species_similarity
+from seasonal.features.species_similarity import build_species_similarity, save_similarity_summary
 from seasonal.features.feature_matrix import build_feature_table, find_input_files, write_csv
 from seasonal.support.console import print_error, print_message
 from seasonal.support.json import write_json
@@ -60,27 +60,6 @@ CORE_COLUMNS = [
 ]
 
 
-def print_similarity(similarity: dict) -> None:
-    """
-    Plain-text output of per-species nearest neighbours to the console
-
-    :param similarity: Species similarity dictionary
-    """
-    nearest = similarity["nearest_neighbours"]
-
-    for species, neighbours in nearest.items():
-        print(f"\n{species}")
-        print("-" * len(species))
-
-        for rank, item in enumerate(neighbours, start=1):
-            print(
-                f"{rank:>2}. "
-                f"{item['species']:<28} "
-                f"similarity={item['similarity']:.3f} "
-                f"distance={item['distance']:.3f}"
-            )
-
-
 def main() -> None:
     """
     Main entry point for the feature matrix builder
@@ -92,6 +71,7 @@ def main() -> None:
     parser.add_argument("-oc", "--output-csv", type=Path, help="Companion CSV output path. Use --no-csv to skip")
     parser.add_argument("-oss", "--output-species-similarity", type=Path, required=True,
                         help="Species similarity JSON output path")
+    parser.add_argument("-ossu", "--output-similarity-summary", type=Path, help="Species similarity summary file path")
     args = parser.parse_args()
 
     # Look for JSON classification files in the specified input folders
@@ -100,7 +80,7 @@ def main() -> None:
         print_error("No classification JSON files found")
         return
 
-    # Build the feature maxtrix
+    # Build the feature matrix
     print_message(f"Building feature matrix from {len(input_files)} classification files")
     feature_matrix = build_feature_table(input_files)
     print_message(f"Feature matrix contains {feature_matrix['n_species']} species")
@@ -117,7 +97,9 @@ def main() -> None:
     # Build the species similarity matrix
     similarity = build_species_similarity(feature_matrix, args.output_species_similarity)
     print_message(f"Species similarity written to {Path(args.output_species_similarity).name}")
-    print_similarity(similarity)
+    if args.output_similarity_summary:
+        save_similarity_summary(similarity, args.output_similarity_summary)
+        print_message(f"Species similarity text dump written to {Path(args.output_similarity_summary).name}")
 
 
 if __name__ == "__main__":

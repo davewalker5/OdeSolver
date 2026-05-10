@@ -619,3 +619,25 @@ def round_float(value: Optional[float], digits: int = 6) -> Optional[float]:
     if value is None:
         return None
     return round(float(value), digits)
+
+
+def save_similarity_summary(similarity: dict, file_path: str) -> None:
+    """
+    Plain-text output of per-species nearest neighbours to the console
+
+    :param similarity: Species similarity dictionary
+    :param file_path: Path to the text file to write to
+    """
+    nearest = similarity["nearest_neighbours"]
+    with open(file_path, "w") as f:
+        for species, neighbours in nearest.items():
+            f.write(f"\n{species}\n")
+            f.write("-" * len(species) + "\n")
+
+            for rank, item in enumerate(neighbours, start=1):
+                f.write(
+                    f"{rank:>2}. "
+                    f"{item['species']:<28} "
+                    f"similarity={item['similarity']:.3f} "
+                    f"distance={item['distance']:.3f}\n"
+                )

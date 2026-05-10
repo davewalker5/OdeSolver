@@ -108,7 +108,7 @@ def round_float(value: Optional[float], digits: int = 6) -> Optional[float]:
 def clamp(value: float, minimum: float = 0.0, maximum: float = 1.0) -> float:
     """
     Clip a floating point number to a range
-    
+
     :param value: Value to clip
     :param minimum: Minimum of range
     :param maximum: Maximum of range
