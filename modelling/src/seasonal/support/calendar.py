@@ -1,5 +1,5 @@
 from decimal import Decimal
-from seasonal.support.utils import D
+from seasonal.support.numeric import D
 import random
 
 

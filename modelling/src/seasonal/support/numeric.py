@@ -1,8 +1,7 @@
 from decimal import Decimal, InvalidOperation
-from typing import Any, Optional
+from typing import Any
 import random
 import sys
-import math
 
 
 def to_decimal(value: Any, name: str = None, error_type: type[Exception] = InvalidOperation) -> Decimal:
@@ -57,23 +56,6 @@ def random_decimal(low: Any, high: Any, places: int = 3) -> Decimal:
     return D(round(value, places))
 
 
-def format_search_space(search_space: dict) -> str:
-    """
-    Format the inferred search space for console output
-
-    :param search_space: Search space for random parameter generation
-    :return: Formatted string
-    """
-
-    rows = [
-        "\n",
-        "Inferred Search Space",
-        "---------------------",
-    ] + [f"{k} : {v}" for k, v in search_space.items()] + ["\n"]
-
-    return "\n".join(rows)
-
-
 def show_progress(step_number: int, total_steps: int) -> None:
     """
     Display a status bar
@@ -85,22 +67,6 @@ def show_progress(step_number: int, total_steps: int) -> None:
     bar = int(40 * progress)
     sys.stdout.write(f"\r[{'#' * bar}{'.' * (40 - bar)}] {step_number + 1}/{total_steps}")
     sys.stdout.flush()
-
-
-def coerce_json_value(value: Any) -> Any:
-    """
-    Convert values into JSON-friendly scalar representations
-
-    :param value: Value that may include ``Decimal`` or other non-JSON-native types
-    :return: JSON-friendly value suitable for inclusion in the classification output
-    """
-    if isinstance(value, Decimal):
-        return float(value)
-    try:
-        Decimal(str(value))
-        return float(value)
-    except Exception:
-        return value
 
 
 def decimal_to_float(value: Decimal) -> float:
@@ -124,24 +90,3 @@ def safe_ratio(numerator: Decimal, denominator: Decimal) -> Decimal:
     if denominator == 0:
         return D("0")
     return numerator / denominator
-
-
-def safe_float(value: Any) -> Optional[float]:
-    """
-    Return the floating point conversion of the specified value or None if conversion fails
-
-    :param value: Value to convert
-    :return: float conversion or None
-    """
-    if value is None:
-        return None
-
-    try:
-        result = float(value)
-    except (TypeError, ValueError):
-        return None
-
-    if math.isnan(result) or math.isinf(result):
-        return None
-
-    return result

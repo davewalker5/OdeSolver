@@ -5,7 +5,7 @@ from pathlib import Path
 from seasonal.fitting.resident import fit, infer_resident_search_space, PARAMETER_COLUMNS
 from seasonal.classification.resident import classify_resident_model_to_json
 from seasonal.support.solver import export_simulation
-from modelling.src.seasonal.support.csv import load_and_normalise_observed_csv
+from seasonal.support.csv import load_and_normalise_observed_csv
 from seasonal.support.consensus import write_consensus_parameters
 from seasonal.support.synthesise import synthesise
 from seasonal.support.tabulate import print_args_table, print_dict_table

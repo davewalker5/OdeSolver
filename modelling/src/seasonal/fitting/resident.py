@@ -2,10 +2,10 @@ import random
 from datetime import datetime
 from pathlib import Path
 
-from seasonal.support.utils import D, random_decimal, show_progress
+from seasonal.support.numeric import D, random_decimal, show_progress
 from seasonal.support.calendar import circular_month_distance, month_range_around, random_month_in_range
 from seasonal.support.solver import run_solver
-from modelling.src.seasonal.support.csv import append_params_to_csv
+from seasonal.support.csv import append_params_to_csv
 
 
 PARAMETER_COLUMNS = [
@@ -415,39 +415,6 @@ def weighted_score(
         + november_error
         + autumn_shelf_error
     )
-
-
-def infer_autumn_onset_from_observed(observed, summer_low_month):
-    """
-    Estimate when the observed late-year rise begins.
-
-    Looks after the summer low and finds the first month where the observed
-    value has recovered meaningfully from the summer low towards the late-year
-    high.
-    """
-    summer_low_month = int(summer_low_month)
-
-    candidate_months = [m for m in range(summer_low_month, 13)]
-    if not candidate_months:
-        return D("10")
-
-    summer_low_value = observed.get(summer_low_month, min(observed.values()))
-
-    late_year_months = [10, 11, 12]
-    late_year_peak_value = max(observed.get(m, D("0")) for m in late_year_months)
-
-    recovery = late_year_peak_value - summer_low_value
-
-    if recovery <= D("0.05"):
-        return D("11")
-
-    threshold = summer_low_value + recovery * D("0.35")
-
-    for month in candidate_months:
-        if observed.get(month, D("0")) >= threshold:
-            return D(month)
-
-    return D("11")
 
 
 def infer_resident_search_space(observed, peak_padding=D("1.5"), low_padding=D("1.5")):

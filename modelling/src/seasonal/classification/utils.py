@@ -1,6 +1,6 @@
 from decimal import Decimal
 from typing import Any, Mapping
-from seasonal.support.utils import D, to_decimal
+from seasonal.support.numeric import D, to_decimal
 
 
 def normalise_parameters(

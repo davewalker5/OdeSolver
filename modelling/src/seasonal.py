@@ -4,9 +4,9 @@ from decimal import Decimal
 
 from seasonal.fitting.seasonal import infer_search_space, fit, PARAMETER_COLUMNS
 from seasonal.classification.seasonal import classify_seasonal_model_to_json
-from seasonal.support.utils import D
+from seasonal.support.numeric import D
 from seasonal.support.solver import export_simulation
-from modelling.src.seasonal.support.csv import load_and_normalise_observed_csv
+from seasonal.support.csv import load_and_normalise_observed_csv
 from seasonal.support.consensus import write_consensus_parameters
 from seasonal.support.synthesise import synthesise
 from seasonal.support.tabulate import print_args_table, print_dict_table

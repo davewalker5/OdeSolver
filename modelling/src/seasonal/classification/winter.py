@@ -6,9 +6,9 @@ from decimal import Decimal, InvalidOperation
 from pathlib import Path
 from typing import Any, Mapping, Optional
 
-from seasonal.support.utils import D, coerce_json_value, decimal_to_float, safe_ratio
+from seasonal.support.numeric import D, decimal_to_float, safe_ratio
 from seasonal.support.calendar import MONTH_NAMES, month_label, rounded_month
-from seasonal.support.json import write_json
+from seasonal.support.json import write_json, coerce_json_value
 from seasonal.classification.utils import normalise_parameters, validate_month
 
 
