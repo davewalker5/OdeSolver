@@ -1,9 +1,10 @@
 import sys
 import importlib
 
+
 def load_module_from_string(function_definition, module_name):
     """
-    Load the simulation module 
+    Load the simulation module
 
     :param function_definition: String containing the function definition
     :param module_name: Name of the module to create and load into
@@ -30,7 +31,7 @@ def load_module_from_file(filepath, module_name):
     :param filepath: Path to the Python script defining the function
     :param module_name: Name of the module to create and load into
     :param function_name: Function name to return
-    :return: Python module 
+    :return: Python module
     """
     # Load the source code
     with open(filepath, mode="rt", encoding="utf-8") as func_f:

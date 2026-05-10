@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import json
 from dataclasses import dataclass
 from decimal import Decimal, InvalidOperation
 from pathlib import Path
@@ -8,6 +7,7 @@ from typing import Any, Mapping, Optional
 
 from seasonal.classification.utils import normalise_parameters
 from seasonal.support.utils import D, coerce_json_value, decimal_to_float
+from seasonal.support.json import write_json
 from seasonal.support.calendar import month_label
 
 
@@ -56,23 +56,22 @@ class SeasonalClassificationError(ValueError):
 def classify_seasonal_model_to_json(
     parameters: Mapping[str, Any],
     output_path: str | Path,
-    *,
     species: Optional[str] = None,
     score: Optional[Any] = None,
     options: SeasonalClassificationOptions | None = None,
-    indent: int = 2,
+    indent: int = 2
 ) -> dict[str, Any]:
     """
     Classify fitted seasonal-model parameters and write the classification JSON file
 
-	:param parameters: Mapping of fitted seasonal model parameter names to values. Must include all entries in ``REQUIRED_PARAMETERS`` and may also include metadata such as ``SPECIES`` or ``SCORE``
-	:param output_path: Destination path for the generated classification JSON file. Parent directories are created if needed
-	:param species: Optional species name to use in the output. If omitted, ``parameters["SPECIES"]`` is used when available
-	:param score: Optional fit score to include in the output. If omitted, ``parameters["SCORE"]`` is used when available
-	:param options: Optional threshold set controlling how numeric parameters are converted into categorical traits
-	:param indent: JSON indentation level used when writing the output file
-	:return: The same JSON-serialisable classification dictionary that is written to ``output_path``
-	"""
+    :param parameters: Mapping of fitted seasonal model parameter names to values
+    :param output_path: Destination path for the generated classification JSON file
+    :param species: Species name to use in the output. If omitted, ``parameters["SPECIES"]`` is used
+    :param score: Fit score to include in the output. If omitted, ``parameters["SCORE"]`` is used
+    :param options: Threshold set controlling how numeric parameters are converted into categorical traits
+    :param indent: JSON indentation level used when writing the output file
+    :return: Classification dictionary
+    """
 
     classification = classify_seasonal_model(
         parameters,
@@ -83,9 +82,7 @@ def classify_seasonal_model_to_json(
 
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    with output_path.open("wt", encoding="utf-8") as json_f:
-        json.dump(classification, json_f, indent=indent, ensure_ascii=False)
-        json_f.write("\n")
+    write_json(output_path, classification, indent)
 
     return classification
 
@@ -99,12 +96,12 @@ def classify_seasonal_model(
     """
     Classify fitted non-winter seasonal parameters into ecological traits
 
-	:param parameters: Mapping of fitted seasonal model parameter names to values. Values are normalised to ``Decimal`` before classification
-	:param species: Optional species name to use in the output. If omitted, ``parameters["SPECIES"]`` is used when available
-	:param score: Optional fit score used to derive a broad confidence label. If omitted, ``parameters["SCORE"]`` is used when available
-	:param options: Optional threshold set controlling width, sharpness, decline, suppression, alignment, and confidence labels
-	:return: JSON-serialisable dictionary containing classification labels, derived metrics, parameter evidence, warnings, and a prose summary
-	"""
+    :param parameters: Mapping of fitted seasonal model parameter names to values
+    :param species: Species name to use in the output. If omitted, ``parameters["SPECIES"]`` is used
+    :param score: Fit score used to derive a broad confidence label. If omitted, ``parameters["SCORE"]`` is used
+    :param options: Threshold set controlling width, sharpness, decline, suppression, alignment, and confidence labels
+    :return: Dictionary containing classification labels, derived metrics, parameter evidence, warnings, and a prose summary
+    """
 
     options = options or SeasonalClassificationOptions()
     p = normalise_parameters(parameters, REQUIRED_PARAMETERS, SeasonalClassificationError)
@@ -197,9 +194,9 @@ def classify_seasonal_model(
 def _classify_timing(peak: Decimal) -> str:
     """Classify the seasonal peak month into a broad timing label
 
-	:param peak: Fitted forcing peak month
-	:return: Timing category such as early_spring, spring, summer, autumn, or atypical
-	"""
+    :param peak: Fitted forcing peak month
+    :return: Timing category such as early_spring, spring, summer, autumn, or atypical
+    """
     month = int(peak.to_integral_value(rounding="ROUND_HALF_UP"))
     month = max(1, min(12, month))
 
@@ -220,10 +217,10 @@ def _classify_width(width: Decimal, options: SeasonalClassificationOptions) -> s
     """
     Classify active season width
 
-	:param width: Derived number of months from season start to season end, accounting for wrapping
-	:param options: Thresholds defining narrow, moderate, broad, and very broad seasons
-	:return: Season-width category label
-	"""
+    :param width: Derived number of months from season start to season end, accounting for wrapping
+    :param options: Thresholds defining narrow, moderate, broad, and very broad seasons
+    :return: Season-width category label
+    """
     if width <= options.narrow_width_max:
         return "narrow"
     if width <= options.moderate_width_max:
@@ -237,10 +234,10 @@ def _classify_window_shape(sharpness: Decimal, options: SeasonalClassificationOp
     """
     Classify how sharply the seasonal activity window opens and closes
 
-	:param sharpness: Fitted seasonal-window sharpness parameter
-	:param options: Thresholds defining sharp, moderate, and gradual windows
-	:return: Window-shape category label
-	"""
+    :param sharpness: Fitted seasonal-window sharpness parameter
+    :param options: Thresholds defining sharp, moderate, and gradual windows
+    :return: Window-shape category label
+    """
     if sharpness >= options.sharp_window_min:
         return "sharp"
     if sharpness <= options.gradual_window_max:
@@ -252,10 +249,10 @@ def _classify_decline(post_peak_decay: Decimal, options: SeasonalClassificationO
     """
     Classify the strength of post-peak decline
 
-	:param post_peak_decay: Fitted post-peak decay parameter
-	:param options: Thresholds defining very strong, strong, moderate, and weak decline labels
-	:return: Post-peak decline category label
-	"""
+    :param post_peak_decay: Fitted post-peak decay parameter
+    :param options: Thresholds defining very strong, strong, moderate, and weak decline labels
+    :return: Post-peak decline category label
+    """
     if post_peak_decay >= options.strong_post_peak_decay_min:
         return "strong"
     if post_peak_decay >= options.moderate_post_peak_decay_min:
@@ -267,10 +264,10 @@ def _classify_offseason_suppression(oos_decay: Decimal, options: SeasonalClassif
     """
     Classify how strongly the model suppresses out-of-season presence
 
-	:param oos_decay: Fitted out-of-season decay parameter
-	:param options: Thresholds defining strong, moderate, and weak suppression labels
-	:return: Off-season suppression category label
-	"""
+    :param oos_decay: Fitted out-of-season decay parameter
+    :param options: Thresholds defining strong, moderate, and weak suppression labels
+    :return: Off-season suppression category label
+    """
     if oos_decay >= options.strong_oos_decay_min:
         return "strong"
     if oos_decay >= options.moderate_oos_decay_min:
@@ -278,19 +275,15 @@ def _classify_offseason_suppression(oos_decay: Decimal, options: SeasonalClassif
     return "weak"
 
 
-def _classify_peak_alignment(
-    peak: Decimal,
-    midpoint: Decimal,
-    options: SeasonalClassificationOptions,
-) -> str:
+def _classify_peak_alignment(peak: Decimal, midpoint: Decimal, options: SeasonalClassificationOptions) -> str:
     """
     Classify whether the fitted peak is centred within the active season
 
-	:param peak: Fitted forcing peak month
-	:param midpoint: Derived midpoint of the active seasonal window
-	:param options: Thresholds defining central, offset, and strongly offset peak alignment
-	:return: Peak-alignment category label
-	"""
+    :param peak: Fitted forcing peak month
+    :param midpoint: Derived midpoint of the active seasonal window
+    :param options: Thresholds defining central, offset, and strongly offset peak alignment
+    :return: Peak-alignment category label
+    """
     delta = peak - midpoint
     if abs(delta) <= options.forcing_peak_tolerance:
         return "central"
@@ -303,10 +296,10 @@ def _primary_class(timing: str, season_width: str) -> str:
     """
     Choose the main seasonal-model interpretation label
 
-	:param timing: Broad timing category for the fitted seasonal peak
-	:param season_width: Width category for the active season
-	:return: Primary seasonal class label
-	"""
+    :param timing: Broad timing category for the fitted seasonal peak
+    :param season_width: Width category for the active season
+    :return: Primary seasonal class label
+    """
     if season_width == "narrow":
         return f"narrow_{timing}_seasonal_presence"
     if season_width == "moderate":
@@ -318,11 +311,11 @@ def _classify_confidence(warnings: list[str], fit_score: Optional[Any], width: D
     """
     Classify confidence in the seasonal-model interpretation
 
-	:param warnings: Validation and plausibility warnings generated during classification
-	:param fit_score: Optional model fit score; lower values are treated as better fits by the default thresholds
-	:param width: Derived active-season width in months
-	:return: Confidence label
-	"""
+    :param warnings: Validation and plausibility warnings generated during classification
+    :param fit_score: Optional model fit score; lower values are treated as better fits by the default thresholds
+    :param width: Derived active-season width in months
+    :return: Confidence label
+    """
     if warnings:
         return "review"
 
@@ -344,7 +337,6 @@ def _classify_confidence(warnings: list[str], fit_score: Optional[Any], width: D
 
 
 def _build_summary(
-    *,
     species_name: str,
     primary_class: str,
     timing: str,
@@ -354,23 +346,23 @@ def _build_summary(
     offseason_suppression: str,
     start: Decimal,
     end: Decimal,
-    peak: Decimal,
+    peak: Decimal
 ) -> str:
     """
     Build a short prose summary for the seasonal-model classification
 
-	:param species_name: Species name to mention in the summary
-	:param primary_class: Primary class label selected for the species
-	:param timing: Broad timing category for the fitted peak
-	:param season_width: Width category for the active season
-	:param window_shape: Sharpness category for the seasonal window
-	:param decline: Post-peak decline category
-	:param offseason_suppression: Out-of-season suppression category
-	:param start: Fitted active-season start month
-	:param end: Fitted active-season end month
-	:param peak: Fitted forcing peak month
-	:return: Human-readable one-paragraph summary
-	"""
+    :param species_name: Species name to mention in the summary
+    :param primary_class: Primary class label selected for the species
+    :param timing: Broad timing category for the fitted peak
+    :param season_width: Width category for the active season
+    :param window_shape: Sharpness category for the seasonal window
+    :param decline: Post-peak decline category
+    :param offseason_suppression: Out-of-season suppression category
+    :param start: Fitted active-season start month
+    :param end: Fitted active-season end month
+    :param peak: Fitted forcing peak month
+    :return: Human-readable one-paragraph summary
+    """
     readable_class = primary_class.replace("_", " ")
     return (
         f"{species_name} is classified as {readable_class}. "

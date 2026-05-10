@@ -87,10 +87,12 @@ def delete_files(file_paths: list) -> None:
 def main():
     # Parse the command line arguments
     parser = argparse.ArgumentParser()
-    parser.add_argument("-i", "--input", required=True, help="Path to the folder containing the 'Year In The Life' XLSX files")
+    parser.add_argument("-i", "--input", required=True,
+                        help="Path to the folder containing the 'Year In The Life' XLSX files")
     parser.add_argument("-xp", "--xlsx-pattern", default="year_in_the_life_*.xlsx", help="XLSX file pattern")
     parser.add_argument("-s", "--suffix", default="_observed", help="CSV file name suffix")
-    parser.add_argument("-d", "--delete", type=str.lower, choices=TRUE_VALUES + FALSE_VALUES, help="Delete XLSX files after processing")
+    parser.add_argument("-d", "--delete", type=str.lower, choices=TRUE_VALUES + FALSE_VALUES,
+                        help="Delete XLSX files after processing")
     args = parser.parse_args()
 
     # Rename the 'Year In The Life' XLSX files, extract the observed 'Presence' data and delete the
@@ -99,6 +101,7 @@ def main():
     xlsx_files = extract_observed_data(args.input, args.suffix)
     if args.delete in TRUE_VALUES:
         delete_files(xlsx_files)
+
 
 if __name__ == "__main__":
     main()

@@ -1,6 +1,5 @@
 import os
 import csv
-import json
 import pandas as pd
 from pathlib import Path
 from seasonal.support.utils import D
@@ -78,64 +77,3 @@ def load_and_normalise_observed_csv(path: str) -> dict:
         return {m: D("0") for m in rows}
 
     return {month: value / max_value for month, value in rows.items()}
-
-
-def load_simulated_json(path: str) -> list:
-    """
-    Load JSON simulation output from the ODE Solver.
-
-    :param path: Path to simulation output file
-    :return: List of dictionaries, each containing t and y
-    """
-    with open(path) as f:
-        data = json.load(f)
-
-    points = []
-
-    for p in data:
-        y_key = "y_normalised" if "y_normalised" in p else "y"
-        points.append({"t": D(p["t"]), "y": D(p[y_key])})
-
-    return points
-
-
-def load_and_aggregate_simulated_json(path: Path, aggregation: str = "mean") -> pd.DataFrame:
-    """
-    Load the simulated data, aggregating by month
-    
-    :param path: Path to the simulated CSV file
-    :param aggregation: Aggregation method
-    """
-    df = pd.read_csv(path)
-
-    required = {"t", "y"}
-    missing = required - set(df.columns)
-    if missing:
-        raise ValueError(f"Simulated CSV is missing required columns: {sorted(missing)}")
-
-    sim = df[["t", "y"]].copy()
-    sim["t"] = pd.to_numeric(sim["t"], errors="raise")
-    sim["y"] = pd.to_numeric(sim["y"], errors="raise")
-
-    # Treat t as months since start of year.
-    # Month 1 = 0.0 <= t < 1.0, Month 2 = 1.0 <= t < 2.0, etc.
-    # Drop t >= 12 because that belongs to the next cycle/year.
-    sim = sim[(sim["t"] >= 0) & (sim["t"] < 12)].copy()
-    sim["month"] = sim["t"].astype(int) + 1
-
-    if aggregation == "mean":
-        monthly = sim.groupby("month", as_index=False)["y"].mean()
-    elif aggregation == "max":
-        monthly = sim.groupby("month", as_index=False)["y"].max()
-    elif aggregation == "last":
-        monthly = sim.sort_values("t").groupby("month", as_index=False)["y"].last()
-    else:
-        raise ValueError(f"Unsupported aggregation: {aggregation}")
-
-    monthly = monthly.rename(columns={"y": "simulated_raw"})
-
-    return (
-        pd.DataFrame({"month": list(range(1, 13))})
-        .merge(monthly, on="month", how="left")
-        .fillna({"simulated_raw": 0})
-    )

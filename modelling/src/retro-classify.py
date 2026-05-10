@@ -1,4 +1,3 @@
-import json
 import argparse
 from pathlib import Path
 from datetime import datetime
@@ -6,6 +5,7 @@ from datetime import datetime
 from seasonal.classification.resident import classify_resident_model_to_json
 from seasonal.classification.seasonal import classify_seasonal_model_to_json
 from seasonal.classification.winter import classify_winter_model_to_json
+from seasonal.support.json import load_json
 
 RESIDENT = "resident"
 SEASONAL = "seasonal"
@@ -56,11 +56,8 @@ def classify_species(data_folder: Path, model: str, species: str) -> None:
     # Determine the path to the consensus parameters file
     consensus_file = data_folder / f"{species}_consensus.json"
     if consensus_file.exists():
-        # Load the consensus parameters
-        with open(consensus_file, "rt", encoding="utf-8") as f:
-            parameters = json.load(f)
-
-        # Classify the species
+        # Load the consensus parameters and classify the species
+        parameters = load_json(consensus_file)
         if model == RESIDENT:
             classify_resident_model_to_json(parameters, classification_file)
         elif model == SEASONAL:
@@ -71,6 +68,7 @@ def classify_species(data_folder: Path, model: str, species: str) -> None:
         print_message(f"Written classification file {classification_file.name}")
     else:
         print_error(f"Consensus file for {species} not found")
+
 
 def classify_all_species(data_folder: Path, model: str) -> None:
     # Find all the consensus files in the data folder

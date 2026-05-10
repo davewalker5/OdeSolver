@@ -9,9 +9,9 @@ def save_options(simulation_options):
     :param simulation_options: Options to save
     """
     file_path = sg.popup_get_file("Options File",
-                                 save_as=True,
-                                 no_window=True,
-                                 default_extension="json")
+                                  save_as=True,
+                                  no_window=True,
+                                  default_extension="json")
     if file_path:
         save_simulation_options(simulation_options, file_path)
 
@@ -21,8 +21,8 @@ def load_options():
     Load an options file
     """
     file_path = sg.popup_get_file("Options File",
-                                 no_window=True,
-                                 default_extension="json")
+                                  no_window=True,
+                                  default_extension="json")
     if file_path:
         simulation_options = load_simulation_options(file_path)
     else:

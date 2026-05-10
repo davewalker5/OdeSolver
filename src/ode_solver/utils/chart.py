@@ -1,10 +1,9 @@
 import matplotlib
+import matplotlib.pyplot as plt
 
 # Use a non-interactive backend for file export so this helper does not depend
 # on, or interfere with, any GUI backend used elsewhere in the application.
 matplotlib.use("Agg")
-
-import matplotlib.pyplot as plt
 
 
 def export_chart(history, filepath, simulation_options):

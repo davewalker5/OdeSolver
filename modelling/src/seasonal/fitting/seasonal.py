@@ -3,10 +3,11 @@ from pathlib import Path
 from datetime import datetime
 
 from seasonal.support.utils import D, show_progress
-from seasonal.support.calendar import circular_month_distance, month_range_around, random_month_in_range, month_is_between, random_month_in_range
+from seasonal.support.calendar import circular_month_distance, month_range_around, random_month_in_range, \
+    month_is_between
 from seasonal.support.scoring import mse
 from seasonal.support.solver import run_solver
-from seasonal.support.io import append_params_to_csv
+from modelling.src.seasonal.support.csv import append_params_to_csv
 
 
 PARAMETER_COLUMNS = [
@@ -195,6 +196,7 @@ def make_random_params(search_space):
         "FORCING_PEAK": str(forcing_peak),
     }
 
+
 def fit(observed_csv,
         parameters_csv,
         observed,
@@ -204,7 +206,7 @@ def fit(observed_csv,
         search_space):
     """
     Parameter fitting loop
-    
+
     :param observed_csv: Path to the observed data file
     :param parameters_csv: Path to the output parameters CSV file
     :param observed: Observed behaviour being matched

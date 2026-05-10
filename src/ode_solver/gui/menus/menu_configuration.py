@@ -16,7 +16,7 @@ def get_menu_definition():
         option_list = []
         for option_name, option_definition in MENU[menu_name].items():
             option_list.append(option_name)
-            if type(option_definition) == dict:
+            if isinstance(option_definition, dict):
                 option_list.append(list(option_definition.keys()))
         definition.append([menu_name, option_list])
 

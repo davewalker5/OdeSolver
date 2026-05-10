@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import json
 import math
 from dataclasses import dataclass
 from decimal import Decimal, InvalidOperation
@@ -9,6 +8,7 @@ from typing import Any, Mapping, Optional
 
 from seasonal.support.utils import D, coerce_json_value, decimal_to_float, safe_ratio
 from seasonal.support.calendar import MONTH_NAMES, month_label, rounded_month
+from seasonal.support.json import write_json
 from seasonal.classification.utils import normalise_parameters, validate_month
 
 
@@ -68,19 +68,19 @@ def classify_winter_model_to_json(
     species: Optional[str] = None,
     score: Optional[Any] = None,
     options: WinterClassificationOptions | None = None,
-    indent: int = 2,
+    indent: int = 2
 ) -> dict[str, Any]:
     """
     Classify fitted winter-model parameters and write the classification JSON file
 
-	:param parameters: Mapping of fitted winter visitor model parameter names to values. Must include all entries in ``REQUIRED_PARAMETERS`` and may also include metadata such as ``SPECIES`` or ``SCORE``
-	:param output_path: Destination path for the generated classification JSON file. Parent directories are created if needed
-	:param species: Optional species name to use in the output. If omitted, ``parameters["SPECIES"]`` is used when available
-	:param score: Optional fit score to include in the output. If omitted, ``parameters["SCORE"]`` is used when available
-	:param options: Optional threshold set controlling how numeric parameters are converted into categorical traits
-	:param indent: JSON indentation level used when writing the output file
-	:return: The same JSON-serialisable classification dictionary that is written to ``output_path``
-	"""
+    :param parameters: Mapping of fitted winter visitor model parameter names to values
+    :param output_path: Destination path for the generated classification JSON file
+    :param species: Species name to use in the output. If omitted, ``parameters["SPECIES"]`` is used
+    :param score: Fit score to include in the output. If omitted, ``parameters["SCORE"]`` is used
+    :param options: Threshold set controlling how numeric parameters are converted into categorical traits
+    :param indent: JSON indentation level used when writing the output file
+    :return: Classification dictionary
+    """
 
     classification = classify_winter_model(
         parameters,
@@ -91,29 +91,26 @@ def classify_winter_model_to_json(
 
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    with output_path.open("wt", encoding="utf-8") as json_f:
-        json.dump(classification, json_f, indent=indent, ensure_ascii=False)
-        json_f.write("\n")
+    write_json(output_path, classification, indent)
 
     return classification
 
 
 def classify_winter_model(
     parameters: Mapping[str, Any],
-    *,
     species: Optional[str] = None,
     score: Optional[Any] = None,
-    options: WinterClassificationOptions | None = None,
+    options: WinterClassificationOptions | None = None
 ) -> dict[str, Any]:
     """
     Classify fitted winter visitor parameters into ecological traits
 
-	:param parameters: Mapping of fitted winter model parameter names to values. Values are normalised to ``Decimal`` before classification
-	:param species: Optional species name to use in the output. If omitted, ``parameters["SPECIES"]`` is used when available
-	:param score: Optional fit score used to derive a broad confidence label. If omitted, ``parameters["SCORE"]`` is used when available
-	:param options: Optional threshold set controlling autumn component, summer suppression, baseline, bump shape, dynamics, and confidence labels
-	:return: JSON-serialisable dictionary containing classification labels, derived metrics, parameter evidence, warnings, and a prose summary
-	"""
+    :param parameters: Mapping of fitted winter model parameter names to values
+    :param species: Species name to use in the output. If omitted, ``parameters["SPECIES"]`` is used
+    :param score: Fit score used to derive a broad confidence label. If omitted, ``parameters["SCORE"]`` is used
+    :param options: Threshold set controlling classification components
+    :return: Dictionary containing classification labels, derived metrics, parameter evidence, warnings, and a prose summary
+    """
 
     options = options or WinterClassificationOptions()
     p = normalise_parameters(parameters, REQUIRED_PARAMETERS, WinterClassificationError)
@@ -222,9 +219,9 @@ def _monthly_target_values(p: Mapping[str, Decimal]) -> dict[int, Decimal]:
     """
     Estimate monthly winter visitor target values from fitted parameters
 
-	:param p: Normalised winter-model parameter mapping
-	:return: Mapping of integer month number to derived target presence value
-	"""
+    :param p: Normalised winter-model parameter mapping
+    :return: Mapping of integer month number to derived target presence value
+    """
     values: dict[int, Decimal] = {}
     for month in range(1, 13):
         m = D(month)
@@ -242,16 +239,14 @@ def _monthly_target_values(p: Mapping[str, Decimal]) -> dict[int, Decimal]:
 
 
 def _annual_bump(month: Decimal, peak: Decimal, width: Decimal) -> Decimal:
-    # Float maths is sufficient here: this is only for classification evidence,
-    # not for solving the ODE. The model itself remains Decimal-based
     """
     Evaluate a circular annual bump centred on a fitted peak month
 
-	:param month: Month being evaluated
-	:param peak: Month at which the bump reaches its maximum
-	:param width: Exponent controlling bump breadth; higher values produce narrower peaks
-	:return: Bump strength between 0 and 1 as a ``Decimal``
-	"""
+    :param month: Month being evaluated
+    :param peak: Month at which the bump reaches its maximum
+    :param width: Exponent controlling bump breadth; higher values produce narrower peaks
+    :return: Bump strength between 0 and 1 as a ``Decimal``
+    """
     angle = 2.0 * math.pi * (float(month) - float(peak)) / 12.0
     profile = (1.0 + math.cos(angle)) / 2.0
     if profile <= 0.0:
@@ -265,9 +260,9 @@ def _classify_winter_timing(winter_peak: Decimal) -> str:
     """
     Classify the fitted winter peak timing
 
-	:param winter_peak: Fitted winter peak month
-	:return: Winter timing category label
-	"""
+    :param winter_peak: Fitted winter peak month
+    :return: Winter timing category label
+    """
     month = rounded_month(winter_peak)
     if month in (12, 1, 2):
         return "core_winter"
@@ -282,10 +277,10 @@ def _classify_autumn_component(autumn_ratio: Decimal, options: WinterClassificat
     """
     Classify the relative autumn component strength
 
-	:param autumn_ratio: Ratio of autumn support weight to winter support weight
-	:param options: Thresholds defining strong, moderate, weak, and minimal autumn labels
-	:return: Autumn component category label
-	"""
+    :param autumn_ratio: Ratio of autumn support weight to winter support weight
+    :param options: Thresholds defining strong, moderate, weak, and minimal autumn labels
+    :return: Autumn component category label
+    """
     if autumn_ratio >= options.strong_autumn_ratio_min:
         return "strong"
     if autumn_ratio >= options.moderate_autumn_ratio_min:
@@ -295,19 +290,15 @@ def _classify_autumn_component(autumn_ratio: Decimal, options: WinterClassificat
     return "minimal"
 
 
-def _classify_summer_suppression(
-    summer_dip: Decimal,
-    baseline: Decimal,
-    options: WinterClassificationOptions,
-) -> str:
+def _classify_summer_suppression(summer_dip: Decimal, baseline: Decimal, options: WinterClassificationOptions) -> str:
     """
     Classify summer suppression relative to baseline presence
 
-	:param summer_dip: Fitted summer dip/suppression magnitude
-	:param baseline: Fitted baseline value representing low-level year-round presence
-	:param options: Thresholds defining strong, moderate, weak, and minimal summer-suppression labels
-	:return: Summer suppression category label
-	"""
+    :param summer_dip: Fitted summer dip/suppression magnitude
+    :param baseline: Fitted baseline value representing low-level year-round presence
+    :param options: Thresholds defining strong, moderate, weak, and minimal summer-suppression labels
+    :return: Summer suppression category label
+    """
     if summer_dip >= options.strong_summer_dip_min:
         return "strong"
     if summer_dip >= options.moderate_summer_dip_min:
@@ -321,10 +312,10 @@ def _classify_baseline(baseline: Decimal, options: WinterClassificationOptions) 
     """
     Classify persistent baseline presence
 
-	:param baseline: Fitted baseline value representing low-level year-round presence
-	:param options: Thresholds defining low, moderate, and high baseline labels
-	:return: Baseline presence category label
-	"""
+    :param baseline: Fitted baseline value representing low-level year-round presence
+    :param options: Thresholds defining low, moderate, and high baseline labels
+    :return: Baseline presence category label
+    """
     if baseline <= options.low_baseline_max:
         return "low"
     if baseline <= options.moderate_baseline_max:
@@ -333,14 +324,14 @@ def _classify_baseline(baseline: Decimal, options: WinterClassificationOptions) 
 
 
 def _classify_bump_width(width: Decimal, options: WinterClassificationOptions) -> str:
-    # In the model, this is an exponent on the bump: lower = broader, higher = narrower
     """
     Classify seasonal bump breadth from the fitted width exponent
 
-	:param width: Fitted bump-width exponent; lower values imply broader bumps and higher values imply narrower bumps
-	:param options: Thresholds defining broad, moderate, and narrow bump labels
-	:return: Bump-shape category label
-	"""
+    :param width: Fitted bump-width exponent; lower values imply broader bumps and higher values imply narrower bumps
+    :param options: Thresholds defining broad, moderate, and narrow bump labels
+    :return: Bump-shape category label
+    """
+    # In the model, this is an exponent on the bump: lower = broader, higher = narrower
     if width <= options.broad_bump_width_max:
         return "broad"
     if width >= options.narrow_bump_width_min:
@@ -348,19 +339,15 @@ def _classify_bump_width(width: Decimal, options: WinterClassificationOptions) -
     return "moderate"
 
 
-def _classify_response_dynamics(
-    growth_rate: Decimal,
-    decay_rate: Decimal,
-    options: WinterClassificationOptions,
-) -> str:
+def _classify_response_dynamics(growth_rate: Decimal, decay_rate: Decimal, options: WinterClassificationOptions) -> str:
     """
     Classify fitted response dynamics from growth and decay terms
 
-	:param growth_rate: Fitted growth rate controlling how quickly presence rises toward the target
-	:param decay_rate: Fitted decay rate controlling how quickly presence falls
-	:param options: Thresholds defining fast-decay, slow-growth, balanced, and persistent labels
-	:return: Response-dynamics category label
-	"""
+    :param growth_rate: Fitted growth rate controlling how quickly presence rises toward the target
+    :param decay_rate: Fitted decay rate controlling how quickly presence falls
+    :param options: Thresholds defining fast-decay, slow-growth, balanced, and persistent labels
+    :return: Response-dynamics category label
+    """
     if growth_rate <= options.slow_growth_max and decay_rate >= options.fast_decay_min:
         return "slow_arrival_fast_departure"
     if decay_rate >= growth_rate * D("2"):
@@ -374,10 +361,10 @@ def _primary_class(autumn_component: str, baseline_presence: str) -> str:
     """
     Choose the main winter-model interpretation label
 
-	:param autumn_component: Category label for the autumn component strength
-	:param baseline_presence: Category label for persistent baseline presence
-	:return: Primary winter visitor class label
-	"""
+    :param autumn_component: Category label for the autumn component strength
+    :param baseline_presence: Category label for persistent baseline presence
+    :return: Primary winter visitor class label
+    """
     if baseline_presence == "high":
         return "winter_weighted_resident_like_presence"
     if autumn_component in ("strong", "moderate"):
@@ -387,19 +374,15 @@ def _primary_class(autumn_component: str, baseline_presence: str) -> str:
     return "winter_visitor"
 
 
-def _classify_confidence(
-    warnings: list[str],
-    fit_score: Optional[Any],
-    p: Mapping[str, Decimal],
-) -> str:
+def _classify_confidence(warnings: list[str], fit_score: Optional[Any], p: Mapping[str, Decimal]) -> str:
     """
     Classify confidence in the winter-model interpretation
 
-	:param warnings: Validation and plausibility warnings generated during classification
-	:param fit_score: Optional model fit score; lower values are treated as better fits by the default thresholds
-	:param p: Normalised winter-model parameter mapping used as supporting evidence
-	:return: Confidence label
-	"""
+    :param warnings: Validation and plausibility warnings generated during classification
+    :param fit_score: Optional model fit score; lower values are treated as better fits by the default thresholds
+    :param p: Normalised winter-model parameter mapping used as supporting evidence
+    :return: Confidence label
+    """
     if warnings:
         return "review"
 
@@ -421,7 +404,6 @@ def _classify_confidence(
 
 
 def _build_summary(
-    *,
     species_name: str,
     primary_class: str,
     winter_peak: Decimal,
@@ -435,17 +417,17 @@ def _build_summary(
     """
     Build a short prose summary for the winter-model classification
 
-	:param species_name: Species name to mention in the summary
-	:param primary_class: Primary class label selected for the species
-	:param winter_peak: Fitted winter peak month
-	:param autumn_peak: Fitted autumn peak month
-	:param autumn_component: Autumn component category
-	:param summer_low: Fitted month of lowest summer presence
-	:param summer_suppression: Summer suppression category
-	:param baseline_presence: Baseline presence category
-	:param response_dynamics: Response dynamics category
-	:return: Human-readable one-paragraph summary
-	"""
+    :param species_name: Species name to mention in the summary
+    :param primary_class: Primary class label selected for the species
+    :param winter_peak: Fitted winter peak month
+    :param autumn_peak: Fitted autumn peak month
+    :param autumn_component: Autumn component category
+    :param summer_low: Fitted month of lowest summer presence
+    :param summer_suppression: Summer suppression category
+    :param baseline_presence: Baseline presence category
+    :param response_dynamics: Response dynamics category
+    :return: Human-readable one-paragraph summary
+    """
     readable_class = primary_class.replace("_", " ")
     return (
         f"{species_name} is classified as {readable_class}. "

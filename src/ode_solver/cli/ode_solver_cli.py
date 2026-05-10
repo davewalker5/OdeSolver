@@ -26,8 +26,8 @@ def handle_args(args):
 
     # Load the simulation file
     if not args.simulation:
-            print_error(f"A simulation file is required to run the ODE Solver from the command line")
-            return False
+        print_error("A simulation file is required to run the ODE Solver from the command line")
+        return False
 
     if not load_simulation_from_args(args.simulation):
         print_error(f"Missing or invalid simulation file:\n{args.simulation}\n")
@@ -36,22 +36,22 @@ def handle_args(args):
     # Handle the export flag
     if args.export:
         if not args.simulation:
-            print_error(f"A simulation file must be specified to use export")
+            print_error("A simulation file must be specified to use export")
             return False
 
         # Check export to a supported type has been requested
         if not check_export_format(args.export):
-            print_error(f"Invalid export format specified")
+            print_error("Invalid export format specified")
             return False
 
     # Handle the charting flag
     if args.chart:
         if not args.simulation:
-            print_error(f"A simulation file must be specified to export a chart")
+            print_error("A simulation file must be specified to export a chart")
             return False
 
     return True
-    
+
 
 def cli_main(args):
     """
@@ -64,7 +64,7 @@ def cli_main(args):
     if not handle_args(args):
         return
 
-    # Validate the options
+    # Validate the options
     simulation_options, invalid_options = pre_run_validate_options()
     if len(invalid_options) > 0:
         for o in invalid_options:

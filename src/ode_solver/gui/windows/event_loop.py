@@ -3,10 +3,14 @@ import traceback
 from ode_solver.cli.parser import load_simulation_from_args
 from ode_solver.gui import RUN_SIMULATION_EVENT, CHART_EXPORT_KEY, DATA_EXPORT_KEY
 from ode_solver.utils.data_exchange import check_export_format
-from pathlib import Path
 
 
 def show_error_window(exception):
+    """
+    Show a window containing an error message and the call stack, based on a Python exception
+
+    :param exception: Exception to show details for
+    """
     error_text = "".join(traceback.format_exception(type(exception), exception, exception.__traceback__))
     layout = [
         [sg.Text("A runtime error occurred:", font=("Any", 12, "bold"))],
@@ -59,41 +63,41 @@ def handle_args(args, window):
 
     # Handle "no GUI"
     if args.no_gui:
-        show_argument_error(f"The 'no GUI' flag is invalid in the current context")
+        show_argument_error("The 'no GUI' flag is invalid in the current context")
         return False
 
     # Handle "normalise"
     if args.normalise:
-        show_argument_error(f"The 'normalise' flag is invalid in the current context")
+        show_argument_error("The 'normalise' flag is invalid in the current context")
         return False
 
     # Load the simulation file, if specified
     if args.simulation:
         if not load_simulation_from_args(args.simulation):
-            show_argument_error(f"Missing or invalid simulation file:\n{args.simulation}\n")
+            show_argument_error("Missing or invalid simulation file:\n{args.simulation}\n")
             return False
 
     # Handle the export flag
     if args.export:
         if not args.auto_run or not args.simulation:
-            show_argument_error(f"A simulation file and auto-run must be specified to use export")
+            show_argument_error("A simulation file and auto-run must be specified to use export")
             return False
 
         # Check export to a supported type has been requested
         if not check_export_format(args.export):
-            show_argument_error(f"Invalid export format specified")
+            show_argument_error("Invalid export format specified")
             return False
 
     # Handle the charting flag
     if args.chart:
         if not args.auto_run or not args.simulation:
-            show_argument_error(f"A simulation file and auto-run must be specified to export a chart")
+            show_argument_error("A simulation file and auto-run must be specified to export a chart")
             return False
 
     # Handle auto-run
     if args.auto_run:
         if not args.simulation:
-            show_argument_error(f"A simulation file must be specified to use auto-run")
+            show_argument_error("A simulation file must be specified to use auto-run")
             return False
 
         window.write_event_value(RUN_SIMULATION_EVENT, {
