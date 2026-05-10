@@ -14,11 +14,11 @@ D = Decimal
 
 # Useful constants
 TWO_PI = D("6.283185307179586476925286766559")
-PI     = TWO_PI / D("2")
+PI = TWO_PI / D("2")
 TWELVE = D("12")
-TWO    = D("2")
-ONE    = D("1")
-ZERO   = D("0")
+TWO = D("2")
+ONE = D("1")
+ZERO = D("0")
 
 
 def get_parameter(name: str, cast: Callable[[str], T] = Decimal) -> T:
@@ -80,7 +80,8 @@ def seasonal_window(t: Decimal) -> Decimal:
 
 def calculate_decay(w: Decimal, t: Decimal) -> Decimal:
     post_peak_gate = ONE / (ONE + d_exp(-get_parameter("POST_PEAK_SHARPNESS") * (t - get_parameter("FORCING_PEAK"))))
-    effective_decay = get_parameter("DECAY") + get_parameter("OOS_DECAY") * (ONE - w) + get_parameter("POST_PEAK_DECAY") * post_peak_gate
+    effective_decay = get_parameter("DECAY") + get_parameter("OOS_DECAY") * (ONE - w) + \
+        get_parameter("POST_PEAK_DECAY") * post_peak_gate
     return effective_decay
 
 

@@ -1,7 +1,8 @@
 from decimal import Decimal, InvalidOperation
-from typing import Any
+from typing import Any, Optional
 import random
 import sys
+import math
 
 
 def to_decimal(value: Any, name: str = None, error_type: type[Exception] = InvalidOperation) -> Decimal:
@@ -31,7 +32,7 @@ def D(value: Any) -> Decimal:
     return to_decimal(value)
 
 
-def format_decimal(value: Any, places: int=3) -> str:
+def format_decimal(value: Any, places: int = 3) -> str:
     """
     Format a Decimal to 3 decimal places and return a string representation
 
@@ -43,7 +44,7 @@ def format_decimal(value: Any, places: int=3) -> str:
     return str(value.normalize())
 
 
-def random_decimal(low: Any, high: Any, places: int=3) -> Decimal:
+def random_decimal(low: Any, high: Any, places: int = 3) -> Decimal:
     """
     Return a random Decimal between low and high.
 
@@ -106,9 +107,9 @@ def decimal_to_float(value: Decimal) -> float:
     """
     Convert a ``Decimal`` to a JSON-friendly float
 
-	:param value: Decimal value to convert
-	:return: Float representation of ``value``
-	"""
+    :param value: Decimal value to convert
+    :return: Float representation of ``value``
+    """
     return float(value)
 
 
@@ -116,10 +117,31 @@ def safe_ratio(numerator: Decimal, denominator: Decimal) -> Decimal:
     """
     Return a ratio while avoiding division by zero
 
-	:param numerator: Value to divide
-	:param denominator: Value to divide by
-	:return: ``numerator / denominator`` when possible, otherwise ``Decimal("0")``
-	"""
+    :param numerator: Value to divide
+    :param denominator: Value to divide by
+    :return: ``numerator / denominator`` when possible, otherwise ``Decimal("0")``
+    """
     if denominator == 0:
         return D("0")
     return numerator / denominator
+
+
+def safe_float(value: Any) -> Optional[float]:
+    """
+    Return the floating point conversion of the specified value or None if conversion fails
+
+    :param value: Value to convert
+    :return: float conversion or None
+    """
+    if value is None:
+        return None
+
+    try:
+        result = float(value)
+    except (TypeError, ValueError):
+        return None
+
+    if math.isnan(result) or math.isinf(result):
+        return None
+
+    return result

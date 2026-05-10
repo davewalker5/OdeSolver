@@ -14,11 +14,12 @@ D = Decimal
 
 # Useful constants
 TWO_PI = D("6.283185307179586476925286766559")
-PI     = TWO_PI / D("2")
+PI = TWO_PI / D("2")
 TWELVE = D("12")
-TWO    = D("2")
-ONE    = D("1")
-ZERO   = D("0")
+TWO = D("2")
+ONE = D("1")
+ZERO = D("0")
+
 
 def get_parameter(name: str, cast: Callable[[str], T] = Decimal) -> T:
     if not hasattr(get_parameter, "values"):

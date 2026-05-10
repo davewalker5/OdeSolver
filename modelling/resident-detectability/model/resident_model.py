@@ -12,12 +12,13 @@ T = TypeVar("T")
 D = Decimal
 
 # Useful constants
-TWO_PI         = D("6.283185307179586476925286766559")
-PI             = TWO_PI / D("2")
-TWELVE         = D("12")
-TWO            = D("2")
-ONE            = D("1")
-ZERO           = D("0")
+TWO_PI = D("6.283185307179586476925286766559")
+PI = TWO_PI / D("2")
+TWELVE = D("12")
+TWO = D("2")
+ONE = D("1")
+ZERO = D("0")
+
 
 def get_parameter(name: str, cast: Callable[[str], T] = Decimal) -> T:
     if not hasattr(get_parameter, "values"):
@@ -144,7 +145,6 @@ def asymmetric_annual_bump(
     return (width * profile.ln()).exp()
 
 
-
 def logistic_onset_gate(t: Decimal, onset: Decimal, sharpness: Decimal) -> Decimal:
     """
     Smooth annual onset gate in the range 0..1.
@@ -212,6 +212,7 @@ def autumn_onset_gate(t: Decimal, onset: Decimal, sharpness: Decimal) -> Decimal
         return ZERO
 
     return ONE / (ONE + (-x).exp())
+
 
 def resident_target_components(t: Decimal):
     """

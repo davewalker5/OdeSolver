@@ -5,7 +5,10 @@ from typing import Any, Mapping
 
 def print_args_table(args: Namespace, title: str = "Arguments") -> None:
     """
-    Pretty-print argparse arguments as a console table.
+    Pretty-print argparse arguments as a console table
+
+    :param args: argparse arguments
+    :param title: Table title
     """
     print_dict_table(vars(args), title=title)
 
@@ -15,10 +18,16 @@ def print_dict_table(
     title: str = "Values",
     key_header: str = "Option",
     value_header: str = "Value",
-    sort_keys: bool = True,
+    sort_keys: bool = True
 ) -> None:
     """
-    Pretty-print a dictionary-like object as a console table.
+    Pretty-print a dictionary-like object as a console table
+
+    :param values: Dictionary of values
+    :param title: Table title
+    :param key_header: Column header for the keys column
+    :param value_header: Column header for the values column
+    :param sort_keys: If true, sort before tabulating
     """
 
     if not values:
@@ -71,7 +80,9 @@ def print_dict_table(
 
 def format_value(value: Any) -> str:
     """
-    Convert values into readable strings.
+    Convert value into a readable strings
+
+    :param value: The value to convert
     """
 
     if value is None:

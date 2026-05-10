@@ -1,17 +1,16 @@
 import tempfile
-import json
 import os
 import subprocess
 from pathlib import Path
 from typing import Any
 from seasonal.support.utils import D
-from seasonal.support.io import load_simulated_json
+from seasonal.support.json import load_simulated_json, write_json
 
 
 def _run_solver(solver_command: str, params_file: str, simulation_file: str, output_file: str, chart_file: str):
     """
     Run the ODE Solver
-    
+
     :param solver_command: ODE Solver command
     :param params_file: Path to the simulation parameters file
     :param simulation_file: Path to the simulation JSON
@@ -96,7 +95,7 @@ def run_solver(simulation_file: str, params: dict, solver_command: str, discard_
 
         # Write the parameters to the model parameter file
         solver_params = {k: v for k, v in params.items() if k != "SCALE"}
-        params_file.write_text(json.dumps(solver_params, indent=2))
+        write_json(params_file, solver_params)
 
         # Run the ODE Solver
         _run_solver(solver_command, params_file, simulation_file, output_file, None)
@@ -108,7 +107,7 @@ def run_solver(simulation_file: str, params: dict, solver_command: str, discard_
 def export_simulation(solver_command: str, params_file: str, simulation_file: str, output_file: str, chart_file: str):
     """
     Run the ODE Solver
-    
+
     :param solver_command: ODE Solver command
     :param params_file: Path to the simulation parameters file
     :param simulation_file: Path to the simulation JSON

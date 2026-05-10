@@ -5,7 +5,7 @@ from pathlib import Path
 from seasonal.support.utils import D, random_decimal, show_progress
 from seasonal.support.calendar import circular_month_distance, month_range_around, random_month_in_range
 from seasonal.support.solver import run_solver
-from seasonal.support.io import append_params_to_csv
+from modelling.src.seasonal.support.csv import append_params_to_csv
 
 
 PARAMETER_COLUMNS = [
@@ -464,7 +464,6 @@ def infer_resident_search_space(observed, peak_padding=D("1.5"), low_padding=D("
         autumn_peak_centre = D("12")
 
     summer_low_centre = D(min(observed, key=observed.get))
-    observed_autumn_onset = infer_autumn_onset_from_observed(observed, summer_low_centre)
 
     values = list(observed.values())
     max_value = max(values)
@@ -491,11 +490,11 @@ def infer_resident_search_space(observed, peak_padding=D("1.5"), low_padding=D("
         baseline_margin_low = D("0.25")
         baseline_margin_high = D("0.35")
 
-    initial_y_centre = observed.get(1, baseline_centre)
     # For resident birds with a January maximum, the initial value is not a
     # throwaway transient: it is part of the annual cycle.  Give the fitter
     # enough room to start high rather than forcing the solution to climb
     # towards a February peak.
+    initial_y_centre = observed.get(1, baseline_centre)
     initial_y_low = max(D("0.00"), initial_y_centre - D("0.25"))
     initial_y_high = min(D("2.00"), initial_y_centre + D("0.35"))
 
@@ -710,8 +709,8 @@ def fit(observed_csv,
     :param initial_y_weight: Weight applied to initial-condition mismatch
     :param initial_month: Month used for the initial-condition anchor
     :param underestimation_weight:
-    :param min_simulated_floor: 
-    :param floor_weight: 
+    :param min_simulated_floor:
+    :param floor_weight:
     """
 
     for i in range(iterations):

@@ -1,9 +1,8 @@
 import csv
-import json
 from decimal import Decimal
-from pathlib import Path
 from statistics import median
 from seasonal.support.utils import D, format_decimal
+from seasonal.support.json import write_json
 
 
 def load_rows(path):
@@ -70,6 +69,6 @@ def write_consensus_parameters(
     # Calculate consensus parameters and write the consensus file
     params = consensus(best_rows, parameters)
     params["SPECIES"] = species.replace("_", " ").title()
-    Path(output).write_text(json.dumps(params, indent=2) + "\n")
+    write_json(output, params)
 
     return params

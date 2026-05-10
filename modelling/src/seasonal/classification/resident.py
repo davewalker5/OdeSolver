@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import json
 import math
 from dataclasses import dataclass
 from decimal import Decimal, InvalidOperation
@@ -9,6 +8,7 @@ from typing import Any, Mapping, Optional
 
 from seasonal.support.utils import D, coerce_json_value, decimal_to_float, safe_ratio
 from seasonal.support.calendar import MONTH_NAMES
+from seasonal.support.json import write_json
 from seasonal.classification.utils import normalise_parameters, validate_month
 
 
@@ -103,11 +103,11 @@ def classify_resident_model_to_json(
     """
     Classify fitted resident-model parameters and write the classification JSON file
 
-    :param parameters: Mapping of fitted resident model parameter names to values. Must include all entries in ``REQUIRED_PARAMETERS`` and may also include metadata such as ``SPECIES`` or ``SCORE``
-    :param output_path: Destination path for the generated classification JSON file. Parent directories are created if needed
-    :param species: Optional species name to use in the output. If omitted, ``parameters["SPECIES"]`` is used when available
-    :param score: Optional fit score to include in the output. If omitted, ``parameters["SCORE"]`` is used when available
-    :param options: Optional threshold set controlling how numeric parameters are converted into categorical traits
+    :param parameters: Mapping of fitted resident model parameter names to values
+    :param output_path: Destination path for the generated classification JSON file
+    :param species: Species name to use in the output. If omitted, ``parameters["SPECIES"]`` is used
+    :param score: Fit score to include in the output. If omitted, ``parameters["SCORE"]`` is used
+    :param options: Threshold set controlling how numeric parameters are converted into categorical traits
     :param indent: JSON indentation level used when writing the output file
     :return: The same JSON-serialisable classification dictionary that is written to ``output_path``
     """
@@ -121,9 +121,7 @@ def classify_resident_model_to_json(
 
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    with output_path.open("wt", encoding="utf-8") as json_f:
-        json.dump(classification, json_f, indent=indent, ensure_ascii=False)
-        json_f.write("\n")
+    write_json(output_path, classification, indent)
 
     return classification
 
@@ -137,11 +135,11 @@ def classify_resident_model(
     """
     Classify fitted resident detectability parameters into ecological traits
 
-    :param parameters: Mapping of fitted resident model parameter names to values. Values are normalised to ``Decimal`` before classification
-    :param species: Optional species name to use in the output. If omitted, ``parameters["SPECIES"]`` is used when available
-    :param score: Optional fit score used to derive a broad confidence label. If omitted, ``parameters["SCORE"]`` is used when available
-    :param options: Optional threshold set controlling baseline, carry-over, suppression, retention, and confidence labels
-    :return: JSON-serialisable dictionary containing classification labels, derived metrics, parameter evidence, warnings, and a prose summary
+    :param parameters: Mapping of fitted resident model parameter names to values
+    :param species: Species name to use in the output. If omitted, ``parameters["SPECIES"]`` is used
+    :param score: Fit score used to derive a broad confidence label. If omitted, ``parameters["SCORE"]`` is used
+    :param options: Threshold set controlling baseline, carry-over, suppression, retention, and confidence labels
+    :return: Dictionary containing classification labels, derived metrics, parameter evidence, warnings, and a prose summary
     """
 
     options = options or ResidentClassificationOptions()
@@ -210,7 +208,7 @@ def classify_resident_model(
         summer_suppression=summer_suppression,
         summer_decay=summer_decay,
         peak_timing=peak_timing,
-        trough_timing=trough_timing,
+        trough_timing=trough_timing
     )
 
     traits = [
@@ -406,10 +404,7 @@ def _autumn_onset_gate(month: Decimal, onset: Decimal, sharpness: Decimal) -> De
     return D(str(1.0 / (1.0 + math.exp(-x))))
 
 
-def _classify_baseline(
-    baseline: Decimal,
-	options: ResidentClassificationOptions
-) -> str:
+def _classify_baseline(baseline: Decimal, options: ResidentClassificationOptions) -> str:
     """
     Classify persistent baseline detectability
 
@@ -424,10 +419,7 @@ def _classify_baseline(
     return "weak"
 
 
-def _classify_spring_carryover(
-    weight: Decimal,
-	options: ResidentClassificationOptions
-) -> str:
+def _classify_spring_carryover(weight: Decimal, options: ResidentClassificationOptions) -> str:
     """
     Classify the strength of spring carry-over
 
@@ -444,10 +436,7 @@ def _classify_spring_carryover(
     return "absent"
 
 
-def _classify_summer_suppression(
-    dip: Decimal,
-	options: ResidentClassificationOptions
-) -> str:
+def _classify_summer_suppression(dip: Decimal, options: ResidentClassificationOptions) -> str:
     """
     Classify the strength of summer detectability suppression
 
@@ -464,10 +453,7 @@ def _classify_summer_suppression(
     return "absent"
 
 
-def _classify_summer_decay(
-    boost: Decimal,
-	options: ResidentClassificationOptions
-) -> str:
+def _classify_summer_decay(boost: Decimal, options: ResidentClassificationOptions) -> str:
     """
     Classify acceleration of decay during summer
 
@@ -484,10 +470,7 @@ def _classify_summer_decay(
     return "absent"
 
 
-def _classify_pre_summer_retention(
-    reduction: Decimal,
-	options: ResidentClassificationOptions
-) -> str:
+def _classify_pre_summer_retention(reduction: Decimal, options: ResidentClassificationOptions) -> str:
     """
     Classify retention before the summer decline
 
@@ -504,10 +487,7 @@ def _classify_pre_summer_retention(
     return "absent"
 
 
-def _classify_autumn_component(
-    ratio: Decimal,
-	options: ResidentClassificationOptions
-) -> str:
+def _classify_autumn_component(ratio: Decimal, options: ResidentClassificationOptions) -> str:
     """
     Classify the relative autumn component strength
 
@@ -522,10 +502,7 @@ def _classify_autumn_component(
     return "minimal"
 
 
-def _classify_year_end_component(
-    ratio: Decimal,
-	options: ResidentClassificationOptions
-) -> str:
+def _classify_year_end_component(ratio: Decimal, options: ResidentClassificationOptions) -> str:
     """
     Classify the relative year-end component strength
 
@@ -540,9 +517,7 @@ def _classify_year_end_component(
     return "absent"
 
 
-def _classify_response_dynamics(
-    growth: Decimal, decay: Decimal, summer_boost: Decimal
-) -> str:
+def _classify_response_dynamics(growth: Decimal, decay: Decimal, summer_boost: Decimal) -> str:
     """
     Classify fitted response dynamics from growth and decay terms
 
@@ -584,7 +559,6 @@ def _classify_timing(month_value: Decimal) -> str:
 
 
 def _primary_class(
-    *,
     baseline_presence: str,
     spring_carryover: str,
     summer_suppression: str,
@@ -655,7 +629,6 @@ def _classify_confidence(
 
 
 def _build_summary(
-    *,
     species_name: str,
     primary_class: str,
     peak_month: int,

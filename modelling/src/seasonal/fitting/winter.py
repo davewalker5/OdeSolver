@@ -5,7 +5,7 @@ from seasonal.support.utils import D, random_decimal, show_progress
 from seasonal.support.calendar import circular_month_distance, month_range_around, random_month_in_range
 from seasonal.support.scoring import mse
 from seasonal.support.solver import run_solver
-from seasonal.support.io import append_params_to_csv
+from modelling.src.seasonal.support.csv import append_params_to_csv
 
 
 PARAMETER_COLUMNS = [
@@ -157,7 +157,7 @@ def fit(observed_csv,
         discard_months):
     """
     Parameter fitting loop
-    
+
     :param observed: Observed behaviour being matched
     :param simulation_file: Path to the ODE Solver simulation file
     :param iterations: Number of iterations in the fit
