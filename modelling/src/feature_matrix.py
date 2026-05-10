@@ -60,6 +60,27 @@ CORE_COLUMNS = [
 ]
 
 
+def print_similarity(similarity: dict) -> None:
+    """
+    Plain-text output of per-species nearest neighbours to the console
+
+    :param similarity: Species similarity dictionary
+    """
+    nearest = similarity["nearest_neighbours"]
+
+    for species, neighbours in nearest.items():
+        print(f"\n{species}")
+        print("-" * len(species))
+
+        for rank, item in enumerate(neighbours, start=1):
+            print(
+                f"{rank:>2}. "
+                f"{item['species']:<28} "
+                f"similarity={item['similarity']:.3f} "
+                f"distance={item['distance']:.3f}"
+            )
+
+
 def main() -> None:
     """
     Main entry point for the feature matrix builder
@@ -94,8 +115,9 @@ def main() -> None:
         print_message(f"Feature matrix written to {Path(args.output_csv).name}")
 
     # Build the species similarity matrix
-    build_species_similarity(feature_matrix, args.output_species_similarity)
+    similarity = build_species_similarity(feature_matrix, args.output_species_similarity)
     print_message(f"Species similarity written to {Path(args.output_species_similarity).name}")
+    print_similarity(similarity)
 
 
 if __name__ == "__main__":

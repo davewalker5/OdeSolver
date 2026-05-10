@@ -100,7 +100,7 @@ This allows species from different model families to be analysed together using 
 
 ### 5. Species similarity analysis
 
-The similarity system compares species using weighted ecological distance metrics.
+The similarity system compares species using weighted ecological distance metrics derived from the feature matrix.
 
 Different feature types are handled differently:
 
@@ -112,14 +112,23 @@ Different feature types are handled differently:
 The resulting similarity mappings can be used to:
 
 - Identify ecologically similar species
-- Explore seasonal guilds and groupings
+- Explore seasonal guilds and assemblages
 - Build nearest-neighbour structures
 - Support clustering and dimensionality-reduction workflows
-- Compare behaviour across unrelated taxa
+- Compare seasonal structure across unrelated taxa
+- Investigate phenological synchrony within the wider ecological community
+
+Importantly, similarity in this system does not necessarily imply taxonomic similarity or direct biological interaction.
+
+Instead, the system primarily measures similarity of seasonal ecological signal — shared timing structure, seasonal occupancy, detectability dynamics, flowering periods, migration windows, emergence timing, and other temporally expressed ecological behaviours.
+
+This allows comparisons not only within groups (e.g. bird-to-bird or plant-to-plant), but also across domains of the ecosystem. For example, a butterfly flight period may align strongly with flowering periods or migratory arrival windows, potentially revealing shared seasonal forcing, phenological synchrony, or broader ecological coupling.
+
+As a result, the similarity system can be viewed not simply as a species comparison tool, but as a framework for analysing the seasonal structure of the ecological community as a whole.
 
 A key design goal is interpretability.
 
-Rather than producing opaque embeddings or black-box similarity scores, the system attempts to preserve ecological meaning at every stage of the comparison process.
+Rather than producing opaque embeddings or black-box similarity scores, the system attempts to preserve ecological meaning at every stage of the comparison process. Component distances remain inspectable, allowing similarities to be understood in terms of timing, amplitude, seasonal width, suppression dynamics, classification structure, and trait overlap.
 
 ## Folder Structure
 

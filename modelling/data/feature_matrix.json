@@ -1,6 +1,6 @@
 {
   "schema_version": "species-feature-table/v1",
-  "created_utc": "2026-05-10T09:46:32.661699+00:00",
+  "created_utc": "2026-05-10T10:04:09.382146+00:00",
   "description": "Whole-set seasonal ecology feature table compiled from per-species classification JSON files.",
   "n_species": 39,
   "source_files": [
