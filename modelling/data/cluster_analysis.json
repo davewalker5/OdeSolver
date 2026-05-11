@@ -1,0 +1,2317 @@
+{
+  "schema_version": "species-similarity-clusters/v1",
+  "created_utc": "2026-05-11T16:16:44.060762+00:00",
+  "source_similarity_schema_version": "species-similarity/v1",
+  "source_feature_schema_version": "species-feature-table/v1",
+  "n_species": 39,
+  "n_clusters": 8,
+  "method": {
+    "description": "Hierarchical clustering over pairwise species similarity, followed by cluster-level summaries from the species feature matrix.",
+    "linkage_method": "average",
+    "cluster_cut": {
+      "criterion": "maxclust",
+      "n_clusters_requested": 8
+    },
+    "distance_definition": "distance = 1 - similarity",
+    "cluster_caveat": "Clusters should be interpreted as exploratory seasonal assemblages rather than fixed ecological categories."
+  },
+  "species_order": [
+    "Redwing",
+    "Dandelion",
+    "Brimstone Butterfly",
+    "Red Dead Nettle",
+    "Red Campion",
+    "Buttercup",
+    "Swallow",
+    "Chiffchaff",
+    "Peacock Butterfly",
+    "Cuckoo Pint",
+    "Common Poppy",
+    "Swift",
+    "Red Admiral Butterfly",
+    "Speckled Wood Butterfly",
+    "Rosebay Willowherb",
+    "Snowdrop",
+    "Bluebell",
+    "Garlic Mustard",
+    "Cow Parsley",
+    "Cowslip",
+    "Orange Tip Butterfly",
+    "Jay",
+    "Mute Swan",
+    "Robin",
+    "Blackbird",
+    "Goldfinch",
+    "Woodpigeon",
+    "Common Starling",
+    "Magpie",
+    "House Sparrow",
+    "Common Cleavers",
+    "Shepherds Purse",
+    "Skylark",
+    "Wren",
+    "Blue Tit",
+    "Dunnock",
+    "Great Tit",
+    "Daisy",
+    "Song Thrush"
+  ],
+  "species_cluster_ids": {
+    "Blackbird": 7,
+    "Blue Tit": 8,
+    "Common Cleavers": 8,
+    "Common Starling": 7,
+    "Daisy": 8,
+    "Dunnock": 8,
+    "Goldfinch": 7,
+    "Great Tit": 8,
+    "House Sparrow": 8,
+    "Jay": 6,
+    "Magpie": 7,
+    "Mute Swan": 7,
+    "Robin": 7,
+    "Shepherds Purse": 8,
+    "Skylark": 8,
+    "Song Thrush": 8,
+    "Woodpigeon": 7,
+    "Wren": 8,
+    "Bluebell": 5,
+    "Brimstone Butterfly": 2,
+    "Buttercup": 2,
+    "Chiffchaff": 2,
+    "Common Poppy": 2,
+    "Cow Parsley": 5,
+    "Cowslip": 5,
+    "Cuckoo Pint": 2,
+    "Dandelion": 2,
+    "Garlic Mustard": 5,
+    "Orange Tip Butterfly": 5,
+    "Peacock Butterfly": 2,
+    "Red Admiral Butterfly": 2,
+    "Red Campion": 2,
+    "Red Dead Nettle": 2,
+    "Rosebay Willowherb": 3,
+    "Snowdrop": 4,
+    "Speckled Wood Butterfly": 2,
+    "Swallow": 2,
+    "Swift": 2,
+    "Redwing": 1
+  },
+  "clusters": [
+    {
+      "cluster_id": 1,
+      "n_species": 1,
+      "species": [
+        "Redwing"
+      ],
+      "dominant_model_family": "winter_presence",
+      "dominant_primary_class": "winter_visitor_with_autumn_arrival_component",
+      "numeric_summary": {
+        "peak_month": {
+          "n": 1,
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "trough_month": {
+          "n": 1,
+          "mean": 5.0,
+          "min": 5.0,
+          "max": 5.0
+        },
+        "autumn_to_winter_weight_ratio": {
+          "n": 1,
+          "mean": 0.26572,
+          "min": 0.26572,
+          "max": 0.26572
+        },
+        "decay_to_growth_ratio": {
+          "n": 1,
+          "mean": 3.722853,
+          "min": 3.722853,
+          "max": 3.722853
+        },
+        "active_month_count_ge_0_10": {
+          "n": 1,
+          "mean": 7.0,
+          "min": 7.0,
+          "max": 7.0
+        },
+        "fit_score": {
+          "n": 1,
+          "mean": 0.109,
+          "min": 0.109,
+          "max": 0.109
+        }
+      },
+      "categorical_summary": {
+        "model_family": {
+          "dominant": "winter_presence",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "winter_presence",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "primary_class": {
+          "dominant": "winter_visitor_with_autumn_arrival_component",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "winter_visitor_with_autumn_arrival_component",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "confidence": {
+          "dominant": "medium",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "medium",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "baseline_presence": {
+          "dominant": "low",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "low",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "timing": {
+          "dominant": "core_winter",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "core_winter",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "summer_suppression": {
+          "dominant": "moderate",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "moderate",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "autumn_component": {
+          "dominant": "moderate",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "moderate",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "response_dynamics": {
+          "dominant": "slow_arrival_fast_departure",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "slow_arrival_fast_departure",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        }
+      },
+      "common_traits": [
+        {
+          "trait": "year_wrapping_winter_presence",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "core_winter_winter_peak",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "moderate_autumn_component",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "moderate_summer_suppression",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "low_baseline_presence",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "moderate_winter_bump",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "slow_arrival_fast_departure_response_dynamics",
+          "count": 1,
+          "fraction": 1.0
+        }
+      ],
+      "distinguishing_numeric_features": [
+        {
+          "feature": "autumn_to_winter_weight_ratio",
+          "cluster_mean": 0.26572,
+          "global_mean": 0.075983,
+          "difference": 0.189737,
+          "scaled_difference": 0.82822,
+          "direction": "higher"
+        },
+        {
+          "feature": "decay_to_growth_ratio",
+          "cluster_mean": 3.722853,
+          "global_mean": 1.606822,
+          "difference": 2.116031,
+          "scaled_difference": 0.818761,
+          "direction": "higher"
+        },
+        {
+          "feature": "trough_month",
+          "cluster_mean": 5.0,
+          "global_mean": 8.461225,
+          "difference": -3.461225,
+          "scaled_difference": -0.576871,
+          "direction": "lower"
+        },
+        {
+          "feature": "fit_score",
+          "cluster_mean": 0.109,
+          "global_mean": 0.3096,
+          "difference": -0.2006,
+          "scaled_difference": -0.404435,
+          "direction": "lower"
+        },
+        {
+          "feature": "peak_month",
+          "cluster_mean": 1.0,
+          "global_mean": 4.236756,
+          "difference": -3.236756,
+          "scaled_difference": -0.35964,
+          "direction": "lower"
+        }
+      ],
+      "suggested_label_terms": [
+        "winter_presence",
+        "core_winter",
+        "winter_visitor_with_autumn_arrival_component",
+        "mean_peak_month_1.0",
+        "year_wrapping_winter_presence",
+        "core_winter_winter_peak",
+        "moderate_autumn_component"
+      ]
+    },
+    {
+      "cluster_id": 2,
+      "n_species": 13,
+      "species": [
+        "Dandelion",
+        "Brimstone Butterfly",
+        "Red Dead Nettle",
+        "Red Campion",
+        "Buttercup",
+        "Swallow",
+        "Chiffchaff",
+        "Peacock Butterfly",
+        "Cuckoo Pint",
+        "Common Poppy",
+        "Swift",
+        "Red Admiral Butterfly",
+        "Speckled Wood Butterfly"
+      ],
+      "dominant_model_family": "seasonal_presence",
+      "dominant_primary_class": "extended_spring_seasonal_presence",
+      "numeric_summary": {
+        "peak_month": {
+          "n": 13,
+          "mean": 5.521246,
+          "min": 4.015,
+          "max": 8.435
+        },
+        "season_start_month": {
+          "n": 13,
+          "mean": 3.395492,
+          "min": 2.295,
+          "max": 4.975
+        },
+        "season_end_month": {
+          "n": 13,
+          "mean": 10.006697,
+          "min": 7.445,
+          "max": 11.55
+        },
+        "season_width_months": {
+          "n": 13,
+          "mean": 6.553077,
+          "min": 4.43,
+          "max": 9.205
+        },
+        "season_midpoint_month": {
+          "n": 13,
+          "mean": 6.700703,
+          "min": 5.23,
+          "max": 7.595
+        }
+      },
+      "categorical_summary": {
+        "model_family": {
+          "dominant": "seasonal_presence",
+          "dominant_count": 13,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "seasonal_presence",
+              "count": 13,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "primary_class": {
+          "dominant": "extended_spring_seasonal_presence",
+          "dominant_count": 8,
+          "dominant_fraction": 0.615385,
+          "values": [
+            {
+              "value": "extended_spring_seasonal_presence",
+              "count": 8,
+              "fraction": 0.615385
+            },
+            {
+              "value": "extended_summer_seasonal_presence",
+              "count": 5,
+              "fraction": 0.384615
+            }
+          ]
+        },
+        "confidence": {
+          "dominant": "medium",
+          "dominant_count": 13,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "medium",
+              "count": 13,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "timing": {
+          "dominant": "spring",
+          "dominant_count": 8,
+          "dominant_fraction": 0.615385,
+          "values": [
+            {
+              "value": "spring",
+              "count": 8,
+              "fraction": 0.615385
+            },
+            {
+              "value": "summer",
+              "count": 5,
+              "fraction": 0.384615
+            }
+          ]
+        },
+        "season_width_class": {
+          "dominant": "very_broad",
+          "dominant_count": 8,
+          "dominant_fraction": 0.615385,
+          "values": [
+            {
+              "value": "very_broad",
+              "count": 8,
+              "fraction": 0.615385
+            },
+            {
+              "value": "broad",
+              "count": 5,
+              "fraction": 0.384615
+            }
+          ]
+        },
+        "window_shape": {
+          "dominant": "moderate",
+          "dominant_count": 7,
+          "dominant_fraction": 0.538462,
+          "values": [
+            {
+              "value": "moderate",
+              "count": 7,
+              "fraction": 0.538462
+            },
+            {
+              "value": "sharp",
+              "count": 6,
+              "fraction": 0.461538
+            }
+          ]
+        },
+        "post_peak_decline": {
+          "dominant": "strong",
+          "dominant_count": 7,
+          "dominant_fraction": 0.538462,
+          "values": [
+            {
+              "value": "strong",
+              "count": 7,
+              "fraction": 0.538462
+            },
+            {
+              "value": "moderate",
+              "count": 5,
+              "fraction": 0.384615
+            },
+            {
+              "value": "weak",
+              "count": 1,
+              "fraction": 0.076923
+            }
+          ]
+        },
+        "offseason_suppression": {
+          "dominant": "strong",
+          "dominant_count": 12,
+          "dominant_fraction": 0.923077,
+          "values": [
+            {
+              "value": "strong",
+              "count": 12,
+              "fraction": 0.923077
+            },
+            {
+              "value": "moderate",
+              "count": 1,
+              "fraction": 0.076923
+            }
+          ]
+        }
+      },
+      "common_traits": [
+        {
+          "trait": "strong_offseason_suppression",
+          "count": 12,
+          "fraction": 0.923077
+        },
+        {
+          "trait": "early_peak_alignment",
+          "count": 10,
+          "fraction": 0.769231
+        },
+        {
+          "trait": "spring_peak",
+          "count": 8,
+          "fraction": 0.615385
+        },
+        {
+          "trait": "very_broad_season",
+          "count": 8,
+          "fraction": 0.615385
+        },
+        {
+          "trait": "moderate_seasonal_window",
+          "count": 7,
+          "fraction": 0.538462
+        },
+        {
+          "trait": "strong_post_peak_decline",
+          "count": 7,
+          "fraction": 0.538462
+        },
+        {
+          "trait": "sharp_seasonal_window",
+          "count": 6,
+          "fraction": 0.461538
+        },
+        {
+          "trait": "moderate_post_peak_decline",
+          "count": 5,
+          "fraction": 0.384615
+        },
+        {
+          "trait": "broad_season",
+          "count": 5,
+          "fraction": 0.384615
+        },
+        {
+          "trait": "summer_peak",
+          "count": 5,
+          "fraction": 0.384615
+        }
+      ],
+      "distinguishing_numeric_features": [
+        {
+          "feature": "season_width_months",
+          "cluster_mean": 6.553077,
+          "global_mean": 5.078,
+          "difference": 1.475077,
+          "scaled_difference": 0.189234,
+          "direction": "higher"
+        },
+        {
+          "feature": "peak_month",
+          "cluster_mean": 5.521246,
+          "global_mean": 4.236756,
+          "difference": 1.28449,
+          "scaled_difference": 0.142721,
+          "direction": "higher"
+        },
+        {
+          "feature": "season_end_month",
+          "cluster_mean": 10.006697,
+          "global_mean": 9.125292,
+          "difference": 0.881405,
+          "scaled_difference": 0.108281,
+          "direction": "higher"
+        },
+        {
+          "feature": "season_midpoint_month",
+          "cluster_mean": 6.700703,
+          "global_mean": 6.211521,
+          "difference": 0.489182,
+          "scaled_difference": 0.092824,
+          "direction": "higher"
+        },
+        {
+          "feature": "season_start_month",
+          "cluster_mean": 3.395492,
+          "global_mean": 3.557363,
+          "difference": -0.161871,
+          "scaled_difference": -0.034774,
+          "direction": "lower"
+        }
+      ],
+      "suggested_label_terms": [
+        "seasonal_presence",
+        "spring",
+        "very_broad",
+        "extended_spring_seasonal_presence",
+        "mean_peak_month_5.521246",
+        "strong_offseason_suppression",
+        "early_peak_alignment",
+        "spring_peak"
+      ]
+    },
+    {
+      "cluster_id": 3,
+      "n_species": 1,
+      "species": [
+        "Rosebay Willowherb"
+      ],
+      "dominant_model_family": "seasonal_presence",
+      "dominant_primary_class": "moderate_autumn_seasonal_presence",
+      "numeric_summary": {
+        "peak_month": {
+          "n": 1,
+          "mean": 8.615,
+          "min": 8.615,
+          "max": 8.615
+        },
+        "season_start_month": {
+          "n": 1,
+          "mean": 6.175,
+          "min": 6.175,
+          "max": 6.175
+        },
+        "season_end_month": {
+          "n": 1,
+          "mean": 9.295,
+          "min": 9.295,
+          "max": 9.295
+        },
+        "season_width_months": {
+          "n": 1,
+          "mean": 3.12,
+          "min": 3.12,
+          "max": 3.12
+        },
+        "season_midpoint_month": {
+          "n": 1,
+          "mean": 7.735,
+          "min": 7.735,
+          "max": 7.735
+        }
+      },
+      "categorical_summary": {
+        "model_family": {
+          "dominant": "seasonal_presence",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "seasonal_presence",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "primary_class": {
+          "dominant": "moderate_autumn_seasonal_presence",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "moderate_autumn_seasonal_presence",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "confidence": {
+          "dominant": "medium",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "medium",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "timing": {
+          "dominant": "autumn",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "autumn",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "season_width_class": {
+          "dominant": "moderate",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "moderate",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "window_shape": {
+          "dominant": "sharp",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "sharp",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "post_peak_decline": {
+          "dominant": "strong",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "strong",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "offseason_suppression": {
+          "dominant": "strong",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "strong",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        }
+      },
+      "common_traits": [
+        {
+          "trait": "autumn_peak",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "moderate_season",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "sharp_seasonal_window",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "strong_post_peak_decline",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "strong_offseason_suppression",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "late_peak_alignment",
+          "count": 1,
+          "fraction": 1.0
+        }
+      ],
+      "distinguishing_numeric_features": [
+        {
+          "feature": "season_start_month",
+          "cluster_mean": 6.175,
+          "global_mean": 3.557363,
+          "difference": 2.617637,
+          "scaled_difference": 0.562328,
+          "direction": "higher"
+        },
+        {
+          "feature": "peak_month",
+          "cluster_mean": 8.615,
+          "global_mean": 4.236756,
+          "difference": 4.378244,
+          "scaled_difference": 0.486472,
+          "direction": "higher"
+        },
+        {
+          "feature": "season_midpoint_month",
+          "cluster_mean": 7.735,
+          "global_mean": 6.211521,
+          "difference": 1.523479,
+          "scaled_difference": 0.289085,
+          "direction": "higher"
+        },
+        {
+          "feature": "season_width_months",
+          "cluster_mean": 3.12,
+          "global_mean": 5.078,
+          "difference": -1.958,
+          "scaled_difference": -0.251187,
+          "direction": "lower"
+        },
+        {
+          "feature": "season_end_month",
+          "cluster_mean": 9.295,
+          "global_mean": 9.125292,
+          "difference": 0.169708,
+          "scaled_difference": 0.020849,
+          "direction": "higher"
+        }
+      ],
+      "suggested_label_terms": [
+        "seasonal_presence",
+        "autumn",
+        "moderate",
+        "moderate_autumn_seasonal_presence",
+        "mean_peak_month_8.615",
+        "autumn_peak",
+        "moderate_season",
+        "sharp_seasonal_window"
+      ]
+    },
+    {
+      "cluster_id": 4,
+      "n_species": 1,
+      "species": [
+        "Snowdrop"
+      ],
+      "dominant_model_family": "seasonal_presence",
+      "dominant_primary_class": "narrow_winter_seasonal_presence",
+      "numeric_summary": {
+        "peak_month": {
+          "n": 1,
+          "mean": 2.275,
+          "min": 2.275,
+          "max": 2.275
+        },
+        "season_start_month": {
+          "n": 1,
+          "mean": 1.52,
+          "min": 1.52,
+          "max": 1.52
+        },
+        "season_end_month": {
+          "n": 1,
+          "mean": 3.41,
+          "min": 3.41,
+          "max": 3.41
+        },
+        "season_width_months": {
+          "n": 1,
+          "mean": 1.89,
+          "min": 1.89,
+          "max": 1.89
+        },
+        "season_midpoint_month": {
+          "n": 1,
+          "mean": 2.465,
+          "min": 2.465,
+          "max": 2.465
+        }
+      },
+      "categorical_summary": {
+        "model_family": {
+          "dominant": "seasonal_presence",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "seasonal_presence",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "primary_class": {
+          "dominant": "narrow_winter_seasonal_presence",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "narrow_winter_seasonal_presence",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "confidence": {
+          "dominant": "medium",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "medium",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "timing": {
+          "dominant": "winter",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "winter",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "season_width_class": {
+          "dominant": "narrow",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "narrow",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "window_shape": {
+          "dominant": "moderate",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "moderate",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "post_peak_decline": {
+          "dominant": "moderate",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "moderate",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "offseason_suppression": {
+          "dominant": "strong",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "strong",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        }
+      },
+      "common_traits": [
+        {
+          "trait": "winter_peak",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "narrow_season",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "moderate_seasonal_window",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "moderate_post_peak_decline",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "strong_offseason_suppression",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "central_peak_alignment",
+          "count": 1,
+          "fraction": 1.0
+        }
+      ],
+      "distinguishing_numeric_features": [
+        {
+          "feature": "season_midpoint_month",
+          "cluster_mean": 2.465,
+          "global_mean": 6.211521,
+          "difference": -3.746521,
+          "scaled_difference": -0.710915,
+          "direction": "lower"
+        },
+        {
+          "feature": "season_end_month",
+          "cluster_mean": 3.41,
+          "global_mean": 9.125292,
+          "difference": -5.715292,
+          "scaled_difference": -0.702124,
+          "direction": "lower"
+        },
+        {
+          "feature": "season_start_month",
+          "cluster_mean": 1.52,
+          "global_mean": 3.557363,
+          "difference": -2.037363,
+          "scaled_difference": -0.437672,
+          "direction": "lower"
+        },
+        {
+          "feature": "season_width_months",
+          "cluster_mean": 1.89,
+          "global_mean": 5.078,
+          "difference": -3.188,
+          "scaled_difference": -0.40898,
+          "direction": "lower"
+        },
+        {
+          "feature": "peak_month",
+          "cluster_mean": 2.275,
+          "global_mean": 4.236756,
+          "difference": -1.961756,
+          "scaled_difference": -0.217973,
+          "direction": "lower"
+        }
+      ],
+      "suggested_label_terms": [
+        "seasonal_presence",
+        "winter",
+        "narrow",
+        "narrow_winter_seasonal_presence",
+        "mean_peak_month_2.275",
+        "winter_peak",
+        "narrow_season",
+        "moderate_seasonal_window"
+      ]
+    },
+    {
+      "cluster_id": 5,
+      "n_species": 5,
+      "species": [
+        "Bluebell",
+        "Garlic Mustard",
+        "Cow Parsley",
+        "Cowslip",
+        "Orange Tip Butterfly"
+      ],
+      "dominant_model_family": "seasonal_presence",
+      "dominant_primary_class": "moderate_spring_seasonal_presence",
+      "numeric_summary": {
+        "peak_month": {
+          "n": 5,
+          "mean": 4.763379,
+          "min": 4.265,
+          "max": 5.285
+        },
+        "season_start_month": {
+          "n": 5,
+          "mean": 3.896628,
+          "min": 3.41,
+          "max": 4.19
+        },
+        "season_end_month": {
+          "n": 5,
+          "mean": 6.163601,
+          "min": 5.49,
+          "max": 7.155
+        },
+        "season_width_months": {
+          "n": 5,
+          "mean": 2.272,
+          "min": 1.41,
+          "max": 2.965
+        },
+        "season_midpoint_month": {
+          "n": 5,
+          "mean": 5.031406,
+          "min": 4.45,
+          "max": 5.6725
+        },
+        "fit_score": {
+          "n": 1,
+          "mean": 0.047,
+          "min": 0.047,
+          "max": 0.047
+        }
+      },
+      "categorical_summary": {
+        "model_family": {
+          "dominant": "seasonal_presence",
+          "dominant_count": 5,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "seasonal_presence",
+              "count": 5,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "primary_class": {
+          "dominant": "moderate_spring_seasonal_presence",
+          "dominant_count": 4,
+          "dominant_fraction": 0.8,
+          "values": [
+            {
+              "value": "moderate_spring_seasonal_presence",
+              "count": 4,
+              "fraction": 0.8
+            },
+            {
+              "value": "narrow_spring_seasonal_presence",
+              "count": 1,
+              "fraction": 0.2
+            }
+          ]
+        },
+        "confidence": {
+          "dominant": "medium",
+          "dominant_count": 4,
+          "dominant_fraction": 0.8,
+          "values": [
+            {
+              "value": "medium",
+              "count": 4,
+              "fraction": 0.8
+            },
+            {
+              "value": "high",
+              "count": 1,
+              "fraction": 0.2
+            }
+          ]
+        },
+        "timing": {
+          "dominant": "spring",
+          "dominant_count": 5,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "spring",
+              "count": 5,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "season_width_class": {
+          "dominant": "moderate",
+          "dominant_count": 4,
+          "dominant_fraction": 0.8,
+          "values": [
+            {
+              "value": "moderate",
+              "count": 4,
+              "fraction": 0.8
+            },
+            {
+              "value": "narrow",
+              "count": 1,
+              "fraction": 0.2
+            }
+          ]
+        },
+        "window_shape": {
+          "dominant": "sharp",
+          "dominant_count": 4,
+          "dominant_fraction": 0.8,
+          "values": [
+            {
+              "value": "sharp",
+              "count": 4,
+              "fraction": 0.8
+            },
+            {
+              "value": "moderate",
+              "count": 1,
+              "fraction": 0.2
+            }
+          ]
+        },
+        "post_peak_decline": {
+          "dominant": "strong",
+          "dominant_count": 3,
+          "dominant_fraction": 0.6,
+          "values": [
+            {
+              "value": "strong",
+              "count": 3,
+              "fraction": 0.6
+            },
+            {
+              "value": "moderate",
+              "count": 2,
+              "fraction": 0.4
+            }
+          ]
+        },
+        "offseason_suppression": {
+          "dominant": "strong",
+          "dominant_count": 4,
+          "dominant_fraction": 0.8,
+          "values": [
+            {
+              "value": "strong",
+              "count": 4,
+              "fraction": 0.8
+            },
+            {
+              "value": "moderate",
+              "count": 1,
+              "fraction": 0.2
+            }
+          ]
+        }
+      },
+      "common_traits": [
+        {
+          "trait": "spring_peak",
+          "count": 5,
+          "fraction": 1.0
+        },
+        {
+          "trait": "central_peak_alignment",
+          "count": 5,
+          "fraction": 1.0
+        },
+        {
+          "trait": "sharp_seasonal_window",
+          "count": 4,
+          "fraction": 0.8
+        },
+        {
+          "trait": "strong_offseason_suppression",
+          "count": 4,
+          "fraction": 0.8
+        },
+        {
+          "trait": "moderate_season",
+          "count": 4,
+          "fraction": 0.8
+        },
+        {
+          "trait": "strong_post_peak_decline",
+          "count": 3,
+          "fraction": 0.6
+        },
+        {
+          "trait": "moderate_post_peak_decline",
+          "count": 2,
+          "fraction": 0.4
+        },
+        {
+          "trait": "narrow_season",
+          "count": 1,
+          "fraction": 0.2
+        },
+        {
+          "trait": "moderate_offseason_suppression",
+          "count": 1,
+          "fraction": 0.2
+        },
+        {
+          "trait": "moderate_seasonal_window",
+          "count": 1,
+          "fraction": 0.2
+        }
+      ],
+      "distinguishing_numeric_features": [
+        {
+          "feature": "fit_score",
+          "cluster_mean": 0.047,
+          "global_mean": 0.3096,
+          "difference": -0.2626,
+          "scaled_difference": -0.529435,
+          "direction": "lower"
+        },
+        {
+          "feature": "season_end_month",
+          "cluster_mean": 6.163601,
+          "global_mean": 9.125292,
+          "difference": -2.961691,
+          "scaled_difference": -0.363844,
+          "direction": "lower"
+        },
+        {
+          "feature": "season_width_months",
+          "cluster_mean": 2.272,
+          "global_mean": 5.078,
+          "difference": -2.806,
+          "scaled_difference": -0.359974,
+          "direction": "lower"
+        },
+        {
+          "feature": "season_midpoint_month",
+          "cluster_mean": 5.031406,
+          "global_mean": 6.211521,
+          "difference": -1.180115,
+          "scaled_difference": -0.223931,
+          "direction": "lower"
+        },
+        {
+          "feature": "season_start_month",
+          "cluster_mean": 3.896628,
+          "global_mean": 3.557363,
+          "difference": 0.339265,
+          "scaled_difference": 0.072882,
+          "direction": "higher"
+        },
+        {
+          "feature": "peak_month",
+          "cluster_mean": 4.763379,
+          "global_mean": 4.236756,
+          "difference": 0.526623,
+          "scaled_difference": 0.058514,
+          "direction": "higher"
+        }
+      ],
+      "suggested_label_terms": [
+        "seasonal_presence",
+        "spring",
+        "moderate",
+        "moderate_spring_seasonal_presence",
+        "mean_peak_month_4.763379",
+        "spring_peak",
+        "central_peak_alignment",
+        "sharp_seasonal_window"
+      ]
+    },
+    {
+      "cluster_id": 6,
+      "n_species": 1,
+      "species": [
+        "Jay"
+      ],
+      "dominant_model_family": "resident_detectability",
+      "dominant_primary_class": "resident_with_summer_detectability_collapse",
+      "numeric_summary": {
+        "peak_month": {
+          "n": 1,
+          "mean": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        },
+        "trough_month": {
+          "n": 1,
+          "mean": 8.0,
+          "min": 8.0,
+          "max": 8.0
+        },
+        "target_mean_value": {
+          "n": 1,
+          "mean": 0.135254,
+          "min": 0.135254,
+          "max": 0.135254
+        },
+        "target_amplitude": {
+          "n": 1,
+          "mean": 0.367732,
+          "min": 0.367732,
+          "max": 0.367732
+        },
+        "baseline_to_peak_ratio": {
+          "n": 1,
+          "mean": 0.146846,
+          "min": 0.146846,
+          "max": 0.146846
+        },
+        "autumn_to_winter_weight_ratio": {
+          "n": 1,
+          "mean": 0.090625,
+          "min": 0.090625,
+          "max": 0.090625
+        },
+        "year_end_to_winter_weight_ratio": {
+          "n": 1,
+          "mean": 0.46875,
+          "min": 0.46875,
+          "max": 0.46875
+        },
+        "decay_to_growth_ratio": {
+          "n": 1,
+          "mean": 1.144231,
+          "min": 1.144231,
+          "max": 1.144231
+        },
+        "fit_score": {
+          "n": 1,
+          "mean": 0.543,
+          "min": 0.543,
+          "max": 0.543
+        }
+      },
+      "categorical_summary": {
+        "model_family": {
+          "dominant": "resident_detectability",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "resident_detectability",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "primary_class": {
+          "dominant": "resident_with_summer_detectability_collapse",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "resident_with_summer_detectability_collapse",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "confidence": {
+          "dominant": "low",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "low",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "baseline_presence": {
+          "dominant": "weak",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "weak",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "timing": {
+          "dominant": "autumn",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "autumn",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "summer_suppression": {
+          "dominant": "moderate",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "moderate",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "autumn_component": {
+          "dominant": "weak",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "weak",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "response_dynamics": {
+          "dominant": "decline_biased",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "decline_biased",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        }
+      },
+      "common_traits": [
+        {
+          "trait": "resident_detectability_pattern",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "weak_baseline_presence",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "autumn_detectability_peak",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "summer_detectability_trough",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "weak_spring_carryover",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "moderate_summer_suppression",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "moderate_summer_decay_acceleration",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "strong_pre_summer_retention",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "weak_autumn_component",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "meaningful_year_end_component",
+          "count": 1,
+          "fraction": 1.0
+        }
+      ],
+      "distinguishing_numeric_features": [
+        {
+          "feature": "peak_month",
+          "cluster_mean": 10.0,
+          "global_mean": 4.236756,
+          "difference": 5.763244,
+          "scaled_difference": 0.64036,
+          "direction": "higher"
+        },
+        {
+          "feature": "target_amplitude",
+          "cluster_mean": 0.367732,
+          "global_mean": 0.659436,
+          "difference": -0.291704,
+          "scaled_difference": -0.610896,
+          "direction": "lower"
+        },
+        {
+          "feature": "fit_score",
+          "cluster_mean": 0.543,
+          "global_mean": 0.3096,
+          "difference": 0.2334,
+          "scaled_difference": 0.470565,
+          "direction": "higher"
+        },
+        {
+          "feature": "target_mean_value",
+          "cluster_mean": 0.135254,
+          "global_mean": 0.475986,
+          "difference": -0.340732,
+          "scaled_difference": -0.436465,
+          "direction": "lower"
+        },
+        {
+          "feature": "baseline_to_peak_ratio",
+          "cluster_mean": 0.146846,
+          "global_mean": 0.311014,
+          "difference": -0.164168,
+          "scaled_difference": -0.309991,
+          "direction": "lower"
+        },
+        {
+          "feature": "decay_to_growth_ratio",
+          "cluster_mean": 1.144231,
+          "global_mean": 1.606822,
+          "difference": -0.462591,
+          "scaled_difference": -0.178991,
+          "direction": "lower"
+        },
+        {
+          "feature": "trough_month",
+          "cluster_mean": 8.0,
+          "global_mean": 8.461225,
+          "difference": -0.461225,
+          "scaled_difference": -0.076871,
+          "direction": "lower"
+        },
+        {
+          "feature": "year_end_to_winter_weight_ratio",
+          "cluster_mean": 0.46875,
+          "global_mean": 0.443364,
+          "difference": 0.025386,
+          "scaled_difference": 0.065993,
+          "direction": "higher"
+        }
+      ],
+      "suggested_label_terms": [
+        "resident_detectability",
+        "autumn",
+        "resident_with_summer_detectability_collapse",
+        "mean_peak_month_10.0",
+        "resident_detectability_pattern",
+        "weak_baseline_presence",
+        "autumn_detectability_peak"
+      ]
+    },
+    {
+      "cluster_id": 7,
+      "n_species": 7,
+      "species": [
+        "Mute Swan",
+        "Robin",
+        "Blackbird",
+        "Goldfinch",
+        "Woodpigeon",
+        "Common Starling",
+        "Magpie"
+      ],
+      "dominant_model_family": "resident_detectability",
+      "dominant_primary_class": "resident_with_spring_persistence_and_summer_suppression",
+      "numeric_summary": {
+        "peak_month": {
+          "n": 7,
+          "mean": 2.138835,
+          "min": 2.0,
+          "max": 3.0
+        },
+        "trough_month": {
+          "n": 7,
+          "mean": 8.555632,
+          "min": 8.0,
+          "max": 10.0
+        },
+        "target_mean_value": {
+          "n": 7,
+          "mean": 0.656475,
+          "min": 0.412438,
+          "max": 0.915916
+        },
+        "target_amplitude": {
+          "n": 7,
+          "mean": 0.665263,
+          "min": 0.551726,
+          "max": 0.775771
+        },
+        "baseline_to_peak_ratio": {
+          "n": 7,
+          "mean": 0.448585,
+          "min": 0.336993,
+          "max": 0.584716
+        },
+        "autumn_to_winter_weight_ratio": {
+          "n": 7,
+          "mean": 0.083996,
+          "min": 0.063291,
+          "max": 0.130952
+        },
+        "year_end_to_winter_weight_ratio": {
+          "n": 7,
+          "mean": 0.572096,
+          "min": 0.481586,
+          "max": 0.665698
+        },
+        "decay_to_growth_ratio": {
+          "n": 7,
+          "mean": 1.279647,
+          "min": 1.191297,
+          "max": 1.433493
+        },
+        "fit_score": {
+          "n": 7,
+          "mean": 0.365,
+          "min": 0.227,
+          "max": 0.48
+        }
+      },
+      "categorical_summary": {
+        "model_family": {
+          "dominant": "resident_detectability",
+          "dominant_count": 7,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "resident_detectability",
+              "count": 7,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "primary_class": {
+          "dominant": "resident_with_spring_persistence_and_summer_suppression",
+          "dominant_count": 5,
+          "dominant_fraction": 0.714286,
+          "values": [
+            {
+              "value": "resident_with_spring_persistence_and_summer_suppression",
+              "count": 5,
+              "fraction": 0.714286
+            },
+            {
+              "value": "resident_with_summer_detectability_collapse",
+              "count": 2,
+              "fraction": 0.285714
+            }
+          ]
+        },
+        "confidence": {
+          "dominant": "low",
+          "dominant_count": 5,
+          "dominant_fraction": 0.714286,
+          "values": [
+            {
+              "value": "low",
+              "count": 5,
+              "fraction": 0.714286
+            },
+            {
+              "value": "medium",
+              "count": 2,
+              "fraction": 0.285714
+            }
+          ]
+        },
+        "baseline_presence": {
+          "dominant": "strong",
+          "dominant_count": 6,
+          "dominant_fraction": 0.857143,
+          "values": [
+            {
+              "value": "strong",
+              "count": 6,
+              "fraction": 0.857143
+            },
+            {
+              "value": "moderate",
+              "count": 1,
+              "fraction": 0.142857
+            }
+          ]
+        },
+        "timing": {
+          "dominant": "winter",
+          "dominant_count": 6,
+          "dominant_fraction": 0.857143,
+          "values": [
+            {
+              "value": "winter",
+              "count": 6,
+              "fraction": 0.857143
+            },
+            {
+              "value": "spring",
+              "count": 1,
+              "fraction": 0.142857
+            }
+          ]
+        },
+        "summer_suppression": {
+          "dominant": "strong",
+          "dominant_count": 5,
+          "dominant_fraction": 0.714286,
+          "values": [
+            {
+              "value": "strong",
+              "count": 5,
+              "fraction": 0.714286
+            },
+            {
+              "value": "moderate",
+              "count": 2,
+              "fraction": 0.285714
+            }
+          ]
+        },
+        "autumn_component": {
+          "dominant": "weak",
+          "dominant_count": 6,
+          "dominant_fraction": 0.857143,
+          "values": [
+            {
+              "value": "weak",
+              "count": 6,
+              "fraction": 0.857143
+            },
+            {
+              "value": "meaningful",
+              "count": 1,
+              "fraction": 0.142857
+            }
+          ]
+        },
+        "response_dynamics": {
+          "dominant": "rapid_decline_biased",
+          "dominant_count": 4,
+          "dominant_fraction": 0.571429,
+          "values": [
+            {
+              "value": "rapid_decline_biased",
+              "count": 4,
+              "fraction": 0.571429
+            },
+            {
+              "value": "decline_biased",
+              "count": 3,
+              "fraction": 0.428571
+            }
+          ]
+        }
+      },
+      "common_traits": [
+        {
+          "trait": "resident_detectability_pattern",
+          "count": 7,
+          "fraction": 1.0
+        },
+        {
+          "trait": "meaningful_year_end_component",
+          "count": 7,
+          "fraction": 1.0
+        },
+        {
+          "trait": "strong_baseline_presence",
+          "count": 6,
+          "fraction": 0.857143
+        },
+        {
+          "trait": "winter_detectability_peak",
+          "count": 6,
+          "fraction": 0.857143
+        },
+        {
+          "trait": "weak_autumn_component",
+          "count": 6,
+          "fraction": 0.857143
+        },
+        {
+          "trait": "strong_spring_carryover",
+          "count": 5,
+          "fraction": 0.714286
+        },
+        {
+          "trait": "strong_pre_summer_retention",
+          "count": 5,
+          "fraction": 0.714286
+        },
+        {
+          "trait": "strong_summer_suppression",
+          "count": 5,
+          "fraction": 0.714286
+        },
+        {
+          "trait": "summer_detectability_trough",
+          "count": 4,
+          "fraction": 0.571429
+        },
+        {
+          "trait": "strong_summer_decay_acceleration",
+          "count": 4,
+          "fraction": 0.571429
+        }
+      ],
+      "distinguishing_numeric_features": [
+        {
+          "feature": "year_end_to_winter_weight_ratio",
+          "cluster_mean": 0.572096,
+          "global_mean": 0.443364,
+          "difference": 0.128732,
+          "scaled_difference": 0.33465,
+          "direction": "higher"
+        },
+        {
+          "feature": "baseline_to_peak_ratio",
+          "cluster_mean": 0.448585,
+          "global_mean": 0.311014,
+          "difference": 0.137571,
+          "scaled_difference": 0.259769,
+          "direction": "higher"
+        },
+        {
+          "feature": "peak_month",
+          "cluster_mean": 2.138835,
+          "global_mean": 4.236756,
+          "difference": -2.097921,
+          "scaled_difference": -0.233102,
+          "direction": "lower"
+        },
+        {
+          "feature": "target_mean_value",
+          "cluster_mean": 0.656475,
+          "global_mean": 0.475986,
+          "difference": 0.180489,
+          "scaled_difference": 0.2312,
+          "direction": "higher"
+        },
+        {
+          "feature": "decay_to_growth_ratio",
+          "cluster_mean": 1.279647,
+          "global_mean": 1.606822,
+          "difference": -0.327175,
+          "scaled_difference": -0.126595,
+          "direction": "lower"
+        },
+        {
+          "feature": "fit_score",
+          "cluster_mean": 0.365,
+          "global_mean": 0.3096,
+          "difference": 0.0554,
+          "scaled_difference": 0.111694,
+          "direction": "higher"
+        },
+        {
+          "feature": "autumn_to_winter_weight_ratio",
+          "cluster_mean": 0.083996,
+          "global_mean": 0.075983,
+          "difference": 0.008013,
+          "scaled_difference": 0.034978,
+          "direction": "higher"
+        },
+        {
+          "feature": "trough_month",
+          "cluster_mean": 8.555632,
+          "global_mean": 8.461225,
+          "difference": 0.094407,
+          "scaled_difference": 0.015734,
+          "direction": "higher"
+        }
+      ],
+      "suggested_label_terms": [
+        "resident_detectability",
+        "winter",
+        "resident_with_spring_persistence_and_summer_suppression",
+        "mean_peak_month_2.138835",
+        "resident_detectability_pattern",
+        "meaningful_year_end_component",
+        "strong_baseline_presence"
+      ]
+    },
+    {
+      "cluster_id": 8,
+      "n_species": 10,
+      "species": [
+        "House Sparrow",
+        "Common Cleavers",
+        "Shepherds Purse",
+        "Skylark",
+        "Wren",
+        "Blue Tit",
+        "Dunnock",
+        "Great Tit",
+        "Daisy",
+        "Song Thrush"
+      ],
+      "dominant_model_family": "resident_detectability",
+      "dominant_primary_class": "resident_with_summer_detectability_collapse",
+      "numeric_summary": {
+        "peak_month": {
+          "n": 10,
+          "mean": 4.206867,
+          "min": 3.0,
+          "max": 5.0
+        },
+        "trough_month": {
+          "n": 10,
+          "mean": 8.650542,
+          "min": 8.0,
+          "max": 11.0
+        },
+        "target_mean_value": {
+          "n": 10,
+          "mean": 0.383716,
+          "min": 0.232077,
+          "max": 0.703257
+        },
+        "target_amplitude": {
+          "n": 10,
+          "mean": 0.684526,
+          "min": 0.59261,
+          "max": 0.845234
+        },
+        "baseline_to_peak_ratio": {
+          "n": 10,
+          "mean": 0.231131,
+          "min": 0.055126,
+          "max": 0.407261
+        },
+        "autumn_to_winter_weight_ratio": {
+          "n": 10,
+          "mean": 0.049936,
+          "min": 0.03663,
+          "max": 0.071429
+        },
+        "year_end_to_winter_weight_ratio": {
+          "n": 10,
+          "mean": 0.350712,
+          "min": 0.281022,
+          "max": 0.479592
+        },
+        "decay_to_growth_ratio": {
+          "n": 10,
+          "mean": 1.670501,
+          "min": 1.138422,
+          "max": 1.913143
+        },
+        "fit_score": {
+          "n": 10,
+          "mean": 0.2938,
+          "min": 0.176,
+          "max": 0.498
+        }
+      },
+      "categorical_summary": {
+        "model_family": {
+          "dominant": "resident_detectability",
+          "dominant_count": 10,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "resident_detectability",
+              "count": 10,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "primary_class": {
+          "dominant": "resident_with_summer_detectability_collapse",
+          "dominant_count": 10,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "resident_with_summer_detectability_collapse",
+              "count": 10,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "confidence": {
+          "dominant": "medium",
+          "dominant_count": 4,
+          "dominant_fraction": 0.4,
+          "values": [
+            {
+              "value": "medium",
+              "count": 4,
+              "fraction": 0.4
+            },
+            {
+              "value": "high",
+              "count": 3,
+              "fraction": 0.3
+            },
+            {
+              "value": "low",
+              "count": 3,
+              "fraction": 0.3
+            }
+          ]
+        },
+        "baseline_presence": {
+          "dominant": "weak",
+          "dominant_count": 4,
+          "dominant_fraction": 0.4,
+          "values": [
+            {
+              "value": "weak",
+              "count": 4,
+              "fraction": 0.4
+            },
+            {
+              "value": "moderate",
+              "count": 4,
+              "fraction": 0.4
+            },
+            {
+              "value": "strong",
+              "count": 2,
+              "fraction": 0.2
+            }
+          ]
+        },
+        "timing": {
+          "dominant": "spring",
+          "dominant_count": 6,
+          "dominant_fraction": 0.6,
+          "values": [
+            {
+              "value": "spring",
+              "count": 6,
+              "fraction": 0.6
+            },
+            {
+              "value": "late_spring_early_summer",
+              "count": 4,
+              "fraction": 0.4
+            }
+          ]
+        },
+        "summer_suppression": {
+          "dominant": "moderate",
+          "dominant_count": 10,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "moderate",
+              "count": 10,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "autumn_component": {
+          "dominant": "weak",
+          "dominant_count": 8,
+          "dominant_fraction": 0.8,
+          "values": [
+            {
+              "value": "weak",
+              "count": 8,
+              "fraction": 0.8
+            },
+            {
+              "value": "minimal",
+              "count": 2,
+              "fraction": 0.2
+            }
+          ]
+        },
+        "response_dynamics": {
+          "dominant": "rapid_decline_biased",
+          "dominant_count": 9,
+          "dominant_fraction": 0.9,
+          "values": [
+            {
+              "value": "rapid_decline_biased",
+              "count": 9,
+              "fraction": 0.9
+            },
+            {
+              "value": "decline_biased",
+              "count": 1,
+              "fraction": 0.1
+            }
+          ]
+        }
+      },
+      "common_traits": [
+        {
+          "trait": "resident_detectability_pattern",
+          "count": 10,
+          "fraction": 1.0
+        },
+        {
+          "trait": "moderate_summer_suppression",
+          "count": 10,
+          "fraction": 1.0
+        },
+        {
+          "trait": "rapid_decline_biased_response_dynamics",
+          "count": 9,
+          "fraction": 0.9
+        },
+        {
+          "trait": "weak_autumn_component",
+          "count": 8,
+          "fraction": 0.8
+        },
+        {
+          "trait": "meaningful_year_end_component",
+          "count": 8,
+          "fraction": 0.8
+        },
+        {
+          "trait": "moderate_pre_summer_retention",
+          "count": 6,
+          "fraction": 0.6
+        },
+        {
+          "trait": "moderate_spring_carryover",
+          "count": 6,
+          "fraction": 0.6
+        },
+        {
+          "trait": "spring_detectability_peak",
+          "count": 6,
+          "fraction": 0.6
+        },
+        {
+          "trait": "strong_summer_decay_acceleration",
+          "count": 5,
+          "fraction": 0.5
+        },
+        {
+          "trait": "summer_detectability_trough",
+          "count": 5,
+          "fraction": 0.5
+        }
+      ],
+      "distinguishing_numeric_features": [
+        {
+          "feature": "year_end_to_winter_weight_ratio",
+          "cluster_mean": 0.350712,
+          "global_mean": 0.443364,
+          "difference": -0.092652,
+          "scaled_difference": -0.240857,
+          "direction": "lower"
+        },
+        {
+          "feature": "baseline_to_peak_ratio",
+          "cluster_mean": 0.231131,
+          "global_mean": 0.311014,
+          "difference": -0.079883,
+          "scaled_difference": -0.150839,
+          "direction": "lower"
+        },
+        {
+          "feature": "target_mean_value",
+          "cluster_mean": 0.383716,
+          "global_mean": 0.475986,
+          "difference": -0.09227,
+          "scaled_difference": -0.118195,
+          "direction": "lower"
+        },
+        {
+          "feature": "autumn_to_winter_weight_ratio",
+          "cluster_mean": 0.049936,
+          "global_mean": 0.075983,
+          "difference": -0.026047,
+          "scaled_difference": -0.113698,
+          "direction": "lower"
+        },
+        {
+          "feature": "target_amplitude",
+          "cluster_mean": 0.684526,
+          "global_mean": 0.659436,
+          "difference": 0.02509,
+          "scaled_difference": 0.052544,
+          "direction": "higher"
+        },
+        {
+          "feature": "fit_score",
+          "cluster_mean": 0.2938,
+          "global_mean": 0.3096,
+          "difference": -0.0158,
+          "scaled_difference": -0.031855,
+          "direction": "lower"
+        },
+        {
+          "feature": "trough_month",
+          "cluster_mean": 8.650542,
+          "global_mean": 8.461225,
+          "difference": 0.189317,
+          "scaled_difference": 0.031553,
+          "direction": "higher"
+        },
+        {
+          "feature": "decay_to_growth_ratio",
+          "cluster_mean": 1.670501,
+          "global_mean": 1.606822,
+          "difference": 0.063679,
+          "scaled_difference": 0.024639,
+          "direction": "higher"
+        }
+      ],
+      "suggested_label_terms": [
+        "resident_detectability",
+        "spring",
+        "resident_with_summer_detectability_collapse",
+        "mean_peak_month_4.206867",
+        "resident_detectability_pattern",
+        "moderate_summer_suppression",
+        "rapid_decline_biased_response_dynamics"
+      ]
+    }
+  ]
+}

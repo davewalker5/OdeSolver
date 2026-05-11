@@ -1,0 +1,126 @@
+
+Species clusters
+================
+
+Cluster 1
+---------
+Species (1):
+  Redwing
+
+Dominant model family : winter_presence
+Dominant class        : winter_visitor_with_autumn_arrival_component
+Common traits         : year_wrapping_winter_presence, core_winter_winter_peak, moderate_autumn_component, moderate_summer_suppression, low_baseline_presence
+
+Peak month mean/range : 1.00 (1.00 - 1.00)
+
+Cluster 2
+---------
+Species (13):
+  Dandelion
+  Brimstone Butterfly
+  Red Dead Nettle
+  Red Campion
+  Buttercup
+  Swallow
+  Chiffchaff
+  Peacock Butterfly
+  Cuckoo Pint
+  Common Poppy
+  Swift
+  Red Admiral Butterfly
+  Speckled Wood Butterfly
+
+Dominant model family : seasonal_presence
+Dominant class        : extended_spring_seasonal_presence
+Common traits         : strong_offseason_suppression, early_peak_alignment, spring_peak, very_broad_season, moderate_seasonal_window
+
+Peak month mean/range : 5.52 (4.01 - 8.44)
+Season width mean     : 6.55 months
+
+Cluster 3
+---------
+Species (1):
+  Rosebay Willowherb
+
+Dominant model family : seasonal_presence
+Dominant class        : moderate_autumn_seasonal_presence
+Common traits         : autumn_peak, moderate_season, sharp_seasonal_window, strong_post_peak_decline, strong_offseason_suppression
+
+Peak month mean/range : 8.62 (8.62 - 8.62)
+Season width mean     : 3.12 months
+
+Cluster 4
+---------
+Species (1):
+  Snowdrop
+
+Dominant model family : seasonal_presence
+Dominant class        : narrow_winter_seasonal_presence
+Common traits         : winter_peak, narrow_season, moderate_seasonal_window, moderate_post_peak_decline, strong_offseason_suppression
+
+Peak month mean/range : 2.27 (2.27 - 2.27)
+Season width mean     : 1.89 months
+
+Cluster 5
+---------
+Species (5):
+  Bluebell
+  Garlic Mustard
+  Cow Parsley
+  Cowslip
+  Orange Tip Butterfly
+
+Dominant model family : seasonal_presence
+Dominant class        : moderate_spring_seasonal_presence
+Common traits         : spring_peak, central_peak_alignment, sharp_seasonal_window, strong_offseason_suppression, moderate_season
+
+Peak month mean/range : 4.76 (4.26 - 5.29)
+Season width mean     : 2.27 months
+
+Cluster 6
+---------
+Species (1):
+  Jay
+
+Dominant model family : resident_detectability
+Dominant class        : resident_with_summer_detectability_collapse
+Common traits         : resident_detectability_pattern, weak_baseline_presence, autumn_detectability_peak, summer_detectability_trough, weak_spring_carryover
+
+Peak month mean/range : 10.00 (10.00 - 10.00)
+
+Cluster 7
+---------
+Species (7):
+  Mute Swan
+  Robin
+  Blackbird
+  Goldfinch
+  Woodpigeon
+  Common Starling
+  Magpie
+
+Dominant model family : resident_detectability
+Dominant class        : resident_with_spring_persistence_and_summer_suppression
+Common traits         : resident_detectability_pattern, meaningful_year_end_component, strong_baseline_presence, winter_detectability_peak, weak_autumn_component
+
+Peak month mean/range : 2.14 (2.00 - 3.00)
+
+Cluster 8
+---------
+Species (10):
+  House Sparrow
+  Common Cleavers
+  Shepherds Purse
+  Skylark
+  Wren
+  Blue Tit
+  Dunnock
+  Great Tit
+  Daisy
+  Song Thrush
+
+Dominant model family : resident_detectability
+Dominant class        : resident_with_summer_detectability_collapse
+Common traits         : resident_detectability_pattern, moderate_summer_suppression, rapid_decline_biased_response_dynamics, weak_autumn_component, meaningful_year_end_component
+
+Peak month mean/range : 4.21 (3.00 - 5.00)
