@@ -14,10 +14,11 @@ from __future__ import annotations
 
 import json
 import math
+import numpy as np
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple
-from seasonal.support.numeric import clamp
+from seasonal.support.numeric import clamp, round_float
 
 
 DEFAULT_CIRCULAR_MONTH_FEATURES: Dict[str, float] = {
@@ -608,17 +609,94 @@ def as_string_list(value: Any) -> List[str]:
     return [text] if text else []
 
 
-def round_float(value: Optional[float], digits: int = 6) -> Optional[float]:
+def build_similarity_matrix(species_names: Sequence[str], similarity_data: Dict[str, Any]) -> np.ndarray:
     """
-    Round an optional float to a fixed number of decimal places
+    Convert the similarity data into a 2D matrix that the heatmap can render. If the original data looks like this:
 
-    :param value: Float value to round
-    :param digits: Number of decimal places
-    :return: Rounded float or None
+    [
+        {
+            "species_a": "Robin",
+            "species_b": "Blackbird",
+            "similarity": 0.81
+        },
+        ...
+    ]
+
+    the matrix looks like this:
+
+                Robin   Blackbird   Swift
+    Robin       1.0     0.81        0.14
+    Blackbird   0.81    1.0         0.11
+    Swift       0.14    0.11        1.0
+
+    :param species_names: Ordered list of species names
+    :param similarity_data: Species similarity data
+    :return: Similarity matrix
     """
-    if value is None:
-        return None
-    return round(float(value), digits)
+    pairwise = similarity_data.get("pairwise")
+
+    if not isinstance(pairwise, list):
+        raise ValueError("similarity_data must contain a 'pairwise' list")
+
+    name_to_index = {name: i for i, name in enumerate(species_names)}
+    n_species = len(species_names)
+
+    matrix = np.full((n_species, n_species), np.nan, dtype=float)
+    np.fill_diagonal(matrix, 1.0)
+
+    for record in pairwise:
+        if not isinstance(record, dict):
+            continue
+
+        species_a = record.get("species_a")
+        species_b = record.get("species_b")
+        similarity = record.get("similarity")
+
+        if species_a not in name_to_index or species_b not in name_to_index:
+            continue
+
+        if similarity is None:
+            continue
+
+        try:
+            similarity_value = float(similarity)
+        except (TypeError, ValueError):
+            continue
+
+        i = name_to_index[species_a]
+        j = name_to_index[species_b]
+
+        matrix[i, j] = similarity_value
+        matrix[j, i] = similarity_value
+
+    if np.isnan(matrix).any():
+        missing = int(np.isnan(matrix).sum())
+        raise ValueError(f"Similarity matrix is incomplete: {missing} missing cells")
+
+    return matrix
+
+
+def extract_species_names(similarity_data: Dict[str, Any]) -> List[str]:
+    """
+    Extract the species names from the similarity data
+
+    :param similarity_data: Species similarity dictionary
+    :return: List of species names
+    """
+    species_entries = similarity_data.get("species")
+    if not isinstance(species_entries, list) or not species_entries:
+        raise ValueError("similarity_data must contain a non-empty 'species' list")
+
+    names: List[str] = []
+    for entry in species_entries:
+        if not isinstance(entry, dict) or not entry.get("species"):
+            raise ValueError("Each species entry must be a dictionary with a 'species' value")
+        names.append(str(entry["species"]))
+
+    if len(set(names)) != len(names):
+        raise ValueError("Species names must be unique")
+
+    return names
 
 
 def save_similarity_summary(similarity: dict, file_path: str) -> None:

@@ -1,7 +1,9 @@
+import random
+import math
+import numpy as np
+from typing import Sequence
 from decimal import Decimal
 from seasonal.support.numeric import D
-import random
-
 
 MONTH_NAMES = {
     1: "January",
@@ -31,6 +33,42 @@ def circular_month_distance(a, b):
     b = D(b)
     diff = abs(a - b)
     return min(diff, D("12") - diff)
+
+
+def signed_circular_month_difference(a: float, b: float) -> float:
+    """
+    Calculate the shortest signed difference between two month values on a 12-month cycle
+
+    :param a: First month value on a 1-12 scale
+    :param b: Second month value on a 1-12 scale
+    :return: Signed month difference in the range -6 to +6
+    """
+    difference = (a - b + 6.0) % 12.0 - 6.0
+    return difference
+
+
+def circular_month_mean(values: Sequence[float]) -> float:
+    """
+    Calculate the circular mean of month numbers on a 12-month cycle
+
+    This avoids treating December and January as far apart when averaging seasonal timing values
+
+    :param values: Month values expressed on a 1-12 scale
+    :return: Circular mean month on the same 1-12 scale
+    :raises ValueError: If values is empty
+    """
+    if not values:
+        raise ValueError("Cannot calculate circular mean of empty values")
+
+    angles = [((value - 1.0) / 12.0) * 2.0 * math.pi for value in values]
+    sin_mean = float(np.mean([math.sin(angle) for angle in angles]))
+    cos_mean = float(np.mean([math.cos(angle) for angle in angles]))
+
+    angle = math.atan2(sin_mean, cos_mean)
+    if angle < 0:
+        angle += 2.0 * math.pi
+
+    return (angle / (2.0 * math.pi)) * 12.0 + 1.0
 
 
 def wrap_month(value):

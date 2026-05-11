@@ -130,6 +130,44 @@ A key design goal is interpretability.
 
 Rather than producing opaque embeddings or black-box similarity scores, the system attempts to preserve ecological meaning at every stage of the comparison process. Component distances remain inspectable, allowing similarities to be understood in terms of timing, amplitude, seasonal width, suppression dynamics, classification structure, and trait overlap.
 
+### 6. Cluster and neighbourhood analysis
+
+Once pairwise species similarity has been calculated, the resulting similarity matrix can be explored using hierarchical clustering and heatmap visualisation techniques.
+
+The clustering system attempts to identify groups of species occupying similar regions of seasonal ecological space.
+
+These neighbourhoods are not intended to represent strict taxonomic groupings. Instead, they reflect similarities in seasonal ecological signal, including:
+
+- Shared timing structure
+- Similar seasonal persistence
+- Comparable detectability behaviour
+- Overlapping flowering, emergence, or migration periods
+- Broad phenological synchrony
+
+The resulting clusters often contain ecologically plausible seasonal assemblages, including:
+
+- Resident bird neighbourhoods
+- Spring flowering communities
+- Butterfly flight-period groupings
+- Transitional seasonal assemblages
+- More isolated winter visitor behaviour
+
+Importantly, the clustering structure is hierarchical rather than absolute.
+
+The heatmaps and extracted clusters should therefore be interpreted as exploratory views of seasonal ecological structure rather than fixed ecological categories. Different clustering resolutions may reveal broader assemblages or finer sub-structure within the same ecological neighbourhood.
+
+A major design goal remains interpretability.
+
+Cluster summaries attempt to expose the underlying feature structure driving the groupings, including:
+
+- Dominant classifications
+- Shared traits
+- Mean seasonal timing
+- Seasonal width
+- Distinguishing ecological characteristics
+
+This allows the resulting neighbourhoods to be inspected and interpreted ecologically, rather than treated as opaque statistical groupings.
+
 ## Folder Structure
 
 ### seasonal-presence/

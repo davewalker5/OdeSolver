@@ -4,7 +4,8 @@ import argparse
 from pathlib import Path
 
 from seasonal.features.species_similarity import build_species_similarity, save_similarity_summary
-from seasonal.features.species_similarity_heatmap import generate_species_similarity_heatmap
+from seasonal.features.similarity_heatmap import generate_species_similarity_heatmap
+from seasonal.features.similarity_clusters import extract_species_similarity_clusters, save_cluster_summary
 from seasonal.features.feature_matrix import build_feature_table, find_input_files, write_csv
 from seasonal.support.console import print_error, print_message
 from seasonal.support.json import write_json
@@ -70,9 +71,13 @@ def main() -> None:
                         help="Directory containing classification JSON files")
     parser.add_argument("-j", "--json", type=Path, required=True, help="Canonical feature matrix JSON output path")
     parser.add_argument("-c", "--csv", type=Path, help="Companion CSV output path. Use --no-csv to skip")
-    parser.add_argument("-s", "--similarity", type=Path, required=True, help="Species similarity JSON output path")
-    parser.add_argument("-su", "--summary", type=Path, help="Species similarity summary file path")
-    parser.add_argument("-hm", "--heatmap", type=Path, help="Species similarity summary file path")
+    parser.add_argument("-s", "--similarity", type=Path, required=True, help="Species similarity output path")
+    parser.add_argument("-ssu", "--similarity-summary", type=Path, help="Species similarity summary output file path")
+    parser.add_argument("-hm", "--heatmap", type=Path, required=True,
+                        help="Species similarity summary heatmap image file path")
+    parser.add_argument("-cl", "--clusters", type=Path, required=True, help="Cluster analysis output file path")
+    parser.add_argument("-csu", "--cluster-summary", type=Path, required=True,
+                        help="Cluster analysis summary output file path")
     args = parser.parse_args()
 
     # Look for JSON classification files in the specified input folders
@@ -98,13 +103,20 @@ def main() -> None:
     # Build the species similarity matrix
     similarity = build_species_similarity(feature_matrix, args.similarity)
     print_message(f"Species similarity written to {Path(args.similarity).name}")
-    if args.summary:
-        save_similarity_summary(similarity, args.summary)
-        print_message(f"Species similarity text dump written to {Path(args.summary).name}")
+    if args.similarity_summary:
+        save_similarity_summary(similarity, args.similarity_summary)
+        print_message(f"Species similarity text dump written to {Path(args.similarity_summary).name}")
 
     # Generate the species similarity heatmap
     generate_species_similarity_heatmap(similarity, args.heatmap)
     print_message(f"Species similarity heatmap written to {Path(args.heatmap).name}")
+
+    # Extract the species similarity clusters
+    clusters = extract_species_similarity_clusters(similarity, feature_matrix, args.clusters, n_clusters=8)
+    print_message(f"Species similarity cluster analysis written to {Path(args.clusters).name}")
+    if args.cluster_summary:
+        save_cluster_summary(clusters, args.cluster_summary)
+        print_message(f"Species similarity text dump written to {Path(args.cluster_summary).name}")
 
 
 if __name__ == "__main__":

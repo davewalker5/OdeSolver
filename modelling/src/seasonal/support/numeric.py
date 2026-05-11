@@ -2,6 +2,7 @@ from decimal import Decimal, InvalidOperation
 from typing import Any, Optional
 import random
 import sys
+import math
 
 
 def to_decimal(value: Any, name: str = None, error_type: type[Exception] = InvalidOperation) -> Decimal:
@@ -90,6 +91,24 @@ def safe_ratio(numerator: Decimal, denominator: Decimal) -> Decimal:
     if denominator == 0:
         return D("0")
     return numerator / denominator
+
+
+def safe_float(value: Any) -> Optional[float]:
+    """
+    Convert a value to a finite float, treating invalid values as missing
+
+    :param value: Input value to convert
+    :return: Float value, or None if the value is missing, non-numeric, NaN or infinite
+    """
+    if value is None:
+        return None
+    try:
+        result = float(value)
+    except (TypeError, ValueError):
+        return None
+    if math.isnan(result) or math.isinf(result):
+        return None
+    return result
 
 
 def round_float(value: Optional[float], digits: int = 6) -> Optional[float]:
