@@ -132,7 +132,9 @@ Rather than producing opaque embeddings or black-box similarity scores, the syst
 
 ### 6. Cluster and neighbourhood analysis
 
-Once pairwise species similarity has been calculated, the resulting similarity matrix can be explored using hierarchical clustering and heatmap visualisation techniques.
+Once pairwise species similarity has been calculated, the resulting similarity matrix can be explored using hierarchical clustering, dendrogram analysis, and heatmap visualisation techniques. 
+
+The dendrogram visualisation exposes the hierarchy directly, allowing seasonal ecological neighbourhoods and nested sub-structure to be explored across multiple scales simultaneously.
 
 The clustering system attempts to identify groups of species occupying similar regions of seasonal ecological space.
 
@@ -154,7 +156,7 @@ The resulting clusters often contain ecologically plausible seasonal assemblages
 
 Importantly, the clustering structure is hierarchical rather than absolute.
 
-The heatmaps and extracted clusters should therefore be interpreted as exploratory views of seasonal ecological structure rather than fixed ecological categories. Different clustering resolutions may reveal broader assemblages or finer sub-structure within the same ecological neighbourhood.
+The heatmaps, dendrograms, and extracted clusters should therefore be interpreted as exploratory views of seasonal ecological structure rather than fixed ecological categories.
 
 A major design goal remains interpretability.
 
