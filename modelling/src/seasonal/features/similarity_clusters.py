@@ -8,10 +8,10 @@ from typing import Any, Dict, List, Optional, Sequence
 
 import numpy as np
 from scipy.cluster.hierarchy import fcluster
-from seasonal.features.clustering import order_species_by_linkage
+from seasonal.features.clustering import order_species_by_linkage, serialise_linkage_matrix
 from seasonal.features.species_similarity import build_similarity_matrix, extract_species_names
 from seasonal.support.numeric import round_float, safe_float
-from seasonal.support.calendar import circular_month_mean, signed_circular_month_difference
+from seasonal.support.calendar import circular_month_mean, signed_circular_month_difference, month_label
 
 
 DEFAULT_NUMERIC_FEATURES = [
@@ -55,7 +55,7 @@ MONTH_FEATURES = {
 }
 
 
-GENERATED_SCHEMA_VERSION = "species-similarity-clusters/v1"
+GENERATED_SCHEMA_VERSION = "species-similarity-clusters/v2"
 
 
 def extract_species_similarity_clusters(
@@ -99,6 +99,11 @@ def extract_species_similarity_clusters(
 
     similarity_matrix = build_similarity_matrix(species_names, similarity_data)
     leaf_order, linkage_matrix = order_species_by_linkage(similarity_matrix, linkage_method=linkage_method)
+    linkage_details = serialise_linkage_matrix(
+        linkage_matrix=linkage_matrix,
+        species_names=species_names,
+        leaf_order=leaf_order,
+    )
 
     if distance_threshold is not None:
         raw_labels = fcluster(linkage_matrix, t=distance_threshold, criterion="distance")
@@ -171,6 +176,7 @@ def extract_species_similarity_clusters(
             "assemblages rather than fixed ecological categories.",
         },
         "species_order": [species_names[i] for i in leaf_order],
+        "linkage": linkage_details,
         "species_cluster_ids": species_cluster_ids,
         "clusters": clusters,
     }
@@ -255,10 +261,19 @@ def _summarise_cluster(
         top_n=top_n_distinguishing_features,
     )
 
+    description = _describe_cluster(
+        members=members,
+        categorical_summary=categorical_summary,
+        numeric_summary=numeric_summary,
+        common_traits=common_traits,
+        distinguishing_numeric_features=distinguishing_numeric_features,
+    )
+
     return {
         "cluster_id": cluster_id,
         "n_species": len(members),
         "species": members,
+        "description": description,
         "dominant_model_family": _dominant_value(categorical_summary.get("model_family")),
         "dominant_primary_class": _dominant_value(categorical_summary.get("primary_class")),
         "numeric_summary": numeric_summary,
@@ -271,6 +286,252 @@ def _summarise_cluster(
             common_traits=common_traits,
         ),
     }
+
+
+def _describe_cluster(
+    members: Sequence[str],
+    categorical_summary: Dict[str, Dict[str, Any]],
+    numeric_summary: Dict[str, Dict[str, Any]],
+    common_traits: Sequence[Dict[str, Any]],
+    distinguishing_numeric_features: Sequence[Dict[str, Any]],
+) -> str:
+    """
+    Generate a compact human-readable interpretation of a cluster.
+
+    The description is deliberately deterministic and evidence-based: it only
+    uses the cluster summaries already present in the JSON, rather than trying
+    to infer taxonomy or causal ecology.
+    """
+    n_members = len(members)
+    model_family = _dominant_value(categorical_summary.get("model_family"))
+    primary_class = _dominant_value(categorical_summary.get("primary_class"))
+    timing = _dominant_value(categorical_summary.get("timing"))
+    width_class = _dominant_value(categorical_summary.get("season_width_class"))
+    window_shape = _dominant_value(categorical_summary.get("window_shape"))
+    baseline = _dominant_value(categorical_summary.get("baseline_presence"))
+    summer_suppression = _dominant_value(categorical_summary.get("summer_suppression"))
+    autumn_component = _dominant_value(categorical_summary.get("autumn_component"))
+    response = _dominant_value(categorical_summary.get("response_dynamics"))
+
+    opening = _cluster_opening_sentence(
+        members=members,
+        model_family=model_family,
+        primary_class=primary_class,
+        timing=timing,
+    )
+
+    details: List[str] = []
+
+    peak = _summary_mean(numeric_summary, "peak_month")
+    start = _summary_mean(numeric_summary, "season_start_month")
+    end = _summary_mean(numeric_summary, "season_end_month")
+    width = _summary_mean(numeric_summary, "season_width_months")
+    trough = _summary_mean(numeric_summary, "trough_month")
+
+    if model_family == "seasonal_presence":
+        seasonal_bits: List[str] = []
+        if start is not None and end is not None:
+            seasonal_bits.append(
+                f"the fitted active window runs roughly from {month_label(start)} to {month_label(end)}"
+            )
+        if peak is not None:
+            seasonal_bits.append(f"with a mean peak around {month_label(peak)}")
+        if width is not None:
+            seasonal_bits.append(f"and an average width of {width:.1f} months")
+        if seasonal_bits:
+            details.append(_sentence_from_bits(seasonal_bits))
+
+        shape_bits = []
+        if width_class:
+            shape_bits.append(f"{_humanise_token(width_class)} season")
+        if window_shape:
+            shape_bits.append(f"{_humanise_token(window_shape)} active window")
+        if shape_bits:
+            details.append("It is characterised by " + " and ".join(shape_bits) + ".")
+
+    elif model_family == "resident_detectability":
+        seasonal_bits = []
+        if peak is not None:
+            seasonal_bits.append(f"detectability peaks around {month_label(peak)}")
+        if trough is not None:
+            seasonal_bits.append(f"and is lowest around {month_label(trough)}")
+        if seasonal_bits:
+            details.append(_sentence_from_bits(seasonal_bits))
+
+        dynamics_bits = []
+        if baseline:
+            dynamics_bits.append(f"{_humanise_token(baseline)} baseline presence")
+        if summer_suppression:
+            dynamics_bits.append(f"{_humanise_token(summer_suppression)} summer suppression")
+        if autumn_component:
+            dynamics_bits.append(f"{_humanise_token(autumn_component)} autumn component")
+        if response:
+            dynamics_bits.append(f"{_humanise_token(response)} response dynamics")
+        if dynamics_bits:
+            details.append("The shared pattern includes " + _join_phrase(dynamics_bits) + ".")
+
+    elif model_family == "winter_presence":
+        winter_bits = []
+        if peak is not None:
+            winter_bits.append(f"a winter peak around {month_label(peak)}")
+        if autumn_component:
+            winter_bits.append(f"a {_humanise_token(autumn_component)} autumn component")
+        if summer_suppression:
+            winter_bits.append(f"{_humanise_token(summer_suppression)} summer suppression")
+        if response:
+            winter_bits.append(f"{_humanise_token(response)} response dynamics")
+        if winter_bits:
+            details.append("The defining pattern is " + _join_phrase(winter_bits) + ".")
+
+    else:
+        if peak is not None:
+            details.append(f"The mean fitted peak is around {month_label(peak)}.")
+
+    trait_phrase = _common_trait_phrase(common_traits, n_members)
+    if trait_phrase:
+        details.append(trait_phrase)
+
+    contrast_phrase = _distinguishing_feature_phrase(distinguishing_numeric_features)
+    if contrast_phrase:
+        details.append(contrast_phrase)
+
+    return " ".join([opening] + details)
+
+
+def _cluster_opening_sentence(
+    members: Sequence[str],
+    model_family: Optional[str],
+    primary_class: Optional[str],
+    timing: Optional[str],
+) -> str:
+    """
+    Build the opening sentence for a human-readable cluster description
+
+    :param members: Species names belonging to the cluster
+    :param model_family: Dominant model family for the cluster, if available
+    :param primary_class: Dominant primary classification for the cluster, if available
+    :param timing: Dominant timing category for the cluster, if available
+    :return: Opening sentence describing the cluster at a high level
+    """
+    if len(members) == 1:
+        subject = f"Single-species cluster containing {members[0]}"
+    else:
+        subject = f"Cluster of {len(members)} species"
+
+    descriptors = []
+    if timing:
+        descriptors.append(_humanise_token(timing))
+    if primary_class:
+        descriptors.append(_humanise_token(primary_class))
+    elif model_family:
+        descriptors.append(_humanise_token(model_family))
+
+    if descriptors:
+        return subject + ", mainly representing " + " ".join(descriptors) + "."
+    return subject + "."
+
+
+def _summary_mean(summary: Dict[str, Dict[str, Any]], feature: str) -> Optional[float]:
+    """
+    Extract the mean value for a feature from a numeric summary dictionary
+
+    :param summary: Numeric summary dictionary keyed by feature name
+    :param feature: Feature name whose mean value should be returned
+    :return: Mean value as a float, or None if unavailable or not numeric
+    """
+    value = summary.get(feature, {}).get("mean")
+    return safe_float(value)
+
+
+def _humanise_token(value: str) -> str:
+    """
+    Convert an underscore-delimited token into readable text
+
+    :param value: Machine-readable token or classification value
+    :return: Human-readable version of the token
+    """
+    return value.replace("_", " ")
+
+
+def _sentence_from_bits(bits: Sequence[str]) -> str:
+    """
+    Join sentence fragments and format them as a sentence
+
+    :param bits: Ordered sentence fragments to combine
+    :return: Capitalised sentence ending with a full stop, or an empty string
+    """
+    if not bits:
+        return ""
+    text = _join_phrase(list(bits))
+    return text[:1].upper() + text[1:] + "."
+
+
+def _join_phrase(items: Sequence[str]) -> str:
+    """
+    Join a sequence of phrases using readable comma-and conjunction formatting
+
+    :param items: Phrases to combine
+    :return: Human-readable joined phrase
+    """
+    items = [str(item) for item in items if item]
+    if not items:
+        return ""
+    if len(items) == 1:
+        return items[0]
+    if len(items) == 2:
+        return f"{items[0]} and {items[1]}"
+    return ", ".join(items[:-1]) + f", and {items[-1]}"
+
+
+def _common_trait_phrase(common_traits: Sequence[Dict[str, Any]], n_members: int) -> Optional[str]:
+    """
+    Build a sentence describing high-support traits shared by cluster members.
+
+    :param common_traits: Ordered trait summary dictionaries for the cluster
+    :param n_members: Number of species in the cluster
+    :return: Human-readable trait sentence, or None if no high-support traits are present
+    """
+    high_support_traits = []
+    for row in common_traits:
+        trait = row.get("trait")
+        fraction = safe_float(row.get("fraction"))
+        if trait and fraction is not None and fraction >= 0.75:
+            high_support_traits.append(_humanise_token(str(trait)))
+        if len(high_support_traits) >= 3:
+            break
+
+    if not high_support_traits:
+        return None
+
+    if n_members == 1:
+        return "Its defining traits include " + _join_phrase(high_support_traits) + "."
+    return "Common high-support traits include " + _join_phrase(high_support_traits) + "."
+
+
+def _distinguishing_feature_phrase(distinguishing_numeric_features: Sequence[Dict[str, Any]]) -> Optional[str]:
+    """
+    Build a sentence describing the strongest numeric contrasts for a cluster
+
+    :param distinguishing_numeric_features: Ordered cluster-vs-global numeric contrast dictionaries
+    :return: Human-readable contrast sentence, or None if no strong contrasts are present
+    """
+    strong = []
+    for row in distinguishing_numeric_features:
+        feature = row.get("feature")
+        direction = row.get("direction")
+        scaled = safe_float(row.get("scaled_difference"))
+        if not feature or direction not in {"higher", "lower"} or scaled is None:
+            continue
+        if abs(scaled) < 0.25:
+            continue
+        strong.append(f"{_humanise_token(str(feature))} is {direction} than the whole-set average")
+        if len(strong) >= 2:
+            break
+
+    if not strong:
+        return None
+
+    return "Compared with the full species set, " + _join_phrase(strong) + "."
 
 
 def _summarise_numeric_features(
@@ -506,6 +767,10 @@ def save_cluster_summary(cluster_data: dict, file_path: str) -> None:
             f.write(f"\nCluster {cluster_id}\n")
             f.write("-" * (8 + len(str(cluster_id))) + "\n")
 
+            description = cluster.get("description")
+            if description:
+                f.write(f"{description}\n\n")
+
             f.write(f"Species ({len(species)}):\n")
             for name in species:
                 f.write(f"  {name}\n")
@@ -528,10 +793,10 @@ def save_cluster_summary(cluster_data: dict, file_path: str) -> None:
                     if isinstance(item, dict):
                         label = item.get("trait")
                         count = item.get("count")
-                        proportion = item.get("proportion")
+                        fraction = item.get("fraction")
 
-                        if label is not None and count is not None and proportion is not None:
-                            trait_labels.append(f"{label} ({count}, {proportion:.0%})")
+                        if label is not None and count is not None and fraction is not None:
+                            trait_labels.append(f"{label} ({count}, {float(fraction):.0%})")
                         elif label is not None:
                             trait_labels.append(str(label))
                     else:
@@ -550,14 +815,17 @@ def save_cluster_summary(cluster_data: dict, file_path: str) -> None:
             if width:
                 f.write(f"Season width mean     : {width['mean']:.2f} months\n")
 
-            distinguishing = cluster.get("distinguishing_features", [])
+            distinguishing = cluster.get("distinguishing_numeric_features", [])
 
             if distinguishing:
-                f.write("\nDistinguishing features:\n")
+                f.write("\nDistinguishing numeric features:\n")
 
                 for item in distinguishing[:5]:
                     feature = item.get("feature")
                     direction = item.get("direction")
-                    strength = item.get("effect_size")
+                    strength = item.get("scaled_difference")
 
-                    f.write(f"  - {feature} ({direction}, effect={strength:.2f})\n")
+                    if feature is None or direction is None or strength is None:
+                        continue
+
+                    f.write(f"  - {feature} ({direction}, scaled_difference={float(strength):.2f})\n")

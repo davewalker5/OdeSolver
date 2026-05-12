@@ -78,6 +78,8 @@ def main() -> None:
     parser.add_argument("-cl", "--clusters", type=Path, required=True, help="Cluster analysis output file path")
     parser.add_argument("-csu", "--cluster-summary", type=Path, required=True,
                         help="Cluster analysis summary output file path")
+    parser.add_argument("-d", "--dendrogram", type=Path, required=True,
+                        help="Species similarity summary dendogram image file path")
     args = parser.parse_args()
 
     # Look for JSON classification files in the specified input folders

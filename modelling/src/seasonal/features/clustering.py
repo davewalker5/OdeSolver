@@ -1,7 +1,7 @@
 
 from __future__ import annotations
 
-from typing import List, Tuple
+from typing import Any, Dict, List, Sequence, Tuple
 
 import numpy as np
 from scipy.cluster.hierarchy import leaves_list, linkage
@@ -50,3 +50,84 @@ def order_species_by_linkage(similarity_matrix: np.ndarray, linkage_method: str 
     linkage_matrix = build_linkage_matrix(similarity_matrix, linkage_method=linkage_method)
     order = leaves_list(linkage_matrix).tolist()
     return order, linkage_matrix
+
+
+def serialise_linkage_matrix(
+    linkage_matrix: np.ndarray,
+    species_names: Sequence[str],
+    leaf_order: Sequence[int] | None = None,
+    *,
+    decimals: int = 6,
+) -> Dict[str, Any]:
+    """
+    Convert a SciPy linkage matrix into a JSON-friendly dendrogram description.
+
+    SciPy linkage rows use integer node IDs: original observations are leaves
+    0..n-1, and newly merged internal nodes are n..2n-2 in row order. This
+    function preserves that convention so the JSON can be converted back to a
+    SciPy linkage matrix for plotting, while also adding species names and child
+    membership lists for easier inspection.
+
+    :param linkage_matrix: SciPy linkage matrix with columns child_1, child_2,
+        distance and n_leaves
+    :param species_names: Species names in the same order used to build the
+        similarity matrix
+    :param leaf_order: Optional dendrogram leaf order returned by leaves_list
+    :param decimals: Number of decimal places used for stored distances
+    :return: JSON-serialisable linkage metadata and merge details
+    """
+    n_species = len(species_names)
+    if linkage_matrix.shape != (max(n_species - 1, 0), 4):
+        raise ValueError(
+            "linkage_matrix shape does not match species_names length: "
+            f"shape={linkage_matrix.shape}, n_species={n_species}"
+        )
+
+    species_by_node_id: Dict[int, List[str]] = {
+        i: [str(name)] for i, name in enumerate(species_names)
+    }
+
+    merges: List[Dict[str, Any]] = []
+    scipy_rows: List[List[float]] = []
+
+    for row_index, row in enumerate(linkage_matrix):
+        left_id = int(row[0])
+        right_id = int(row[1])
+        distance = round(float(row[2]), decimals)
+        n_leaves = int(row[3])
+        node_id = n_species + row_index
+
+        left_species = species_by_node_id[left_id]
+        right_species = species_by_node_id[right_id]
+        merged_species = left_species + right_species
+        species_by_node_id[node_id] = merged_species
+
+        scipy_rows.append([left_id, right_id, distance, n_leaves])
+        merges.append(
+            {
+                "node_id": node_id,
+                "left_child": left_id,
+                "right_child": right_id,
+                "distance": distance,
+                "n_leaves": n_leaves,
+                "species": merged_species,
+                "left_species": left_species,
+                "right_species": right_species,
+            }
+        )
+
+    return {
+        "format": "scipy.cluster.hierarchy.linkage",
+        "columns": ["left_child", "right_child", "distance", "n_leaves"],
+        "node_id_convention": (
+            "Leaf nodes are 0..n_species-1 in species_input_order; internal nodes "
+            "are n_species..2*n_species-2 in linkage row order."
+        ),
+        "species_input_order": list(species_names),
+        "leaf_order_indices": list(leaf_order) if leaf_order is not None else None,
+        "leaf_order_species": (
+            [str(species_names[i]) for i in leaf_order] if leaf_order is not None else None
+        ),
+        "matrix": scipy_rows,
+        "merges": merges,
+    }
