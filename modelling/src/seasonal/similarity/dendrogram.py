@@ -12,7 +12,7 @@ from scipy.cluster.hierarchy import dendrogram
 def _first_sentence(text: str) -> str:
     """
     Extract the first sentence, excluding trainling full-stop, from a cluster description
-    
+
     :param text: Full text
     :return: First sentence of the text
     """
@@ -66,7 +66,6 @@ def plot_species_cluster_dendrogram(
     title: str = "Species Similarity Dendrogram",
     colour_clusters: bool = True
 ) -> None:
-    
     # Load the data and extract the species and cluster details
     linkage_info = cluster_data.get("linkage", {})
     linkage_matrix = np.asarray(linkage_info.get("matrix"), dtype=float)

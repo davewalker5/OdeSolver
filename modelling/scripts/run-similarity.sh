@@ -39,8 +39,8 @@ if (( $# == 1 )); then
     esac
 fi
 
-# Build the feature matrix
-python "$MODELLING_ROOT/src/feature_matrix.py" \
+# Build the feature matrix, similarity and clustering pipeline
+python "$MODELLING_ROOT/src/feature-matrix.py" \
     --input  "$RESIDENT_DATA" "$SEASONAL_DATA" "$WINTER_DATA" \
     --json "$MODELLING_ROOT/data/feature_matrix.json" \
     --similarity "$MODELLING_ROOT/data/species_similarity.json" \

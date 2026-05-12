@@ -3,11 +3,11 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-from seasonal.features.species_similarity import build_species_similarity, save_similarity_summary
-from seasonal.features.similarity_heatmap import generate_species_similarity_heatmap
-from seasonal.features.similarity_clusters import extract_species_similarity_clusters, save_cluster_summary
+from seasonal.similarity.similarity import build_species_similarity, save_similarity_summary
+from seasonal.similarity.heatmap import generate_species_similarity_heatmap
+from seasonal.similarity.clustering import extract_species_similarity_clusters, save_cluster_summary
 from seasonal.features.feature_matrix import build_feature_table, find_input_files, write_csv
-from seasonal.features.similarity_dendrogram import plot_species_cluster_dendrogram
+from seasonal.similarity.dendrogram import plot_species_cluster_dendrogram
 from seasonal.support.console import print_error, print_message
 from seasonal.support.json import write_json
 
@@ -65,7 +65,7 @@ CORE_COLUMNS = [
 
 def main() -> None:
     """
-    Main entry point for the feature matrix builder
+    Main entry point for the feature, similarity and clustering pipeline
     """
     parser = argparse.ArgumentParser()
     parser.add_argument("-i", "--input-dirs", nargs="+", type=Path, required=True,

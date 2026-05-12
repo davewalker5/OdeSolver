@@ -176,6 +176,18 @@ Cluster summaries attempt to expose the underlying feature structure driving the
 
 This allows the resulting neighbourhoods to be inspected and interpreted ecologically, rather than treated as opaque statistical groupings.
 
+The resulting neighbourhood structures can also be aggregated temporally to produce seasonal ecological calendars that summarise the mean normalised activity of ecological neighbourhoods across the year, allowing broader seasonal structure to be visualised at community scale rather than species-by-species.
+
+Rather than focusing on individual taxa, the calendars attempt to expose larger seasonal ecological modes, including:
+
+- Winter visitor structure
+- Spring flowering and emergence periods
+- Resident detectability dynamics
+- Extended summer assemblages
+- Transitional seasonal neighbourhoods
+
+The resulting heatmaps provide an interpretable view of how different regions of seasonal ecological space become active, overlap, and decline through the ecological year.
+
 ## Folder Structure
 
 ### seasonal-presence/
