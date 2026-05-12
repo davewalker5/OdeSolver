@@ -4,8 +4,8 @@ from pathlib import Path
 from typing import Any, Dict, Optional, Tuple
 import matplotlib.pyplot as plt
 import numpy as np
-from seasonal.features.clustering import order_species_by_linkage
-from seasonal.features.species_similarity import build_similarity_matrix, extract_species_names
+from seasonal.support.clustering import order_species_by_linkage
+from seasonal.similarity.similarity import build_similarity_matrix, extract_species_names
 
 
 def generate_species_similarity_heatmap(

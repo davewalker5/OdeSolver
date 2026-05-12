@@ -8,8 +8,8 @@ from typing import Any, Dict, List, Optional, Sequence
 
 import numpy as np
 from scipy.cluster.hierarchy import fcluster
-from seasonal.features.clustering import order_species_by_linkage, serialise_linkage_matrix
-from seasonal.features.species_similarity import build_similarity_matrix, extract_species_names
+from seasonal.support.clustering import order_species_by_linkage, serialise_linkage_matrix
+from seasonal.similarity.similarity import build_similarity_matrix, extract_species_names
 from seasonal.support.numeric import round_float, safe_float
 from seasonal.support.calendar import circular_month_mean, signed_circular_month_difference, month_label
 

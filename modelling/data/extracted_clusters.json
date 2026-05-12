@@ -1,0 +1,113 @@
+{
+  "schema_version": "seasonal-ecological-calendar-clusters/v1",
+  "source_schema_version": "species-similarity-clusters/v2",
+  "source_created_utc": "2026-05-12T19:31:33.748438+00:00",
+  "n_species": 39,
+  "n_clusters": 8,
+  "cluster_caveat": "Clusters should be interpreted as exploratory seasonal assemblages rather than fixed ecological categories.",
+  "clusters": [
+    {
+      "cluster_id": 1,
+      "calendar_label": "Redwing neighbourhood",
+      "description": "Single-species cluster containing Redwing, mainly representing core winter winter visitor with autumn arrival component. The defining pattern is a winter peak around January, a moderate autumn component, moderate summer suppression, and slow arrival fast departure response dynamics. Its defining traits include year wrapping winter presence, core winter winter peak, and moderate autumn component. Compared with the full species set, autumn to winter weight ratio is higher than the whole-set average and decay to growth ratio is higher than the whole-set average.",
+      "n_species": 1,
+      "species": [
+        "Redwing"
+      ]
+    },
+    {
+      "cluster_id": 2,
+      "calendar_label": "Extended Spring Seasonal Presence",
+      "description": "Cluster of 13 species, mainly representing spring extended spring seasonal presence. The fitted active window runs roughly from March to October, with a mean peak around June, and and an average width of 6.6 months. It is characterised by very broad season and moderate active window. Common high-support traits include strong offseason suppression and early peak alignment.",
+      "n_species": 13,
+      "species": [
+        "Dandelion",
+        "Brimstone Butterfly",
+        "Red Dead Nettle",
+        "Red Campion",
+        "Buttercup",
+        "Swallow",
+        "Chiffchaff",
+        "Peacock Butterfly",
+        "Cuckoo Pint",
+        "Common Poppy",
+        "Swift",
+        "Red Admiral Butterfly",
+        "Speckled Wood Butterfly"
+      ]
+    },
+    {
+      "cluster_id": 3,
+      "calendar_label": "Rosebay Willowherb neighbourhood",
+      "description": "Single-species cluster containing Rosebay Willowherb, mainly representing autumn moderate autumn seasonal presence. The fitted active window runs roughly from June to September, with a mean peak around September, and and an average width of 3.1 months. It is characterised by moderate season and sharp active window. Its defining traits include autumn peak, moderate season, and sharp seasonal window. Compared with the full species set, season start month is higher than the whole-set average and peak month is higher than the whole-set average.",
+      "n_species": 1,
+      "species": [
+        "Rosebay Willowherb"
+      ]
+    },
+    {
+      "cluster_id": 4,
+      "calendar_label": "Snowdrop neighbourhood",
+      "description": "Single-species cluster containing Snowdrop, mainly representing winter narrow winter seasonal presence. The fitted active window runs roughly from February to March, with a mean peak around February, and and an average width of 1.9 months. It is characterised by narrow season and moderate active window. Its defining traits include winter peak, narrow season, and moderate seasonal window. Compared with the full species set, season midpoint month is lower than the whole-set average and season end month is lower than the whole-set average.",
+      "n_species": 1,
+      "species": [
+        "Snowdrop"
+      ]
+    },
+    {
+      "cluster_id": 5,
+      "calendar_label": "Moderate Spring Seasonal Presence",
+      "description": "Cluster of 5 species, mainly representing spring moderate spring seasonal presence. The fitted active window runs roughly from April to June, with a mean peak around May, and and an average width of 2.3 months. It is characterised by moderate season and sharp active window. Common high-support traits include spring peak, central peak alignment, and sharp seasonal window. Compared with the full species set, fit score is lower than the whole-set average and season end month is lower than the whole-set average.",
+      "n_species": 5,
+      "species": [
+        "Bluebell",
+        "Garlic Mustard",
+        "Cow Parsley",
+        "Cowslip",
+        "Orange Tip Butterfly"
+      ]
+    },
+    {
+      "cluster_id": 6,
+      "calendar_label": "Jay neighbourhood",
+      "description": "Single-species cluster containing Jay, mainly representing autumn resident with summer detectability collapse. Detectability peaks around October and and is lowest around August. The shared pattern includes weak baseline presence, moderate summer suppression, weak autumn component, and decline biased response dynamics. Its defining traits include resident detectability pattern, weak baseline presence, and autumn detectability peak. Compared with the full species set, peak month is higher than the whole-set average and target amplitude is lower than the whole-set average.",
+      "n_species": 1,
+      "species": [
+        "Jay"
+      ]
+    },
+    {
+      "cluster_id": 7,
+      "calendar_label": "Resident With Spring Persistence And Summer Suppression",
+      "description": "Cluster of 7 species, mainly representing winter resident with spring persistence and summer suppression. Detectability peaks around February and and is lowest around September. The shared pattern includes strong baseline presence, strong summer suppression, weak autumn component, and rapid decline biased response dynamics. Common high-support traits include resident detectability pattern, meaningful year end component, and strong baseline presence. Compared with the full species set, year end to winter weight ratio is higher than the whole-set average and baseline to peak ratio is higher than the whole-set average.",
+      "n_species": 7,
+      "species": [
+        "Mute Swan",
+        "Robin",
+        "Blackbird",
+        "Goldfinch",
+        "Woodpigeon",
+        "Common Starling",
+        "Magpie"
+      ]
+    },
+    {
+      "cluster_id": 8,
+      "calendar_label": "Resident With Summer Detectability Collapse",
+      "description": "Cluster of 10 species, mainly representing spring resident with summer detectability collapse. Detectability peaks around April and and is lowest around September. The shared pattern includes weak baseline presence, moderate summer suppression, weak autumn component, and rapid decline biased response dynamics. Common high-support traits include resident detectability pattern, moderate summer suppression, and rapid decline biased response dynamics.",
+      "n_species": 10,
+      "species": [
+        "House Sparrow",
+        "Common Cleavers",
+        "Shepherds Purse",
+        "Skylark",
+        "Wren",
+        "Blue Tit",
+        "Dunnock",
+        "Great Tit",
+        "Daisy",
+        "Song Thrush"
+      ]
+    }
+  ]
+}
