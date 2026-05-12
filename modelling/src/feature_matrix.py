@@ -7,6 +7,7 @@ from seasonal.features.species_similarity import build_species_similarity, save_
 from seasonal.features.similarity_heatmap import generate_species_similarity_heatmap
 from seasonal.features.similarity_clusters import extract_species_similarity_clusters, save_cluster_summary
 from seasonal.features.feature_matrix import build_feature_table, find_input_files, write_csv
+from seasonal.features.similarity_dendrogram import plot_species_cluster_dendrogram
 from seasonal.support.console import print_error, print_message
 from seasonal.support.json import write_json
 
@@ -119,6 +120,10 @@ def main() -> None:
     if args.cluster_summary:
         save_cluster_summary(clusters, args.cluster_summary)
         print_message(f"Species similarity text dump written to {Path(args.cluster_summary).name}")
+
+    # Generate the dendrogram
+    plot_species_cluster_dendrogram(clusters, args.dendrogram)
+    print_message(f"Species similarity dendrogram written to {Path(args.dendrogram).name}")
 
 
 if __name__ == "__main__":
