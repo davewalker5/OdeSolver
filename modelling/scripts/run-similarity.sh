@@ -47,4 +47,5 @@ python "$MODELLING_ROOT/src/feature_matrix.py" \
     --similarity-summary "$MODELLING_ROOT/data/species_similarity.txt" \
     --heatmap "$MODELLING_ROOT/data/species_similarity_heatmap.png" \
     --clusters "$MODELLING_ROOT/data/cluster_analysis.json" \
-    --cluster-summary "$MODELLING_ROOT/data/cluster_summary.txt" $WRITE_CSV
+    --cluster-summary "$MODELLING_ROOT/data/cluster_summary.txt" \
+    --dendrogram "$MODELLING_ROOT/data/cluster_dendrogram.png"$WRITE_CSV
