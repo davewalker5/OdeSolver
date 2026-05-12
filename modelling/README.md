@@ -60,7 +60,9 @@ The emphasis is on:
 
 ### 3. Parameter fitting
 
-Parameter fitting is currently implemented for the model for seasonally present and winter visitor models, rather than residents where observations are driven by detectability changes.
+The parameter fitting workflow is illustrated below:
+
+![Parameter Fitting](https://github.com/davewalker5/OdeSolver/blob/main/docs/images/parameter-fitting.png?raw=true)
 
 Given observed data (typically monthly presence or detectability), we:
 
@@ -73,6 +75,10 @@ Given observed data (typically monthly presence or detectability), we:
 This produces a set of parameters that describe the species’ seasonal behaviour.
 
 ### 4. Feature extraction
+
+The feature extraction, similarity and clustering workflow is illustrated below:
+
+![Similarity Analysis and Clustering](https://github.com/davewalker5/OdeSolver/blob/main/docs/images/similarity-analysis.png?raw=true)
 
 Once species have been fitted, the resulting parameter sets and observed seasonal characteristics can be converted into a structured feature matrix.
 
