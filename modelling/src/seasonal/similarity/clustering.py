@@ -420,7 +420,10 @@ def _cluster_opening_sentence(
 
     descriptors = []
     if timing:
-        descriptors.append(_humanise_token(timing))
+        # This results in a duplication of the season that looks odd
+        # descriptors.append(_humanise_token(timing))
+        pass
+
     if primary_class:
         descriptors.append(_humanise_token(primary_class))
     elif model_family:
