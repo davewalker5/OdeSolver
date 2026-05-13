@@ -1,6 +1,5 @@
 from pathlib import Path
 from typing import Any, Dict
-import re
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -8,18 +7,7 @@ from matplotlib.colors import to_hex
 from matplotlib.patches import Patch
 from scipy.cluster.hierarchy import dendrogram
 
-
-def _first_sentence(text: str) -> str:
-    """
-    Extract the first sentence, excluding trainling full-stop, from a cluster description
-
-    :param text: Full text
-    :return: First sentence of the text
-    """
-    if not text:
-        return ""
-    match = re.search(r"(?<=[.!?])\s+", text.strip())
-    return text.strip() if not match else text[: match.start()].strip()
+from seasonal.support.clustering import first_sentence
 
 
 def _get_cluster_colour(
@@ -228,7 +216,7 @@ def plot_species_cluster_dendrogram(
 
     # Get the descriptions for all the clusters
     cluster_descriptions = {
-        c["cluster_id"]: _first_sentence(c.get("description", ""))
+        c["cluster_id"]: first_sentence(c.get("description", ""))
         for c in cluster_data.get("clusters", [])
     }
 

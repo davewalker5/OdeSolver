@@ -6,6 +6,7 @@ from typing import Any
 import matplotlib.pyplot as plt
 import numpy as np
 
+from seasonal.support.clustering import first_sentence
 
 MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
@@ -36,7 +37,6 @@ def plot_neighbourhood_calendar_heatmap(
 
     for cluster in clusters:
         cluster_id = cluster.get("cluster_id")
-        # labels.append(f"Cluster {cluster_id}")
         labels.append(cluster_id)
 
         month_values = [0.0] * 12
@@ -99,7 +99,8 @@ def plot_neighbourhood_calendar_heatmap(
 
     for cluster in clusters:
         cluster_id = cluster.get("cluster_id")
-        label = cluster.get("calendar_label", cluster_id)
+        # label = cluster.get("calendar_label", cluster_id)
+        label = first_sentence(cluster.get("description", str(cluster_id)))
         legend_lines.append(f"{cluster_id}: {label}")
 
     legend_text = "\n".join(legend_lines)

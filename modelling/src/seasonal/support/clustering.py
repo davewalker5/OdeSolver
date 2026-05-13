@@ -4,6 +4,7 @@ from __future__ import annotations
 from typing import Any, Dict, List, Sequence, Tuple
 
 import numpy as np
+import re
 from scipy.cluster.hierarchy import leaves_list, linkage
 from scipy.spatial.distance import squareform
 
@@ -131,3 +132,17 @@ def serialise_linkage_matrix(
         "matrix": scipy_rows,
         "merges": merges,
     }
+
+
+def first_sentence(text: str) -> str:
+    """
+    Extract the first sentence, excluding trainling full-stop, from a cluster description
+
+    :param text: Full text
+    :return: First sentence of the text
+    """
+    if not text:
+        return ""
+
+    match = re.search(r"(?<=[.!?])\s+", text.strip())
+    return text.strip() if not match else text[: match.start()].strip().removesuffix(".")

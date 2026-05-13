@@ -83,14 +83,9 @@ def build_neighbourhood_monthly_activity(
         output_clusters.append(
             {
                 "cluster_id": cluster_id,
-                "calendar_label": cluster.get(
-                    "calendar_label",
-                    f"Cluster {cluster_id}",
-                ),
-                "n_species": cluster.get(
-                    "n_species",
-                    len(cluster.get("species", [])),
-                ),
+                "calendar_label": cluster.get("calendar_label", f"Cluster {cluster_id}"),
+                "description": cluster.get("description", f"Cluster {cluster_id}"),
+                "n_species": cluster.get("n_species", len(cluster.get("species", []))),
                 "species": cluster.get("species", []),
                 "monthly_activity": monthly_activity,
             }
