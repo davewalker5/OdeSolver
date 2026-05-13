@@ -72,11 +72,11 @@ Given observed data (typically monthly presence or detectability), we:
 4. Score the match
 5. Repeat to find the best fit
 
-This produces a set of parameters that describe the species’ seasonal behaviour.
+This produces a set of parameters that describe the species’ seasonal behaviour. Instructions on how to run the parameter fitting are documented in the README files for the individual models.
 
 ### 4. Feature extraction
 
-The feature extraction, similarity and clustering workflow is illustrated below:
+The feature extraction workflow is illustrated below:
 
 ![Similarity Analysis and Clustering](https://github.com/davewalker5/OdeSolver/blob/main/docs/images/similarity-analysis.png?raw=true)
 
@@ -105,6 +105,10 @@ into:
 This allows species from different model families to be analysed together using a consistent representation.
 
 ### 5. Species similarity analysis
+
+The similarity analysis workflow is illustrated below:
+
+![Similarity Analysis and Clustering](https://github.com/davewalker5/OdeSolver/blob/main/docs/images/similarity-analysis.png?raw=true)
 
 The similarity system compares species using weighted ecological distance metrics derived from the feature matrix.
 
@@ -137,6 +141,10 @@ A key design goal is interpretability.
 Rather than producing opaque embeddings or black-box similarity scores, the system attempts to preserve ecological meaning at every stage of the comparison process. Component distances remain inspectable, allowing similarities to be understood in terms of timing, amplitude, seasonal width, suppression dynamics, classification structure, and trait overlap.
 
 ### 6. Cluster and neighbourhood analysis
+
+The cluster analysis workflow is illustrated below:
+
+![Similarity Analysis and Clustering](https://github.com/davewalker5/OdeSolver/blob/main/docs/images/similarity-analysis.png?raw=true)
 
 Once pairwise species similarity has been calculated, the resulting similarity matrix can be explored using hierarchical clustering, dendrogram analysis, and heatmap visualisation techniques. 
 
@@ -176,6 +184,12 @@ Cluster summaries attempt to expose the underlying feature structure driving the
 
 This allows the resulting neighbourhoods to be inspected and interpreted ecologically, rather than treated as opaque statistical groupings.
 
+### 7. Seasonal aggregation
+
+The seasonal neighbourhood analysis workflow is illustrated below:
+
+![Seasonal Neighbourhood Analysis](https://github.com/davewalker5/OdeSolver/blob/main/docs/images/interpretive-workflow.png?raw=true)
+
 The resulting neighbourhood structures can also be aggregated temporally to produce seasonal ecological calendars that summarise the mean normalised activity of ecological neighbourhoods across the year, allowing broader seasonal structure to be visualised at community scale rather than species-by-species.
 
 Rather than focusing on individual taxa, the calendars attempt to expose larger seasonal ecological modes, including:
@@ -187,6 +201,48 @@ Rather than focusing on individual taxa, the calendars attempt to expose larger 
 - Transitional seasonal neighbourhoods
 
 The resulting heatmaps provide an interpretable view of how different regions of seasonal ecological space become active, overlap, and decline through the ecological year.
+
+## Running the Analyses
+
+### Modelling, Parameter Fitting and Classification
+
+Instructions on how to run the parameter fitting for each model to generate consensus parameters, per-species classification and simulated/synthesised model outputs are provided in the individual README files for the individual models.
+
+### Feature Extraction, Similarity Analysis and Clustering
+
+To run the feature extraction, similarity analysis and clustering workflow, use the following:
+
+```bash
+./scripts/run-similarity.sh
+```
+
+This outputs the following files in the _data_ sub-folder:
+
+| File                           | Contents                                                                                                  |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------- |
+| feature_matrix.json            | Per-species features and traits                                                                           |
+| species_similarity.json        | Per-species similarity matrix based on the feature matrix                                                 |
+| species_similarity.txt         | At-a-glance text-based summary of the similarity matrix                                                   |
+| cluster_analysis.json          | Cluster analysis results, grouping species into clusters based on the similarity matrix                   |
+| cluster_analysis.txt           | At-a-glance text-based summary of the cluster analysis                                                    |
+| species_similarity_heatmap.png | Heatmap grouping species by closeness and highlighting 'neighbourhoods' of similar species                |
+| cluster_dendrogram.png         | Dendrogram from the cluster analysis, showing seasonal ecological neighbourhoods and nested sub-structure |
+
+### Seasonal Aggregation
+
+To run the seasonal aggregation workflow, use the following:
+
+```bash
+./scripts/run-calendar.sh
+```
+
+This outputs the following files in the _data_ sub-folder:
+
+| File                    | Contents                                              |
+| ----------------------- | ----------------------------------------------------- |
+| extracted_clusters.json | Subset of data extracted from _cluster_analysis.json_ |
+| calendar_activity.json  | Per-cluster seasonal activity                         |
+| activity_heatmap.png    | Heatmap of per-cluster seasonal activity              |
 
 ## Folder Structure
 
@@ -222,7 +278,7 @@ The _data/_ sub-folder contains the observed and simulated data, consensus param
 
 ### data/
 
-Contains the feature matrices and species similarity artifacts.
+Contains the feature matrices, species similarity, clustering and cluster analysis artefacts.
 
 ## Why this exists
 
