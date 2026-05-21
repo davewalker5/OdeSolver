@@ -1,0 +1,49 @@
+{
+  "schema_version": "seasonal-classification/v1",
+  "species": "Gatekeeper Butterfly",
+  "model_family": "seasonal_presence",
+  "classification": {
+    "primary_class": "moderate_summer_seasonal_presence",
+    "timing": "summer",
+    "season_width": "moderate",
+    "window_shape": "moderate",
+    "post_peak_decline": "strong",
+    "offseason_suppression": "strong",
+    "peak_alignment": "central",
+    "traits": [
+      "summer_peak",
+      "moderate_season",
+      "moderate_seasonal_window",
+      "strong_post_peak_decline",
+      "strong_offseason_suppression",
+      "central_peak_alignment"
+    ],
+    "confidence": "high"
+  },
+  "derived_metrics": {
+    "season_start_month": 6.125,
+    "season_end_month": 8.56,
+    "forcing_peak_month": 7.475,
+    "season_width_months": 2.435,
+    "season_midpoint_month": 7.3425,
+    "season_start_label": "June",
+    "season_end_label": "September",
+    "forcing_peak_label": "July"
+  },
+  "parameter_evidence": {
+    "GROWTH": 3.012,
+    "DECAY": 1.52,
+    "OOS_DECAY": 4.032,
+    "POST_PEAK_DECAY": 3.563,
+    "POST_PEAK_SHARPNESS": 5.208,
+    "SEASON_START": 6.125,
+    "SEASON_END": 8.56,
+    "SHARPNESS": 7.572,
+    "FORCING_PEAK": 7.475
+  },
+  "fit": {
+    "score": 0.037
+  },
+  "warnings": [],
+  "summary": "Gatekeeper Butterfly is classified as moderate summer seasonal presence. The fitted seasonal window runs from about June to September, with a summer peak around July. The season is moderate, with a moderate active window, strong post-peak decline, and strong off-season suppression."
+}
