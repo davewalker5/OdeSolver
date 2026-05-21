@@ -1,35 +1,26 @@
 #!/usr/bin/env bash
 
-if (( $# != 2 )); then
+if (( $# != 3 )); then
     scriptname=$(basename -- "$0")
-    echo Usage: $scriptname MODEL SPECIES
+    echo Usage: $scriptname PROJECT MODEL SPECIES
     exit 1
 fi
 
 # Get the path to the modelling folder and the project root
 MODELLING_ROOT=$( cd "$( dirname "$0" )/.." && pwd )
 
-# Set the model=specific environment
-case "$1" in
-    resident)
-        MODEL_FOLDER="$MODELLING_ROOT/resident-detectability"
-        ;;
-    seasonal)
-        MODEL_FOLDER="$MODELLING_ROOT/seasonal-presence"
-        ;;
-    winter)
-        MODEL_FOLDER="$MODELLING_ROOT/winter-visitor"
-        ;;
-    *)
-        echo "Unrecognised model '$1'"
-        exit 1
-        ;;
-esac
+# Construct the path to the model-specific data folder for the specified project
+# and check the folder exists
+DATA_FOLDER="$MODELLING_ROOT/data/$1/$2"
+if [[ ! -d "$DATA_FOLDER" ]]; then
+    echo Data folder not found: $DATA_FOLDER
+    exit 1
+fi
 
-rm -f "$MODEL_FOLDER/data/$2_classification.json"
-rm -f "$MODEL_FOLDER/data/$2_consensus.json"
-rm -f "$MODEL_FOLDER/data/$2_parameters.csv"
-rm -f "$MODEL_FOLDER/data/$2_simulated.csv"
-rm -f "$MODEL_FOLDER/data/$2_simulated.png"
-rm -f "$MODEL_FOLDER/data/$2_synthesised.csv"
-rm -f "$MODEL_FOLDER/data/$2_synthesised.png"
+rm -f "$DATA_FOLDER/$3_classification.json"
+rm -f "$DATA_FOLDER/$3_consensus.json"
+rm -f "$DATA_FOLDER/$3_parameters.csv"
+rm -f "$DATA_FOLDER/$3_simulated.csv"
+rm -f "$DATA_FOLDER/$3_simulated.png"
+rm -f "$DATA_FOLDER/$3_synthesised.csv"
+rm -f "$DATA_FOLDER/$3_synthesised.png"

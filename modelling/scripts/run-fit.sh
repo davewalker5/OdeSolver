@@ -1,45 +1,43 @@
 #!/usr/bin/env bash
 
-if (( $# != 2 )); then
+if (( $# != 3 )); then
     scriptname=$(basename -- "$0")
-    echo Usage: $scriptname MODEL SPECIES
+    echo Usage: $scriptname PROJECT MODEL SPECIES
     exit 1
 fi
 
 # Get the path to the modelling folder and the project root
 MODELLING_ROOT=$( cd "$( dirname "$0" )/.." && pwd )
 PROJECT_FOLDER=$( cd "$MODELLING_ROOT/.." && pwd)
+DATA_FOLDER="$MODELLING_ROOT/data/$1/$2/"
 
 # Set the model=specific environment
-case "$1" in
+case "$2" in
     resident)
-        MODEL_FOLDER="$MODELLING_ROOT/resident-detectability"
-        MODEL="resident_detectability_generic.json"
+        MODEL="$MODELLING_ROOT/models/$2/resident_detectability_generic.json"
         ;;
     seasonal)
-        MODEL_FOLDER="$MODELLING_ROOT/seasonal-presence"
-        MODEL="seasonal_presence_generic.json"
+        MODEL="$MODELLING_ROOT/models/$2/seasonal_presence_generic.json"
         ;;
     winter)
-        MODEL_FOLDER="$MODELLING_ROOT/winter-visitor"
-        MODEL="winter_visitor_generic.json"
+        MODEL="$MODELLING_ROOT/models/$2/winter_visitor_generic.json"
         ;;
     *)
-        echo "Unrecognised model '$1'"
+        echo "Unrecognised model '$2'"
         exit 1
         ;;
 esac
 
 # Run the fit
-python "$MODELLING_ROOT/src/$1.py" \
-    --species "$2" \
-    --observed "$MODEL_FOLDER/data/$2_observed.csv" \
-    --simulation "$MODEL_FOLDER/model/$MODEL" \
+python "$MODELLING_ROOT/src/$2.py" \
+    --species "$3" \
+    --observed "$DATA_FOLDER/$3_observed.csv" \
+    --simulation "$MODEL" \
     --solver-command "$PROJECT_FOLDER/scripts/run-solver.sh" \
-    --csv "$MODEL_FOLDER/data/$2_parameters.csv" \
-    --consensus-json "$MODEL_FOLDER/data/$2_consensus.json" \
-    --classification-json "$MODEL_FOLDER/data/$2_classification.json" \
-    --export-simulated "$MODEL_FOLDER/data/$2_simulated.csv" \
-    --plot-simulated "$MODEL_FOLDER/data/$2_simulated.png" \
-    --export-synthesised "$MODEL_FOLDER/data/$2_synthesised.csv" \
-    --plot-synthesised "$MODEL_FOLDER/data/$2_synthesised.png"
+    --csv "$DATA_FOLDER/$3_parameters.csv" \
+    --consensus-json "$DATA_FOLDER/$3_consensus.json" \
+    --classification-json "$DATA_FOLDER/$3_classification.json" \
+    --export-simulated "$DATA_FOLDER/$3_simulated.csv" \
+    --plot-simulated "$DATA_FOLDER/$3_simulated.png" \
+    --export-synthesised "$DATA_FOLDER/$3_synthesised.csv" \
+    --plot-synthesised "$DATA_FOLDER/$3_synthesised.png"
