@@ -1,0 +1,13 @@
+{
+  "GROWTH": "3.24",
+  "DECAY": "1.618",
+  "OOS_DECAY": "4.096",
+  "POST_PEAK_DECAY": "4.075",
+  "POST_PEAK_SHARPNESS": "6.19",
+  "SEASON_START": "3.29",
+  "SEASON_END": "6.115",
+  "SHARPNESS": "7.004",
+  "FORCING_PEAK": "4.12",
+  "SCORE": "0.06",
+  "SPECIES": "Reed Warbler"
+}

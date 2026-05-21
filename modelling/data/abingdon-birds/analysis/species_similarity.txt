@@ -1,0 +1,368 @@
+
+Black Headed Gull
+-----------------
+ 1. Coot                         similarity=0.895 distance=0.105
+ 2. Herring Gull                 similarity=0.852 distance=0.148
+ 3. Cormorant                    similarity=0.812 distance=0.188
+ 4. Greylag Goose                similarity=0.812 distance=0.188
+ 5. Robin                        similarity=0.807 distance=0.193
+
+Blackbird
+---------
+ 1. Dunnock                      similarity=0.919 distance=0.081
+ 2. Blue Tit                     similarity=0.880 distance=0.120
+ 3. Buzzard                      similarity=0.842 distance=0.158
+ 4. Song Thrush                  similarity=0.839 distance=0.161
+ 5. Greylag Goose                similarity=0.786 distance=0.214
+
+Blackcap
+--------
+ 1. Skylark                      similarity=0.935 distance=0.065
+ 2. Coal Tit                     similarity=0.838 distance=0.162
+ 3. Pied Wagtail                 similarity=0.808 distance=0.192
+ 4. Mallard                      similarity=0.806 distance=0.194
+ 5. Chaffinch                    similarity=0.805 distance=0.195
+
+Blue Tit
+--------
+ 1. Dunnock                      similarity=0.925 distance=0.075
+ 2. Buzzard                      similarity=0.917 distance=0.083
+ 3. Blackbird                    similarity=0.880 distance=0.120
+ 4. Great Tit                    similarity=0.832 distance=0.168
+ 5. Mallard                      similarity=0.829 distance=0.171
+
+Buzzard
+-------
+ 1. Blue Tit                     similarity=0.917 distance=0.083
+ 2. Dunnock                      similarity=0.867 distance=0.133
+ 3. Blackbird                    similarity=0.842 distance=0.158
+ 4. Grey Heron                   similarity=0.832 distance=0.168
+ 5. Red Kite                     similarity=0.810 distance=0.190
+
+Canada Goose
+------------
+ 1. Song Thrush                  similarity=0.853 distance=0.147
+ 2. Greenfinch                   similarity=0.817 distance=0.183
+ 3. Common Kestrel               similarity=0.806 distance=0.194
+ 4. Pheasant                     similarity=0.793 distance=0.207
+ 5. Skylark                      similarity=0.793 distance=0.207
+
+Chaffinch
+---------
+ 1. Skylark                      similarity=0.852 distance=0.148
+ 2. Coal Tit                     similarity=0.836 distance=0.164
+ 3. Pied Wagtail                 similarity=0.836 distance=0.164
+ 4. Blackcap                     similarity=0.805 distance=0.195
+ 5. Mallard                      similarity=0.784 distance=0.216
+
+Coal Tit
+--------
+ 1. Skylark                      similarity=0.867 distance=0.133
+ 2. Pied Wagtail                 similarity=0.862 distance=0.138
+ 3. Blackcap                     similarity=0.838 distance=0.162
+ 4. Chaffinch                    similarity=0.836 distance=0.164
+ 5. Mallard                      similarity=0.825 distance=0.175
+
+Collared Dove
+-------------
+ 1. House Sparrow                similarity=0.930 distance=0.070
+ 2. Mallard                      similarity=0.772 distance=0.228
+ 3. Greylag Goose                similarity=0.761 distance=0.239
+ 4. Skylark                      similarity=0.748 distance=0.252
+ 5. Pied Wagtail                 similarity=0.735 distance=0.265
+
+Common Kestrel
+--------------
+ 1. Greylag Goose                similarity=0.833 distance=0.167
+ 2. Canada Goose                 similarity=0.806 distance=0.194
+ 3. Great Tit                    similarity=0.752 distance=0.248
+ 4. Pheasant                     similarity=0.749 distance=0.251
+ 5. Dunnock                      similarity=0.743 distance=0.257
+
+Common Starling
+---------------
+ 1. Magpie                       similarity=0.878 distance=0.122
+ 2. Crow                         similarity=0.862 distance=0.138
+ 3. Woodpigeon                   similarity=0.827 distance=0.173
+ 4. Goldfinch                    similarity=0.812 distance=0.188
+ 5. Grey Heron                   similarity=0.806 distance=0.194
+
+Coot
+----
+ 1. Black Headed Gull            similarity=0.895 distance=0.105
+ 2. Cormorant                    similarity=0.862 distance=0.138
+ 3. Herring Gull                 similarity=0.824 distance=0.176
+ 4. Mistle Thrush                similarity=0.798 distance=0.202
+ 5. Song Thrush                  similarity=0.778 distance=0.222
+
+Cormorant
+---------
+ 1. Coot                         similarity=0.862 distance=0.138
+ 2. Mistle Thrush                similarity=0.836 distance=0.164
+ 3. Black Headed Gull            similarity=0.812 distance=0.188
+ 4. Robin                        similarity=0.801 distance=0.199
+ 5. Rook                         similarity=0.779 distance=0.221
+
+Crow
+----
+ 1. Magpie                       similarity=0.931 distance=0.069
+ 2. Common Starling              similarity=0.862 distance=0.138
+ 3. Goldfinch                    similarity=0.839 distance=0.161
+ 4. Woodpigeon                   similarity=0.837 distance=0.163
+ 5. Red Kite                     similarity=0.805 distance=0.195
+
+Dunnock
+-------
+ 1. Blue Tit                     similarity=0.925 distance=0.075
+ 2. Blackbird                    similarity=0.919 distance=0.081
+ 3. Buzzard                      similarity=0.867 distance=0.133
+ 4. Song Thrush                  similarity=0.825 distance=0.175
+ 5. Greylag Goose                similarity=0.824 distance=0.176
+
+Goldfinch
+---------
+ 1. Woodpigeon                   similarity=0.910 distance=0.090
+ 2. Magpie                       similarity=0.859 distance=0.141
+ 3. Crow                         similarity=0.839 distance=0.161
+ 4. Common Starling              similarity=0.812 distance=0.188
+ 5. Herring Gull                 similarity=0.809 distance=0.191
+
+Great Tit
+---------
+ 1. Pheasant                     similarity=0.956 distance=0.044
+ 2. Greylag Goose                similarity=0.876 distance=0.124
+ 3. Blue Tit                     similarity=0.832 distance=0.168
+ 4. Wren                         similarity=0.813 distance=0.187
+ 5. Pied Wagtail                 similarity=0.813 distance=0.187
+
+Greenfinch
+----------
+ 1. Wren                         similarity=0.908 distance=0.092
+ 2. Pheasant                     similarity=0.830 distance=0.170
+ 3. Song Thrush                  similarity=0.819 distance=0.181
+ 4. Canada Goose                 similarity=0.817 distance=0.183
+ 5. Rook                         similarity=0.816 distance=0.184
+
+Grey Heron
+----------
+ 1. Buzzard                      similarity=0.832 distance=0.168
+ 2. Common Starling              similarity=0.806 distance=0.194
+ 3. Blue Tit                     similarity=0.790 distance=0.210
+ 4. Jackdaw                      similarity=0.783 distance=0.217
+ 5. Great Tit                    similarity=0.781 distance=0.219
+
+Greylag Goose
+-------------
+ 1. Great Tit                    similarity=0.876 distance=0.124
+ 2. Pheasant                     similarity=0.850 distance=0.150
+ 3. Common Kestrel               similarity=0.833 distance=0.167
+ 4. Dunnock                      similarity=0.824 distance=0.176
+ 5. Rook                         similarity=0.813 distance=0.187
+
+Herring Gull
+------------
+ 1. Black Headed Gull            similarity=0.852 distance=0.148
+ 2. Mute Swan                    similarity=0.834 distance=0.166
+ 3. Coot                         similarity=0.824 distance=0.176
+ 4. Goldfinch                    similarity=0.809 distance=0.191
+ 5. Common Starling              similarity=0.776 distance=0.224
+
+House Sparrow
+-------------
+ 1. Collared Dove                similarity=0.930 distance=0.070
+ 2. Mallard                      similarity=0.787 distance=0.213
+ 3. Skylark                      similarity=0.767 distance=0.233
+ 4. Greylag Goose                similarity=0.762 distance=0.238
+ 5. Blackbird                    similarity=0.757 distance=0.243
+
+Jackdaw
+-------
+ 1. Mallard                      similarity=0.841 distance=0.159
+ 2. Grey Heron                   similarity=0.783 distance=0.217
+ 3. Pied Wagtail                 similarity=0.775 distance=0.225
+ 4. Buzzard                      similarity=0.772 distance=0.228
+ 5. Magpie                       similarity=0.758 distance=0.242
+
+Jay
+---
+ 1. Mistle Thrush                similarity=0.632 distance=0.368
+ 2. Chaffinch                    similarity=0.606 distance=0.394
+ 3. Cormorant                    similarity=0.586 distance=0.414
+ 4. Coal Tit                     similarity=0.571 distance=0.429
+ 5. Mute Swan                    similarity=0.570 distance=0.430
+
+Long Tailed Tit
+---------------
+ 1. Song Thrush                  similarity=0.786 distance=0.214
+ 2. Blue Tit                     similarity=0.774 distance=0.226
+ 3. Rook                         similarity=0.762 distance=0.238
+ 4. Cormorant                    similarity=0.751 distance=0.249
+ 5. Dunnock                      similarity=0.745 distance=0.255
+
+Magpie
+------
+ 1. Crow                         similarity=0.931 distance=0.069
+ 2. Woodpigeon                   similarity=0.885 distance=0.115
+ 3. Common Starling              similarity=0.878 distance=0.122
+ 4. Goldfinch                    similarity=0.859 distance=0.141
+ 5. Buzzard                      similarity=0.773 distance=0.227
+
+Mallard
+-------
+ 1. Pied Wagtail                 similarity=0.897 distance=0.103
+ 2. Jackdaw                      similarity=0.841 distance=0.159
+ 3. Blue Tit                     similarity=0.829 distance=0.171
+ 4. Coal Tit                     similarity=0.825 distance=0.175
+ 5. Blackcap                     similarity=0.806 distance=0.194
+
+Mistle Thrush
+-------------
+ 1. Robin                        similarity=0.843 distance=0.157
+ 2. Cormorant                    similarity=0.836 distance=0.164
+ 3. Coot                         similarity=0.798 distance=0.202
+ 4. Goldfinch                    similarity=0.766 distance=0.234
+ 5. Crow                         similarity=0.763 distance=0.237
+
+Mute Swan
+---------
+ 1. Herring Gull                 similarity=0.834 distance=0.166
+ 2. Common Starling              similarity=0.802 distance=0.198
+ 3. Black Headed Gull            similarity=0.784 distance=0.216
+ 4. Cormorant                    similarity=0.766 distance=0.234
+ 5. Coot                         similarity=0.757 distance=0.243
+
+Pheasant
+--------
+ 1. Great Tit                    similarity=0.956 distance=0.044
+ 2. Greylag Goose                similarity=0.850 distance=0.150
+ 3. Greenfinch                   similarity=0.830 distance=0.170
+ 4. Song Thrush                  similarity=0.821 distance=0.179
+ 5. Pied Wagtail                 similarity=0.812 distance=0.188
+
+Pied Wagtail
+------------
+ 1. Mallard                      similarity=0.897 distance=0.103
+ 2. Coal Tit                     similarity=0.862 distance=0.138
+ 3. Skylark                      similarity=0.845 distance=0.155
+ 4. Chaffinch                    similarity=0.836 distance=0.164
+ 5. Great Tit                    similarity=0.813 distance=0.187
+
+Red Kite
+--------
+ 1. Buzzard                      similarity=0.810 distance=0.190
+ 2. Crow                         similarity=0.805 distance=0.195
+ 3. Magpie                       similarity=0.765 distance=0.235
+ 4. Grey Heron                   similarity=0.756 distance=0.244
+ 5. Blue Tit                     similarity=0.753 distance=0.247
+
+Robin
+-----
+ 1. Mistle Thrush                similarity=0.843 distance=0.157
+ 2. Black Headed Gull            similarity=0.807 distance=0.193
+ 3. Cormorant                    similarity=0.801 distance=0.199
+ 4. Buzzard                      similarity=0.783 distance=0.217
+ 5. Crow                         similarity=0.771 distance=0.229
+
+Rook
+----
+ 1. Wren                         similarity=0.831 distance=0.169
+ 2. Greenfinch                   similarity=0.816 distance=0.184
+ 3. Greylag Goose                similarity=0.813 distance=0.187
+ 4. Great Tit                    similarity=0.794 distance=0.206
+ 5. Coal Tit                     similarity=0.793 distance=0.207
+
+Skylark
+-------
+ 1. Blackcap                     similarity=0.935 distance=0.065
+ 2. Coal Tit                     similarity=0.867 distance=0.133
+ 3. Chaffinch                    similarity=0.852 distance=0.148
+ 4. Pied Wagtail                 similarity=0.845 distance=0.155
+ 5. Song Thrush                  similarity=0.814 distance=0.186
+
+Song Thrush
+-----------
+ 1. Canada Goose                 similarity=0.853 distance=0.147
+ 2. Blackbird                    similarity=0.839 distance=0.161
+ 3. Dunnock                      similarity=0.825 distance=0.175
+ 4. Pheasant                     similarity=0.821 distance=0.179
+ 5. Greenfinch                   similarity=0.819 distance=0.181
+
+Woodpigeon
+----------
+ 1. Goldfinch                    similarity=0.910 distance=0.090
+ 2. Magpie                       similarity=0.885 distance=0.115
+ 3. Crow                         similarity=0.837 distance=0.163
+ 4. Common Starling              similarity=0.827 distance=0.173
+ 5. Herring Gull                 similarity=0.744 distance=0.256
+
+Wren
+----
+ 1. Greenfinch                   similarity=0.908 distance=0.092
+ 2. Rook                         similarity=0.831 distance=0.169
+ 3. Great Tit                    similarity=0.813 distance=0.187
+ 4. Pheasant                     similarity=0.801 distance=0.199
+ 5. Song Thrush                  similarity=0.781 distance=0.219
+
+Chiffchaff
+----------
+ 1. Garden Warbler               similarity=0.817 distance=0.183
+ 2. Cuckoo                       similarity=0.683 distance=0.317
+ 3. Reed Warbler                 similarity=0.669 distance=0.331
+ 4. Swallow                      similarity=0.667 distance=0.333
+ 5. Swift                        similarity=0.652 distance=0.348
+
+Cuckoo
+------
+ 1. Whitethroat                  similarity=0.704 distance=0.296
+ 2. Reed Warbler                 similarity=0.688 distance=0.312
+ 3. Chiffchaff                   similarity=0.683 distance=0.317
+ 4. Garden Warbler               similarity=0.574 distance=0.426
+ 5. House Sparrow                similarity=0.563 distance=0.437
+
+Garden Warbler
+--------------
+ 1. Chiffchaff                   similarity=0.817 distance=0.183
+ 2. Dunnock                      similarity=0.601 distance=0.399
+ 3. Reed Warbler                 similarity=0.595 distance=0.405
+ 4. Swift                        similarity=0.577 distance=0.423
+ 5. Cuckoo                       similarity=0.574 distance=0.426
+
+Reed Warbler
+------------
+ 1. Whitethroat                  similarity=0.846 distance=0.154
+ 2. Cuckoo                       similarity=0.688 distance=0.312
+ 3. Great Tit                    similarity=0.676 distance=0.324
+ 4. Chiffchaff                   similarity=0.669 distance=0.331
+ 5. Greylag Goose                similarity=0.665 distance=0.335
+
+Swallow
+-------
+ 1. Chiffchaff                   similarity=0.667 distance=0.333
+ 2. House Sparrow                similarity=0.581 distance=0.419
+ 3. Great Tit                    similarity=0.579 distance=0.421
+ 4. Greylag Goose                similarity=0.568 distance=0.432
+ 5. Pheasant                     similarity=0.564 distance=0.436
+
+Swift
+-----
+ 1. Chiffchaff                   similarity=0.652 distance=0.348
+ 2. Reed Warbler                 similarity=0.589 distance=0.411
+ 3. Whitethroat                  similarity=0.587 distance=0.413
+ 4. Garden Warbler               similarity=0.577 distance=0.423
+ 5. Swallow                      similarity=0.562 distance=0.438
+
+Whitethroat
+-----------
+ 1. Reed Warbler                 similarity=0.846 distance=0.154
+ 2. Cuckoo                       similarity=0.704 distance=0.296
+ 3. House Sparrow                similarity=0.592 distance=0.408
+ 4. Great Tit                    similarity=0.591 distance=0.409
+ 5. Swift                        similarity=0.587 distance=0.413
+
+Redwing
+-------
+ 1. Garden Warbler               similarity=0.481 distance=0.519
+ 2. Cormorant                    similarity=0.444 distance=0.556
+ 3. Long Tailed Tit              similarity=0.434 distance=0.566
+ 4. Mute Swan                    similarity=0.429 distance=0.571
+ 5. Reed Warbler                 similarity=0.412 distance=0.588

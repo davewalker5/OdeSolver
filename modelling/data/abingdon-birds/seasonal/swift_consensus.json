@@ -1,0 +1,13 @@
+{
+  "GROWTH": "2.546",
+  "DECAY": "1.848",
+  "OOS_DECAY": "4.081",
+  "POST_PEAK_DECAY": "3.803",
+  "POST_PEAK_SHARPNESS": "4.355",
+  "SEASON_START": "5.11",
+  "SEASON_END": "9.305",
+  "SHARPNESS": "7.507",
+  "FORCING_PEAK": "6.06",
+  "SCORE": "0.029",
+  "SPECIES": "Swift"
+}

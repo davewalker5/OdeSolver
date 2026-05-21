@@ -1,0 +1,136 @@
+{
+  "schema_version": "seasonal-ecological-calendar-clusters/v1",
+  "source_schema_version": "species-similarity-clusters/v2",
+  "source_created_utc": "2026-05-21T10:27:39.047993+00:00",
+  "n_species": 46,
+  "n_clusters": 10,
+  "cluster_caveat": "Clusters should be interpreted as exploratory seasonal assemblages rather than fixed ecological categories.",
+  "clusters": [
+    {
+      "cluster_id": 1,
+      "calendar_label": "Redwing neighbourhood",
+      "description": "Single-species cluster containing Redwing, mainly representing winter visitor with autumn arrival component. The defining pattern is a winter peak around January, a moderate autumn component, moderate summer suppression, and slow arrival fast departure response dynamics. Its defining traits include year wrapping winter presence, core winter winter peak, and moderate autumn component. Compared with the full species set, autumn to winter weight ratio is higher than the whole-set average and decay to growth ratio is higher than the whole-set average.",
+      "n_species": 1,
+      "species": [
+        "Redwing"
+      ]
+    },
+    {
+      "cluster_id": 2,
+      "calendar_label": "Swallow neighbourhood",
+      "description": "Single-species cluster containing Swallow, mainly representing extended spring seasonal presence. The fitted active window runs roughly from April to October, with a mean peak around May, and and an average width of 6.2 months. It is characterised by very broad season and sharp active window. Its defining traits include spring peak, very broad season, and sharp seasonal window. Compared with the full species set, season end month is higher than the whole-set average and season width months is higher than the whole-set average.",
+      "n_species": 1,
+      "species": [
+        "Swallow"
+      ]
+    },
+    {
+      "cluster_id": 3,
+      "calendar_label": "Cuckoo neighbourhood",
+      "description": "Single-species cluster containing Cuckoo, mainly representing narrow spring seasonal presence. The fitted active window runs roughly from April to June, with a mean peak around May, and and an average width of 1.8 months. It is characterised by narrow season and sharp active window. Its defining traits include spring peak, narrow season, and sharp seasonal window. Compared with the full species set, fit score is lower than the whole-set average and season width months is lower than the whole-set average.",
+      "n_species": 1,
+      "species": [
+        "Cuckoo"
+      ]
+    },
+    {
+      "cluster_id": 4,
+      "calendar_label": "Moderate Spring Seasonal Presence",
+      "description": "Cluster of 2 species, mainly representing moderate spring seasonal presence. The fitted active window runs roughly from April to June, with a mean peak around May, and and an average width of 2.6 months. It is characterised by moderate season and moderate active window. Common high-support traits include spring peak, moderate season, and moderate seasonal window. Compared with the full species set, fit score is lower than the whole-set average and season width months is lower than the whole-set average.",
+      "n_species": 2,
+      "species": [
+        "Reed Warbler",
+        "Whitethroat"
+      ]
+    },
+    {
+      "cluster_id": 5,
+      "calendar_label": "Swift neighbourhood",
+      "description": "Single-species cluster containing Swift, mainly representing extended summer seasonal presence. The fitted active window runs roughly from May to September, with a mean peak around June, and and an average width of 4.2 months. It is characterised by broad season and moderate active window. Its defining traits include summer peak, broad season, and moderate seasonal window. Compared with the full species set, season midpoint month is higher than the whole-set average and season end month is higher than the whole-set average.",
+      "n_species": 1,
+      "species": [
+        "Swift"
+      ]
+    },
+    {
+      "cluster_id": 6,
+      "calendar_label": "Extended Spring Seasonal Presence",
+      "description": "Cluster of 2 species, mainly representing extended spring seasonal presence. The fitted active window runs roughly from March to July, with a mean peak around April, and and an average width of 4.4 months. It is characterised by broad season and sharp active window. Common high-support traits include broad season, sharp seasonal window, and moderate post peak decline. Compared with the full species set, fit score is lower than the whole-set average and season start month is lower than the whole-set average.",
+      "n_species": 2,
+      "species": [
+        "Chiffchaff",
+        "Garden Warbler"
+      ]
+    },
+    {
+      "cluster_id": 7,
+      "calendar_label": "Jay neighbourhood",
+      "description": "Single-species cluster containing Jay, mainly representing resident with summer detectability collapse. Detectability peaks around October and and is lowest around August. The shared pattern includes weak baseline presence, moderate summer suppression, meaningful autumn component, and rapid decline biased response dynamics. Its defining traits include resident detectability pattern, weak baseline presence, and autumn detectability peak. Compared with the full species set, target amplitude is lower than the whole-set average and peak month is lower than the whole-set average.",
+      "n_species": 1,
+      "species": [
+        "Jay"
+      ]
+    },
+    {
+      "cluster_id": 8,
+      "calendar_label": "Resident With Summer Detectability Collapse",
+      "description": "Cluster of 22 species, mainly representing resident with summer detectability collapse. Detectability peaks around April and and is lowest around September. The shared pattern includes weak baseline presence, moderate summer suppression, weak autumn component, and rapid decline biased response dynamics. Common high-support traits include resident detectability pattern, moderate summer suppression, and weak autumn component.",
+      "n_species": 22,
+      "species": [
+        "Collared Dove",
+        "House Sparrow",
+        "Mallard",
+        "Pied Wagtail",
+        "Chaffinch",
+        "Coal Tit",
+        "Blackcap",
+        "Skylark",
+        "Common Kestrel",
+        "Long Tailed Tit",
+        "Buzzard",
+        "Blackbird",
+        "Blue Tit",
+        "Dunnock",
+        "Canada Goose",
+        "Song Thrush",
+        "Greylag Goose",
+        "Great Tit",
+        "Pheasant",
+        "Rook",
+        "Greenfinch",
+        "Wren"
+      ]
+    },
+    {
+      "cluster_id": 9,
+      "calendar_label": "Resident With Summer Detectability Collapse",
+      "description": "Cluster of 7 species, mainly representing resident with summer detectability collapse. Detectability peaks around February and and is lowest around August. The shared pattern includes weak baseline presence, moderate summer suppression, weak autumn component, and decline biased response dynamics. Common high-support traits include resident detectability pattern, winter detectability peak, and meaningful year end component.",
+      "n_species": 7,
+      "species": [
+        "Cormorant",
+        "Mistle Thrush",
+        "Robin",
+        "Mute Swan",
+        "Herring Gull",
+        "Black Headed Gull",
+        "Coot"
+      ]
+    },
+    {
+      "cluster_id": 10,
+      "calendar_label": "Resident With Spring Persistence And Summer Suppression",
+      "description": "Cluster of 8 species, mainly representing resident with spring persistence and summer suppression. Detectability peaks around March and and is lowest around August. The shared pattern includes strong baseline presence, strong summer suppression, weak autumn component, and rapid decline biased response dynamics. Common high-support traits include resident detectability pattern, strong baseline presence, and strong summer suppression. Compared with the full species set, target mean value is higher than the whole-set average and baseline to peak ratio is higher than the whole-set average.",
+      "n_species": 8,
+      "species": [
+        "Grey Heron",
+        "Jackdaw",
+        "Red Kite",
+        "Goldfinch",
+        "Woodpigeon",
+        "Common Starling",
+        "Crow",
+        "Magpie"
+      ]
+    }
+  ]
+}
