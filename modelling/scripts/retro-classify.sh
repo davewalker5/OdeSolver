@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-if (( $# < 1 )); then
+if (( $# < 2 )); then
     scriptname=$(basename -- "$0")
-    echo Usage: $scriptname MODEL [SPECIES]
+    echo Usage: $scriptname PROJECT MODEL [SPECIES]
     exit 1
 fi
 
@@ -10,8 +10,8 @@ fi
 MODELLING_ROOT=$( cd "$( dirname "$0" )/.." && pwd )
 
 # Run the classifier
-if (( $# == 1 )); then
-    python "$MODELLING_ROOT/src/retro-classify.py" --model "$1" --all
+if (( $# == 2 )); then
+    python "$MODELLING_ROOT/src/retro-classify.py" --project "$1" --model "$2" --all
 else
-    python "$MODELLING_ROOT/src/retro-classify.py" --model "$1" --species "$2"
+    python "$MODELLING_ROOT/src/retro-classify.py" --project "$1" --model "$2" --species "$3"
 fi

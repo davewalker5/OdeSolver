@@ -10,13 +10,6 @@ from seasonal.support.json import load_json
 RESIDENT = "resident"
 SEASONAL = "seasonal"
 WINTER = "winter"
-
-MODEL_FOLDERS = {
-    RESIDENT: "resident-detectability",
-    SEASONAL: "seasonal-presence",
-    WINTER: "winter-visitor"
-}
-
 CONSENSUS_SUFFIX = "_consensus.json"
 
 
@@ -84,13 +77,14 @@ def main():
     """
     parser = argparse.ArgumentParser()
 
+    parser.add_argument("-p", "--project", required=True, help="Project name")
     parser.add_argument("-m", "--model", choices=[RESIDENT, SEASONAL, WINTER], required=True, help="Model name")
     parser.add_argument("-s", "--species", help="Species name")
     parser.add_argument("-a", "--all", action="store_true", help="Classify all species for the specied model")
     args = parser.parse_args()
 
     # Calculate the path to the models data folder
-    data_folder = Path(__file__).parent.parent / MODEL_FOLDERS[args.model] / "data"
+    data_folder = Path(__file__).parent.parent / "data" / args.project / args.model
 
     if args.all:
         classify_all_species(data_folder, args.model)

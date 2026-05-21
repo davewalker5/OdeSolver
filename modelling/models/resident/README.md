@@ -254,7 +254,7 @@ The parameter fitting workflow is illustrated below:
 
 ![Parameter Fitting](https://github.com/davewalker5/OdeSolver/blob/main/docs/images/parameter-fitting.png?raw=true)
 
-The following summarises
+The following summarises the naming conventions and locations for the outputs from the modelling process:
 
 | File              | Naming                          | Type      | Location    |
 | ----------------- | ------------------------------- | --------- | ----------- |
