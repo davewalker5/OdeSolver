@@ -1,0 +1,49 @@
+{
+  "schema_version": "seasonal-classification/v1",
+  "species": "Bluebell",
+  "model_family": "seasonal_presence",
+  "classification": {
+    "primary_class": "narrow_spring_seasonal_presence",
+    "timing": "spring",
+    "season_width": "narrow",
+    "window_shape": "sharp",
+    "post_peak_decline": "moderate",
+    "offseason_suppression": "moderate",
+    "peak_alignment": "central",
+    "traits": [
+      "spring_peak",
+      "narrow_season",
+      "sharp_seasonal_window",
+      "moderate_post_peak_decline",
+      "moderate_offseason_suppression",
+      "central_peak_alignment"
+    ],
+    "confidence": "high"
+  },
+  "derived_metrics": {
+    "season_start_month": 4.08,
+    "season_end_month": 5.55,
+    "forcing_peak_month": 4.875,
+    "season_width_months": 1.47,
+    "season_midpoint_month": 4.815,
+    "season_start_label": "April",
+    "season_end_label": "June",
+    "forcing_peak_label": "May"
+  },
+  "parameter_evidence": {
+    "GROWTH": 3.131,
+    "DECAY": 1.854,
+    "OOS_DECAY": 3.898,
+    "POST_PEAK_DECAY": 2.877,
+    "POST_PEAK_SHARPNESS": 6.548,
+    "SEASON_START": 4.08,
+    "SEASON_END": 5.55,
+    "SHARPNESS": 8.58,
+    "FORCING_PEAK": 4.875
+  },
+  "fit": {
+    "score": 0.039
+  },
+  "warnings": [],
+  "summary": "Bluebell is classified as narrow spring seasonal presence. The fitted seasonal window runs from about April to June, with a spring peak around May. The season is narrow, with a sharp active window, moderate post-peak decline, and moderate off-season suppression."
+}

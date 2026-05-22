@@ -1,0 +1,49 @@
+{
+  "schema_version": "seasonal-classification/v1",
+  "species": "Horsetail",
+  "model_family": "seasonal_presence",
+  "classification": {
+    "primary_class": "extended_summer_seasonal_presence",
+    "timing": "summer",
+    "season_width": "broad",
+    "window_shape": "moderate",
+    "post_peak_decline": "moderate",
+    "offseason_suppression": "moderate",
+    "peak_alignment": "central",
+    "traits": [
+      "summer_peak",
+      "broad_season",
+      "moderate_seasonal_window",
+      "moderate_post_peak_decline",
+      "moderate_offseason_suppression",
+      "central_peak_alignment"
+    ],
+    "confidence": "high"
+  },
+  "derived_metrics": {
+    "season_start_month": 4.235,
+    "season_end_month": 8.78,
+    "forcing_peak_month": 6.58,
+    "season_width_months": 4.545,
+    "season_midpoint_month": 6.5075,
+    "season_start_label": "April",
+    "season_end_label": "September",
+    "forcing_peak_label": "July"
+  },
+  "parameter_evidence": {
+    "GROWTH": 3.398,
+    "DECAY": 2.098,
+    "OOS_DECAY": 3.1,
+    "POST_PEAK_DECAY": 3.422,
+    "POST_PEAK_SHARPNESS": 4.312,
+    "SEASON_START": 4.235,
+    "SEASON_END": 8.78,
+    "SHARPNESS": 6.662,
+    "FORCING_PEAK": 6.58
+  },
+  "fit": {
+    "score": 0.026
+  },
+  "warnings": [],
+  "summary": "Horsetail is classified as extended summer seasonal presence. The fitted seasonal window runs from about April to September, with a summer peak around July. The season is broad, with a moderate active window, moderate post-peak decline, and moderate off-season suppression."
+}

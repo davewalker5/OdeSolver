@@ -1,0 +1,81 @@
+{
+  "schema_version": "winter-classification/v1",
+  "species": "Snowberry",
+  "model_family": "winter_presence",
+  "classification": {
+    "primary_class": "winter_visitor_with_autumn_arrival_component",
+    "winter_timing": "atypical",
+    "autumn_component": "moderate",
+    "summer_suppression": "moderate",
+    "baseline_presence": "low",
+    "winter_bump_shape": "moderate",
+    "autumn_bump_shape": "moderate",
+    "response_dynamics": "balanced",
+    "traits": [
+      "year_wrapping_winter_presence",
+      "atypical_winter_peak",
+      "moderate_autumn_component",
+      "moderate_summer_suppression",
+      "low_baseline_presence",
+      "moderate_winter_bump",
+      "balanced_response_dynamics"
+    ],
+    "confidence": "medium"
+  },
+  "derived_metrics": {
+    "winter_peak_month": 8.56,
+    "winter_peak_label": "September",
+    "autumn_peak_month": 9.865,
+    "autumn_peak_label": "October",
+    "summer_low_month": 6.54,
+    "summer_low_label": "July",
+    "autumn_to_winter_weight_ratio": 0.452991452991453,
+    "decay_to_growth_ratio": 1.4097560975609755,
+    "target_peak_month": 9,
+    "target_peak_label": "September",
+    "target_trough_month": 3,
+    "target_trough_label": "March",
+    "active_months_ge_0_10": [
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "monthly_target": {
+      "January": 0.03040700561206541,
+      "February": 0.0010285149373122626,
+      "March": 0.0,
+      "April": 0.0,
+      "May": 0.0,
+      "June": 0.0,
+      "July": 0.36767574572901796,
+      "August": 0.894610302956173,
+      "September": 1.1841584093532311,
+      "October": 1.003791442139665,
+      "November": 0.5473905504411365,
+      "December": 0.17940148246807067
+    }
+  },
+  "parameter_evidence": {
+    "INITIAL_Y": 0.558,
+    "GROWTH_RATE": 1.23,
+    "DECAY_RATE": 1.734,
+    "BASELINE": 0.0,
+    "WINTER_WEIGHT": 0.936,
+    "AUTUMN_WEIGHT": 0.424,
+    "WINTER_PEAK": 8.56,
+    "AUTUMN_PEAK": 9.865,
+    "WINTER_WIDTH": 3.09,
+    "AUTUMN_WIDTH": 3.579,
+    "SUMMER_DIP": 0.238,
+    "SUMMER_LOW": 6.54,
+    "SUMMER_WIDTH": 2.852
+  },
+  "fit": {
+    "score": 0.145
+  },
+  "warnings": [],
+  "summary": "Snowberry is classified as winter visitor with autumn arrival component. The fitted winter component peaks around September, with a moderate autumn component centred around October. The model has low baseline presence and moderate summer suppression centred around July. The fitted response dynamics suggest balanced."
+}

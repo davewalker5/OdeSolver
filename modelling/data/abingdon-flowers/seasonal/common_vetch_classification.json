@@ -1,0 +1,49 @@
+{
+  "schema_version": "seasonal-classification/v1",
+  "species": "Common Vetch",
+  "model_family": "seasonal_presence",
+  "classification": {
+    "primary_class": "moderate_spring_seasonal_presence",
+    "timing": "spring",
+    "season_width": "moderate",
+    "window_shape": "sharp",
+    "post_peak_decline": "strong",
+    "offseason_suppression": "strong",
+    "peak_alignment": "central",
+    "traits": [
+      "spring_peak",
+      "moderate_season",
+      "sharp_seasonal_window",
+      "strong_post_peak_decline",
+      "strong_offseason_suppression",
+      "central_peak_alignment"
+    ],
+    "confidence": "high"
+  },
+  "derived_metrics": {
+    "season_start_month": 4.545,
+    "season_end_month": 7.19,
+    "forcing_peak_month": 5.19,
+    "season_width_months": 2.645,
+    "season_midpoint_month": 5.8675,
+    "season_start_label": "May",
+    "season_end_label": "July",
+    "forcing_peak_label": "May"
+  },
+  "parameter_evidence": {
+    "GROWTH": 3.509,
+    "DECAY": 1.896,
+    "OOS_DECAY": 5.19,
+    "POST_PEAK_DECAY": 4.952,
+    "POST_PEAK_SHARPNESS": 4.2,
+    "SEASON_START": 4.545,
+    "SEASON_END": 7.19,
+    "SHARPNESS": 9.058,
+    "FORCING_PEAK": 5.19
+  },
+  "fit": {
+    "score": 0.036
+  },
+  "warnings": [],
+  "summary": "Common Vetch is classified as moderate spring seasonal presence. The fitted seasonal window runs from about May to July, with a spring peak around May. The season is moderate, with a sharp active window, strong post-peak decline, and strong off-season suppression."
+}

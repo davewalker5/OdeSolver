@@ -1,0 +1,13 @@
+{
+  "GROWTH": "2.376",
+  "DECAY": "1.812",
+  "OOS_DECAY": "4.046",
+  "POST_PEAK_DECAY": "4.752",
+  "POST_PEAK_SHARPNESS": "6.245",
+  "SEASON_START": "3.27",
+  "SEASON_END": "8.29",
+  "SHARPNESS": "7.92",
+  "FORCING_PEAK": "5.25",
+  "SCORE": "0.025",
+  "SPECIES": "Green Alkanet"
+}

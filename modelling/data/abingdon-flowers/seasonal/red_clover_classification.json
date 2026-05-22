@@ -1,0 +1,49 @@
+{
+  "schema_version": "seasonal-classification/v1",
+  "species": "Red Clover",
+  "model_family": "seasonal_presence",
+  "classification": {
+    "primary_class": "extended_summer_seasonal_presence",
+    "timing": "summer",
+    "season_width": "very_broad",
+    "window_shape": "moderate",
+    "post_peak_decline": "strong",
+    "offseason_suppression": "strong",
+    "peak_alignment": "early",
+    "traits": [
+      "summer_peak",
+      "very_broad_season",
+      "moderate_seasonal_window",
+      "strong_post_peak_decline",
+      "strong_offseason_suppression",
+      "early_peak_alignment"
+    ],
+    "confidence": "high"
+  },
+  "derived_metrics": {
+    "season_start_month": 4.25,
+    "season_end_month": 11.115,
+    "forcing_peak_month": 6.355,
+    "season_width_months": 6.865,
+    "season_midpoint_month": 7.6825,
+    "season_start_label": "April",
+    "season_end_label": "November",
+    "forcing_peak_label": "June"
+  },
+  "parameter_evidence": {
+    "GROWTH": 2.858,
+    "DECAY": 1.75,
+    "OOS_DECAY": 4.057,
+    "POST_PEAK_DECAY": 4.41,
+    "POST_PEAK_SHARPNESS": 4.036,
+    "SEASON_START": 4.25,
+    "SEASON_END": 11.115,
+    "SHARPNESS": 7.09,
+    "FORCING_PEAK": 6.355
+  },
+  "fit": {
+    "score": 0.038
+  },
+  "warnings": [],
+  "summary": "Red Clover is classified as extended summer seasonal presence. The fitted seasonal window runs from about April to November, with a summer peak around June. The season is very_broad, with a moderate active window, strong post-peak decline, and strong off-season suppression."
+}

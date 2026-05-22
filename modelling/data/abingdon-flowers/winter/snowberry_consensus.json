@@ -1,0 +1,17 @@
+{
+  "SCORE": "0.145",
+  "INITIAL_Y": "0.558",
+  "GROWTH_RATE": "1.23",
+  "DECAY_RATE": "1.734",
+  "BASELINE": "0",
+  "WINTER_WEIGHT": "0.936",
+  "AUTUMN_WEIGHT": "0.424",
+  "WINTER_PEAK": "8.56",
+  "AUTUMN_PEAK": "9.865",
+  "WINTER_WIDTH": "3.09",
+  "AUTUMN_WIDTH": "3.579",
+  "SUMMER_DIP": "0.238",
+  "SUMMER_LOW": "6.54",
+  "SUMMER_WIDTH": "2.852",
+  "SPECIES": "Snowberry"
+}

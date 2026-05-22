@@ -1,0 +1,49 @@
+{
+  "schema_version": "seasonal-classification/v1",
+  "species": "Cuckoo Pint",
+  "model_family": "seasonal_presence",
+  "classification": {
+    "primary_class": "extended_summer_seasonal_presence",
+    "timing": "summer",
+    "season_width": "broad",
+    "window_shape": "moderate",
+    "post_peak_decline": "strong",
+    "offseason_suppression": "strong",
+    "peak_alignment": "late",
+    "traits": [
+      "summer_peak",
+      "broad_season",
+      "moderate_seasonal_window",
+      "strong_post_peak_decline",
+      "strong_offseason_suppression",
+      "late_peak_alignment"
+    ],
+    "confidence": "high"
+  },
+  "derived_metrics": {
+    "season_start_month": 3.925,
+    "season_end_month": 9.245,
+    "forcing_peak_month": 7.855,
+    "season_width_months": 5.32,
+    "season_midpoint_month": 6.585,
+    "season_start_label": "April",
+    "season_end_label": "September",
+    "forcing_peak_label": "August"
+  },
+  "parameter_evidence": {
+    "GROWTH": 3.748,
+    "DECAY": 1.671,
+    "OOS_DECAY": 4.395,
+    "POST_PEAK_DECAY": 4.752,
+    "POST_PEAK_SHARPNESS": 4.626,
+    "SEASON_START": 3.925,
+    "SEASON_END": 9.245,
+    "SHARPNESS": 4.398,
+    "FORCING_PEAK": 7.855
+  },
+  "fit": {
+    "score": 0.068
+  },
+  "warnings": [],
+  "summary": "Cuckoo Pint is classified as extended summer seasonal presence. The fitted seasonal window runs from about April to September, with a summer peak around August. The season is broad, with a moderate active window, strong post-peak decline, and strong off-season suppression."
+}
