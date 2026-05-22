@@ -1,0 +1,49 @@
+{
+  "schema_version": "seasonal-classification/v1",
+  "species": "Red Campion",
+  "model_family": "seasonal_presence",
+  "classification": {
+    "primary_class": "extended_spring_seasonal_presence",
+    "timing": "spring",
+    "season_width": "broad",
+    "window_shape": "sharp",
+    "post_peak_decline": "strong",
+    "offseason_suppression": "strong",
+    "peak_alignment": "early",
+    "traits": [
+      "spring_peak",
+      "broad_season",
+      "sharp_seasonal_window",
+      "strong_post_peak_decline",
+      "strong_offseason_suppression",
+      "early_peak_alignment"
+    ],
+    "confidence": "high"
+  },
+  "derived_metrics": {
+    "season_start_month": 4.135,
+    "season_end_month": 9.95,
+    "forcing_peak_month": 5.16,
+    "season_width_months": 5.815,
+    "season_midpoint_month": 7.0425,
+    "season_start_label": "April",
+    "season_end_label": "October",
+    "forcing_peak_label": "May"
+  },
+  "parameter_evidence": {
+    "GROWTH": 2.963,
+    "DECAY": 1.796,
+    "OOS_DECAY": 4.592,
+    "POST_PEAK_DECAY": 4.028,
+    "POST_PEAK_SHARPNESS": 3.958,
+    "SEASON_START": 4.135,
+    "SEASON_END": 9.95,
+    "SHARPNESS": 9.054,
+    "FORCING_PEAK": 5.16
+  },
+  "fit": {
+    "score": 0.037
+  },
+  "warnings": [],
+  "summary": "Red Campion is classified as extended spring seasonal presence. The fitted seasonal window runs from about April to October, with a spring peak around May. The season is broad, with a sharp active window, strong post-peak decline, and strong off-season suppression."
+}

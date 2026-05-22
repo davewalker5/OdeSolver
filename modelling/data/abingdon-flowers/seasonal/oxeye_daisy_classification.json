@@ -1,0 +1,49 @@
+{
+  "schema_version": "seasonal-classification/v1",
+  "species": "Oxeye Daisy",
+  "model_family": "seasonal_presence",
+  "classification": {
+    "primary_class": "extended_spring_seasonal_presence",
+    "timing": "spring",
+    "season_width": "broad",
+    "window_shape": "moderate",
+    "post_peak_decline": "strong",
+    "offseason_suppression": "strong",
+    "peak_alignment": "early",
+    "traits": [
+      "spring_peak",
+      "broad_season",
+      "moderate_seasonal_window",
+      "strong_post_peak_decline",
+      "strong_offseason_suppression",
+      "early_peak_alignment"
+    ],
+    "confidence": "high"
+  },
+  "derived_metrics": {
+    "season_start_month": 4.47,
+    "season_end_month": 10.18,
+    "forcing_peak_month": 5.365,
+    "season_width_months": 5.71,
+    "season_midpoint_month": 7.325,
+    "season_start_label": "April",
+    "season_end_label": "October",
+    "forcing_peak_label": "May"
+  },
+  "parameter_evidence": {
+    "GROWTH": 2.634,
+    "DECAY": 2.09,
+    "OOS_DECAY": 4.01,
+    "POST_PEAK_DECAY": 3.995,
+    "POST_PEAK_SHARPNESS": 4.734,
+    "SEASON_START": 4.47,
+    "SEASON_END": 10.18,
+    "SHARPNESS": 7.21,
+    "FORCING_PEAK": 5.365
+  },
+  "fit": {
+    "score": 0.038
+  },
+  "warnings": [],
+  "summary": "Oxeye Daisy is classified as extended spring seasonal presence. The fitted seasonal window runs from about April to October, with a spring peak around May. The season is broad, with a moderate active window, strong post-peak decline, and strong off-season suppression."
+}

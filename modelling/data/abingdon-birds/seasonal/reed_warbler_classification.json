@@ -1,0 +1,49 @@
+{
+  "schema_version": "seasonal-classification/v1",
+  "species": "Reed Warbler",
+  "model_family": "seasonal_presence",
+  "classification": {
+    "primary_class": "moderate_spring_seasonal_presence",
+    "timing": "spring",
+    "season_width": "moderate",
+    "window_shape": "moderate",
+    "post_peak_decline": "strong",
+    "offseason_suppression": "strong",
+    "peak_alignment": "central",
+    "traits": [
+      "spring_peak",
+      "moderate_season",
+      "moderate_seasonal_window",
+      "strong_post_peak_decline",
+      "strong_offseason_suppression",
+      "central_peak_alignment"
+    ],
+    "confidence": "high"
+  },
+  "derived_metrics": {
+    "season_start_month": 3.29,
+    "season_end_month": 6.115,
+    "forcing_peak_month": 4.12,
+    "season_width_months": 2.825,
+    "season_midpoint_month": 4.7025,
+    "season_start_label": "March",
+    "season_end_label": "June",
+    "forcing_peak_label": "April"
+  },
+  "parameter_evidence": {
+    "GROWTH": 3.24,
+    "DECAY": 1.618,
+    "OOS_DECAY": 4.096,
+    "POST_PEAK_DECAY": 4.075,
+    "POST_PEAK_SHARPNESS": 6.19,
+    "SEASON_START": 3.29,
+    "SEASON_END": 6.115,
+    "SHARPNESS": 7.004,
+    "FORCING_PEAK": 4.12
+  },
+  "fit": {
+    "score": 0.06
+  },
+  "warnings": [],
+  "summary": "Reed Warbler is classified as moderate spring seasonal presence. The fitted seasonal window runs from about March to June, with a spring peak around April. The season is moderate, with a moderate active window, strong post-peak decline, and strong off-season suppression."
+}

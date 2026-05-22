@@ -1,0 +1,196 @@
+
+Species clusters
+================
+
+Cluster 1
+---------
+Single-species cluster containing Snowberry, mainly representing winter visitor with autumn arrival component. The defining pattern is a winter peak around September, a moderate autumn component, moderate summer suppression, and balanced response dynamics. Its defining traits include year wrapping winter presence, atypical winter peak, and moderate autumn component. Compared with the full species set, trough month is lower than the whole-set average and autumn to winter weight ratio is higher than the whole-set average.
+
+Species (1):
+  Snowberry
+
+Dominant model family : winter_presence
+Dominant class        : winter_visitor_with_autumn_arrival_component
+Common traits         : year_wrapping_winter_presence (1, 100%), atypical_winter_peak (1, 100%), moderate_autumn_component (1, 100%), moderate_summer_suppression (1, 100%), low_baseline_presence (1, 100%)
+
+Peak month mean/range : 9.00 (9.00 - 9.00)
+
+Distinguishing numeric features:
+  - trough_month (lower, scaled_difference=-0.97)
+  - autumn_to_winter_weight_ratio (higher, scaled_difference=0.84)
+  - peak_month (higher, scaled_difference=0.53)
+  - decay_to_growth_ratio (lower, scaled_difference=-0.28)
+  - fit_score (higher, scaled_difference=0.12)
+
+Cluster 2
+---------
+Cluster of 6 species, mainly representing resident with summer detectability collapse. Detectability peaks around May and and is lowest around September. The shared pattern includes moderate baseline presence, moderate summer suppression, weak autumn component, and rapid decline biased response dynamics. Common high-support traits include resident detectability pattern, moderate summer suppression, and late spring early summer detectability peak. Compared with the full species set, fit score is higher than the whole-set average.
+
+Species (6):
+  Nettle
+  Daisy
+  Shepherds Purse
+  Dandelion
+  Common Cleavers
+  Germander Speedwell
+
+Dominant model family : resident_detectability
+Dominant class        : resident_with_summer_detectability_collapse
+Common traits         : resident_detectability_pattern (6, 100%), moderate_summer_suppression (6, 100%), late_spring_early_summer_detectability_peak (5, 83%), autumn_detectability_trough (5, 83%), weak_autumn_component (5, 83%)
+
+Peak month mean/range : 4.84 (4.00 - 5.00)
+
+Distinguishing numeric features:
+  - fit_score (higher, scaled_difference=0.59)
+  - autumn_to_winter_weight_ratio (lower, scaled_difference=-0.14)
+  - peak_month (lower, scaled_difference=-0.09)
+  - decay_to_growth_ratio (higher, scaled_difference=0.05)
+  - trough_month (higher, scaled_difference=0.01)
+
+Cluster 3
+---------
+Cluster of 2 species, mainly representing narrow winter seasonal presence. The fitted active window runs roughly from January to March, with a mean peak around February, and and an average width of 1.7 months. It is characterised by narrow season and moderate active window. Common high-support traits include winter peak, narrow season, and strong offseason suppression. Compared with the full species set, season end month is lower than the whole-set average and season midpoint month is lower than the whole-set average.
+
+Species (2):
+  Snowdrop
+  Winter Aconite
+
+Dominant model family : seasonal_presence
+Dominant class        : narrow_winter_seasonal_presence
+Common traits         : winter_peak (2, 100%), narrow_season (2, 100%), strong_offseason_suppression (2, 100%), central_peak_alignment (2, 100%), moderate_seasonal_window (1, 50%)
+
+Peak month mean/range : 2.40 (2.35 - 2.45)
+Season width mean     : 1.68 months
+
+Distinguishing numeric features:
+  - season_end_month (lower, scaled_difference=-0.70)
+  - season_midpoint_month (lower, scaled_difference=-0.67)
+  - season_start_month (lower, scaled_difference=-0.57)
+  - peak_month (lower, scaled_difference=-0.46)
+  - season_width_months (lower, scaled_difference=-0.39)
+
+Cluster 4
+---------
+Cluster of 8 species, mainly representing extended spring seasonal presence. The fitted active window runs roughly from April to October, with a mean peak around May, and and an average width of 6.0 months. It is characterised by broad season and moderate active window. Common high-support traits include spring peak, strong post peak decline, and early peak alignment.
+
+Species (8):
+  Buttercup
+  Red Dead Nettle
+  Doves Foot Cranesbill
+  Green Alkanet
+  Honeysuckle
+  Red Campion
+  Common Comfrey
+  Oxeye Daisy
+
+Dominant model family : seasonal_presence
+Dominant class        : extended_spring_seasonal_presence
+Common traits         : spring_peak (8, 100%), strong_post_peak_decline (8, 100%), early_peak_alignment (7, 88%), strong_offseason_suppression (7, 88%), moderate_seasonal_window (5, 62%)
+
+Peak month mean/range : 5.13 (4.21 - 5.41)
+Season width mean     : 6.02 months
+
+Distinguishing numeric features:
+  - season_width_months (higher, scaled_difference=0.25)
+  - fit_score (lower, scaled_difference=-0.11)
+  - season_start_month (lower, scaled_difference=-0.10)
+  - season_end_month (higher, scaled_difference=0.07)
+  - peak_month (lower, scaled_difference=-0.05)
+
+Cluster 5
+---------
+Cluster of 7 species, mainly representing extended summer seasonal presence. The fitted active window runs roughly from May to November, with a mean peak around July, and and an average width of 5.7 months. It is characterised by very broad season and moderate active window. Common high-support traits include summer peak, strong offseason suppression, and strong post peak decline.
+
+Species (7):
+  Dog Rose
+  Teasel
+  Red Clover
+  White Campion
+  Cuckoo Pint
+  Common Poppy
+  Cornflower
+
+Dominant model family : seasonal_presence
+Dominant class        : extended_summer_seasonal_presence
+Common traits         : summer_peak (7, 100%), strong_offseason_suppression (7, 100%), strong_post_peak_decline (6, 86%), early_peak_alignment (6, 86%), very_broad_season (4, 57%)
+
+Peak month mean/range : 6.62 (5.86 - 7.86)
+Season width mean     : 5.73 months
+
+Distinguishing numeric features:
+  - season_midpoint_month (higher, scaled_difference=0.22)
+  - season_width_months (higher, scaled_difference=0.21)
+  - season_end_month (higher, scaled_difference=0.19)
+  - peak_month (higher, scaled_difference=0.18)
+  - season_start_month (higher, scaled_difference=0.17)
+
+Cluster 6
+---------
+Cluster of 4 species, mainly representing moderate summer seasonal presence. The fitted active window runs roughly from May to September, with a mean peak around July, and and an average width of 3.5 months. It is characterised by moderate season and moderate active window. Common high-support traits include summer peak, central peak alignment, and moderate seasonal window.
+
+Species (4):
+  Horsetail
+  Rosebay Willowherb
+  Goats Beard
+  White Clover
+
+Dominant model family : seasonal_presence
+Dominant class        : moderate_summer_seasonal_presence
+Common traits         : summer_peak (4, 100%), central_peak_alignment (4, 100%), moderate_seasonal_window (3, 75%), moderate_post_peak_decline (3, 75%), moderate_season (3, 75%)
+
+Peak month mean/range : 6.80 (6.17 - 8.27)
+Season width mean     : 3.50 months
+
+Distinguishing numeric features:
+  - season_start_month (higher, scaled_difference=0.21)
+  - peak_month (higher, scaled_difference=0.20)
+  - fit_score (lower, scaled_difference=-0.17)
+  - season_width_months (lower, scaled_difference=-0.12)
+  - season_midpoint_month (higher, scaled_difference=0.07)
+
+Cluster 7
+---------
+Cluster of 5 species, mainly representing moderate spring seasonal presence. The fitted active window runs roughly from April to June, with a mean peak around May, and and an average width of 2.6 months. It is characterised by moderate season and sharp active window. Common high-support traits include spring peak, moderate season, and strong offseason suppression. Compared with the full species set, season end month is lower than the whole-set average.
+
+Species (5):
+  Common Vetch
+  Cow Parsley
+  Lesser Celandine
+  Cowslip
+  Garlic Mustard
+
+Dominant model family : seasonal_presence
+Dominant class        : moderate_spring_seasonal_presence
+Common traits         : spring_peak (5, 100%), moderate_season (5, 100%), strong_offseason_suppression (5, 100%), central_peak_alignment (5, 100%), sharp_seasonal_window (4, 80%)
+
+Peak month mean/range : 4.80 (4.25 - 5.19)
+Season width mean     : 2.64 months
+
+Distinguishing numeric features:
+  - season_end_month (lower, scaled_difference=-0.32)
+  - season_width_months (lower, scaled_difference=-0.25)
+  - season_midpoint_month (lower, scaled_difference=-0.24)
+  - fit_score (lower, scaled_difference=-0.17)
+  - peak_month (lower, scaled_difference=-0.10)
+
+Cluster 8
+---------
+Cluster of 2 species, mainly representing narrow spring seasonal presence. The fitted active window runs roughly from May to June, with a mean peak around May, and and an average width of 1.1 months. It is characterised by narrow season and sharp active window. Common high-support traits include spring peak, narrow season, and moderate offseason suppression. Compared with the full species set, season width months is lower than the whole-set average and season end month is lower than the whole-set average.
+
+Species (2):
+  Bluebell
+  Yellow Flag Iris
+
+Dominant model family : seasonal_presence
+Dominant class        : narrow_spring_seasonal_presence
+Common traits         : spring_peak (2, 100%), narrow_season (2, 100%), moderate_offseason_suppression (2, 100%), central_peak_alignment (2, 100%), sharp_seasonal_window (1, 50%)
+
+Peak month mean/range : 5.16 (4.88 - 5.45)
+Season width mean     : 1.12 months
+
+Distinguishing numeric features:
+  - season_width_months (lower, scaled_difference=-0.47)
+  - season_end_month (lower, scaled_difference=-0.39)
+  - season_midpoint_month (lower, scaled_difference=-0.21)
+  - fit_score (lower, scaled_difference=-0.14)
+  - season_start_month (higher, scaled_difference=0.09)

@@ -1,0 +1,244 @@
+
+Species clusters
+================
+
+Cluster 1
+---------
+Single-species cluster containing Redwing, mainly representing winter visitor with autumn arrival component. The defining pattern is a winter peak around January, a moderate autumn component, moderate summer suppression, and slow arrival fast departure response dynamics. Its defining traits include year wrapping winter presence, core winter winter peak, and moderate autumn component. Compared with the full species set, autumn to winter weight ratio is higher than the whole-set average and decay to growth ratio is higher than the whole-set average.
+
+Species (1):
+  Redwing
+
+Dominant model family : winter_presence
+Dominant class        : winter_visitor_with_autumn_arrival_component
+Common traits         : year_wrapping_winter_presence (1, 100%), core_winter_winter_peak (1, 100%), moderate_autumn_component (1, 100%), moderate_summer_suppression (1, 100%), low_baseline_presence (1, 100%)
+
+Peak month mean/range : 1.00 (1.00 - 1.00)
+
+Distinguishing numeric features:
+  - autumn_to_winter_weight_ratio (higher, scaled_difference=0.78)
+  - decay_to_growth_ratio (higher, scaled_difference=0.61)
+  - trough_month (lower, scaled_difference=-0.56)
+  - peak_month (lower, scaled_difference=-0.29)
+  - fit_score (lower, scaled_difference=-0.27)
+
+Cluster 2
+---------
+Single-species cluster containing Swallow, mainly representing extended spring seasonal presence. The fitted active window runs roughly from April to October, with a mean peak around May, and and an average width of 6.2 months. It is characterised by very broad season and sharp active window. Its defining traits include spring peak, very broad season, and sharp seasonal window. Compared with the full species set, season end month is higher than the whole-set average and season width months is higher than the whole-set average.
+
+Species (1):
+  Swallow
+
+Dominant model family : seasonal_presence
+Dominant class        : extended_spring_seasonal_presence
+Common traits         : spring_peak (1, 100%), very_broad_season (1, 100%), sharp_seasonal_window (1, 100%), moderate_post_peak_decline (1, 100%), moderate_offseason_suppression (1, 100%)
+
+Peak month mean/range : 5.47 (5.47 - 5.47)
+Season width mean     : 6.21 months
+
+Distinguishing numeric features:
+  - season_end_month (higher, scaled_difference=0.71)
+  - season_width_months (higher, scaled_difference=0.56)
+  - season_midpoint_month (higher, scaled_difference=0.54)
+  - fit_score (lower, scaled_difference=-0.41)
+  - peak_month (higher, scaled_difference=0.21)
+
+Cluster 3
+---------
+Single-species cluster containing Cuckoo, mainly representing narrow spring seasonal presence. The fitted active window runs roughly from April to June, with a mean peak around May, and and an average width of 1.8 months. It is characterised by narrow season and sharp active window. Its defining traits include spring peak, narrow season, and sharp seasonal window. Compared with the full species set, fit score is lower than the whole-set average and season width months is lower than the whole-set average.
+
+Species (1):
+  Cuckoo
+
+Dominant model family : seasonal_presence
+Dominant class        : narrow_spring_seasonal_presence
+Common traits         : spring_peak (1, 100%), narrow_season (1, 100%), sharp_seasonal_window (1, 100%), moderate_post_peak_decline (1, 100%), strong_offseason_suppression (1, 100%)
+
+Peak month mean/range : 5.49 (5.49 - 5.49)
+Season width mean     : 1.83 months
+
+Distinguishing numeric features:
+  - fit_score (lower, scaled_difference=-0.48)
+  - season_width_months (lower, scaled_difference=-0.44)
+  - season_end_month (lower, scaled_difference=-0.27)
+  - peak_month (higher, scaled_difference=0.21)
+  - season_start_month (higher, scaled_difference=0.19)
+
+Cluster 4
+---------
+Cluster of 2 species, mainly representing moderate spring seasonal presence. The fitted active window runs roughly from April to June, with a mean peak around May, and and an average width of 2.6 months. It is characterised by moderate season and moderate active window. Common high-support traits include spring peak, moderate season, and moderate seasonal window. Compared with the full species set, fit score is lower than the whole-set average and season width months is lower than the whole-set average.
+
+Species (2):
+  Reed Warbler
+  Whitethroat
+
+Dominant model family : seasonal_presence
+Dominant class        : moderate_spring_seasonal_presence
+Common traits         : spring_peak (2, 100%), moderate_season (2, 100%), moderate_seasonal_window (2, 100%), strong_post_peak_decline (2, 100%), central_peak_alignment (2, 100%)
+
+Peak month mean/range : 4.66 (4.12 - 5.19)
+Season width mean     : 2.60 months
+
+Distinguishing numeric features:
+  - fit_score (lower, scaled_difference=-0.41)
+  - season_width_months (lower, scaled_difference=-0.26)
+  - season_end_month (lower, scaled_difference=-0.21)
+  - season_midpoint_month (lower, scaled_difference=-0.16)
+  - peak_month (higher, scaled_difference=0.12)
+
+Cluster 5
+---------
+Single-species cluster containing Swift, mainly representing extended summer seasonal presence. The fitted active window runs roughly from May to September, with a mean peak around June, and and an average width of 4.2 months. It is characterised by broad season and moderate active window. Its defining traits include summer peak, broad season, and moderate seasonal window. Compared with the full species set, season midpoint month is higher than the whole-set average and season end month is higher than the whole-set average.
+
+Species (1):
+  Swift
+
+Dominant model family : seasonal_presence
+Dominant class        : extended_summer_seasonal_presence
+Common traits         : summer_peak (1, 100%), broad_season (1, 100%), moderate_seasonal_window (1, 100%), strong_post_peak_decline (1, 100%), strong_offseason_suppression (1, 100%)
+
+Peak month mean/range : 6.06 (6.06 - 6.06)
+Season width mean     : 4.20 months
+
+Distinguishing numeric features:
+  - season_midpoint_month (higher, scaled_difference=0.55)
+  - season_end_month (higher, scaled_difference=0.47)
+  - fit_score (lower, scaled_difference=-0.44)
+  - season_start_month (higher, scaled_difference=0.43)
+  - peak_month (higher, scaled_difference=0.28)
+
+Cluster 6
+---------
+Cluster of 2 species, mainly representing extended spring seasonal presence. The fitted active window runs roughly from March to July, with a mean peak around April, and and an average width of 4.4 months. It is characterised by broad season and sharp active window. Common high-support traits include broad season, sharp seasonal window, and moderate post peak decline. Compared with the full species set, fit score is lower than the whole-set average and season start month is lower than the whole-set average.
+
+Species (2):
+  Chiffchaff
+  Garden Warbler
+
+Dominant model family : seasonal_presence
+Dominant class        : extended_spring_seasonal_presence
+Common traits         : broad_season (2, 100%), sharp_seasonal_window (2, 100%), moderate_post_peak_decline (2, 100%), strong_offseason_suppression (2, 100%), early_peak_alignment (2, 100%)
+
+Peak month mean/range : 3.69 (3.12 - 4.25)
+Season width mean     : 4.39 months
+
+Distinguishing numeric features:
+  - fit_score (lower, scaled_difference=-0.41)
+  - season_start_month (lower, scaled_difference=-0.40)
+  - season_midpoint_month (lower, scaled_difference=-0.30)
+  - season_width_months (higher, scaled_difference=0.15)
+  - season_end_month (lower, scaled_difference=-0.10)
+
+Cluster 7
+---------
+Single-species cluster containing Jay, mainly representing resident with summer detectability collapse. Detectability peaks around October and and is lowest around August. The shared pattern includes weak baseline presence, moderate summer suppression, meaningful autumn component, and rapid decline biased response dynamics. Its defining traits include resident detectability pattern, weak baseline presence, and autumn detectability peak. Compared with the full species set, target amplitude is lower than the whole-set average and peak month is lower than the whole-set average.
+
+Species (1):
+  Jay
+
+Dominant model family : resident_detectability
+Dominant class        : resident_with_summer_detectability_collapse
+Common traits         : resident_detectability_pattern (1, 100%), weak_baseline_presence (1, 100%), autumn_detectability_peak (1, 100%), summer_detectability_trough (1, 100%), weak_spring_carryover (1, 100%)
+
+Peak month mean/range : 10.00 (10.00 - 10.00)
+
+Distinguishing numeric features:
+  - target_amplitude (lower, scaled_difference=-0.66)
+  - peak_month (lower, scaled_difference=-0.62)
+  - fit_score (higher, scaled_difference=0.52)
+  - target_mean_value (lower, scaled_difference=-0.41)
+  - year_end_to_winter_weight_ratio (higher, scaled_difference=0.40)
+
+Cluster 8
+---------
+Cluster of 22 species, mainly representing resident with summer detectability collapse. Detectability peaks around April and and is lowest around September. The shared pattern includes weak baseline presence, moderate summer suppression, weak autumn component, and rapid decline biased response dynamics. Common high-support traits include resident detectability pattern, moderate summer suppression, and weak autumn component.
+
+Species (22):
+  Collared Dove
+  House Sparrow
+  Mallard
+  Pied Wagtail
+  Chaffinch
+  Coal Tit
+  Blackcap
+  Skylark
+  Common Kestrel
+  Long Tailed Tit
+  Buzzard
+  Blackbird
+  Blue Tit
+  Dunnock
+  Canada Goose
+  Song Thrush
+  Greylag Goose
+  Great Tit
+  Pheasant
+  Rook
+  Greenfinch
+  Wren
+
+Dominant model family : resident_detectability
+Dominant class        : resident_with_summer_detectability_collapse
+Common traits         : resident_detectability_pattern (22, 100%), moderate_summer_suppression (21, 95%), weak_autumn_component (20, 91%), meaningful_year_end_component (18, 82%), rapid_decline_biased_response_dynamics (17, 77%)
+
+Peak month mean/range : 4.13 (3.00 - 6.00)
+
+Distinguishing numeric features:
+  - year_end_to_winter_weight_ratio (lower, scaled_difference=-0.11)
+  - baseline_to_peak_ratio (lower, scaled_difference=-0.11)
+  - target_mean_value (lower, scaled_difference=-0.09)
+  - autumn_to_winter_weight_ratio (lower, scaled_difference=-0.09)
+  - peak_month (higher, scaled_difference=0.06)
+
+Cluster 9
+---------
+Cluster of 7 species, mainly representing resident with summer detectability collapse. Detectability peaks around February and and is lowest around August. The shared pattern includes weak baseline presence, moderate summer suppression, weak autumn component, and decline biased response dynamics. Common high-support traits include resident detectability pattern, winter detectability peak, and meaningful year end component.
+
+Species (7):
+  Cormorant
+  Mistle Thrush
+  Robin
+  Mute Swan
+  Herring Gull
+  Black Headed Gull
+  Coot
+
+Dominant model family : resident_detectability
+Dominant class        : resident_with_summer_detectability_collapse
+Common traits         : resident_detectability_pattern (7, 100%), winter_detectability_peak (7, 100%), meaningful_year_end_component (7, 100%), strong_pre_summer_retention (6, 86%), weak_autumn_component (6, 86%)
+
+Peak month mean/range : 2.00 (2.00 - 2.00)
+
+Distinguishing numeric features:
+  - peak_month (lower, scaled_difference=-0.18)
+  - target_amplitude (lower, scaled_difference=-0.17)
+  - decay_to_growth_ratio (lower, scaled_difference=-0.16)
+  - year_end_to_winter_weight_ratio (higher, scaled_difference=0.14)
+  - target_mean_value (lower, scaled_difference=-0.09)
+
+Cluster 10
+----------
+Cluster of 8 species, mainly representing resident with spring persistence and summer suppression. Detectability peaks around March and and is lowest around August. The shared pattern includes strong baseline presence, strong summer suppression, weak autumn component, and rapid decline biased response dynamics. Common high-support traits include resident detectability pattern, strong baseline presence, and strong summer suppression. Compared with the full species set, target mean value is higher than the whole-set average and baseline to peak ratio is higher than the whole-set average.
+
+Species (8):
+  Grey Heron
+  Jackdaw
+  Red Kite
+  Goldfinch
+  Woodpigeon
+  Common Starling
+  Crow
+  Magpie
+
+Dominant model family : resident_detectability
+Dominant class        : resident_with_spring_persistence_and_summer_suppression
+Common traits         : resident_detectability_pattern (8, 100%), strong_baseline_presence (8, 100%), strong_summer_suppression (8, 100%), meaningful_year_end_component (8, 100%), weak_autumn_component (7, 88%)
+
+Peak month mean/range : 2.68 (2.00 - 5.00)
+
+Distinguishing numeric features:
+  - target_mean_value (higher, scaled_difference=0.39)
+  - baseline_to_peak_ratio (higher, scaled_difference=0.35)
+  - fit_score (higher, scaled_difference=0.24)
+  - year_end_to_winter_weight_ratio (higher, scaled_difference=0.15)
+  - peak_month (lower, scaled_difference=-0.10)

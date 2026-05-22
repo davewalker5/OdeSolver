@@ -1,0 +1,49 @@
+{
+  "schema_version": "seasonal-classification/v1",
+  "species": "White Clover",
+  "model_family": "seasonal_presence",
+  "classification": {
+    "primary_class": "moderate_summer_seasonal_presence",
+    "timing": "summer",
+    "season_width": "moderate",
+    "window_shape": "moderate",
+    "post_peak_decline": "moderate",
+    "offseason_suppression": "moderate",
+    "peak_alignment": "central",
+    "traits": [
+      "summer_peak",
+      "moderate_season",
+      "moderate_seasonal_window",
+      "moderate_post_peak_decline",
+      "moderate_offseason_suppression",
+      "central_peak_alignment"
+    ],
+    "confidence": "high"
+  },
+  "derived_metrics": {
+    "season_start_month": 5.375,
+    "season_end_month": 8.3,
+    "forcing_peak_month": 6.305,
+    "season_width_months": 2.925,
+    "season_midpoint_month": 6.8375,
+    "season_start_label": "May",
+    "season_end_label": "August",
+    "forcing_peak_label": "June"
+  },
+  "parameter_evidence": {
+    "GROWTH": 2.972,
+    "DECAY": 2.121,
+    "OOS_DECAY": 3.774,
+    "POST_PEAK_DECAY": 2.872,
+    "POST_PEAK_SHARPNESS": 5.338,
+    "SEASON_START": 5.375,
+    "SEASON_END": 8.3,
+    "SHARPNESS": 6.984,
+    "FORCING_PEAK": 6.305
+  },
+  "fit": {
+    "score": 0.009
+  },
+  "warnings": [],
+  "summary": "White Clover is classified as moderate summer seasonal presence. The fitted seasonal window runs from about May to August, with a summer peak around June. The season is moderate, with a moderate active window, moderate post-peak decline, and moderate off-season suppression."
+}

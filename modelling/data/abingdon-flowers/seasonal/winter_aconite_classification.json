@@ -1,0 +1,49 @@
+{
+  "schema_version": "seasonal-classification/v1",
+  "species": "Winter Aconite",
+  "model_family": "seasonal_presence",
+  "classification": {
+    "primary_class": "narrow_winter_seasonal_presence",
+    "timing": "winter",
+    "season_width": "narrow",
+    "window_shape": "sharp",
+    "post_peak_decline": "moderate",
+    "offseason_suppression": "strong",
+    "peak_alignment": "central",
+    "traits": [
+      "winter_peak",
+      "narrow_season",
+      "sharp_seasonal_window",
+      "moderate_post_peak_decline",
+      "strong_offseason_suppression",
+      "central_peak_alignment"
+    ],
+    "confidence": "high"
+  },
+  "derived_metrics": {
+    "season_start_month": 1.505,
+    "season_end_month": 2.945,
+    "forcing_peak_month": 2.355,
+    "season_width_months": 1.44,
+    "season_midpoint_month": 2.225,
+    "season_start_label": "February",
+    "season_end_label": "March",
+    "forcing_peak_label": "February"
+  },
+  "parameter_evidence": {
+    "GROWTH": 2.785,
+    "DECAY": 2.006,
+    "OOS_DECAY": 4.09,
+    "POST_PEAK_DECAY": 3.49,
+    "POST_PEAK_SHARPNESS": 4.415,
+    "SEASON_START": 1.505,
+    "SEASON_END": 2.945,
+    "SHARPNESS": 8.593,
+    "FORCING_PEAK": 2.355
+  },
+  "fit": {
+    "score": 0.004
+  },
+  "warnings": [],
+  "summary": "Winter Aconite is classified as narrow winter seasonal presence. The fitted seasonal window runs from about February to March, with a winter peak around February. The season is narrow, with a sharp active window, moderate post-peak decline, and strong off-season suppression."
+}

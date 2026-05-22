@@ -1,0 +1,280 @@
+
+Common Cleavers
+---------------
+ 1. Germander Speedwell          similarity=0.841 distance=0.159
+ 2. Daisy                        similarity=0.764 distance=0.236
+ 3. Dandelion                    similarity=0.748 distance=0.252
+ 4. Nettle                       similarity=0.736 distance=0.264
+ 5. Shepherds Purse              similarity=0.734 distance=0.266
+
+Daisy
+-----
+ 1. Shepherds Purse              similarity=0.864 distance=0.136
+ 2. Nettle                       similarity=0.853 distance=0.147
+ 3. Germander Speedwell          similarity=0.780 distance=0.220
+ 4. Common Cleavers              similarity=0.764 distance=0.236
+ 5. Dandelion                    similarity=0.704 distance=0.296
+
+Dandelion
+---------
+ 1. Germander Speedwell          similarity=0.766 distance=0.234
+ 2. Common Cleavers              similarity=0.748 distance=0.252
+ 3. Daisy                        similarity=0.704 distance=0.296
+ 4. Shepherds Purse              similarity=0.655 distance=0.345
+ 5. Nettle                       similarity=0.593 distance=0.407
+
+Germander Speedwell
+-------------------
+ 1. Common Cleavers              similarity=0.841 distance=0.159
+ 2. Daisy                        similarity=0.780 distance=0.220
+ 3. Dandelion                    similarity=0.766 distance=0.234
+ 4. Shepherds Purse              similarity=0.748 distance=0.252
+ 5. Nettle                       similarity=0.715 distance=0.285
+
+Nettle
+------
+ 1. Daisy                        similarity=0.853 distance=0.147
+ 2. Shepherds Purse              similarity=0.819 distance=0.181
+ 3. Common Cleavers              similarity=0.736 distance=0.264
+ 4. Germander Speedwell          similarity=0.715 distance=0.285
+ 5. Dandelion                    similarity=0.593 distance=0.407
+
+Shepherds Purse
+---------------
+ 1. Daisy                        similarity=0.864 distance=0.136
+ 2. Nettle                       similarity=0.819 distance=0.181
+ 3. Germander Speedwell          similarity=0.748 distance=0.252
+ 4. Common Cleavers              similarity=0.734 distance=0.266
+ 5. Dandelion                    similarity=0.655 distance=0.345
+
+Bluebell
+--------
+ 1. Yellow Flag Iris             similarity=0.810 distance=0.190
+ 2. Garlic Mustard               similarity=0.794 distance=0.206
+ 3. Cowslip                      similarity=0.792 distance=0.208
+ 4. Common Vetch                 similarity=0.705 distance=0.295
+ 5. Cow Parsley                  similarity=0.691 distance=0.309
+
+Buttercup
+---------
+ 1. Red Dead Nettle              similarity=0.853 distance=0.147
+ 2. Doves Foot Cranesbill        similarity=0.836 distance=0.164
+ 3. Common Comfrey               similarity=0.820 distance=0.180
+ 4. Oxeye Daisy                  similarity=0.814 distance=0.186
+ 5. Red Clover                   similarity=0.778 distance=0.222
+
+Common Comfrey
+--------------
+ 1. Oxeye Daisy                  similarity=0.945 distance=0.055
+ 2. Green Alkanet                similarity=0.902 distance=0.098
+ 3. Red Campion                  similarity=0.895 distance=0.105
+ 4. Honeysuckle                  similarity=0.873 distance=0.127
+ 5. Red Dead Nettle              similarity=0.832 distance=0.168
+
+Common Poppy
+------------
+ 1. Dog Rose                     similarity=0.845 distance=0.155
+ 2. Cornflower                   similarity=0.842 distance=0.158
+ 3. Red Campion                  similarity=0.840 distance=0.160
+ 4. Honeysuckle                  similarity=0.828 distance=0.172
+ 5. Teasel                       similarity=0.824 distance=0.176
+
+Common Vetch
+------------
+ 1. Cow Parsley                  similarity=0.973 distance=0.027
+ 2. Garlic Mustard               similarity=0.888 distance=0.112
+ 3. Cowslip                      similarity=0.827 distance=0.173
+ 4. Goats Beard                  similarity=0.758 distance=0.242
+ 5. Lesser Celandine             similarity=0.752 distance=0.248
+
+Cornflower
+----------
+ 1. Common Poppy                 similarity=0.842 distance=0.158
+ 2. Cuckoo Pint                  similarity=0.823 distance=0.177
+ 3. Red Clover                   similarity=0.786 distance=0.214
+ 4. Oxeye Daisy                  similarity=0.770 distance=0.230
+ 5. Teasel                       similarity=0.769 distance=0.231
+
+Cow Parsley
+-----------
+ 1. Common Vetch                 similarity=0.973 distance=0.027
+ 2. Garlic Mustard               similarity=0.877 distance=0.123
+ 3. Cowslip                      similarity=0.816 distance=0.184
+ 4. Goats Beard                  similarity=0.771 distance=0.229
+ 5. Honeysuckle                  similarity=0.769 distance=0.231
+
+Cowslip
+-------
+ 1. Garlic Mustard               similarity=0.939 distance=0.061
+ 2. Lesser Celandine             similarity=0.873 distance=0.127
+ 3. Common Vetch                 similarity=0.827 distance=0.173
+ 4. Cow Parsley                  similarity=0.816 distance=0.184
+ 5. Bluebell                     similarity=0.792 distance=0.208
+
+Cuckoo Pint
+-----------
+ 1. Cornflower                   similarity=0.823 distance=0.177
+ 2. Common Poppy                 similarity=0.815 distance=0.185
+ 3. Horsetail                    similarity=0.784 distance=0.216
+ 4. Red Clover                   similarity=0.768 distance=0.232
+ 5. Common Comfrey               similarity=0.767 distance=0.233
+
+Dog Rose
+--------
+ 1. Teasel                       similarity=0.935 distance=0.065
+ 2. Red Clover                   similarity=0.867 distance=0.133
+ 3. White Campion                similarity=0.854 distance=0.146
+ 4. Common Poppy                 similarity=0.845 distance=0.155
+ 5. Doves Foot Cranesbill        similarity=0.824 distance=0.176
+
+Doves Foot Cranesbill
+---------------------
+ 1. Red Campion                  similarity=0.903 distance=0.097
+ 2. Oxeye Daisy                  similarity=0.852 distance=0.148
+ 3. Honeysuckle                  similarity=0.851 distance=0.149
+ 4. Buttercup                    similarity=0.836 distance=0.164
+ 5. Dog Rose                     similarity=0.824 distance=0.176
+
+Garlic Mustard
+--------------
+ 1. Cowslip                      similarity=0.939 distance=0.061
+ 2. Common Vetch                 similarity=0.888 distance=0.112
+ 3. Cow Parsley                  similarity=0.877 distance=0.123
+ 4. Lesser Celandine             similarity=0.836 distance=0.164
+ 5. Bluebell                     similarity=0.794 distance=0.206
+
+Goats Beard
+-----------
+ 1. White Clover                 similarity=0.853 distance=0.147
+ 2. Rosebay Willowherb           similarity=0.782 distance=0.218
+ 3. Cow Parsley                  similarity=0.771 distance=0.229
+ 4. Cornflower                   similarity=0.761 distance=0.239
+ 5. Common Vetch                 similarity=0.758 distance=0.242
+
+Green Alkanet
+-------------
+ 1. Common Comfrey               similarity=0.902 distance=0.098
+ 2. Oxeye Daisy                  similarity=0.863 distance=0.137
+ 3. Honeysuckle                  similarity=0.851 distance=0.149
+ 4. Red Campion                  similarity=0.817 distance=0.183
+ 5. Cow Parsley                  similarity=0.756 distance=0.244
+
+Honeysuckle
+-----------
+ 1. Red Campion                  similarity=0.946 distance=0.054
+ 2. Common Comfrey               similarity=0.873 distance=0.127
+ 3. Oxeye Daisy                  similarity=0.867 distance=0.133
+ 4. Doves Foot Cranesbill        similarity=0.851 distance=0.149
+ 5. Green Alkanet                similarity=0.851 distance=0.149
+
+Horsetail
+---------
+ 1. White Clover                 similarity=0.815 distance=0.185
+ 2. Cuckoo Pint                  similarity=0.784 distance=0.216
+ 3. Cornflower                   similarity=0.757 distance=0.243
+ 4. Common Poppy                 similarity=0.732 distance=0.268
+ 5. Goats Beard                  similarity=0.728 distance=0.272
+
+Lesser Celandine
+----------------
+ 1. Cowslip                      similarity=0.873 distance=0.127
+ 2. Garlic Mustard               similarity=0.836 distance=0.164
+ 3. Cow Parsley                  similarity=0.763 distance=0.237
+ 4. Common Vetch                 similarity=0.752 distance=0.248
+ 5. Bluebell                     similarity=0.688 distance=0.312
+
+Oxeye Daisy
+-----------
+ 1. Common Comfrey               similarity=0.945 distance=0.055
+ 2. Red Campion                  similarity=0.913 distance=0.087
+ 3. Honeysuckle                  similarity=0.867 distance=0.133
+ 4. Green Alkanet                similarity=0.863 distance=0.137
+ 5. Doves Foot Cranesbill        similarity=0.852 distance=0.148
+
+Red Campion
+-----------
+ 1. Honeysuckle                  similarity=0.946 distance=0.054
+ 2. Oxeye Daisy                  similarity=0.913 distance=0.087
+ 3. Doves Foot Cranesbill        similarity=0.903 distance=0.097
+ 4. Common Comfrey               similarity=0.895 distance=0.105
+ 5. Common Poppy                 similarity=0.840 distance=0.160
+
+Red Clover
+----------
+ 1. White Campion                similarity=0.889 distance=0.111
+ 2. Dog Rose                     similarity=0.867 distance=0.133
+ 3. Teasel                       similarity=0.845 distance=0.155
+ 4. Cornflower                   similarity=0.786 distance=0.214
+ 5. Common Poppy                 similarity=0.786 distance=0.214
+
+Red Dead Nettle
+---------------
+ 1. Buttercup                    similarity=0.853 distance=0.147
+ 2. Common Comfrey               similarity=0.832 distance=0.168
+ 3. Doves Foot Cranesbill        similarity=0.812 distance=0.188
+ 4. Oxeye Daisy                  similarity=0.795 distance=0.205
+ 5. Red Campion                  similarity=0.759 distance=0.241
+
+Rosebay Willowherb
+------------------
+ 1. White Clover                 similarity=0.786 distance=0.214
+ 2. Goats Beard                  similarity=0.782 distance=0.218
+ 3. Cornflower                   similarity=0.697 distance=0.303
+ 4. Cow Parsley                  similarity=0.681 distance=0.319
+ 5. Garlic Mustard               similarity=0.681 distance=0.319
+
+Snowdrop
+--------
+ 1. Winter Aconite               similarity=0.851 distance=0.149
+ 2. Lesser Celandine             similarity=0.650 distance=0.350
+ 3. Cowslip                      similarity=0.608 distance=0.392
+ 4. Yellow Flag Iris             similarity=0.593 distance=0.407
+ 5. Bluebell                     similarity=0.563 distance=0.437
+
+Teasel
+------
+ 1. Dog Rose                     similarity=0.935 distance=0.065
+ 2. Red Clover                   similarity=0.845 distance=0.155
+ 3. Common Poppy                 similarity=0.824 distance=0.176
+ 4. White Campion                similarity=0.817 distance=0.183
+ 5. Doves Foot Cranesbill        similarity=0.787 distance=0.213
+
+White Campion
+-------------
+ 1. Red Clover                   similarity=0.889 distance=0.111
+ 2. Dog Rose                     similarity=0.854 distance=0.146
+ 3. Teasel                       similarity=0.817 distance=0.183
+ 4. Common Poppy                 similarity=0.758 distance=0.242
+ 5. Cornflower                   similarity=0.752 distance=0.248
+
+White Clover
+------------
+ 1. Goats Beard                  similarity=0.853 distance=0.147
+ 2. Horsetail                    similarity=0.815 distance=0.185
+ 3. Rosebay Willowherb           similarity=0.786 distance=0.214
+ 4. Cornflower                   similarity=0.667 distance=0.333
+ 5. Garlic Mustard               similarity=0.666 distance=0.334
+
+Winter Aconite
+--------------
+ 1. Snowdrop                     similarity=0.851 distance=0.149
+ 2. Cowslip                      similarity=0.678 distance=0.322
+ 3. Bluebell                     similarity=0.662 distance=0.338
+ 4. Lesser Celandine             similarity=0.627 distance=0.373
+ 5. Garlic Mustard               similarity=0.617 distance=0.383
+
+Yellow Flag Iris
+----------------
+ 1. Bluebell                     similarity=0.810 distance=0.190
+ 2. Common Vetch                 similarity=0.698 distance=0.302
+ 3. Cow Parsley                  similarity=0.675 distance=0.325
+ 4. Garlic Mustard               similarity=0.666 distance=0.334
+ 5. Green Alkanet                similarity=0.643 distance=0.357
+
+Snowberry
+---------
+ 1. Cuckoo Pint                  similarity=0.530 distance=0.470
+ 2. Rosebay Willowherb           similarity=0.525 distance=0.475
+ 3. Teasel                       similarity=0.496 distance=0.504
+ 4. Cornflower                   similarity=0.437 distance=0.563
+ 5. Dog Rose                     similarity=0.422 distance=0.578

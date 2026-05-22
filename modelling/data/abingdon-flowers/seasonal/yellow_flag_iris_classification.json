@@ -1,0 +1,49 @@
+{
+  "schema_version": "seasonal-classification/v1",
+  "species": "Yellow Flag Iris",
+  "model_family": "seasonal_presence",
+  "classification": {
+    "primary_class": "narrow_spring_seasonal_presence",
+    "timing": "spring",
+    "season_width": "narrow",
+    "window_shape": "moderate",
+    "post_peak_decline": "strong",
+    "offseason_suppression": "moderate",
+    "peak_alignment": "central",
+    "traits": [
+      "spring_peak",
+      "narrow_season",
+      "moderate_seasonal_window",
+      "strong_post_peak_decline",
+      "moderate_offseason_suppression",
+      "central_peak_alignment"
+    ],
+    "confidence": "high"
+  },
+  "derived_metrics": {
+    "season_start_month": 5.115,
+    "season_end_month": 5.885,
+    "forcing_peak_month": 5.45,
+    "season_width_months": 0.77,
+    "season_midpoint_month": 5.5,
+    "season_start_label": "May",
+    "season_end_label": "June",
+    "forcing_peak_label": "May"
+  },
+  "parameter_evidence": {
+    "GROWTH": 2.878,
+    "DECAY": 1.44,
+    "OOS_DECAY": 3.418,
+    "POST_PEAK_DECAY": 3.907,
+    "POST_PEAK_SHARPNESS": 4.342,
+    "SEASON_START": 5.115,
+    "SEASON_END": 5.885,
+    "SHARPNESS": 7.479,
+    "FORCING_PEAK": 5.45
+  },
+  "fit": {
+    "score": 0.018
+  },
+  "warnings": [],
+  "summary": "Yellow Flag Iris is classified as narrow spring seasonal presence. The fitted seasonal window runs from about May to June, with a spring peak around May. The season is narrow, with a moderate active window, strong post-peak decline, and moderate off-season suppression."
+}
