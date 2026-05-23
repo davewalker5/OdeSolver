@@ -1,0 +1,17 @@
+{
+  "SCORE": "0.097",
+  "INITIAL_Y": "0.996",
+  "GROWTH_RATE": "0.744",
+  "DECAY_RATE": "1.846",
+  "BASELINE": "0",
+  "WINTER_WEIGHT": "0.928",
+  "AUTUMN_WEIGHT": "0.156",
+  "WINTER_PEAK": "1.955",
+  "AUTUMN_PEAK": "10.595",
+  "WINTER_WIDTH": "2.747",
+  "AUTUMN_WIDTH": "4.294",
+  "SUMMER_DIP": "0.24",
+  "SUMMER_LOW": "6.87",
+  "SUMMER_WIDTH": "3.002",
+  "SPECIES": "Shoveler"
+}
