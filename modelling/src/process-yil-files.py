@@ -7,8 +7,9 @@ TRUE_VALUES = ["true", "yes", "y", "1"]
 FALSE_VALUES = ["false", "no", "n", "0"]
 
 SUFFIXES = [
-    "_abingdon.xlsx",
-    "_abingdon_butterfly_flight_period.xlsx"
+    "_abingdon",
+    "_abingdon_butterfly_flight_period",
+    "_thrupp_lake"
 ]
 
 
@@ -23,9 +24,11 @@ def rename_year_in_life_files(folder_path: str, pattern: str, new_suffix: str) -
     directory = Path(folder_path)
     for filepath in directory.glob(pattern):
         # Extract species (equivalent to bash parameter expansion)
-        filename = filepath.name
+        filename = filepath.stem
         species = filename.removeprefix("year_in_the_life_")
+        print(species)
         for suffix in SUFFIXES:
+            print(f"Removing {suffix}")
             species = species.removesuffix(suffix)
 
         # Create the new file name and path
@@ -89,7 +92,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("-i", "--input", required=True,
                         help="Path to the folder containing the 'Year In The Life' XLSX files")
-    parser.add_argument("-xp", "--xlsx-pattern", default="year_in_the_life_*.xlsx", help="XLSX file pattern")
+    parser.add_argument("-xp", "--xlsx-pattern", default="*.xlsx", help="XLSX file pattern")
     parser.add_argument("-s", "--suffix", default="_observed", help="CSV file name suffix")
     parser.add_argument("-d", "--delete", type=str.lower, choices=TRUE_VALUES + FALSE_VALUES,
                         help="Delete XLSX files after processing")

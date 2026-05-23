@@ -1,0 +1,49 @@
+{
+  "schema_version": "seasonal-classification/v1",
+  "species": "Egyptian Goose",
+  "model_family": "seasonal_presence",
+  "classification": {
+    "primary_class": "moderate_spring_seasonal_presence",
+    "timing": "spring",
+    "season_width": "moderate",
+    "window_shape": "sharp",
+    "post_peak_decline": "strong",
+    "offseason_suppression": "moderate",
+    "peak_alignment": "late",
+    "traits": [
+      "spring_peak",
+      "moderate_season",
+      "sharp_seasonal_window",
+      "strong_post_peak_decline",
+      "moderate_offseason_suppression",
+      "late_peak_alignment"
+    ],
+    "confidence": "medium"
+  },
+  "derived_metrics": {
+    "season_start_month": 1.43,
+    "season_end_month": 4.725,
+    "forcing_peak_month": 3.915,
+    "season_width_months": 3.295,
+    "season_midpoint_month": 3.0775,
+    "season_start_label": "January",
+    "season_end_label": "May",
+    "forcing_peak_label": "April"
+  },
+  "parameter_evidence": {
+    "GROWTH": 2.721,
+    "DECAY": 1.514,
+    "OOS_DECAY": 3.862,
+    "POST_PEAK_DECAY": 4.35,
+    "POST_PEAK_SHARPNESS": 4.498,
+    "SEASON_START": 1.43,
+    "SEASON_END": 4.725,
+    "SHARPNESS": 9.134,
+    "FORCING_PEAK": 3.915
+  },
+  "fit": {
+    "score": 0.131
+  },
+  "warnings": [],
+  "summary": "Egyptian Goose is classified as moderate spring seasonal presence. The fitted seasonal window runs from about January to May, with a spring peak around April. The season is moderate, with a sharp active window, strong post-peak decline, and moderate off-season suppression."
+}

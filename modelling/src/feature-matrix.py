@@ -76,6 +76,8 @@ def main() -> None:
     parser.add_argument("-ssu", "--similarity-summary", type=Path, help="Species similarity summary output file path")
     parser.add_argument("-hm", "--heatmap", type=Path, required=True,
                         help="Species similarity summary heatmap image file path")
+    parser.add_argument("-nc", "--number-of-clusters", type=int, default=8,
+                        help="Number of clusters to generate in the cluster analysis")
     parser.add_argument("-cl", "--clusters", type=Path, required=True, help="Cluster analysis output file path")
     parser.add_argument("-csu", "--cluster-summary", type=Path, required=True,
                         help="Cluster analysis summary output file path")
@@ -115,7 +117,8 @@ def main() -> None:
     print_message(f"Species similarity heatmap written to {Path(args.heatmap).name}")
 
     # Extract the species similarity clusters
-    clusters = extract_species_similarity_clusters(similarity, feature_matrix, args.clusters, n_clusters=8)
+    clusters = extract_species_similarity_clusters(similarity, feature_matrix, args.clusters,
+                                                   n_clusters=args.number_of_clusters)
     print_message(f"Species similarity cluster analysis written to {Path(args.clusters).name}")
     if args.cluster_summary:
         save_cluster_summary(clusters, args.cluster_summary)

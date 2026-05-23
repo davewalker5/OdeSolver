@@ -1,0 +1,17 @@
+{
+  "SCORE": "0.161",
+  "INITIAL_Y": "0.982",
+  "GROWTH_RATE": "0.708",
+  "DECAY_RATE": "2.538",
+  "BASELINE": "0",
+  "WINTER_WEIGHT": "0.924",
+  "AUTUMN_WEIGHT": "0.202",
+  "WINTER_PEAK": "1.755",
+  "AUTUMN_PEAK": "11.005",
+  "WINTER_WIDTH": "3.214",
+  "AUTUMN_WIDTH": "3.605",
+  "SUMMER_DIP": "0.211",
+  "SUMMER_LOW": "6.565",
+  "SUMMER_WIDTH": "3.296",
+  "SPECIES": "Pochard"
+}

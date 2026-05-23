@@ -1,0 +1,13 @@
+{
+  "GROWTH": "3.236",
+  "DECAY": "1.81",
+  "OOS_DECAY": "4.999",
+  "POST_PEAK_DECAY": "4.084",
+  "POST_PEAK_SHARPNESS": "4.896",
+  "SEASON_START": "2.43",
+  "SEASON_END": "4.27",
+  "SHARPNESS": "8.847",
+  "FORCING_PEAK": "3.3",
+  "SCORE": "0.007",
+  "SPECIES": "Oystercatcher"
+}
