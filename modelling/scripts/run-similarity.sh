@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-if (( $# < 1 )); then
+if (( $# < 2 )); then
     scriptname=$(basename -- "$0")
-    echo Usage: $scriptname PROJECT [WRITE-CSV]
+    echo Usage: $scriptname PROJECT CLUSTERS [WRITE-CSV]
     exit 1
 fi
 
@@ -36,9 +36,9 @@ fi
 
 # Set the arguments to write the CSV file
 WRITE_CSV=""
-if (( $# == 2 )); then
+if (( $# == 3 )); then
     # Get the first argument in lowercase
-    value=$(printf '%s' "$2" | tr '[:upper:]' '[:lower:]')
+    value=$(printf '%s' "$3" | tr '[:upper:]' '[:lower:]')
 
     # If it's truthy, set the CSV output arguments. Otherwise, make them blank
     case "$value" in
@@ -49,7 +49,7 @@ if (( $# == 2 )); then
             WRITE_CSV=""
             ;;
         *)
-            echo "'$2' is not a valid value for WRITE-CSV"
+            echo "'$3' is not a valid value for WRITE-CSV"
             exit 1
             ;;
     esac
@@ -62,6 +62,7 @@ python "$MODELLING_ROOT/src/feature-matrix.py" \
     --similarity "$ANALYSIS_FOLDER/species_similarity.json" \
     --similarity-summary "$ANALYSIS_FOLDER/species_similarity.txt" \
     --heatmap "$ANALYSIS_FOLDER/species_similarity_heatmap.png" \
+    --number-of-clusters $2 \
     --clusters "$ANALYSIS_FOLDER/cluster_analysis.json" \
     --cluster-summary "$ANALYSIS_FOLDER/cluster_summary.txt" \
     --dendrogram "$ANALYSIS_FOLDER/cluster_dendrogram.png"$WRITE_CSV

@@ -1,0 +1,5188 @@
+{
+  "schema_version": "species-similarity/v1",
+  "created_utc": "2026-05-24T06:54:35.305214+00:00",
+  "source_feature_schema_version": "species-feature-table/v1",
+  "source_feature_created_utc": "2026-05-24T06:54:35.302377+00:00",
+  "n_species": 19,
+  "top_n": 5,
+  "method": {
+    "description": "Weighted mixed-feature similarity using circular month distance, min-max scaled numeric distance, categorical exact-match distance, and Jaccard trait distance.",
+    "distance_range": "0 means identical on compared features; 1 means maximally different",
+    "similarity_range": "1 means most similar; 0 means least similar",
+    "component_weights": {
+      "circular_month": 0.4,
+      "numeric": 0.25,
+      "categorical": 0.2,
+      "traits": 0.15
+    },
+    "circular_month_features": {
+      "peak_month": 2.0,
+      "trough_month": 1.25,
+      "season_start_month": 1.25,
+      "season_end_month": 1.25,
+      "season_midpoint_month": 1.5
+    },
+    "numeric_features": {
+      "season_width_months": 1.5,
+      "target_mean_value": 1.0,
+      "target_amplitude": 1.0,
+      "baseline_to_peak_ratio": 1.0,
+      "autumn_to_winter_weight_ratio": 0.75,
+      "year_end_to_winter_weight_ratio": 0.75,
+      "decay_to_growth_ratio": 0.75,
+      "active_month_count_ge_0_10": 1.0,
+      "fit_score": 0.25
+    },
+    "categorical_features": {
+      "model_family": 1.0,
+      "primary_class": 1.0,
+      "confidence": 0.25,
+      "baseline_presence": 0.75,
+      "timing": 1.0,
+      "season_width_class": 0.75,
+      "window_shape": 0.75,
+      "post_peak_decline": 0.75,
+      "offseason_suppression": 0.75,
+      "summer_suppression": 0.75,
+      "autumn_component": 0.75,
+      "response_dynamics": 0.75
+    },
+    "missing_value_policy": "Missing feature values are skipped for that pair/component. Component weights are renormalised over available components."
+  },
+  "species": [
+    {
+      "species": "Black Headed Gull",
+      "model_family": "resident_detectability",
+      "primary_class": "resident_with_summer_detectability_collapse"
+    },
+    {
+      "species": "Canada Goose",
+      "model_family": "resident_detectability",
+      "primary_class": "resident_with_summer_detectability_collapse"
+    },
+    {
+      "species": "Coot",
+      "model_family": "resident_detectability",
+      "primary_class": "resident_with_summer_detectability_collapse"
+    },
+    {
+      "species": "Cormorant",
+      "model_family": "resident_detectability",
+      "primary_class": "resident_with_summer_detectability_collapse"
+    },
+    {
+      "species": "Egret",
+      "model_family": "resident_detectability",
+      "primary_class": "resident_with_spring_persistence_and_summer_suppression"
+    },
+    {
+      "species": "Gadwall",
+      "model_family": "resident_detectability",
+      "primary_class": "resident_with_summer_detectability_collapse"
+    },
+    {
+      "species": "Great Crested Grebe",
+      "model_family": "resident_detectability",
+      "primary_class": "resident_with_summer_detectability_collapse"
+    },
+    {
+      "species": "Grey Heron",
+      "model_family": "resident_detectability",
+      "primary_class": "resident_with_summer_detectability_collapse"
+    },
+    {
+      "species": "Greylag Goose",
+      "model_family": "resident_detectability",
+      "primary_class": "resident_with_summer_detectability_collapse"
+    },
+    {
+      "species": "Herring Gull",
+      "model_family": "resident_detectability",
+      "primary_class": "resident_with_summer_detectability_collapse"
+    },
+    {
+      "species": "Mallard",
+      "model_family": "resident_detectability",
+      "primary_class": "resident_with_summer_detectability_collapse"
+    },
+    {
+      "species": "Moorhen",
+      "model_family": "resident_detectability",
+      "primary_class": "resident_with_summer_detectability_collapse"
+    },
+    {
+      "species": "Mute Swan",
+      "model_family": "resident_detectability",
+      "primary_class": "resident_with_summer_detectability_collapse"
+    },
+    {
+      "species": "Robin",
+      "model_family": "resident_detectability",
+      "primary_class": "resident_with_summer_detectability_collapse"
+    },
+    {
+      "species": "Tufted Duck",
+      "model_family": "resident_detectability",
+      "primary_class": "resident_with_summer_detectability_collapse"
+    },
+    {
+      "species": "Egyptian Goose",
+      "model_family": "seasonal_presence",
+      "primary_class": "moderate_spring_seasonal_presence"
+    },
+    {
+      "species": "Oystercatcher",
+      "model_family": "seasonal_presence",
+      "primary_class": "narrow_early_spring_seasonal_presence"
+    },
+    {
+      "species": "Pochard",
+      "model_family": "winter_presence",
+      "primary_class": "winter_visitor_with_autumn_arrival_component"
+    },
+    {
+      "species": "Shoveler",
+      "model_family": "winter_presence",
+      "primary_class": "winter_visitor_with_weak_autumn_arrival_component"
+    }
+  ],
+  "nearest_neighbours": {
+    "Black Headed Gull": [
+      {
+        "species": "Mallard",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.944309,
+        "distance": 0.055691,
+        "component_distances": {
+          "circular_month": 0.0,
+          "numeric": 0.122765,
+          "categorical": 0.0,
+          "traits": 0.166667
+        }
+      },
+      {
+        "species": "Herring Gull",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.90758,
+        "distance": 0.09242,
+        "component_distances": {
+          "circular_month": 0.064103,
+          "numeric": 0.167118,
+          "categorical": 0.0,
+          "traits": 0.166667
+        }
+      },
+      {
+        "species": "Greylag Goose",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.90239,
+        "distance": 0.09761,
+        "component_distances": {
+          "circular_month": 0.0,
+          "numeric": 0.173826,
+          "categorical": 0.04,
+          "traits": 0.307692
+        }
+      },
+      {
+        "species": "Coot",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.900286,
+        "distance": 0.099714,
+        "component_distances": {
+          "circular_month": 0.0,
+          "numeric": 0.086241,
+          "categorical": 0.16,
+          "traits": 0.307692
+        }
+      },
+      {
+        "species": "Mute Swan",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.855234,
+        "distance": 0.144766,
+        "component_distances": {
+          "circular_month": 0.0,
+          "numeric": 0.351063,
+          "categorical": 0.16,
+          "traits": 0.166667
+        }
+      }
+    ],
+    "Canada Goose": [
+      {
+        "species": "Mute Swan",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.887527,
+        "distance": 0.112473,
+        "component_distances": {
+          "circular_month": 0.0,
+          "numeric": 0.169275,
+          "categorical": 0.12,
+          "traits": 0.307692
+        }
+      },
+      {
+        "species": "Coot",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.865756,
+        "distance": 0.134244,
+        "component_distances": {
+          "circular_month": 0.0,
+          "numeric": 0.340974,
+          "categorical": 0.12,
+          "traits": 0.166667
+        }
+      },
+      {
+        "species": "Cormorant",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.860549,
+        "distance": 0.139451,
+        "component_distances": {
+          "circular_month": 0.0,
+          "numeric": 0.172661,
+          "categorical": 0.16,
+          "traits": 0.428571
+        }
+      },
+      {
+        "species": "Great Crested Grebe",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.855132,
+        "distance": 0.144868,
+        "component_distances": {
+          "circular_month": 0.064103,
+          "numeric": 0.091766,
+          "categorical": 0.16,
+          "traits": 0.428571
+        }
+      },
+      {
+        "species": "Mallard",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.798087,
+        "distance": 0.201913,
+        "component_distances": {
+          "circular_month": 0.0,
+          "numeric": 0.399035,
+          "categorical": 0.28,
+          "traits": 0.307692
+        }
+      }
+    ],
+    "Coot": [
+      {
+        "species": "Mallard",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.901872,
+        "distance": 0.098128,
+        "component_distances": {
+          "circular_month": 0.0,
+          "numeric": 0.164511,
+          "categorical": 0.16,
+          "traits": 0.166667
+        }
+      },
+      {
+        "species": "Black Headed Gull",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.900286,
+        "distance": 0.099714,
+        "component_distances": {
+          "circular_month": 0.0,
+          "numeric": 0.086241,
+          "categorical": 0.16,
+          "traits": 0.307692
+        }
+      },
+      {
+        "species": "Tufted Duck",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.879731,
+        "distance": 0.120269,
+        "component_distances": {
+          "circular_month": 0.064103,
+          "numeric": 0.24651,
+          "categorical": 0.04,
+          "traits": 0.166667
+        }
+      },
+      {
+        "species": "Canada Goose",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.865756,
+        "distance": 0.134244,
+        "component_distances": {
+          "circular_month": 0.0,
+          "numeric": 0.340974,
+          "categorical": 0.12,
+          "traits": 0.166667
+        }
+      },
+      {
+        "species": "Herring Gull",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.862914,
+        "distance": 0.137086,
+        "component_distances": {
+          "circular_month": 0.064103,
+          "numeric": 0.217779,
+          "categorical": 0.16,
+          "traits": 0.166667
+        }
+      }
+    ],
+    "Cormorant": [
+      {
+        "species": "Mute Swan",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.925263,
+        "distance": 0.074737,
+        "component_distances": {
+          "circular_month": 0.0,
+          "numeric": 0.166948,
+          "categorical": 0.04,
+          "traits": 0.166667
+        }
+      },
+      {
+        "species": "Great Crested Grebe",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.87212,
+        "distance": 0.12788,
+        "component_distances": {
+          "circular_month": 0.064103,
+          "numeric": 0.224339,
+          "categorical": 0.0,
+          "traits": 0.307692
+        }
+      },
+      {
+        "species": "Canada Goose",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.860549,
+        "distance": 0.139451,
+        "component_distances": {
+          "circular_month": 0.0,
+          "numeric": 0.172661,
+          "categorical": 0.16,
+          "traits": 0.428571
+        }
+      },
+      {
+        "species": "Black Headed Gull",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.834643,
+        "distance": 0.165357,
+        "component_distances": {
+          "circular_month": 0.0,
+          "numeric": 0.380811,
+          "categorical": 0.12,
+          "traits": 0.307692
+        }
+      },
+      {
+        "species": "Mallard",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.801999,
+        "distance": 0.198001,
+        "component_distances": {
+          "circular_month": 0.0,
+          "numeric": 0.438861,
+          "categorical": 0.12,
+          "traits": 0.428571
+        }
+      }
+    ],
+    "Egret": [
+      {
+        "species": "Herring Gull",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.685408,
+        "distance": 0.314592,
+        "component_distances": {
+          "circular_month": 0.205128,
+          "numeric": 0.226161,
+          "categorical": 0.48,
+          "traits": 0.533333
+        }
+      },
+      {
+        "species": "Mallard",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.677238,
+        "distance": 0.322762,
+        "component_distances": {
+          "circular_month": 0.269231,
+          "numeric": 0.156277,
+          "categorical": 0.48,
+          "traits": 0.533333
+        }
+      },
+      {
+        "species": "Black Headed Gull",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.673069,
+        "distance": 0.326931,
+        "component_distances": {
+          "circular_month": 0.269231,
+          "numeric": 0.235812,
+          "categorical": 0.48,
+          "traits": 0.428571
+        }
+      },
+      {
+        "species": "Tufted Duck",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.656314,
+        "distance": 0.343686,
+        "component_distances": {
+          "circular_month": 0.205128,
+          "numeric": 0.246538,
+          "categorical": 0.6,
+          "traits": 0.533333
+        }
+      },
+      {
+        "species": "Greylag Goose",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.646248,
+        "distance": 0.353752,
+        "component_distances": {
+          "circular_month": 0.269231,
+          "numeric": 0.257239,
+          "categorical": 0.44,
+          "traits": 0.625
+        }
+      }
+    ],
+    "Gadwall": [
+      {
+        "species": "Grey Heron",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.814881,
+        "distance": 0.185119,
+        "component_distances": {
+          "circular_month": 0.320513,
+          "numeric": 0.04304,
+          "categorical": 0.0,
+          "traits": 0.307692
+        }
+      },
+      {
+        "species": "Moorhen",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.792982,
+        "distance": 0.207018,
+        "component_distances": {
+          "circular_month": 0.320513,
+          "numeric": 0.130636,
+          "categorical": 0.0,
+          "traits": 0.307692
+        }
+      },
+      {
+        "species": "Robin",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.71256,
+        "distance": 0.28744,
+        "component_distances": {
+          "circular_month": 0.294872,
+          "numeric": 0.133964,
+          "categorical": 0.28,
+          "traits": 0.533333
+        }
+      },
+      {
+        "species": "Herring Gull",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.693035,
+        "distance": 0.306965,
+        "component_distances": {
+          "circular_month": 0.461538,
+          "numeric": 0.104257,
+          "categorical": 0.16,
+          "traits": 0.428571
+        }
+      },
+      {
+        "species": "Tufted Duck",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.666849,
+        "distance": 0.333151,
+        "component_distances": {
+          "circular_month": 0.461538,
+          "numeric": 0.113002,
+          "categorical": 0.28,
+          "traits": 0.428571
+        }
+      }
+    ],
+    "Great Crested Grebe": [
+      {
+        "species": "Cormorant",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.87212,
+        "distance": 0.12788,
+        "component_distances": {
+          "circular_month": 0.064103,
+          "numeric": 0.224339,
+          "categorical": 0.0,
+          "traits": 0.307692
+        }
+      },
+      {
+        "species": "Mute Swan",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.859587,
+        "distance": 0.140413,
+        "component_distances": {
+          "circular_month": 0.064103,
+          "numeric": 0.169946,
+          "categorical": 0.04,
+          "traits": 0.428571
+        }
+      },
+      {
+        "species": "Canada Goose",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.855132,
+        "distance": 0.144868,
+        "component_distances": {
+          "circular_month": 0.064103,
+          "numeric": 0.091766,
+          "categorical": 0.16,
+          "traits": 0.428571
+        }
+      },
+      {
+        "species": "Herring Gull",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.796898,
+        "distance": 0.203102,
+        "component_distances": {
+          "circular_month": 0.0,
+          "numeric": 0.459267,
+          "categorical": 0.12,
+          "traits": 0.428571
+        }
+      },
+      {
+        "species": "Greylag Goose",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.786758,
+        "distance": 0.213242,
+        "component_distances": {
+          "circular_month": 0.064103,
+          "numeric": 0.437789,
+          "categorical": 0.16,
+          "traits": 0.307692
+        }
+      }
+    ],
+    "Grey Heron": [
+      {
+        "species": "Moorhen",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.958084,
+        "distance": 0.041916,
+        "component_distances": {
+          "circular_month": 0.0,
+          "numeric": 0.167664,
+          "categorical": 0.0,
+          "traits": 0.0
+        }
+      },
+      {
+        "species": "Mallard",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.818446,
+        "distance": 0.181554,
+        "component_distances": {
+          "circular_month": 0.205128,
+          "numeric": 0.170011,
+          "categorical": 0.16,
+          "traits": 0.166667
+        }
+      },
+      {
+        "species": "Gadwall",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.814881,
+        "distance": 0.185119,
+        "component_distances": {
+          "circular_month": 0.320513,
+          "numeric": 0.04304,
+          "categorical": 0.0,
+          "traits": 0.307692
+        }
+      },
+      {
+        "species": "Herring Gull",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.800871,
+        "distance": 0.199129,
+        "component_distances": {
+          "circular_month": 0.269231,
+          "numeric": 0.137748,
+          "categorical": 0.16,
+          "traits": 0.166667
+        }
+      },
+      {
+        "species": "Black Headed Gull",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.775434,
+        "distance": 0.224566,
+        "component_distances": {
+          "circular_month": 0.205128,
+          "numeric": 0.257443,
+          "categorical": 0.16,
+          "traits": 0.307692
+        }
+      }
+    ],
+    "Greylag Goose": [
+      {
+        "species": "Black Headed Gull",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.90239,
+        "distance": 0.09761,
+        "component_distances": {
+          "circular_month": 0.0,
+          "numeric": 0.173826,
+          "categorical": 0.04,
+          "traits": 0.307692
+        }
+      },
+      {
+        "species": "Mallard",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.883735,
+        "distance": 0.116265,
+        "component_distances": {
+          "circular_month": 0.0,
+          "numeric": 0.175918,
+          "categorical": 0.04,
+          "traits": 0.428571
+        }
+      },
+      {
+        "species": "Herring Gull",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.859562,
+        "distance": 0.140438,
+        "component_distances": {
+          "circular_month": 0.064103,
+          "numeric": 0.170044,
+          "categorical": 0.04,
+          "traits": 0.428571
+        }
+      },
+      {
+        "species": "Coot",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.822983,
+        "distance": 0.177017,
+        "component_distances": {
+          "circular_month": 0.0,
+          "numeric": 0.260067,
+          "categorical": 0.16,
+          "traits": 0.533333
+        }
+      },
+      {
+        "species": "Tufted Duck",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.80259,
+        "distance": 0.19741,
+        "component_distances": {
+          "circular_month": 0.064103,
+          "numeric": 0.301933,
+          "categorical": 0.16,
+          "traits": 0.428571
+        }
+      }
+    ],
+    "Herring Gull": [
+      {
+        "species": "Mallard",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.953806,
+        "distance": 0.046194,
+        "component_distances": {
+          "circular_month": 0.064103,
+          "numeric": 0.08221,
+          "categorical": 0.0,
+          "traits": 0.0
+        }
+      },
+      {
+        "species": "Black Headed Gull",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.90758,
+        "distance": 0.09242,
+        "component_distances": {
+          "circular_month": 0.064103,
+          "numeric": 0.167118,
+          "categorical": 0.0,
+          "traits": 0.166667
+        }
+      },
+      {
+        "species": "Tufted Duck",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.893915,
+        "distance": 0.106085,
+        "component_distances": {
+          "circular_month": 0.0,
+          "numeric": 0.143725,
+          "categorical": 0.12,
+          "traits": 0.307692
+        }
+      },
+      {
+        "species": "Coot",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.862914,
+        "distance": 0.137086,
+        "component_distances": {
+          "circular_month": 0.064103,
+          "numeric": 0.217779,
+          "categorical": 0.16,
+          "traits": 0.166667
+        }
+      },
+      {
+        "species": "Greylag Goose",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.859562,
+        "distance": 0.140438,
+        "component_distances": {
+          "circular_month": 0.064103,
+          "numeric": 0.170044,
+          "categorical": 0.04,
+          "traits": 0.428571
+        }
+      }
+    ],
+    "Mallard": [
+      {
+        "species": "Herring Gull",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.953806,
+        "distance": 0.046194,
+        "component_distances": {
+          "circular_month": 0.064103,
+          "numeric": 0.08221,
+          "categorical": 0.0,
+          "traits": 0.0
+        }
+      },
+      {
+        "species": "Black Headed Gull",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.944309,
+        "distance": 0.055691,
+        "component_distances": {
+          "circular_month": 0.0,
+          "numeric": 0.122765,
+          "categorical": 0.0,
+          "traits": 0.166667
+        }
+      },
+      {
+        "species": "Coot",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.901872,
+        "distance": 0.098128,
+        "component_distances": {
+          "circular_month": 0.0,
+          "numeric": 0.164511,
+          "categorical": 0.16,
+          "traits": 0.166667
+        }
+      },
+      {
+        "species": "Greylag Goose",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.883735,
+        "distance": 0.116265,
+        "component_distances": {
+          "circular_month": 0.0,
+          "numeric": 0.175918,
+          "categorical": 0.04,
+          "traits": 0.428571
+        }
+      },
+      {
+        "species": "Tufted Duck",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.855829,
+        "distance": 0.144171,
+        "component_distances": {
+          "circular_month": 0.064103,
+          "numeric": 0.193504,
+          "categorical": 0.12,
+          "traits": 0.307692
+        }
+      }
+    ],
+    "Moorhen": [
+      {
+        "species": "Grey Heron",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.958084,
+        "distance": 0.041916,
+        "component_distances": {
+          "circular_month": 0.0,
+          "numeric": 0.167664,
+          "categorical": 0.0,
+          "traits": 0.0
+        }
+      },
+      {
+        "species": "Mallard",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.842666,
+        "distance": 0.157334,
+        "component_distances": {
+          "circular_month": 0.205128,
+          "numeric": 0.073131,
+          "categorical": 0.16,
+          "traits": 0.166667
+        }
+      },
+      {
+        "species": "Black Headed Gull",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.811972,
+        "distance": 0.188028,
+        "component_distances": {
+          "circular_month": 0.205128,
+          "numeric": 0.11129,
+          "categorical": 0.16,
+          "traits": 0.307692
+        }
+      },
+      {
+        "species": "Herring Gull",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.809211,
+        "distance": 0.190789,
+        "component_distances": {
+          "circular_month": 0.269231,
+          "numeric": 0.104386,
+          "categorical": 0.16,
+          "traits": 0.166667
+        }
+      },
+      {
+        "species": "Gadwall",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.792982,
+        "distance": 0.207018,
+        "component_distances": {
+          "circular_month": 0.320513,
+          "numeric": 0.130636,
+          "categorical": 0.0,
+          "traits": 0.307692
+        }
+      }
+    ],
+    "Mute Swan": [
+      {
+        "species": "Cormorant",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.925263,
+        "distance": 0.074737,
+        "component_distances": {
+          "circular_month": 0.0,
+          "numeric": 0.166948,
+          "categorical": 0.04,
+          "traits": 0.166667
+        }
+      },
+      {
+        "species": "Canada Goose",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.887527,
+        "distance": 0.112473,
+        "component_distances": {
+          "circular_month": 0.0,
+          "numeric": 0.169275,
+          "categorical": 0.12,
+          "traits": 0.307692
+        }
+      },
+      {
+        "species": "Great Crested Grebe",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.859587,
+        "distance": 0.140413,
+        "component_distances": {
+          "circular_month": 0.064103,
+          "numeric": 0.169946,
+          "categorical": 0.04,
+          "traits": 0.428571
+        }
+      },
+      {
+        "species": "Black Headed Gull",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.855234,
+        "distance": 0.144766,
+        "component_distances": {
+          "circular_month": 0.0,
+          "numeric": 0.351063,
+          "categorical": 0.16,
+          "traits": 0.166667
+        }
+      },
+      {
+        "species": "Mallard",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.842724,
+        "distance": 0.157276,
+        "component_distances": {
+          "circular_month": 0.0,
+          "numeric": 0.31649,
+          "categorical": 0.16,
+          "traits": 0.307692
+        }
+      }
+    ],
+    "Robin": [
+      {
+        "species": "Tufted Duck",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.848513,
+        "distance": 0.151487,
+        "component_distances": {
+          "circular_month": 0.166667,
+          "numeric": 0.154664,
+          "categorical": 0.0,
+          "traits": 0.307692
+        }
+      },
+      {
+        "species": "Herring Gull",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.814433,
+        "distance": 0.185567,
+        "component_distances": {
+          "circular_month": 0.166667,
+          "numeric": 0.059602,
+          "categorical": 0.12,
+          "traits": 0.533333
+        }
+      },
+      {
+        "species": "Mallard",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.785117,
+        "distance": 0.214883,
+        "component_distances": {
+          "circular_month": 0.230769,
+          "numeric": 0.0743,
+          "categorical": 0.12,
+          "traits": 0.533333
+        }
+      },
+      {
+        "species": "Coot",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.780372,
+        "distance": 0.219628,
+        "component_distances": {
+          "circular_month": 0.230769,
+          "numeric": 0.220137,
+          "categorical": 0.04,
+          "traits": 0.428571
+        }
+      },
+      {
+        "species": "Black Headed Gull",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.777038,
+        "distance": 0.222962,
+        "component_distances": {
+          "circular_month": 0.230769,
+          "numeric": 0.169476,
+          "categorical": 0.12,
+          "traits": 0.428571
+        }
+      }
+    ],
+    "Tufted Duck": [
+      {
+        "species": "Herring Gull",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.893915,
+        "distance": 0.106085,
+        "component_distances": {
+          "circular_month": 0.0,
+          "numeric": 0.143725,
+          "categorical": 0.12,
+          "traits": 0.307692
+        }
+      },
+      {
+        "species": "Coot",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.879731,
+        "distance": 0.120269,
+        "component_distances": {
+          "circular_month": 0.064103,
+          "numeric": 0.24651,
+          "categorical": 0.04,
+          "traits": 0.166667
+        }
+      },
+      {
+        "species": "Mallard",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.855829,
+        "distance": 0.144171,
+        "component_distances": {
+          "circular_month": 0.064103,
+          "numeric": 0.193504,
+          "categorical": 0.12,
+          "traits": 0.307692
+        }
+      },
+      {
+        "species": "Black Headed Gull",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.854026,
+        "distance": 0.145974,
+        "component_distances": {
+          "circular_month": 0.064103,
+          "numeric": 0.28533,
+          "categorical": 0.12,
+          "traits": 0.166667
+        }
+      },
+      {
+        "species": "Robin",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.848513,
+        "distance": 0.151487,
+        "component_distances": {
+          "circular_month": 0.166667,
+          "numeric": 0.154664,
+          "categorical": 0.0,
+          "traits": 0.307692
+        }
+      }
+    ],
+    "Egyptian Goose": [
+      {
+        "species": "Black Headed Gull",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.693076,
+        "distance": 0.306924,
+        "component_distances": {
+          "circular_month": 0.014167,
+          "numeric": 0.112721,
+          "categorical": 0.615385,
+          "traits": 1.0
+        }
+      },
+      {
+        "species": "Cormorant",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.691063,
+        "distance": 0.308937,
+        "component_distances": {
+          "circular_month": 0.014167,
+          "numeric": 0.120773,
+          "categorical": 0.615385,
+          "traits": 1.0
+        }
+      },
+      {
+        "species": "Herring Gull",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.686635,
+        "distance": 0.313365,
+        "component_distances": {
+          "circular_month": 0.014167,
+          "numeric": 0.138486,
+          "categorical": 0.615385,
+          "traits": 1.0
+        }
+      },
+      {
+        "species": "Great Crested Grebe",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.683817,
+        "distance": 0.316183,
+        "component_distances": {
+          "circular_month": 0.014167,
+          "numeric": 0.149758,
+          "categorical": 0.615385,
+          "traits": 1.0
+        }
+      },
+      {
+        "species": "Tufted Duck",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.683414,
+        "distance": 0.316586,
+        "component_distances": {
+          "circular_month": 0.014167,
+          "numeric": 0.151369,
+          "categorical": 0.615385,
+          "traits": 1.0
+        }
+      }
+    ],
+    "Oystercatcher": [
+      {
+        "species": "Mute Swan",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.543436,
+        "distance": 0.456564,
+        "component_distances": {
+          "circular_month": 0.116667,
+          "numeric": 0.301127,
+          "categorical": 0.923077,
+          "traits": 1.0
+        }
+      },
+      {
+        "species": "Canada Goose",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.543034,
+        "distance": 0.456966,
+        "component_distances": {
+          "circular_month": 0.116667,
+          "numeric": 0.302738,
+          "categorical": 0.923077,
+          "traits": 1.0
+        }
+      },
+      {
+        "species": "Coot",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.541021,
+        "distance": 0.458979,
+        "component_distances": {
+          "circular_month": 0.116667,
+          "numeric": 0.310789,
+          "categorical": 0.923077,
+          "traits": 1.0
+        }
+      },
+      {
+        "species": "Robin",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.540225,
+        "distance": 0.459775,
+        "component_distances": {
+          "circular_month": 0.05,
+          "numeric": 0.359098,
+          "categorical": 1.0,
+          "traits": 1.0
+        }
+      },
+      {
+        "species": "Shoveler",
+        "model_family": "winter_presence",
+        "primary_class": "winter_visitor_with_weak_autumn_arrival_component",
+        "similarity": 0.527101,
+        "distance": 0.472899,
+        "component_distances": {
+          "circular_month": 0.216667,
+          "numeric": 0.144928,
+          "categorical": 1.0,
+          "traits": 1.0
+        }
+      }
+    ],
+    "Pochard": [
+      {
+        "species": "Shoveler",
+        "model_family": "winter_presence",
+        "primary_class": "winter_visitor_with_weak_autumn_arrival_component",
+        "similarity": 0.768728,
+        "distance": 0.231272,
+        "component_distances": {
+          "circular_month": 0.064103,
+          "numeric": 0.203856,
+          "categorical": 0.44,
+          "traits": 0.444444
+        }
+      },
+      {
+        "species": "Egyptian Goose",
+        "model_family": "seasonal_presence",
+        "primary_class": "moderate_spring_seasonal_presence",
+        "similarity": 0.510256,
+        "distance": 0.489744,
+        "component_distances": {
+          "circular_month": 0.319167,
+          "numeric": 0.048309,
+          "categorical": 1.0,
+          "traits": 1.0
+        }
+      },
+      {
+        "species": "Gadwall",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.503058,
+        "distance": 0.496942,
+        "component_distances": {
+          "circular_month": 0.0,
+          "numeric": 0.719064,
+          "categorical": 0.88,
+          "traits": 0.941176
+        }
+      },
+      {
+        "species": "Oystercatcher",
+        "model_family": "seasonal_presence",
+        "primary_class": "narrow_early_spring_seasonal_presence",
+        "similarity": 0.501337,
+        "distance": 0.498663,
+        "component_distances": {
+          "circular_month": 0.216667,
+          "numeric": 0.247987,
+          "categorical": 1.0,
+          "traits": 1.0
+        }
+      },
+      {
+        "species": "Grey Heron",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.381699,
+        "distance": 0.618301,
+        "component_distances": {
+          "circular_month": 0.320513,
+          "numeric": 0.691678,
+          "categorical": 0.88,
+          "traits": 0.941176
+        }
+      }
+    ],
+    "Shoveler": [
+      {
+        "species": "Pochard",
+        "model_family": "winter_presence",
+        "primary_class": "winter_visitor_with_autumn_arrival_component",
+        "similarity": 0.768728,
+        "distance": 0.231272,
+        "component_distances": {
+          "circular_month": 0.064103,
+          "numeric": 0.203856,
+          "categorical": 0.44,
+          "traits": 0.444444
+        }
+      },
+      {
+        "species": "Gadwall",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.592068,
+        "distance": 0.407932,
+        "component_distances": {
+          "circular_month": 0.064103,
+          "numeric": 0.428164,
+          "categorical": 0.72,
+          "traits": 0.875
+        }
+      },
+      {
+        "species": "Oystercatcher",
+        "model_family": "seasonal_presence",
+        "primary_class": "narrow_early_spring_seasonal_presence",
+        "similarity": 0.527101,
+        "distance": 0.472899,
+        "component_distances": {
+          "circular_month": 0.216667,
+          "numeric": 0.144928,
+          "categorical": 1.0,
+          "traits": 1.0
+        }
+      },
+      {
+        "species": "Egyptian Goose",
+        "model_family": "seasonal_presence",
+        "primary_class": "moderate_spring_seasonal_presence",
+        "similarity": 0.52403,
+        "distance": 0.47597,
+        "component_distances": {
+          "circular_month": 0.319167,
+          "numeric": 0.05475,
+          "categorical": 0.923077,
+          "traits": 1.0
+        }
+      },
+      {
+        "species": "Grey Heron",
+        "model_family": "resident_detectability",
+        "primary_class": "resident_with_summer_detectability_collapse",
+        "similarity": 0.521991,
+        "distance": 0.478009,
+        "component_distances": {
+          "circular_month": 0.25641,
+          "numeric": 0.400778,
+          "categorical": 0.72,
+          "traits": 0.875
+        }
+      }
+    ]
+  },
+  "pairwise": [
+    {
+      "species_a": "Black Headed Gull",
+      "species_b": "Canada Goose",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.796072,
+      "distance": 0.203928,
+      "component_distances": {
+        "circular_month": 0.0,
+        "numeric": 0.334568,
+        "categorical": 0.28,
+        "traits": 0.428571
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 8
+      }
+    },
+    {
+      "species_a": "Black Headed Gull",
+      "species_b": "Coot",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.900286,
+      "distance": 0.099714,
+      "component_distances": {
+        "circular_month": 0.0,
+        "numeric": 0.086241,
+        "categorical": 0.16,
+        "traits": 0.307692
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 9
+      }
+    },
+    {
+      "species_a": "Black Headed Gull",
+      "species_b": "Cormorant",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.834643,
+      "distance": 0.165357,
+      "component_distances": {
+        "circular_month": 0.0,
+        "numeric": 0.380811,
+        "categorical": 0.12,
+        "traits": 0.307692
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 9
+      }
+    },
+    {
+      "species_a": "Black Headed Gull",
+      "species_b": "Egret",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_spring_persistence_and_summer_suppression",
+      "similarity": 0.673069,
+      "distance": 0.326931,
+      "component_distances": {
+        "circular_month": 0.269231,
+        "numeric": 0.235812,
+        "categorical": 0.48,
+        "traits": 0.428571
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 8
+      }
+    },
+    {
+      "species_a": "Black Headed Gull",
+      "species_b": "Gadwall",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.654927,
+      "distance": 0.345073,
+      "component_distances": {
+        "circular_month": 0.525641,
+        "numeric": 0.226649,
+        "categorical": 0.16,
+        "traits": 0.307692
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 9
+      }
+    },
+    {
+      "species_a": "Black Headed Gull",
+      "species_b": "Great Crested Grebe",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.768199,
+      "distance": 0.231801,
+      "component_distances": {
+        "circular_month": 0.064103,
+        "numeric": 0.40864,
+        "categorical": 0.12,
+        "traits": 0.533333
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 7
+      }
+    },
+    {
+      "species_a": "Black Headed Gull",
+      "species_b": "Grey Heron",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.775434,
+      "distance": 0.224566,
+      "component_distances": {
+        "circular_month": 0.205128,
+        "numeric": 0.257443,
+        "categorical": 0.16,
+        "traits": 0.307692
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 9
+      }
+    },
+    {
+      "species_a": "Black Headed Gull",
+      "species_b": "Greylag Goose",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.90239,
+      "distance": 0.09761,
+      "component_distances": {
+        "circular_month": 0.0,
+        "numeric": 0.173826,
+        "categorical": 0.04,
+        "traits": 0.307692
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 9
+      }
+    },
+    {
+      "species_a": "Black Headed Gull",
+      "species_b": "Herring Gull",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.90758,
+      "distance": 0.09242,
+      "component_distances": {
+        "circular_month": 0.064103,
+        "numeric": 0.167118,
+        "categorical": 0.0,
+        "traits": 0.166667
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 10
+      }
+    },
+    {
+      "species_a": "Black Headed Gull",
+      "species_b": "Mallard",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.944309,
+      "distance": 0.055691,
+      "component_distances": {
+        "circular_month": 0.0,
+        "numeric": 0.122765,
+        "categorical": 0.0,
+        "traits": 0.166667
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 10
+      }
+    },
+    {
+      "species_a": "Black Headed Gull",
+      "species_b": "Moorhen",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.811972,
+      "distance": 0.188028,
+      "component_distances": {
+        "circular_month": 0.205128,
+        "numeric": 0.11129,
+        "categorical": 0.16,
+        "traits": 0.307692
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 9
+      }
+    },
+    {
+      "species_a": "Black Headed Gull",
+      "species_b": "Mute Swan",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.855234,
+      "distance": 0.144766,
+      "component_distances": {
+        "circular_month": 0.0,
+        "numeric": 0.351063,
+        "categorical": 0.16,
+        "traits": 0.166667
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 10
+      }
+    },
+    {
+      "species_a": "Black Headed Gull",
+      "species_b": "Robin",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.777038,
+      "distance": 0.222962,
+      "component_distances": {
+        "circular_month": 0.230769,
+        "numeric": 0.169476,
+        "categorical": 0.12,
+        "traits": 0.428571
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 8
+      }
+    },
+    {
+      "species_a": "Black Headed Gull",
+      "species_b": "Tufted Duck",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.854026,
+      "distance": 0.145974,
+      "component_distances": {
+        "circular_month": 0.064103,
+        "numeric": 0.28533,
+        "categorical": 0.12,
+        "traits": 0.166667
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 10
+      }
+    },
+    {
+      "species_a": "Black Headed Gull",
+      "species_b": "Egyptian Goose",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "moderate_spring_seasonal_presence",
+      "similarity": 0.693076,
+      "distance": 0.306924,
+      "component_distances": {
+        "circular_month": 0.014167,
+        "numeric": 0.112721,
+        "categorical": 0.615385,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 1,
+        "numeric": 1,
+        "categorical": 4,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Black Headed Gull",
+      "species_b": "Oystercatcher",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "narrow_early_spring_seasonal_presence",
+      "similarity": 0.525233,
+      "distance": 0.474767,
+      "component_distances": {
+        "circular_month": 0.116667,
+        "numeric": 0.312399,
+        "categorical": 1.0,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 1,
+        "numeric": 1,
+        "categorical": 4,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Black Headed Gull",
+      "species_b": "Pochard",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "winter_visitor_with_autumn_arrival_component",
+      "similarity": 0.281014,
+      "distance": 0.718986,
+      "component_distances": {
+        "circular_month": 0.525641,
+        "numeric": 0.766214,
+        "categorical": 0.88,
+        "traits": 0.941176
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 3,
+        "categorical": 8,
+        "traits": 1
+      }
+    },
+    {
+      "species_a": "Black Headed Gull",
+      "species_b": "Shoveler",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "winter_visitor_with_weak_autumn_arrival_component",
+      "similarity": 0.421306,
+      "distance": 0.578694,
+      "component_distances": {
+        "circular_month": 0.461538,
+        "numeric": 0.475315,
+        "categorical": 0.72,
+        "traits": 0.875
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 3,
+        "categorical": 8,
+        "traits": 2
+      }
+    },
+    {
+      "species_a": "Canada Goose",
+      "species_b": "Coot",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.865756,
+      "distance": 0.134244,
+      "component_distances": {
+        "circular_month": 0.0,
+        "numeric": 0.340974,
+        "categorical": 0.12,
+        "traits": 0.166667
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 10
+      }
+    },
+    {
+      "species_a": "Canada Goose",
+      "species_b": "Cormorant",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.860549,
+      "distance": 0.139451,
+      "component_distances": {
+        "circular_month": 0.0,
+        "numeric": 0.172661,
+        "categorical": 0.16,
+        "traits": 0.428571
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 8
+      }
+    },
+    {
+      "species_a": "Canada Goose",
+      "species_b": "Egret",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_spring_persistence_and_summer_suppression",
+      "similarity": 0.538039,
+      "distance": 0.461961,
+      "component_distances": {
+        "circular_month": 0.269231,
+        "numeric": 0.417545,
+        "categorical": 0.72,
+        "traits": 0.705882
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 5
+      }
+    },
+    {
+      "species_a": "Canada Goose",
+      "species_b": "Gadwall",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.475826,
+      "distance": 0.524174,
+      "component_distances": {
+        "circular_month": 0.525641,
+        "numeric": 0.528669,
+        "categorical": 0.44,
+        "traits": 0.625
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 6
+      }
+    },
+    {
+      "species_a": "Canada Goose",
+      "species_b": "Great Crested Grebe",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.855132,
+      "distance": 0.144868,
+      "component_distances": {
+        "circular_month": 0.064103,
+        "numeric": 0.091766,
+        "categorical": 0.16,
+        "traits": 0.428571
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 8
+      }
+    },
+    {
+      "species_a": "Canada Goose",
+      "species_b": "Grey Heron",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.624426,
+      "distance": 0.375574,
+      "component_distances": {
+        "circular_month": 0.205128,
+        "numeric": 0.564948,
+        "categorical": 0.44,
+        "traits": 0.428571
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 8
+      }
+    },
+    {
+      "species_a": "Canada Goose",
+      "species_b": "Greylag Goose",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.734905,
+      "distance": 0.265095,
+      "component_distances": {
+        "circular_month": 0.0,
+        "numeric": 0.461379,
+        "categorical": 0.28,
+        "traits": 0.625
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 6
+      }
+    },
+    {
+      "species_a": "Canada Goose",
+      "species_b": "Herring Gull",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.765222,
+      "distance": 0.234778,
+      "component_distances": {
+        "circular_month": 0.064103,
+        "numeric": 0.427932,
+        "categorical": 0.28,
+        "traits": 0.307692
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 9
+      }
+    },
+    {
+      "species_a": "Canada Goose",
+      "species_b": "Mallard",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.798087,
+      "distance": 0.201913,
+      "component_distances": {
+        "circular_month": 0.0,
+        "numeric": 0.399035,
+        "categorical": 0.28,
+        "traits": 0.307692
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 9
+      }
+    },
+    {
+      "species_a": "Canada Goose",
+      "species_b": "Moorhen",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.664915,
+      "distance": 0.335085,
+      "component_distances": {
+        "circular_month": 0.205128,
+        "numeric": 0.402992,
+        "categorical": 0.44,
+        "traits": 0.428571
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 8
+      }
+    },
+    {
+      "species_a": "Canada Goose",
+      "species_b": "Mute Swan",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.887527,
+      "distance": 0.112473,
+      "component_distances": {
+        "circular_month": 0.0,
+        "numeric": 0.169275,
+        "categorical": 0.12,
+        "traits": 0.307692
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 9
+      }
+    },
+    {
+      "species_a": "Canada Goose",
+      "species_b": "Robin",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.691608,
+      "distance": 0.308392,
+      "component_distances": {
+        "circular_month": 0.230769,
+        "numeric": 0.416339,
+        "categorical": 0.16,
+        "traits": 0.533333
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 7
+      }
+    },
+    {
+      "species_a": "Canada Goose",
+      "species_b": "Tufted Duck",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.753637,
+      "distance": 0.246363,
+      "component_distances": {
+        "circular_month": 0.064103,
+        "numeric": 0.570271,
+        "categorical": 0.16,
+        "traits": 0.307692
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 9
+      }
+    },
+    {
+      "species_a": "Canada Goose",
+      "species_b": "Egyptian Goose",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "moderate_spring_seasonal_presence",
+      "similarity": 0.680107,
+      "distance": 0.319893,
+      "component_distances": {
+        "circular_month": 0.014167,
+        "numeric": 0.10306,
+        "categorical": 0.692308,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 1,
+        "numeric": 1,
+        "categorical": 4,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Canada Goose",
+      "species_b": "Oystercatcher",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "narrow_early_spring_seasonal_presence",
+      "similarity": 0.543034,
+      "distance": 0.456966,
+      "component_distances": {
+        "circular_month": 0.116667,
+        "numeric": 0.302738,
+        "categorical": 0.923077,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 1,
+        "numeric": 1,
+        "categorical": 4,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Canada Goose",
+      "species_b": "Pochard",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "winter_visitor_with_autumn_arrival_component",
+      "similarity": 0.273002,
+      "distance": 0.726998,
+      "component_distances": {
+        "circular_month": 0.525641,
+        "numeric": 0.798261,
+        "categorical": 0.88,
+        "traits": 0.941176
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 3,
+        "categorical": 8,
+        "traits": 1
+      }
+    },
+    {
+      "species_a": "Canada Goose",
+      "species_b": "Shoveler",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "winter_visitor_with_weak_autumn_arrival_component",
+      "similarity": 0.405294,
+      "distance": 0.594706,
+      "component_distances": {
+        "circular_month": 0.461538,
+        "numeric": 0.507361,
+        "categorical": 0.76,
+        "traits": 0.875
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 3,
+        "categorical": 8,
+        "traits": 2
+      }
+    },
+    {
+      "species_a": "Coot",
+      "species_b": "Cormorant",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.776481,
+      "distance": 0.223519,
+      "component_distances": {
+        "circular_month": 0.0,
+        "numeric": 0.350074,
+        "categorical": 0.28,
+        "traits": 0.533333
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 7
+      }
+    },
+    {
+      "species_a": "Coot",
+      "species_b": "Egret",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_spring_persistence_and_summer_suppression",
+      "similarity": 0.638111,
+      "distance": 0.361889,
+      "component_distances": {
+        "circular_month": 0.269231,
+        "numeric": 0.161785,
+        "categorical": 0.6,
+        "traits": 0.625
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 6
+      }
+    },
+    {
+      "species_a": "Coot",
+      "species_b": "Gadwall",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.584231,
+      "distance": 0.415769,
+      "component_distances": {
+        "circular_month": 0.525641,
+        "numeric": 0.246051,
+        "categorical": 0.32,
+        "traits": 0.533333
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 7
+      }
+    },
+    {
+      "species_a": "Coot",
+      "species_b": "Great Crested Grebe",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.732063,
+      "distance": 0.267937,
+      "component_distances": {
+        "circular_month": 0.064103,
+        "numeric": 0.425185,
+        "categorical": 0.28,
+        "traits": 0.533333
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 7
+      }
+    },
+    {
+      "species_a": "Coot",
+      "species_b": "Grey Heron",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.749204,
+      "distance": 0.250796,
+      "component_distances": {
+        "circular_month": 0.205128,
+        "numeric": 0.234364,
+        "categorical": 0.32,
+        "traits": 0.307692
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 9
+      }
+    },
+    {
+      "species_a": "Coot",
+      "species_b": "Greylag Goose",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.822983,
+      "distance": 0.177017,
+      "component_distances": {
+        "circular_month": 0.0,
+        "numeric": 0.260067,
+        "categorical": 0.16,
+        "traits": 0.533333
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 7
+      }
+    },
+    {
+      "species_a": "Coot",
+      "species_b": "Herring Gull",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.862914,
+      "distance": 0.137086,
+      "component_distances": {
+        "circular_month": 0.064103,
+        "numeric": 0.217779,
+        "categorical": 0.16,
+        "traits": 0.166667
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 10
+      }
+    },
+    {
+      "species_a": "Coot",
+      "species_b": "Mallard",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.901872,
+      "distance": 0.098128,
+      "component_distances": {
+        "circular_month": 0.0,
+        "numeric": 0.164511,
+        "categorical": 0.16,
+        "traits": 0.166667
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 10
+      }
+    },
+    {
+      "species_a": "Coot",
+      "species_b": "Moorhen",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.776891,
+      "distance": 0.223109,
+      "component_distances": {
+        "circular_month": 0.205128,
+        "numeric": 0.123614,
+        "categorical": 0.32,
+        "traits": 0.307692
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 9
+      }
+    },
+    {
+      "species_a": "Coot",
+      "species_b": "Mute Swan",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.814655,
+      "distance": 0.185345,
+      "component_distances": {
+        "circular_month": 0.0,
+        "numeric": 0.292239,
+        "categorical": 0.24,
+        "traits": 0.428571
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 8
+      }
+    },
+    {
+      "species_a": "Coot",
+      "species_b": "Robin",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.780372,
+      "distance": 0.219628,
+      "component_distances": {
+        "circular_month": 0.230769,
+        "numeric": 0.220137,
+        "categorical": 0.04,
+        "traits": 0.428571
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 8
+      }
+    },
+    {
+      "species_a": "Coot",
+      "species_b": "Tufted Duck",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.879731,
+      "distance": 0.120269,
+      "component_distances": {
+        "circular_month": 0.064103,
+        "numeric": 0.24651,
+        "categorical": 0.04,
+        "traits": 0.166667
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 10
+      }
+    },
+    {
+      "species_a": "Coot",
+      "species_b": "Egyptian Goose",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "moderate_spring_seasonal_presence",
+      "similarity": 0.678094,
+      "distance": 0.321906,
+      "component_distances": {
+        "circular_month": 0.014167,
+        "numeric": 0.111111,
+        "categorical": 0.692308,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 1,
+        "numeric": 1,
+        "categorical": 4,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Coot",
+      "species_b": "Oystercatcher",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "narrow_early_spring_seasonal_presence",
+      "similarity": 0.541021,
+      "distance": 0.458979,
+      "component_distances": {
+        "circular_month": 0.116667,
+        "numeric": 0.310789,
+        "categorical": 0.923077,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 1,
+        "numeric": 1,
+        "categorical": 4,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Coot",
+      "species_b": "Pochard",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "winter_visitor_with_autumn_arrival_component",
+      "similarity": 0.277421,
+      "distance": 0.722579,
+      "component_distances": {
+        "circular_month": 0.525641,
+        "numeric": 0.780585,
+        "categorical": 0.88,
+        "traits": 0.941176
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 3,
+        "categorical": 8,
+        "traits": 1
+      }
+    },
+    {
+      "species_a": "Coot",
+      "species_b": "Shoveler",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "winter_visitor_with_weak_autumn_arrival_component",
+      "similarity": 0.409713,
+      "distance": 0.590287,
+      "component_distances": {
+        "circular_month": 0.461538,
+        "numeric": 0.489685,
+        "categorical": 0.76,
+        "traits": 0.875
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 3,
+        "categorical": 8,
+        "traits": 2
+      }
+    },
+    {
+      "species_a": "Cormorant",
+      "species_b": "Egret",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_spring_persistence_and_summer_suppression",
+      "similarity": 0.576517,
+      "distance": 0.423483,
+      "component_distances": {
+        "circular_month": 0.269231,
+        "numeric": 0.408164,
+        "categorical": 0.6,
+        "traits": 0.625
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 6
+      }
+    },
+    {
+      "species_a": "Cormorant",
+      "species_b": "Gadwall",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.520202,
+      "distance": 0.479798,
+      "component_distances": {
+        "circular_month": 0.525641,
+        "numeric": 0.534168,
+        "categorical": 0.28,
+        "traits": 0.533333
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 7
+      }
+    },
+    {
+      "species_a": "Cormorant",
+      "species_b": "Great Crested Grebe",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.87212,
+      "distance": 0.12788,
+      "component_distances": {
+        "circular_month": 0.064103,
+        "numeric": 0.224339,
+        "categorical": 0.0,
+        "traits": 0.307692
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 9
+      }
+    },
+    {
+      "species_a": "Cormorant",
+      "species_b": "Grey Heron",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.644597,
+      "distance": 0.355403,
+      "component_distances": {
+        "circular_month": 0.205128,
+        "numeric": 0.549409,
+        "categorical": 0.28,
+        "traits": 0.533333
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 7
+      }
+    },
+    {
+      "species_a": "Cormorant",
+      "species_b": "Greylag Goose",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.79093,
+      "distance": 0.20907,
+      "component_distances": {
+        "circular_month": 0.0,
+        "numeric": 0.523664,
+        "categorical": 0.16,
+        "traits": 0.307692
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 9
+      }
+    },
+    {
+      "species_a": "Cormorant",
+      "species_b": "Herring Gull",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.756647,
+      "distance": 0.243353,
+      "component_distances": {
+        "circular_month": 0.064103,
+        "numeric": 0.517704,
+        "categorical": 0.12,
+        "traits": 0.428571
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 8
+      }
+    },
+    {
+      "species_a": "Cormorant",
+      "species_b": "Mallard",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.801999,
+      "distance": 0.198001,
+      "component_distances": {
+        "circular_month": 0.0,
+        "numeric": 0.438861,
+        "categorical": 0.12,
+        "traits": 0.428571
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 8
+      }
+    },
+    {
+      "species_a": "Cormorant",
+      "species_b": "Moorhen",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.674913,
+      "distance": 0.325087,
+      "component_distances": {
+        "circular_month": 0.205128,
+        "numeric": 0.428144,
+        "categorical": 0.28,
+        "traits": 0.533333
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 7
+      }
+    },
+    {
+      "species_a": "Cormorant",
+      "species_b": "Mute Swan",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.925263,
+      "distance": 0.074737,
+      "component_distances": {
+        "circular_month": 0.0,
+        "numeric": 0.166948,
+        "categorical": 0.04,
+        "traits": 0.166667
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 10
+      }
+    },
+    {
+      "species_a": "Cormorant",
+      "species_b": "Robin",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.670288,
+      "distance": 0.329712,
+      "component_distances": {
+        "circular_month": 0.230769,
+        "numeric": 0.500475,
+        "categorical": 0.24,
+        "traits": 0.428571
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 8
+      }
+    },
+    {
+      "species_a": "Cormorant",
+      "species_b": "Tufted Duck",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.713147,
+      "distance": 0.286853,
+      "component_distances": {
+        "circular_month": 0.064103,
+        "numeric": 0.595706,
+        "categorical": 0.24,
+        "traits": 0.428571
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 8
+      }
+    },
+    {
+      "species_a": "Cormorant",
+      "species_b": "Egyptian Goose",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "moderate_spring_seasonal_presence",
+      "similarity": 0.691063,
+      "distance": 0.308937,
+      "component_distances": {
+        "circular_month": 0.014167,
+        "numeric": 0.120773,
+        "categorical": 0.615385,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 1,
+        "numeric": 1,
+        "categorical": 4,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Cormorant",
+      "species_b": "Oystercatcher",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "narrow_early_spring_seasonal_presence",
+      "similarity": 0.523221,
+      "distance": 0.476779,
+      "component_distances": {
+        "circular_month": 0.116667,
+        "numeric": 0.320451,
+        "categorical": 1.0,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 1,
+        "numeric": 1,
+        "categorical": 4,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Cormorant",
+      "species_b": "Pochard",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "winter_visitor_with_autumn_arrival_component",
+      "similarity": 0.323794,
+      "distance": 0.676206,
+      "component_distances": {
+        "circular_month": 0.525641,
+        "numeric": 0.595092,
+        "categorical": 0.88,
+        "traits": 0.941176
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 3,
+        "categorical": 8,
+        "traits": 1
+      }
+    },
+    {
+      "species_a": "Cormorant",
+      "species_b": "Shoveler",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "winter_visitor_with_weak_autumn_arrival_component",
+      "similarity": 0.45483,
+      "distance": 0.54517,
+      "component_distances": {
+        "circular_month": 0.461538,
+        "numeric": 0.34122,
+        "categorical": 0.72,
+        "traits": 0.875
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 3,
+        "categorical": 8,
+        "traits": 2
+      }
+    },
+    {
+      "species_a": "Egret",
+      "species_b": "Gadwall",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_spring_persistence_and_summer_suppression",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.498889,
+      "distance": 0.501111,
+      "component_distances": {
+        "circular_month": 0.666667,
+        "numeric": 0.233777,
+        "categorical": 0.48,
+        "traits": 0.533333
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 7
+      }
+    },
+    {
+      "species_a": "Egret",
+      "species_b": "Great Crested Grebe",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_spring_persistence_and_summer_suppression",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.577676,
+      "distance": 0.422324,
+      "component_distances": {
+        "circular_month": 0.205128,
+        "numeric": 0.414425,
+        "categorical": 0.6,
+        "traits": 0.777778
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 4
+      }
+    },
+    {
+      "species_a": "Egret",
+      "species_b": "Grey Heron",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_spring_persistence_and_summer_suppression",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.580848,
+      "distance": 0.419152,
+      "component_distances": {
+        "circular_month": 0.474359,
+        "numeric": 0.213633,
+        "categorical": 0.48,
+        "traits": 0.533333
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 7
+      }
+    },
+    {
+      "species_a": "Egret",
+      "species_b": "Greylag Goose",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_spring_persistence_and_summer_suppression",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.646248,
+      "distance": 0.353752,
+      "component_distances": {
+        "circular_month": 0.269231,
+        "numeric": 0.257239,
+        "categorical": 0.44,
+        "traits": 0.625
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 6
+      }
+    },
+    {
+      "species_a": "Egret",
+      "species_b": "Herring Gull",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_spring_persistence_and_summer_suppression",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.685408,
+      "distance": 0.314592,
+      "component_distances": {
+        "circular_month": 0.205128,
+        "numeric": 0.226161,
+        "categorical": 0.48,
+        "traits": 0.533333
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 7
+      }
+    },
+    {
+      "species_a": "Egret",
+      "species_b": "Mallard",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_spring_persistence_and_summer_suppression",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.677238,
+      "distance": 0.322762,
+      "component_distances": {
+        "circular_month": 0.269231,
+        "numeric": 0.156277,
+        "categorical": 0.48,
+        "traits": 0.533333
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 7
+      }
+    },
+    {
+      "species_a": "Egret",
+      "species_b": "Moorhen",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_spring_persistence_and_summer_suppression",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.595407,
+      "distance": 0.404593,
+      "component_distances": {
+        "circular_month": 0.474359,
+        "numeric": 0.155397,
+        "categorical": 0.48,
+        "traits": 0.533333
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 7
+      }
+    },
+    {
+      "species_a": "Egret",
+      "species_b": "Mute Swan",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_spring_persistence_and_summer_suppression",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.627362,
+      "distance": 0.372638,
+      "component_distances": {
+        "circular_month": 0.269231,
+        "numeric": 0.259782,
+        "categorical": 0.6,
+        "traits": 0.533333
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 7
+      }
+    },
+    {
+      "species_a": "Egret",
+      "species_b": "Robin",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_spring_persistence_and_summer_suppression",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.568143,
+      "distance": 0.431857,
+      "component_distances": {
+        "circular_month": 0.371795,
+        "numeric": 0.229027,
+        "categorical": 0.6,
+        "traits": 0.705882
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 5
+      }
+    },
+    {
+      "species_a": "Egret",
+      "species_b": "Tufted Duck",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_spring_persistence_and_summer_suppression",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.656314,
+      "distance": 0.343686,
+      "component_distances": {
+        "circular_month": 0.205128,
+        "numeric": 0.246538,
+        "categorical": 0.6,
+        "traits": 0.533333
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 7
+      }
+    },
+    {
+      "species_a": "Egret",
+      "species_b": "Egyptian Goose",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "resident_with_spring_persistence_and_summer_suppression",
+      "primary_class_b": "moderate_spring_seasonal_presence",
+      "similarity": 0.310919,
+      "distance": 0.689081,
+      "component_distances": {
+        "circular_month": 0.3475,
+        "numeric": 0.800322,
+        "categorical": 1.0,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 1,
+        "numeric": 1,
+        "categorical": 4,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Egret",
+      "species_b": "Oystercatcher",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "resident_with_spring_persistence_and_summer_suppression",
+      "primary_class_b": "narrow_early_spring_seasonal_presence",
+      "similarity": 0.22,
+      "distance": 0.78,
+      "component_distances": {
+        "circular_month": 0.45,
+        "numeric": 1.0,
+        "categorical": 1.0,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 1,
+        "numeric": 1,
+        "categorical": 4,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Egret",
+      "species_b": "Pochard",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "resident_with_spring_persistence_and_summer_suppression",
+      "primary_class_b": "winter_visitor_with_autumn_arrival_component",
+      "similarity": 0.184435,
+      "distance": 0.815565,
+      "component_distances": {
+        "circular_month": 0.666667,
+        "numeric": 0.827593,
+        "categorical": 0.96,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 3,
+        "categorical": 8,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Egret",
+      "species_b": "Shoveler",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "resident_with_spring_persistence_and_summer_suppression",
+      "primary_class_b": "winter_visitor_with_weak_autumn_arrival_component",
+      "similarity": 0.307624,
+      "distance": 0.692376,
+      "component_distances": {
+        "circular_month": 0.602564,
+        "numeric": 0.536694,
+        "categorical": 0.88,
+        "traits": 0.941176
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 3,
+        "categorical": 8,
+        "traits": 1
+      }
+    },
+    {
+      "species_a": "Gadwall",
+      "species_b": "Great Crested Grebe",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.51922,
+      "distance": 0.48078,
+      "component_distances": {
+        "circular_month": 0.461538,
+        "numeric": 0.537129,
+        "categorical": 0.28,
+        "traits": 0.705882
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 5
+      }
+    },
+    {
+      "species_a": "Gadwall",
+      "species_b": "Grey Heron",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.814881,
+      "distance": 0.185119,
+      "component_distances": {
+        "circular_month": 0.320513,
+        "numeric": 0.04304,
+        "categorical": 0.0,
+        "traits": 0.307692
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 9
+      }
+    },
+    {
+      "species_a": "Gadwall",
+      "species_b": "Greylag Goose",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.609007,
+      "distance": 0.390993,
+      "component_distances": {
+        "circular_month": 0.525641,
+        "numeric": 0.242948,
+        "categorical": 0.2,
+        "traits": 0.533333
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 7
+      }
+    },
+    {
+      "species_a": "Gadwall",
+      "species_b": "Herring Gull",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.693035,
+      "distance": 0.306965,
+      "component_distances": {
+        "circular_month": 0.461538,
+        "numeric": 0.104257,
+        "categorical": 0.16,
+        "traits": 0.428571
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 8
+      }
+    },
+    {
+      "species_a": "Gadwall",
+      "species_b": "Mallard",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.66083,
+      "distance": 0.33917,
+      "component_distances": {
+        "circular_month": 0.525641,
+        "numeric": 0.130512,
+        "categorical": 0.16,
+        "traits": 0.428571
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 8
+      }
+    },
+    {
+      "species_a": "Gadwall",
+      "species_b": "Moorhen",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.792982,
+      "distance": 0.207018,
+      "component_distances": {
+        "circular_month": 0.320513,
+        "numeric": 0.130636,
+        "categorical": 0.0,
+        "traits": 0.307692
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 9
+      }
+    },
+    {
+      "species_a": "Gadwall",
+      "species_b": "Mute Swan",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.560362,
+      "distance": 0.439638,
+      "component_distances": {
+        "circular_month": 0.525641,
+        "numeric": 0.404383,
+        "categorical": 0.32,
+        "traits": 0.428571
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 8
+      }
+    },
+    {
+      "species_a": "Gadwall",
+      "species_b": "Robin",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.71256,
+      "distance": 0.28744,
+      "component_distances": {
+        "circular_month": 0.294872,
+        "numeric": 0.133964,
+        "categorical": 0.28,
+        "traits": 0.533333
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 7
+      }
+    },
+    {
+      "species_a": "Gadwall",
+      "species_b": "Tufted Duck",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.666849,
+      "distance": 0.333151,
+      "component_distances": {
+        "circular_month": 0.461538,
+        "numeric": 0.113002,
+        "categorical": 0.28,
+        "traits": 0.428571
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 8
+      }
+    },
+    {
+      "species_a": "Gadwall",
+      "species_b": "Egyptian Goose",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "moderate_spring_seasonal_presence",
+      "similarity": 0.496253,
+      "distance": 0.503747,
+      "component_distances": {
+        "circular_month": 0.319167,
+        "numeric": 0.165862,
+        "categorical": 0.923077,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 1,
+        "numeric": 1,
+        "categorical": 4,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Gadwall",
+      "species_b": "Oystercatcher",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "narrow_early_spring_seasonal_presence",
+      "similarity": 0.471948,
+      "distance": 0.528052,
+      "component_distances": {
+        "circular_month": 0.216667,
+        "numeric": 0.365539,
+        "categorical": 1.0,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 1,
+        "numeric": 1,
+        "categorical": 4,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Gadwall",
+      "species_b": "Pochard",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "winter_visitor_with_autumn_arrival_component",
+      "similarity": 0.503058,
+      "distance": 0.496942,
+      "component_distances": {
+        "circular_month": 0.0,
+        "numeric": 0.719064,
+        "categorical": 0.88,
+        "traits": 0.941176
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 3,
+        "categorical": 8,
+        "traits": 1
+      }
+    },
+    {
+      "species_a": "Gadwall",
+      "species_b": "Shoveler",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "winter_visitor_with_weak_autumn_arrival_component",
+      "similarity": 0.592068,
+      "distance": 0.407932,
+      "component_distances": {
+        "circular_month": 0.064103,
+        "numeric": 0.428164,
+        "categorical": 0.72,
+        "traits": 0.875
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 3,
+        "categorical": 8,
+        "traits": 2
+      }
+    },
+    {
+      "species_a": "Great Crested Grebe",
+      "species_b": "Grey Heron",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.615525,
+      "distance": 0.384475,
+      "component_distances": {
+        "circular_month": 0.269231,
+        "numeric": 0.563131,
+        "categorical": 0.28,
+        "traits": 0.533333
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 7
+      }
+    },
+    {
+      "species_a": "Great Crested Grebe",
+      "species_b": "Greylag Goose",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.786758,
+      "distance": 0.213242,
+      "component_distances": {
+        "circular_month": 0.064103,
+        "numeric": 0.437789,
+        "categorical": 0.16,
+        "traits": 0.307692
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 9
+      }
+    },
+    {
+      "species_a": "Great Crested Grebe",
+      "species_b": "Herring Gull",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.796898,
+      "distance": 0.203102,
+      "component_distances": {
+        "circular_month": 0.0,
+        "numeric": 0.459267,
+        "categorical": 0.12,
+        "traits": 0.428571
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 8
+      }
+    },
+    {
+      "species_a": "Great Crested Grebe",
+      "species_b": "Mallard",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.783409,
+      "distance": 0.216591,
+      "component_distances": {
+        "circular_month": 0.064103,
+        "numeric": 0.410659,
+        "categorical": 0.12,
+        "traits": 0.428571
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 8
+      }
+    },
+    {
+      "species_a": "Great Crested Grebe",
+      "species_b": "Moorhen",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.648642,
+      "distance": 0.351358,
+      "component_distances": {
+        "circular_month": 0.269231,
+        "numeric": 0.430662,
+        "categorical": 0.28,
+        "traits": 0.533333
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 7
+      }
+    },
+    {
+      "species_a": "Great Crested Grebe",
+      "species_b": "Mute Swan",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.859587,
+      "distance": 0.140413,
+      "component_distances": {
+        "circular_month": 0.064103,
+        "numeric": 0.169946,
+        "categorical": 0.04,
+        "traits": 0.428571
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 8
+      }
+    },
+    {
+      "species_a": "Great Crested Grebe",
+      "species_b": "Robin",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.679575,
+      "distance": 0.320425,
+      "component_distances": {
+        "circular_month": 0.166667,
+        "numeric": 0.448035,
+        "categorical": 0.24,
+        "traits": 0.625
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 6
+      }
+    },
+    {
+      "species_a": "Great Crested Grebe",
+      "species_b": "Tufted Duck",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.707758,
+      "distance": 0.292242,
+      "component_distances": {
+        "circular_month": 0.0,
+        "numeric": 0.601967,
+        "categorical": 0.24,
+        "traits": 0.625
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 6
+      }
+    },
+    {
+      "species_a": "Great Crested Grebe",
+      "species_b": "Egyptian Goose",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "moderate_spring_seasonal_presence",
+      "similarity": 0.683817,
+      "distance": 0.316183,
+      "component_distances": {
+        "circular_month": 0.014167,
+        "numeric": 0.149758,
+        "categorical": 0.615385,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 1,
+        "numeric": 1,
+        "categorical": 4,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Great Crested Grebe",
+      "species_b": "Oystercatcher",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "narrow_early_spring_seasonal_presence",
+      "similarity": 0.515974,
+      "distance": 0.484026,
+      "component_distances": {
+        "circular_month": 0.116667,
+        "numeric": 0.349436,
+        "categorical": 1.0,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 1,
+        "numeric": 1,
+        "categorical": 4,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Great Crested Grebe",
+      "species_b": "Pochard",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "winter_visitor_with_autumn_arrival_component",
+      "similarity": 0.307575,
+      "distance": 0.692425,
+      "component_distances": {
+        "circular_month": 0.461538,
+        "numeric": 0.762533,
+        "categorical": 0.88,
+        "traits": 0.941176
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 3,
+        "categorical": 8,
+        "traits": 1
+      }
+    },
+    {
+      "species_a": "Great Crested Grebe",
+      "species_b": "Shoveler",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "winter_visitor_with_weak_autumn_arrival_component",
+      "similarity": 0.447867,
+      "distance": 0.552133,
+      "component_distances": {
+        "circular_month": 0.397436,
+        "numeric": 0.471634,
+        "categorical": 0.72,
+        "traits": 0.875
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 3,
+        "categorical": 8,
+        "traits": 2
+      }
+    },
+    {
+      "species_a": "Grey Heron",
+      "species_b": "Greylag Goose",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.735151,
+      "distance": 0.264849,
+      "component_distances": {
+        "circular_month": 0.205128,
+        "numeric": 0.251192,
+        "categorical": 0.2,
+        "traits": 0.533333
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 7
+      }
+    },
+    {
+      "species_a": "Grey Heron",
+      "species_b": "Herring Gull",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.800871,
+      "distance": 0.199129,
+      "component_distances": {
+        "circular_month": 0.269231,
+        "numeric": 0.137748,
+        "categorical": 0.16,
+        "traits": 0.166667
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 10
+      }
+    },
+    {
+      "species_a": "Grey Heron",
+      "species_b": "Mallard",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.818446,
+      "distance": 0.181554,
+      "component_distances": {
+        "circular_month": 0.205128,
+        "numeric": 0.170011,
+        "categorical": 0.16,
+        "traits": 0.166667
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 10
+      }
+    },
+    {
+      "species_a": "Grey Heron",
+      "species_b": "Moorhen",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.958084,
+      "distance": 0.041916,
+      "component_distances": {
+        "circular_month": 0.0,
+        "numeric": 0.167664,
+        "categorical": 0.0,
+        "traits": 0.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 11
+      }
+    },
+    {
+      "species_a": "Grey Heron",
+      "species_b": "Mute Swan",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.690708,
+      "distance": 0.309292,
+      "component_distances": {
+        "circular_month": 0.205128,
+        "numeric": 0.395819,
+        "categorical": 0.32,
+        "traits": 0.428571
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 8
+      }
+    },
+    {
+      "species_a": "Grey Heron",
+      "species_b": "Robin",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.714723,
+      "distance": 0.285277,
+      "component_distances": {
+        "circular_month": 0.230769,
+        "numeric": 0.172878,
+        "categorical": 0.28,
+        "traits": 0.625
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 6
+      }
+    },
+    {
+      "species_a": "Grey Heron",
+      "species_b": "Tufted Duck",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.747279,
+      "distance": 0.252721,
+      "component_distances": {
+        "circular_month": 0.269231,
+        "numeric": 0.09897,
+        "categorical": 0.28,
+        "traits": 0.428571
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 8
+      }
+    },
+    {
+      "species_a": "Grey Heron",
+      "species_b": "Egyptian Goose",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "moderate_spring_seasonal_presence",
+      "similarity": 0.505109,
+      "distance": 0.494891,
+      "component_distances": {
+        "circular_month": 0.319167,
+        "numeric": 0.130435,
+        "categorical": 0.923077,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 1,
+        "numeric": 1,
+        "categorical": 4,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Grey Heron",
+      "species_b": "Oystercatcher",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "narrow_early_spring_seasonal_presence",
+      "similarity": 0.480805,
+      "distance": 0.519195,
+      "component_distances": {
+        "circular_month": 0.216667,
+        "numeric": 0.330113,
+        "categorical": 1.0,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 1,
+        "numeric": 1,
+        "categorical": 4,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Grey Heron",
+      "species_b": "Pochard",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "winter_visitor_with_autumn_arrival_component",
+      "similarity": 0.381699,
+      "distance": 0.618301,
+      "component_distances": {
+        "circular_month": 0.320513,
+        "numeric": 0.691678,
+        "categorical": 0.88,
+        "traits": 0.941176
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 3,
+        "categorical": 8,
+        "traits": 1
+      }
+    },
+    {
+      "species_a": "Grey Heron",
+      "species_b": "Shoveler",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "winter_visitor_with_weak_autumn_arrival_component",
+      "similarity": 0.521991,
+      "distance": 0.478009,
+      "component_distances": {
+        "circular_month": 0.25641,
+        "numeric": 0.400778,
+        "categorical": 0.72,
+        "traits": 0.875
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 3,
+        "categorical": 8,
+        "traits": 2
+      }
+    },
+    {
+      "species_a": "Greylag Goose",
+      "species_b": "Herring Gull",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.859562,
+      "distance": 0.140438,
+      "component_distances": {
+        "circular_month": 0.064103,
+        "numeric": 0.170044,
+        "categorical": 0.04,
+        "traits": 0.428571
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 8
+      }
+    },
+    {
+      "species_a": "Greylag Goose",
+      "species_b": "Mallard",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.883735,
+      "distance": 0.116265,
+      "component_distances": {
+        "circular_month": 0.0,
+        "numeric": 0.175918,
+        "categorical": 0.04,
+        "traits": 0.428571
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 8
+      }
+    },
+    {
+      "species_a": "Greylag Goose",
+      "species_b": "Moorhen",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.757455,
+      "distance": 0.242545,
+      "component_distances": {
+        "circular_month": 0.205128,
+        "numeric": 0.161975,
+        "categorical": 0.2,
+        "traits": 0.533333
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 7
+      }
+    },
+    {
+      "species_a": "Greylag Goose",
+      "species_b": "Mute Swan",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.799182,
+      "distance": 0.200818,
+      "component_distances": {
+        "circular_month": 0.0,
+        "numeric": 0.418131,
+        "categorical": 0.16,
+        "traits": 0.428571
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 8
+      }
+    },
+    {
+      "species_a": "Greylag Goose",
+      "species_b": "Robin",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.758476,
+      "distance": 0.241524,
+      "component_distances": {
+        "circular_month": 0.230769,
+        "numeric": 0.211723,
+        "categorical": 0.16,
+        "traits": 0.428571
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 8
+      }
+    },
+    {
+      "species_a": "Greylag Goose",
+      "species_b": "Tufted Duck",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.80259,
+      "distance": 0.19741,
+      "component_distances": {
+        "circular_month": 0.064103,
+        "numeric": 0.301933,
+        "categorical": 0.16,
+        "traits": 0.428571
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 8
+      }
+    },
+    {
+      "species_a": "Greylag Goose",
+      "species_b": "Egyptian Goose",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "moderate_spring_seasonal_presence",
+      "similarity": 0.615292,
+      "distance": 0.384708,
+      "component_distances": {
+        "circular_month": 0.014167,
+        "numeric": 0.362319,
+        "categorical": 0.692308,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 1,
+        "numeric": 1,
+        "categorical": 4,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Greylag Goose",
+      "species_b": "Oystercatcher",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "narrow_early_spring_seasonal_presence",
+      "similarity": 0.462834,
+      "distance": 0.537166,
+      "component_distances": {
+        "circular_month": 0.116667,
+        "numeric": 0.561997,
+        "categorical": 1.0,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 1,
+        "numeric": 1,
+        "categorical": 4,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Greylag Goose",
+      "species_b": "Pochard",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "winter_visitor_with_autumn_arrival_component",
+      "similarity": 0.29162,
+      "distance": 0.70838,
+      "component_distances": {
+        "circular_month": 0.525641,
+        "numeric": 0.75579,
+        "categorical": 0.84,
+        "traits": 0.941176
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 3,
+        "categorical": 8,
+        "traits": 1
+      }
+    },
+    {
+      "species_a": "Greylag Goose",
+      "species_b": "Shoveler",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "winter_visitor_with_weak_autumn_arrival_component",
+      "similarity": 0.415912,
+      "distance": 0.584088,
+      "component_distances": {
+        "circular_month": 0.461538,
+        "numeric": 0.464891,
+        "categorical": 0.76,
+        "traits": 0.875
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 3,
+        "categorical": 8,
+        "traits": 2
+      }
+    },
+    {
+      "species_a": "Herring Gull",
+      "species_b": "Mallard",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.953806,
+      "distance": 0.046194,
+      "component_distances": {
+        "circular_month": 0.064103,
+        "numeric": 0.08221,
+        "categorical": 0.0,
+        "traits": 0.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 11
+      }
+    },
+    {
+      "species_a": "Herring Gull",
+      "species_b": "Moorhen",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.809211,
+      "distance": 0.190789,
+      "component_distances": {
+        "circular_month": 0.269231,
+        "numeric": 0.104386,
+        "categorical": 0.16,
+        "traits": 0.166667
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 10
+      }
+    },
+    {
+      "species_a": "Herring Gull",
+      "species_b": "Mute Swan",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.799225,
+      "distance": 0.200775,
+      "component_distances": {
+        "circular_month": 0.064103,
+        "numeric": 0.387919,
+        "categorical": 0.16,
+        "traits": 0.307692
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 9
+      }
+    },
+    {
+      "species_a": "Herring Gull",
+      "species_b": "Robin",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.814433,
+      "distance": 0.185567,
+      "component_distances": {
+        "circular_month": 0.166667,
+        "numeric": 0.059602,
+        "categorical": 0.12,
+        "traits": 0.533333
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 7
+      }
+    },
+    {
+      "species_a": "Herring Gull",
+      "species_b": "Tufted Duck",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.893915,
+      "distance": 0.106085,
+      "component_distances": {
+        "circular_month": 0.0,
+        "numeric": 0.143725,
+        "categorical": 0.12,
+        "traits": 0.307692
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 9
+      }
+    },
+    {
+      "species_a": "Herring Gull",
+      "species_b": "Egyptian Goose",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "moderate_spring_seasonal_presence",
+      "similarity": 0.686635,
+      "distance": 0.313365,
+      "component_distances": {
+        "circular_month": 0.014167,
+        "numeric": 0.138486,
+        "categorical": 0.615385,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 1,
+        "numeric": 1,
+        "categorical": 4,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Herring Gull",
+      "species_b": "Oystercatcher",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "narrow_early_spring_seasonal_presence",
+      "similarity": 0.518792,
+      "distance": 0.481208,
+      "component_distances": {
+        "circular_month": 0.116667,
+        "numeric": 0.338164,
+        "categorical": 1.0,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 1,
+        "numeric": 1,
+        "categorical": 4,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Herring Gull",
+      "species_b": "Pochard",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "winter_visitor_with_autumn_arrival_component",
+      "similarity": 0.30716,
+      "distance": 0.69284,
+      "component_distances": {
+        "circular_month": 0.461538,
+        "numeric": 0.764193,
+        "categorical": 0.88,
+        "traits": 0.941176
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 3,
+        "categorical": 8,
+        "traits": 1
+      }
+    },
+    {
+      "species_a": "Herring Gull",
+      "species_b": "Shoveler",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "winter_visitor_with_weak_autumn_arrival_component",
+      "similarity": 0.447452,
+      "distance": 0.552548,
+      "component_distances": {
+        "circular_month": 0.397436,
+        "numeric": 0.473293,
+        "categorical": 0.72,
+        "traits": 0.875
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 3,
+        "categorical": 8,
+        "traits": 2
+      }
+    },
+    {
+      "species_a": "Mallard",
+      "species_b": "Moorhen",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.842666,
+      "distance": 0.157334,
+      "component_distances": {
+        "circular_month": 0.205128,
+        "numeric": 0.073131,
+        "categorical": 0.16,
+        "traits": 0.166667
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 10
+      }
+    },
+    {
+      "species_a": "Mallard",
+      "species_b": "Mute Swan",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.842724,
+      "distance": 0.157276,
+      "component_distances": {
+        "circular_month": 0.0,
+        "numeric": 0.31649,
+        "categorical": 0.16,
+        "traits": 0.307692
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 9
+      }
+    },
+    {
+      "species_a": "Mallard",
+      "species_b": "Robin",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.785117,
+      "distance": 0.214883,
+      "component_distances": {
+        "circular_month": 0.230769,
+        "numeric": 0.0743,
+        "categorical": 0.12,
+        "traits": 0.533333
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 7
+      }
+    },
+    {
+      "species_a": "Mallard",
+      "species_b": "Tufted Duck",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.855829,
+      "distance": 0.144171,
+      "component_distances": {
+        "circular_month": 0.064103,
+        "numeric": 0.193504,
+        "categorical": 0.12,
+        "traits": 0.307692
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 9
+      }
+    },
+    {
+      "species_a": "Mallard",
+      "species_b": "Egyptian Goose",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "moderate_spring_seasonal_presence",
+      "similarity": 0.677376,
+      "distance": 0.322624,
+      "component_distances": {
+        "circular_month": 0.014167,
+        "numeric": 0.175523,
+        "categorical": 0.615385,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 1,
+        "numeric": 1,
+        "categorical": 4,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Mallard",
+      "species_b": "Oystercatcher",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "narrow_early_spring_seasonal_presence",
+      "similarity": 0.509533,
+      "distance": 0.490467,
+      "component_distances": {
+        "circular_month": 0.116667,
+        "numeric": 0.375201,
+        "categorical": 1.0,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 1,
+        "numeric": 1,
+        "categorical": 4,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Mallard",
+      "species_b": "Pochard",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "winter_visitor_with_autumn_arrival_component",
+      "similarity": 0.2828,
+      "distance": 0.7172,
+      "component_distances": {
+        "circular_month": 0.525641,
+        "numeric": 0.759068,
+        "categorical": 0.88,
+        "traits": 0.941176
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 3,
+        "categorical": 8,
+        "traits": 1
+      }
+    },
+    {
+      "species_a": "Mallard",
+      "species_b": "Shoveler",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "winter_visitor_with_weak_autumn_arrival_component",
+      "similarity": 0.423092,
+      "distance": 0.576908,
+      "component_distances": {
+        "circular_month": 0.461538,
+        "numeric": 0.468169,
+        "categorical": 0.72,
+        "traits": 0.875
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 3,
+        "categorical": 8,
+        "traits": 2
+      }
+    },
+    {
+      "species_a": "Moorhen",
+      "species_b": "Mute Swan",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.715073,
+      "distance": 0.284927,
+      "component_distances": {
+        "circular_month": 0.205128,
+        "numeric": 0.298358,
+        "categorical": 0.32,
+        "traits": 0.428571
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 8
+      }
+    },
+    {
+      "species_a": "Moorhen",
+      "species_b": "Robin",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.72767,
+      "distance": 0.27233,
+      "component_distances": {
+        "circular_month": 0.230769,
+        "numeric": 0.121089,
+        "categorical": 0.28,
+        "traits": 0.625
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 6
+      }
+    },
+    {
+      "species_a": "Moorhen",
+      "species_b": "Tufted Duck",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.72756,
+      "distance": 0.27244,
+      "component_distances": {
+        "circular_month": 0.269231,
+        "numeric": 0.177846,
+        "categorical": 0.28,
+        "traits": 0.428571
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 8
+      }
+    },
+    {
+      "species_a": "Moorhen",
+      "species_b": "Egyptian Goose",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "moderate_spring_seasonal_presence",
+      "similarity": 0.489409,
+      "distance": 0.510591,
+      "component_distances": {
+        "circular_month": 0.319167,
+        "numeric": 0.193237,
+        "categorical": 0.923077,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 1,
+        "numeric": 1,
+        "categorical": 4,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Moorhen",
+      "species_b": "Oystercatcher",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "narrow_early_spring_seasonal_presence",
+      "similarity": 0.465105,
+      "distance": 0.534895,
+      "component_distances": {
+        "circular_month": 0.216667,
+        "numeric": 0.392915,
+        "categorical": 1.0,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 1,
+        "numeric": 1,
+        "categorical": 4,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Moorhen",
+      "species_b": "Pochard",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "winter_visitor_with_autumn_arrival_component",
+      "similarity": 0.362795,
+      "distance": 0.637205,
+      "component_distances": {
+        "circular_month": 0.320513,
+        "numeric": 0.767293,
+        "categorical": 0.88,
+        "traits": 0.941176
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 3,
+        "categorical": 8,
+        "traits": 1
+      }
+    },
+    {
+      "species_a": "Moorhen",
+      "species_b": "Shoveler",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "winter_visitor_with_weak_autumn_arrival_component",
+      "similarity": 0.503087,
+      "distance": 0.496913,
+      "component_distances": {
+        "circular_month": 0.25641,
+        "numeric": 0.476394,
+        "categorical": 0.72,
+        "traits": 0.875
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 3,
+        "categorical": 8,
+        "traits": 2
+      }
+    },
+    {
+      "species_a": "Mute Swan",
+      "species_b": "Robin",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.676176,
+      "distance": 0.323824,
+      "component_distances": {
+        "circular_month": 0.230769,
+        "numeric": 0.382065,
+        "categorical": 0.28,
+        "traits": 0.533333
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 7
+      }
+    },
+    {
+      "species_a": "Mute Swan",
+      "species_b": "Tufted Duck",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.762615,
+      "distance": 0.237385,
+      "component_distances": {
+        "circular_month": 0.064103,
+        "numeric": 0.438359,
+        "categorical": 0.28,
+        "traits": 0.307692
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 9
+      }
+    },
+    {
+      "species_a": "Mute Swan",
+      "species_b": "Egyptian Goose",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "moderate_spring_seasonal_presence",
+      "similarity": 0.680509,
+      "distance": 0.319491,
+      "component_distances": {
+        "circular_month": 0.014167,
+        "numeric": 0.101449,
+        "categorical": 0.692308,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 1,
+        "numeric": 1,
+        "categorical": 4,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Mute Swan",
+      "species_b": "Oystercatcher",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "narrow_early_spring_seasonal_presence",
+      "similarity": 0.543436,
+      "distance": 0.456564,
+      "component_distances": {
+        "circular_month": 0.116667,
+        "numeric": 0.301127,
+        "categorical": 0.923077,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 1,
+        "numeric": 1,
+        "categorical": 4,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Mute Swan",
+      "species_b": "Pochard",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "winter_visitor_with_autumn_arrival_component",
+      "similarity": 0.295093,
+      "distance": 0.704907,
+      "component_distances": {
+        "circular_month": 0.525641,
+        "numeric": 0.709895,
+        "categorical": 0.88,
+        "traits": 0.941176
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 3,
+        "categorical": 8,
+        "traits": 1
+      }
+    },
+    {
+      "species_a": "Mute Swan",
+      "species_b": "Shoveler",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "winter_visitor_with_weak_autumn_arrival_component",
+      "similarity": 0.427386,
+      "distance": 0.572614,
+      "component_distances": {
+        "circular_month": 0.461538,
+        "numeric": 0.418995,
+        "categorical": 0.76,
+        "traits": 0.875
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 3,
+        "categorical": 8,
+        "traits": 2
+      }
+    },
+    {
+      "species_a": "Robin",
+      "species_b": "Tufted Duck",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "resident_detectability",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "resident_with_summer_detectability_collapse",
+      "similarity": 0.848513,
+      "distance": 0.151487,
+      "component_distances": {
+        "circular_month": 0.166667,
+        "numeric": 0.154664,
+        "categorical": 0.0,
+        "traits": 0.307692
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 7,
+        "categorical": 8,
+        "traits": 9
+      }
+    },
+    {
+      "species_a": "Robin",
+      "species_b": "Egyptian Goose",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "moderate_spring_seasonal_presence",
+      "similarity": 0.626068,
+      "distance": 0.373932,
+      "component_distances": {
+        "circular_month": 0.1525,
+        "numeric": 0.15942,
+        "categorical": 0.615385,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 1,
+        "numeric": 1,
+        "categorical": 4,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Robin",
+      "species_b": "Oystercatcher",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "narrow_early_spring_seasonal_presence",
+      "similarity": 0.540225,
+      "distance": 0.459775,
+      "component_distances": {
+        "circular_month": 0.05,
+        "numeric": 0.359098,
+        "categorical": 1.0,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 1,
+        "numeric": 1,
+        "categorical": 4,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Robin",
+      "species_b": "Pochard",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "winter_visitor_with_autumn_arrival_component",
+      "similarity": 0.357742,
+      "distance": 0.642258,
+      "component_distances": {
+        "circular_month": 0.294872,
+        "numeric": 0.828531,
+        "categorical": 0.88,
+        "traits": 0.941176
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 3,
+        "categorical": 8,
+        "traits": 1
+      }
+    },
+    {
+      "species_a": "Robin",
+      "species_b": "Shoveler",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "winter_visitor_with_weak_autumn_arrival_component",
+      "similarity": 0.498034,
+      "distance": 0.501966,
+      "component_distances": {
+        "circular_month": 0.230769,
+        "numeric": 0.537631,
+        "categorical": 0.72,
+        "traits": 0.875
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 3,
+        "categorical": 8,
+        "traits": 2
+      }
+    },
+    {
+      "species_a": "Tufted Duck",
+      "species_b": "Egyptian Goose",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "moderate_spring_seasonal_presence",
+      "similarity": 0.683414,
+      "distance": 0.316586,
+      "component_distances": {
+        "circular_month": 0.014167,
+        "numeric": 0.151369,
+        "categorical": 0.615385,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 1,
+        "numeric": 1,
+        "categorical": 4,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Tufted Duck",
+      "species_b": "Oystercatcher",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "narrow_early_spring_seasonal_presence",
+      "similarity": 0.515572,
+      "distance": 0.484428,
+      "component_distances": {
+        "circular_month": 0.116667,
+        "numeric": 0.351047,
+        "categorical": 1.0,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 1,
+        "numeric": 1,
+        "categorical": 4,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Tufted Duck",
+      "species_b": "Pochard",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "winter_visitor_with_autumn_arrival_component",
+      "similarity": 0.296315,
+      "distance": 0.703685,
+      "component_distances": {
+        "circular_month": 0.461538,
+        "numeric": 0.807572,
+        "categorical": 0.88,
+        "traits": 0.941176
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 3,
+        "categorical": 8,
+        "traits": 1
+      }
+    },
+    {
+      "species_a": "Tufted Duck",
+      "species_b": "Shoveler",
+      "model_family_a": "resident_detectability",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "resident_with_summer_detectability_collapse",
+      "primary_class_b": "winter_visitor_with_weak_autumn_arrival_component",
+      "similarity": 0.436607,
+      "distance": 0.563393,
+      "component_distances": {
+        "circular_month": 0.397436,
+        "numeric": 0.516673,
+        "categorical": 0.72,
+        "traits": 0.875
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 3,
+        "categorical": 8,
+        "traits": 2
+      }
+    },
+    {
+      "species_a": "Egyptian Goose",
+      "species_b": "Oystercatcher",
+      "model_family_a": "seasonal_presence",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "moderate_spring_seasonal_presence",
+      "primary_class_b": "narrow_early_spring_seasonal_presence",
+      "similarity": 0.500166,
+      "distance": 0.499834,
+      "component_distances": {
+        "circular_month": 0.096042,
+        "numeric": 0.885668,
+        "categorical": 0.6,
+        "traits": 0.8
+      },
+      "compared_feature_counts": {
+        "circular_month": 4,
+        "numeric": 2,
+        "categorical": 8,
+        "traits": 2
+      }
+    },
+    {
+      "species_a": "Egyptian Goose",
+      "species_b": "Pochard",
+      "model_family_a": "seasonal_presence",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "moderate_spring_seasonal_presence",
+      "primary_class_b": "winter_visitor_with_autumn_arrival_component",
+      "similarity": 0.510256,
+      "distance": 0.489744,
+      "component_distances": {
+        "circular_month": 0.319167,
+        "numeric": 0.048309,
+        "categorical": 1.0,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 1,
+        "numeric": 1,
+        "categorical": 4,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Egyptian Goose",
+      "species_b": "Shoveler",
+      "model_family_a": "seasonal_presence",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "moderate_spring_seasonal_presence",
+      "primary_class_b": "winter_visitor_with_weak_autumn_arrival_component",
+      "similarity": 0.52403,
+      "distance": 0.47597,
+      "component_distances": {
+        "circular_month": 0.319167,
+        "numeric": 0.05475,
+        "categorical": 0.923077,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 1,
+        "numeric": 1,
+        "categorical": 4,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Oystercatcher",
+      "species_b": "Pochard",
+      "model_family_a": "seasonal_presence",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "narrow_early_spring_seasonal_presence",
+      "primary_class_b": "winter_visitor_with_autumn_arrival_component",
+      "similarity": 0.501337,
+      "distance": 0.498663,
+      "component_distances": {
+        "circular_month": 0.216667,
+        "numeric": 0.247987,
+        "categorical": 1.0,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 1,
+        "numeric": 1,
+        "categorical": 4,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Oystercatcher",
+      "species_b": "Shoveler",
+      "model_family_a": "seasonal_presence",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "narrow_early_spring_seasonal_presence",
+      "primary_class_b": "winter_visitor_with_weak_autumn_arrival_component",
+      "similarity": 0.527101,
+      "distance": 0.472899,
+      "component_distances": {
+        "circular_month": 0.216667,
+        "numeric": 0.144928,
+        "categorical": 1.0,
+        "traits": 1.0
+      },
+      "compared_feature_counts": {
+        "circular_month": 1,
+        "numeric": 1,
+        "categorical": 4,
+        "traits": 0
+      }
+    },
+    {
+      "species_a": "Pochard",
+      "species_b": "Shoveler",
+      "model_family_a": "winter_presence",
+      "model_family_b": "winter_presence",
+      "primary_class_a": "winter_visitor_with_autumn_arrival_component",
+      "primary_class_b": "winter_visitor_with_weak_autumn_arrival_component",
+      "similarity": 0.768728,
+      "distance": 0.231272,
+      "component_distances": {
+        "circular_month": 0.064103,
+        "numeric": 0.203856,
+        "categorical": 0.44,
+        "traits": 0.444444
+      },
+      "compared_feature_counts": {
+        "circular_month": 2,
+        "numeric": 4,
+        "categorical": 8,
+        "traits": 5
+      }
+    }
+  ]
+}

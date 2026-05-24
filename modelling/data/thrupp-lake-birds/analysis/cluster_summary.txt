@@ -1,0 +1,119 @@
+
+Species clusters
+================
+
+Cluster 1
+---------
+Single-species cluster containing Egret, mainly representing resident with spring persistence and summer suppression. Detectability peaks around June and and is lowest around September. The shared pattern includes weak baseline presence, strong summer suppression, weak autumn component, and rapid decline biased response dynamics. Its defining traits include resident detectability pattern, weak baseline presence, and late spring early summer detectability peak. Compared with the full species set, fit score is higher than the whole-set average and peak month is higher than the whole-set average.
+
+Species (1):
+  Egret
+
+Dominant model family : resident_detectability
+Dominant class        : resident_with_spring_persistence_and_summer_suppression
+Common traits         : resident_detectability_pattern (1, 100%), weak_baseline_presence (1, 100%), late_spring_early_summer_detectability_peak (1, 100%), autumn_detectability_trough (1, 100%), moderate_spring_carryover (1, 100%)
+
+Peak month mean/range : 6.00 (6.00 - 6.00)
+
+Distinguishing numeric features:
+  - fit_score (higher, scaled_difference=0.65)
+  - peak_month (higher, scaled_difference=0.63)
+  - year_end_to_winter_weight_ratio (higher, scaled_difference=0.25)
+  - baseline_to_peak_ratio (lower, scaled_difference=-0.20)
+  - target_mean_value (higher, scaled_difference=0.14)
+
+Cluster 2
+---------
+Single-species cluster containing Egyptian Goose, mainly representing moderate spring seasonal presence. The fitted active window runs roughly from January to May, with a mean peak around April, and and an average width of 3.3 months. It is characterised by moderate season and sharp active window. Its defining traits include spring peak, moderate season, and sharp seasonal window. Compared with the full species set, season start month is lower than the whole-set average and season end month is higher than the whole-set average.
+
+Species (1):
+  Egyptian Goose
+
+Dominant model family : seasonal_presence
+Dominant class        : moderate_spring_seasonal_presence
+Common traits         : spring_peak (1, 100%), moderate_season (1, 100%), sharp_seasonal_window (1, 100%), strong_post_peak_decline (1, 100%), moderate_offseason_suppression (1, 100%)
+
+Peak month mean/range : 3.92 (3.92 - 3.92)
+Season width mean     : 3.29 months
+
+Distinguishing numeric features:
+  - season_start_month (lower, scaled_difference=-0.50)
+  - season_end_month (higher, scaled_difference=0.50)
+  - season_width_months (higher, scaled_difference=0.50)
+  - season_midpoint_month (lower, scaled_difference=-0.50)
+  - fit_score (lower, scaled_difference=-0.15)
+
+Cluster 3
+---------
+Cluster of 14 species, mainly representing resident with summer detectability collapse. Detectability peaks around April and and is lowest around October. The shared pattern includes weak baseline presence, moderate summer suppression, weak autumn component, and rapid decline biased response dynamics. Common high-support traits include resident detectability pattern, weak spring carryover, and moderate summer suppression.
+
+Species (14):
+  Gadwall
+  Grey Heron
+  Moorhen
+  Great Crested Grebe
+  Canada Goose
+  Cormorant
+  Mute Swan
+  Robin
+  Greylag Goose
+  Tufted Duck
+  Coot
+  Black Headed Gull
+  Herring Gull
+  Mallard
+
+Dominant model family : resident_detectability
+Dominant class        : resident_with_summer_detectability_collapse
+Common traits         : resident_detectability_pattern (14, 100%), weak_spring_carryover (14, 100%), moderate_summer_suppression (14, 100%), weak_autumn_component (14, 100%), meaningful_year_end_component (12, 86%)
+
+Peak month mean/range : 3.53 (2.00 - 4.00)
+
+Distinguishing numeric features:
+  - autumn_to_winter_weight_ratio (lower, scaled_difference=-0.09)
+  - decay_to_growth_ratio (lower, scaled_difference=-0.07)
+  - trough_month (higher, scaled_difference=0.06)
+  - year_end_to_winter_weight_ratio (lower, scaled_difference=-0.02)
+  - baseline_to_peak_ratio (higher, scaled_difference=0.01)
+
+Cluster 4
+---------
+Single-species cluster containing Oystercatcher, mainly representing narrow early spring seasonal presence. The fitted active window runs roughly from February to April, with a mean peak around March, and and an average width of 1.8 months. It is characterised by narrow season and sharp active window. Its defining traits include early spring peak, narrow season, and sharp seasonal window. Compared with the full species set, season start month is higher than the whole-set average and season end month is lower than the whole-set average.
+
+Species (1):
+  Oystercatcher
+
+Dominant model family : seasonal_presence
+Dominant class        : narrow_early_spring_seasonal_presence
+Common traits         : early_spring_peak (1, 100%), narrow_season (1, 100%), sharp_seasonal_window (1, 100%), strong_post_peak_decline (1, 100%), strong_offseason_suppression (1, 100%)
+
+Peak month mean/range : 3.30 (3.30 - 3.30)
+Season width mean     : 1.84 months
+
+Distinguishing numeric features:
+  - season_start_month (higher, scaled_difference=0.50)
+  - season_end_month (lower, scaled_difference=-0.50)
+  - season_width_months (lower, scaled_difference=-0.50)
+  - season_midpoint_month (higher, scaled_difference=0.50)
+  - fit_score (lower, scaled_difference=-0.35)
+
+Cluster 5
+---------
+Cluster of 2 species, mainly representing winter visitor with autumn arrival component. The defining pattern is a winter peak around February, a moderate autumn component, moderate summer suppression, and slow arrival fast departure response dynamics. Common high-support traits include year wrapping winter presence, core winter winter peak, and moderate summer suppression. Compared with the full species set, trough month is lower than the whole-set average and autumn to winter weight ratio is higher than the whole-set average.
+
+Species (2):
+  Pochard
+  Shoveler
+
+Dominant model family : winter_presence
+Dominant class        : winter_visitor_with_autumn_arrival_component
+Common traits         : year_wrapping_winter_presence (2, 100%), core_winter_winter_peak (2, 100%), moderate_summer_suppression (2, 100%), low_baseline_presence (2, 100%), moderate_winter_bump (2, 100%)
+
+Peak month mean/range : 2.00 (2.00 - 2.00)
+
+Distinguishing numeric features:
+  - trough_month (lower, scaled_difference=-0.74)
+  - autumn_to_winter_weight_ratio (higher, scaled_difference=0.69)
+  - decay_to_growth_ratio (higher, scaled_difference=0.51)
+  - peak_month (lower, scaled_difference=-0.37)
+  - fit_score (lower, scaled_difference=-0.15)

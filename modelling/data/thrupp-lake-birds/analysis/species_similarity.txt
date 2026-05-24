@@ -1,0 +1,152 @@
+
+Black Headed Gull
+-----------------
+ 1. Mallard                      similarity=0.944 distance=0.056
+ 2. Herring Gull                 similarity=0.908 distance=0.092
+ 3. Greylag Goose                similarity=0.902 distance=0.098
+ 4. Coot                         similarity=0.900 distance=0.100
+ 5. Mute Swan                    similarity=0.855 distance=0.145
+
+Canada Goose
+------------
+ 1. Mute Swan                    similarity=0.888 distance=0.112
+ 2. Coot                         similarity=0.866 distance=0.134
+ 3. Cormorant                    similarity=0.861 distance=0.139
+ 4. Great Crested Grebe          similarity=0.855 distance=0.145
+ 5. Mallard                      similarity=0.798 distance=0.202
+
+Coot
+----
+ 1. Mallard                      similarity=0.902 distance=0.098
+ 2. Black Headed Gull            similarity=0.900 distance=0.100
+ 3. Tufted Duck                  similarity=0.880 distance=0.120
+ 4. Canada Goose                 similarity=0.866 distance=0.134
+ 5. Herring Gull                 similarity=0.863 distance=0.137
+
+Cormorant
+---------
+ 1. Mute Swan                    similarity=0.925 distance=0.075
+ 2. Great Crested Grebe          similarity=0.872 distance=0.128
+ 3. Canada Goose                 similarity=0.861 distance=0.139
+ 4. Black Headed Gull            similarity=0.835 distance=0.165
+ 5. Mallard                      similarity=0.802 distance=0.198
+
+Egret
+-----
+ 1. Herring Gull                 similarity=0.685 distance=0.315
+ 2. Mallard                      similarity=0.677 distance=0.323
+ 3. Black Headed Gull            similarity=0.673 distance=0.327
+ 4. Tufted Duck                  similarity=0.656 distance=0.344
+ 5. Greylag Goose                similarity=0.646 distance=0.354
+
+Gadwall
+-------
+ 1. Grey Heron                   similarity=0.815 distance=0.185
+ 2. Moorhen                      similarity=0.793 distance=0.207
+ 3. Robin                        similarity=0.713 distance=0.287
+ 4. Herring Gull                 similarity=0.693 distance=0.307
+ 5. Tufted Duck                  similarity=0.667 distance=0.333
+
+Great Crested Grebe
+-------------------
+ 1. Cormorant                    similarity=0.872 distance=0.128
+ 2. Mute Swan                    similarity=0.860 distance=0.140
+ 3. Canada Goose                 similarity=0.855 distance=0.145
+ 4. Herring Gull                 similarity=0.797 distance=0.203
+ 5. Greylag Goose                similarity=0.787 distance=0.213
+
+Grey Heron
+----------
+ 1. Moorhen                      similarity=0.958 distance=0.042
+ 2. Mallard                      similarity=0.818 distance=0.182
+ 3. Gadwall                      similarity=0.815 distance=0.185
+ 4. Herring Gull                 similarity=0.801 distance=0.199
+ 5. Black Headed Gull            similarity=0.775 distance=0.225
+
+Greylag Goose
+-------------
+ 1. Black Headed Gull            similarity=0.902 distance=0.098
+ 2. Mallard                      similarity=0.884 distance=0.116
+ 3. Herring Gull                 similarity=0.860 distance=0.140
+ 4. Coot                         similarity=0.823 distance=0.177
+ 5. Tufted Duck                  similarity=0.803 distance=0.197
+
+Herring Gull
+------------
+ 1. Mallard                      similarity=0.954 distance=0.046
+ 2. Black Headed Gull            similarity=0.908 distance=0.092
+ 3. Tufted Duck                  similarity=0.894 distance=0.106
+ 4. Coot                         similarity=0.863 distance=0.137
+ 5. Greylag Goose                similarity=0.860 distance=0.140
+
+Mallard
+-------
+ 1. Herring Gull                 similarity=0.954 distance=0.046
+ 2. Black Headed Gull            similarity=0.944 distance=0.056
+ 3. Coot                         similarity=0.902 distance=0.098
+ 4. Greylag Goose                similarity=0.884 distance=0.116
+ 5. Tufted Duck                  similarity=0.856 distance=0.144
+
+Moorhen
+-------
+ 1. Grey Heron                   similarity=0.958 distance=0.042
+ 2. Mallard                      similarity=0.843 distance=0.157
+ 3. Black Headed Gull            similarity=0.812 distance=0.188
+ 4. Herring Gull                 similarity=0.809 distance=0.191
+ 5. Gadwall                      similarity=0.793 distance=0.207
+
+Mute Swan
+---------
+ 1. Cormorant                    similarity=0.925 distance=0.075
+ 2. Canada Goose                 similarity=0.888 distance=0.112
+ 3. Great Crested Grebe          similarity=0.860 distance=0.140
+ 4. Black Headed Gull            similarity=0.855 distance=0.145
+ 5. Mallard                      similarity=0.843 distance=0.157
+
+Robin
+-----
+ 1. Tufted Duck                  similarity=0.849 distance=0.151
+ 2. Herring Gull                 similarity=0.814 distance=0.186
+ 3. Mallard                      similarity=0.785 distance=0.215
+ 4. Coot                         similarity=0.780 distance=0.220
+ 5. Black Headed Gull            similarity=0.777 distance=0.223
+
+Tufted Duck
+-----------
+ 1. Herring Gull                 similarity=0.894 distance=0.106
+ 2. Coot                         similarity=0.880 distance=0.120
+ 3. Mallard                      similarity=0.856 distance=0.144
+ 4. Black Headed Gull            similarity=0.854 distance=0.146
+ 5. Robin                        similarity=0.849 distance=0.151
+
+Egyptian Goose
+--------------
+ 1. Black Headed Gull            similarity=0.693 distance=0.307
+ 2. Cormorant                    similarity=0.691 distance=0.309
+ 3. Herring Gull                 similarity=0.687 distance=0.313
+ 4. Great Crested Grebe          similarity=0.684 distance=0.316
+ 5. Tufted Duck                  similarity=0.683 distance=0.317
+
+Oystercatcher
+-------------
+ 1. Mute Swan                    similarity=0.543 distance=0.457
+ 2. Canada Goose                 similarity=0.543 distance=0.457
+ 3. Coot                         similarity=0.541 distance=0.459
+ 4. Robin                        similarity=0.540 distance=0.460
+ 5. Shoveler                     similarity=0.527 distance=0.473
+
+Pochard
+-------
+ 1. Shoveler                     similarity=0.769 distance=0.231
+ 2. Egyptian Goose               similarity=0.510 distance=0.490
+ 3. Gadwall                      similarity=0.503 distance=0.497
+ 4. Oystercatcher                similarity=0.501 distance=0.499
+ 5. Grey Heron                   similarity=0.382 distance=0.618
+
+Shoveler
+--------
+ 1. Pochard                      similarity=0.769 distance=0.231
+ 2. Gadwall                      similarity=0.592 distance=0.408
+ 3. Oystercatcher                similarity=0.527 distance=0.473
+ 4. Egyptian Goose               similarity=0.524 distance=0.476
+ 5. Grey Heron                   similarity=0.522 distance=0.478
