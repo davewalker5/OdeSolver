@@ -1,0 +1,6622 @@
+{
+  "schema_version": "species-similarity-clusters/v2",
+  "created_utc": "2026-05-25T08:08:58.218316+00:00",
+  "source_similarity_schema_version": "species-similarity/v1",
+  "source_feature_schema_version": "species-feature-table/v1",
+  "n_species": 88,
+  "n_clusters": 10,
+  "method": {
+    "description": "Hierarchical clustering over pairwise species similarity, followed by cluster-level summaries from the species feature matrix.",
+    "linkage_method": "average",
+    "cluster_cut": {
+      "criterion": "maxclust",
+      "n_clusters_requested": 10
+    },
+    "distance_definition": "distance = 1 - similarity",
+    "cluster_caveat": "Clusters should be interpreted as exploratory seasonal assemblages rather than fixed ecological categories."
+  },
+  "species_order": [
+    "Snowberry",
+    "Jay",
+    "Collared Dove",
+    "House Sparrow",
+    "Chaffinch",
+    "Coal Tit",
+    "Germander Speedwell",
+    "Common Cleavers",
+    "Blackcap",
+    "Skylark",
+    "Mallard",
+    "Pied Wagtail",
+    "Shepherds Purse",
+    "Daisy",
+    "Nettle",
+    "Common Kestrel",
+    "Long Tailed Tit",
+    "Buzzard",
+    "Blackbird",
+    "Blue Tit",
+    "Dunnock",
+    "Canada Goose",
+    "Song Thrush",
+    "Greylag Goose",
+    "Great Tit",
+    "Pheasant",
+    "Greenfinch",
+    "Wren",
+    "Dandelion",
+    "Rook",
+    "Cormorant",
+    "Mistle Thrush",
+    "Robin",
+    "Mute Swan",
+    "Herring Gull",
+    "Black Headed Gull",
+    "Coot",
+    "Grey Heron",
+    "Jackdaw",
+    "Red Kite",
+    "Goldfinch",
+    "Woodpigeon",
+    "Common Starling",
+    "Crow",
+    "Magpie",
+    "Rosebay Willowherb",
+    "White Clover",
+    "Gatekeeper Butterfly",
+    "Goats Beard",
+    "Chiffchaff",
+    "Garden Warbler",
+    "Lesser Celandine",
+    "Cowslip",
+    "Garlic Mustard",
+    "Common Vetch",
+    "Cow Parsley",
+    "Whitethroat",
+    "Orange Tip Butterfly",
+    "Reed Warbler",
+    "Yellow Flag Iris",
+    "Bluebell",
+    "Cuckoo",
+    "Red Admiral Butterfly",
+    "Swallow",
+    "Buttercup",
+    "Brimstone Butterfly",
+    "Red Dead Nettle",
+    "Green Alkanet",
+    "Peacock Butterfly",
+    "Common Comfrey",
+    "Oxeye Daisy",
+    "Doves Foot Cranesbill",
+    "Honeysuckle",
+    "Red Campion",
+    "Dog Rose",
+    "Teasel",
+    "Red Clover",
+    "White Campion",
+    "Cuckoo Pint",
+    "Speckled Wood Butterfly",
+    "Horsetail",
+    "Meadow Brown Butterfly",
+    "Common Poppy",
+    "Cornflower",
+    "Swift",
+    "Redwing",
+    "Snowdrop",
+    "Winter Aconite"
+  ],
+  "linkage": {
+    "format": "scipy.cluster.hierarchy.linkage",
+    "columns": [
+      "left_child",
+      "right_child",
+      "distance",
+      "n_leaves"
+    ],
+    "node_id_convention": "Leaf nodes are 0..n_species-1 in species_input_order; internal nodes are n_species..2*n_species-2 in linkage row order.",
+    "species_input_order": [
+      "Black Headed Gull",
+      "Blackbird",
+      "Blackcap",
+      "Blue Tit",
+      "Buzzard",
+      "Canada Goose",
+      "Chaffinch",
+      "Coal Tit",
+      "Collared Dove",
+      "Common Cleavers",
+      "Common Kestrel",
+      "Common Starling",
+      "Coot",
+      "Cormorant",
+      "Crow",
+      "Daisy",
+      "Dandelion",
+      "Dunnock",
+      "Germander Speedwell",
+      "Goldfinch",
+      "Great Tit",
+      "Greenfinch",
+      "Grey Heron",
+      "Greylag Goose",
+      "Herring Gull",
+      "House Sparrow",
+      "Jackdaw",
+      "Jay",
+      "Long Tailed Tit",
+      "Magpie",
+      "Mallard",
+      "Mistle Thrush",
+      "Mute Swan",
+      "Nettle",
+      "Pheasant",
+      "Pied Wagtail",
+      "Red Kite",
+      "Robin",
+      "Rook",
+      "Shepherds Purse",
+      "Skylark",
+      "Song Thrush",
+      "Woodpigeon",
+      "Wren",
+      "Bluebell",
+      "Brimstone Butterfly",
+      "Buttercup",
+      "Chiffchaff",
+      "Common Comfrey",
+      "Common Poppy",
+      "Common Vetch",
+      "Cornflower",
+      "Cow Parsley",
+      "Cowslip",
+      "Cuckoo",
+      "Cuckoo Pint",
+      "Dog Rose",
+      "Doves Foot Cranesbill",
+      "Garden Warbler",
+      "Garlic Mustard",
+      "Gatekeeper Butterfly",
+      "Goats Beard",
+      "Green Alkanet",
+      "Honeysuckle",
+      "Horsetail",
+      "Lesser Celandine",
+      "Meadow Brown Butterfly",
+      "Orange Tip Butterfly",
+      "Oxeye Daisy",
+      "Peacock Butterfly",
+      "Red Admiral Butterfly",
+      "Red Campion",
+      "Red Clover",
+      "Red Dead Nettle",
+      "Reed Warbler",
+      "Rosebay Willowherb",
+      "Snowdrop",
+      "Speckled Wood Butterfly",
+      "Swallow",
+      "Swift",
+      "Teasel",
+      "White Campion",
+      "White Clover",
+      "Whitethroat",
+      "Winter Aconite",
+      "Yellow Flag Iris",
+      "Redwing",
+      "Snowberry"
+    ],
+    "leaf_order_indices": [
+      87,
+      27,
+      8,
+      25,
+      6,
+      7,
+      18,
+      9,
+      2,
+      40,
+      30,
+      35,
+      39,
+      15,
+      33,
+      10,
+      28,
+      4,
+      1,
+      3,
+      17,
+      5,
+      41,
+      23,
+      20,
+      34,
+      21,
+      43,
+      16,
+      38,
+      13,
+      31,
+      37,
+      32,
+      24,
+      0,
+      12,
+      22,
+      26,
+      36,
+      19,
+      42,
+      11,
+      14,
+      29,
+      75,
+      82,
+      60,
+      61,
+      47,
+      58,
+      65,
+      53,
+      59,
+      50,
+      52,
+      83,
+      67,
+      74,
+      85,
+      44,
+      54,
+      70,
+      78,
+      46,
+      45,
+      73,
+      62,
+      69,
+      48,
+      68,
+      57,
+      63,
+      71,
+      56,
+      80,
+      72,
+      81,
+      55,
+      77,
+      64,
+      66,
+      49,
+      51,
+      79,
+      86,
+      76,
+      84
+    ],
+    "leaf_order_species": [
+      "Snowberry",
+      "Jay",
+      "Collared Dove",
+      "House Sparrow",
+      "Chaffinch",
+      "Coal Tit",
+      "Germander Speedwell",
+      "Common Cleavers",
+      "Blackcap",
+      "Skylark",
+      "Mallard",
+      "Pied Wagtail",
+      "Shepherds Purse",
+      "Daisy",
+      "Nettle",
+      "Common Kestrel",
+      "Long Tailed Tit",
+      "Buzzard",
+      "Blackbird",
+      "Blue Tit",
+      "Dunnock",
+      "Canada Goose",
+      "Song Thrush",
+      "Greylag Goose",
+      "Great Tit",
+      "Pheasant",
+      "Greenfinch",
+      "Wren",
+      "Dandelion",
+      "Rook",
+      "Cormorant",
+      "Mistle Thrush",
+      "Robin",
+      "Mute Swan",
+      "Herring Gull",
+      "Black Headed Gull",
+      "Coot",
+      "Grey Heron",
+      "Jackdaw",
+      "Red Kite",
+      "Goldfinch",
+      "Woodpigeon",
+      "Common Starling",
+      "Crow",
+      "Magpie",
+      "Rosebay Willowherb",
+      "White Clover",
+      "Gatekeeper Butterfly",
+      "Goats Beard",
+      "Chiffchaff",
+      "Garden Warbler",
+      "Lesser Celandine",
+      "Cowslip",
+      "Garlic Mustard",
+      "Common Vetch",
+      "Cow Parsley",
+      "Whitethroat",
+      "Orange Tip Butterfly",
+      "Reed Warbler",
+      "Yellow Flag Iris",
+      "Bluebell",
+      "Cuckoo",
+      "Red Admiral Butterfly",
+      "Swallow",
+      "Buttercup",
+      "Brimstone Butterfly",
+      "Red Dead Nettle",
+      "Green Alkanet",
+      "Peacock Butterfly",
+      "Common Comfrey",
+      "Oxeye Daisy",
+      "Doves Foot Cranesbill",
+      "Honeysuckle",
+      "Red Campion",
+      "Dog Rose",
+      "Teasel",
+      "Red Clover",
+      "White Campion",
+      "Cuckoo Pint",
+      "Speckled Wood Butterfly",
+      "Horsetail",
+      "Meadow Brown Butterfly",
+      "Common Poppy",
+      "Cornflower",
+      "Swift",
+      "Redwing",
+      "Snowdrop",
+      "Winter Aconite"
+    ],
+    "matrix": [
+      [
+        50,
+        52,
+        0.024399,
+        2
+      ],
+      [
+        67,
+        74,
+        0.028623,
+        2
+      ],
+      [
+        45,
+        73,
+        0.042837,
+        2
+      ],
+      [
+        20,
+        34,
+        0.042911,
+        2
+      ],
+      [
+        63,
+        71,
+        0.049127,
+        2
+      ],
+      [
+        48,
+        68,
+        0.053567,
+        2
+      ],
+      [
+        53,
+        59,
+        0.059395,
+        2
+      ],
+      [
+        56,
+        80,
+        0.062938,
+        2
+      ],
+      [
+        2,
+        40,
+        0.063401,
+        2
+      ],
+      [
+        14,
+        29,
+        0.063977,
+        2
+      ],
+      [
+        51,
+        79,
+        0.064085,
+        2
+      ],
+      [
+        9,
+        96,
+        0.065482,
+        3
+      ],
+      [
+        8,
+        25,
+        0.06802,
+        2
+      ],
+      [
+        3,
+        17,
+        0.075092,
+        2
+      ],
+      [
+        60,
+        61,
+        0.083611,
+        2
+      ],
+      [
+        19,
+        42,
+        0.086981,
+        2
+      ],
+      [
+        15,
+        33,
+        0.09005,
+        2
+      ],
+      [
+        21,
+        43,
+        0.091172,
+        2
+      ],
+      [
+        64,
+        66,
+        0.095752,
+        2
+      ],
+      [
+        69,
+        93,
+        0.095761,
+        3
+      ],
+      [
+        1,
+        101,
+        0.097551,
+        3
+      ],
+      [
+        30,
+        35,
+        0.1027,
+        2
+      ],
+      [
+        0,
+        12,
+        0.103578,
+        2
+      ],
+      [
+        72,
+        81,
+        0.107524,
+        2
+      ],
+      [
+        62,
+        107,
+        0.111241,
+        4
+      ],
+      [
+        44,
+        54,
+        0.112805,
+        2
+      ],
+      [
+        18,
+        99,
+        0.113897,
+        4
+      ],
+      [
+        39,
+        104,
+        0.114946,
+        3
+      ],
+      [
+        57,
+        92,
+        0.118577,
+        3
+      ],
+      [
+        16,
+        38,
+        0.119502,
+        2
+      ],
+      [
+        4,
+        108,
+        0.122987,
+        4
+      ],
+      [
+        55,
+        77,
+        0.124382,
+        2
+      ],
+      [
+        11,
+        97,
+        0.127628,
+        3
+      ],
+      [
+        83,
+        89,
+        0.129458,
+        3
+      ],
+      [
+        49,
+        98,
+        0.133749,
+        3
+      ],
+      [
+        23,
+        91,
+        0.135952,
+        3
+      ],
+      [
+        65,
+        94,
+        0.141695,
+        3
+      ],
+      [
+        5,
+        41,
+        0.145956,
+        2
+      ],
+      [
+        46,
+        90,
+        0.146288,
+        3
+      ],
+      [
+        88,
+        121,
+        0.146304,
+        5
+      ],
+      [
+        76,
+        84,
+        0.146934,
+        2
+      ],
+      [
+        7,
+        114,
+        0.151509,
+        5
+      ],
+      [
+        95,
+        111,
+        0.151924,
+        4
+      ],
+      [
+        105,
+        117,
+        0.1535,
+        4
+      ],
+      [
+        103,
+        120,
+        0.154192,
+        5
+      ],
+      [
+        31,
+        37,
+        0.154429,
+        2
+      ],
+      [
+        109,
+        115,
+        0.155837,
+        5
+      ],
+      [
+        112,
+        116,
+        0.160448,
+        7
+      ],
+      [
+        24,
+        110,
+        0.160575,
+        3
+      ],
+      [
+        82,
+        102,
+        0.165685,
+        3
+      ],
+      [
+        124,
+        127,
+        0.177738,
+        8
+      ],
+      [
+        129,
+        134,
+        0.1788,
+        10
+      ],
+      [
+        47,
+        58,
+        0.179472,
+        2
+      ],
+      [
+        13,
+        133,
+        0.180532,
+        3
+      ],
+      [
+        6,
+        139,
+        0.200532,
+        11
+      ],
+      [
+        126,
+        135,
+        0.201843,
+        10
+      ],
+      [
+        32,
+        136,
+        0.201957,
+        4
+      ],
+      [
+        85,
+        113,
+        0.203296,
+        3
+      ],
+      [
+        75,
+        137,
+        0.20348,
+        4
+      ],
+      [
+        106,
+        122,
+        0.204942,
+        5
+      ],
+      [
+        123,
+        131,
+        0.205408,
+        7
+      ],
+      [
+        125,
+        148,
+        0.211908,
+        9
+      ],
+      [
+        22,
+        26,
+        0.215114,
+        2
+      ],
+      [
+        119,
+        147,
+        0.22202,
+        7
+      ],
+      [
+        141,
+        144,
+        0.235573,
+        7
+      ],
+      [
+        36,
+        132,
+        0.246813,
+        6
+      ],
+      [
+        78,
+        143,
+        0.248047,
+        11
+      ],
+      [
+        130,
+        151,
+        0.248077,
+        11
+      ],
+      [
+        118,
+        149,
+        0.248174,
+        13
+      ],
+      [
+        100,
+        142,
+        0.248313,
+        13
+      ],
+      [
+        138,
+        145,
+        0.267677,
+        11
+      ],
+      [
+        150,
+        153,
+        0.272799,
+        8
+      ],
+      [
+        28,
+        156,
+        0.27337,
+        14
+      ],
+      [
+        10,
+        160,
+        0.287767,
+        15
+      ],
+      [
+        157,
+        161,
+        0.295193,
+        28
+      ],
+      [
+        152,
+        159,
+        0.316858,
+        15
+      ],
+      [
+        154,
+        155,
+        0.317037,
+        22
+      ],
+      [
+        140,
+        158,
+        0.345155,
+        13
+      ],
+      [
+        146,
+        165,
+        0.374478,
+        17
+      ],
+      [
+        162,
+        163,
+        0.375251,
+        43
+      ],
+      [
+        70,
+        164,
+        0.394294,
+        23
+      ],
+      [
+        166,
+        168,
+        0.422718,
+        40
+      ],
+      [
+        86,
+        128,
+        0.497349,
+        3
+      ],
+      [
+        27,
+        167,
+        0.505187,
+        44
+      ],
+      [
+        169,
+        170,
+        0.589869,
+        43
+      ],
+      [
+        171,
+        172,
+        0.607359,
+        87
+      ],
+      [
+        87,
+        173,
+        0.697624,
+        88
+      ]
+    ],
+    "merges": [
+      {
+        "node_id": 88,
+        "left_child": 50,
+        "right_child": 52,
+        "distance": 0.024399,
+        "n_leaves": 2,
+        "species": [
+          "Common Vetch",
+          "Cow Parsley"
+        ],
+        "left_species": [
+          "Common Vetch"
+        ],
+        "right_species": [
+          "Cow Parsley"
+        ]
+      },
+      {
+        "node_id": 89,
+        "left_child": 67,
+        "right_child": 74,
+        "distance": 0.028623,
+        "n_leaves": 2,
+        "species": [
+          "Orange Tip Butterfly",
+          "Reed Warbler"
+        ],
+        "left_species": [
+          "Orange Tip Butterfly"
+        ],
+        "right_species": [
+          "Reed Warbler"
+        ]
+      },
+      {
+        "node_id": 90,
+        "left_child": 45,
+        "right_child": 73,
+        "distance": 0.042837,
+        "n_leaves": 2,
+        "species": [
+          "Brimstone Butterfly",
+          "Red Dead Nettle"
+        ],
+        "left_species": [
+          "Brimstone Butterfly"
+        ],
+        "right_species": [
+          "Red Dead Nettle"
+        ]
+      },
+      {
+        "node_id": 91,
+        "left_child": 20,
+        "right_child": 34,
+        "distance": 0.042911,
+        "n_leaves": 2,
+        "species": [
+          "Great Tit",
+          "Pheasant"
+        ],
+        "left_species": [
+          "Great Tit"
+        ],
+        "right_species": [
+          "Pheasant"
+        ]
+      },
+      {
+        "node_id": 92,
+        "left_child": 63,
+        "right_child": 71,
+        "distance": 0.049127,
+        "n_leaves": 2,
+        "species": [
+          "Honeysuckle",
+          "Red Campion"
+        ],
+        "left_species": [
+          "Honeysuckle"
+        ],
+        "right_species": [
+          "Red Campion"
+        ]
+      },
+      {
+        "node_id": 93,
+        "left_child": 48,
+        "right_child": 68,
+        "distance": 0.053567,
+        "n_leaves": 2,
+        "species": [
+          "Common Comfrey",
+          "Oxeye Daisy"
+        ],
+        "left_species": [
+          "Common Comfrey"
+        ],
+        "right_species": [
+          "Oxeye Daisy"
+        ]
+      },
+      {
+        "node_id": 94,
+        "left_child": 53,
+        "right_child": 59,
+        "distance": 0.059395,
+        "n_leaves": 2,
+        "species": [
+          "Cowslip",
+          "Garlic Mustard"
+        ],
+        "left_species": [
+          "Cowslip"
+        ],
+        "right_species": [
+          "Garlic Mustard"
+        ]
+      },
+      {
+        "node_id": 95,
+        "left_child": 56,
+        "right_child": 80,
+        "distance": 0.062938,
+        "n_leaves": 2,
+        "species": [
+          "Dog Rose",
+          "Teasel"
+        ],
+        "left_species": [
+          "Dog Rose"
+        ],
+        "right_species": [
+          "Teasel"
+        ]
+      },
+      {
+        "node_id": 96,
+        "left_child": 2,
+        "right_child": 40,
+        "distance": 0.063401,
+        "n_leaves": 2,
+        "species": [
+          "Blackcap",
+          "Skylark"
+        ],
+        "left_species": [
+          "Blackcap"
+        ],
+        "right_species": [
+          "Skylark"
+        ]
+      },
+      {
+        "node_id": 97,
+        "left_child": 14,
+        "right_child": 29,
+        "distance": 0.063977,
+        "n_leaves": 2,
+        "species": [
+          "Crow",
+          "Magpie"
+        ],
+        "left_species": [
+          "Crow"
+        ],
+        "right_species": [
+          "Magpie"
+        ]
+      },
+      {
+        "node_id": 98,
+        "left_child": 51,
+        "right_child": 79,
+        "distance": 0.064085,
+        "n_leaves": 2,
+        "species": [
+          "Cornflower",
+          "Swift"
+        ],
+        "left_species": [
+          "Cornflower"
+        ],
+        "right_species": [
+          "Swift"
+        ]
+      },
+      {
+        "node_id": 99,
+        "left_child": 9,
+        "right_child": 96,
+        "distance": 0.065482,
+        "n_leaves": 3,
+        "species": [
+          "Common Cleavers",
+          "Blackcap",
+          "Skylark"
+        ],
+        "left_species": [
+          "Common Cleavers"
+        ],
+        "right_species": [
+          "Blackcap",
+          "Skylark"
+        ]
+      },
+      {
+        "node_id": 100,
+        "left_child": 8,
+        "right_child": 25,
+        "distance": 0.06802,
+        "n_leaves": 2,
+        "species": [
+          "Collared Dove",
+          "House Sparrow"
+        ],
+        "left_species": [
+          "Collared Dove"
+        ],
+        "right_species": [
+          "House Sparrow"
+        ]
+      },
+      {
+        "node_id": 101,
+        "left_child": 3,
+        "right_child": 17,
+        "distance": 0.075092,
+        "n_leaves": 2,
+        "species": [
+          "Blue Tit",
+          "Dunnock"
+        ],
+        "left_species": [
+          "Blue Tit"
+        ],
+        "right_species": [
+          "Dunnock"
+        ]
+      },
+      {
+        "node_id": 102,
+        "left_child": 60,
+        "right_child": 61,
+        "distance": 0.083611,
+        "n_leaves": 2,
+        "species": [
+          "Gatekeeper Butterfly",
+          "Goats Beard"
+        ],
+        "left_species": [
+          "Gatekeeper Butterfly"
+        ],
+        "right_species": [
+          "Goats Beard"
+        ]
+      },
+      {
+        "node_id": 103,
+        "left_child": 19,
+        "right_child": 42,
+        "distance": 0.086981,
+        "n_leaves": 2,
+        "species": [
+          "Goldfinch",
+          "Woodpigeon"
+        ],
+        "left_species": [
+          "Goldfinch"
+        ],
+        "right_species": [
+          "Woodpigeon"
+        ]
+      },
+      {
+        "node_id": 104,
+        "left_child": 15,
+        "right_child": 33,
+        "distance": 0.09005,
+        "n_leaves": 2,
+        "species": [
+          "Daisy",
+          "Nettle"
+        ],
+        "left_species": [
+          "Daisy"
+        ],
+        "right_species": [
+          "Nettle"
+        ]
+      },
+      {
+        "node_id": 105,
+        "left_child": 21,
+        "right_child": 43,
+        "distance": 0.091172,
+        "n_leaves": 2,
+        "species": [
+          "Greenfinch",
+          "Wren"
+        ],
+        "left_species": [
+          "Greenfinch"
+        ],
+        "right_species": [
+          "Wren"
+        ]
+      },
+      {
+        "node_id": 106,
+        "left_child": 64,
+        "right_child": 66,
+        "distance": 0.095752,
+        "n_leaves": 2,
+        "species": [
+          "Horsetail",
+          "Meadow Brown Butterfly"
+        ],
+        "left_species": [
+          "Horsetail"
+        ],
+        "right_species": [
+          "Meadow Brown Butterfly"
+        ]
+      },
+      {
+        "node_id": 107,
+        "left_child": 69,
+        "right_child": 93,
+        "distance": 0.095761,
+        "n_leaves": 3,
+        "species": [
+          "Peacock Butterfly",
+          "Common Comfrey",
+          "Oxeye Daisy"
+        ],
+        "left_species": [
+          "Peacock Butterfly"
+        ],
+        "right_species": [
+          "Common Comfrey",
+          "Oxeye Daisy"
+        ]
+      },
+      {
+        "node_id": 108,
+        "left_child": 1,
+        "right_child": 101,
+        "distance": 0.097551,
+        "n_leaves": 3,
+        "species": [
+          "Blackbird",
+          "Blue Tit",
+          "Dunnock"
+        ],
+        "left_species": [
+          "Blackbird"
+        ],
+        "right_species": [
+          "Blue Tit",
+          "Dunnock"
+        ]
+      },
+      {
+        "node_id": 109,
+        "left_child": 30,
+        "right_child": 35,
+        "distance": 0.1027,
+        "n_leaves": 2,
+        "species": [
+          "Mallard",
+          "Pied Wagtail"
+        ],
+        "left_species": [
+          "Mallard"
+        ],
+        "right_species": [
+          "Pied Wagtail"
+        ]
+      },
+      {
+        "node_id": 110,
+        "left_child": 0,
+        "right_child": 12,
+        "distance": 0.103578,
+        "n_leaves": 2,
+        "species": [
+          "Black Headed Gull",
+          "Coot"
+        ],
+        "left_species": [
+          "Black Headed Gull"
+        ],
+        "right_species": [
+          "Coot"
+        ]
+      },
+      {
+        "node_id": 111,
+        "left_child": 72,
+        "right_child": 81,
+        "distance": 0.107524,
+        "n_leaves": 2,
+        "species": [
+          "Red Clover",
+          "White Campion"
+        ],
+        "left_species": [
+          "Red Clover"
+        ],
+        "right_species": [
+          "White Campion"
+        ]
+      },
+      {
+        "node_id": 112,
+        "left_child": 62,
+        "right_child": 107,
+        "distance": 0.111241,
+        "n_leaves": 4,
+        "species": [
+          "Green Alkanet",
+          "Peacock Butterfly",
+          "Common Comfrey",
+          "Oxeye Daisy"
+        ],
+        "left_species": [
+          "Green Alkanet"
+        ],
+        "right_species": [
+          "Peacock Butterfly",
+          "Common Comfrey",
+          "Oxeye Daisy"
+        ]
+      },
+      {
+        "node_id": 113,
+        "left_child": 44,
+        "right_child": 54,
+        "distance": 0.112805,
+        "n_leaves": 2,
+        "species": [
+          "Bluebell",
+          "Cuckoo"
+        ],
+        "left_species": [
+          "Bluebell"
+        ],
+        "right_species": [
+          "Cuckoo"
+        ]
+      },
+      {
+        "node_id": 114,
+        "left_child": 18,
+        "right_child": 99,
+        "distance": 0.113897,
+        "n_leaves": 4,
+        "species": [
+          "Germander Speedwell",
+          "Common Cleavers",
+          "Blackcap",
+          "Skylark"
+        ],
+        "left_species": [
+          "Germander Speedwell"
+        ],
+        "right_species": [
+          "Common Cleavers",
+          "Blackcap",
+          "Skylark"
+        ]
+      },
+      {
+        "node_id": 115,
+        "left_child": 39,
+        "right_child": 104,
+        "distance": 0.114946,
+        "n_leaves": 3,
+        "species": [
+          "Shepherds Purse",
+          "Daisy",
+          "Nettle"
+        ],
+        "left_species": [
+          "Shepherds Purse"
+        ],
+        "right_species": [
+          "Daisy",
+          "Nettle"
+        ]
+      },
+      {
+        "node_id": 116,
+        "left_child": 57,
+        "right_child": 92,
+        "distance": 0.118577,
+        "n_leaves": 3,
+        "species": [
+          "Doves Foot Cranesbill",
+          "Honeysuckle",
+          "Red Campion"
+        ],
+        "left_species": [
+          "Doves Foot Cranesbill"
+        ],
+        "right_species": [
+          "Honeysuckle",
+          "Red Campion"
+        ]
+      },
+      {
+        "node_id": 117,
+        "left_child": 16,
+        "right_child": 38,
+        "distance": 0.119502,
+        "n_leaves": 2,
+        "species": [
+          "Dandelion",
+          "Rook"
+        ],
+        "left_species": [
+          "Dandelion"
+        ],
+        "right_species": [
+          "Rook"
+        ]
+      },
+      {
+        "node_id": 118,
+        "left_child": 4,
+        "right_child": 108,
+        "distance": 0.122987,
+        "n_leaves": 4,
+        "species": [
+          "Buzzard",
+          "Blackbird",
+          "Blue Tit",
+          "Dunnock"
+        ],
+        "left_species": [
+          "Buzzard"
+        ],
+        "right_species": [
+          "Blackbird",
+          "Blue Tit",
+          "Dunnock"
+        ]
+      },
+      {
+        "node_id": 119,
+        "left_child": 55,
+        "right_child": 77,
+        "distance": 0.124382,
+        "n_leaves": 2,
+        "species": [
+          "Cuckoo Pint",
+          "Speckled Wood Butterfly"
+        ],
+        "left_species": [
+          "Cuckoo Pint"
+        ],
+        "right_species": [
+          "Speckled Wood Butterfly"
+        ]
+      },
+      {
+        "node_id": 120,
+        "left_child": 11,
+        "right_child": 97,
+        "distance": 0.127628,
+        "n_leaves": 3,
+        "species": [
+          "Common Starling",
+          "Crow",
+          "Magpie"
+        ],
+        "left_species": [
+          "Common Starling"
+        ],
+        "right_species": [
+          "Crow",
+          "Magpie"
+        ]
+      },
+      {
+        "node_id": 121,
+        "left_child": 83,
+        "right_child": 89,
+        "distance": 0.129458,
+        "n_leaves": 3,
+        "species": [
+          "Whitethroat",
+          "Orange Tip Butterfly",
+          "Reed Warbler"
+        ],
+        "left_species": [
+          "Whitethroat"
+        ],
+        "right_species": [
+          "Orange Tip Butterfly",
+          "Reed Warbler"
+        ]
+      },
+      {
+        "node_id": 122,
+        "left_child": 49,
+        "right_child": 98,
+        "distance": 0.133749,
+        "n_leaves": 3,
+        "species": [
+          "Common Poppy",
+          "Cornflower",
+          "Swift"
+        ],
+        "left_species": [
+          "Common Poppy"
+        ],
+        "right_species": [
+          "Cornflower",
+          "Swift"
+        ]
+      },
+      {
+        "node_id": 123,
+        "left_child": 23,
+        "right_child": 91,
+        "distance": 0.135952,
+        "n_leaves": 3,
+        "species": [
+          "Greylag Goose",
+          "Great Tit",
+          "Pheasant"
+        ],
+        "left_species": [
+          "Greylag Goose"
+        ],
+        "right_species": [
+          "Great Tit",
+          "Pheasant"
+        ]
+      },
+      {
+        "node_id": 124,
+        "left_child": 65,
+        "right_child": 94,
+        "distance": 0.141695,
+        "n_leaves": 3,
+        "species": [
+          "Lesser Celandine",
+          "Cowslip",
+          "Garlic Mustard"
+        ],
+        "left_species": [
+          "Lesser Celandine"
+        ],
+        "right_species": [
+          "Cowslip",
+          "Garlic Mustard"
+        ]
+      },
+      {
+        "node_id": 125,
+        "left_child": 5,
+        "right_child": 41,
+        "distance": 0.145956,
+        "n_leaves": 2,
+        "species": [
+          "Canada Goose",
+          "Song Thrush"
+        ],
+        "left_species": [
+          "Canada Goose"
+        ],
+        "right_species": [
+          "Song Thrush"
+        ]
+      },
+      {
+        "node_id": 126,
+        "left_child": 46,
+        "right_child": 90,
+        "distance": 0.146288,
+        "n_leaves": 3,
+        "species": [
+          "Buttercup",
+          "Brimstone Butterfly",
+          "Red Dead Nettle"
+        ],
+        "left_species": [
+          "Buttercup"
+        ],
+        "right_species": [
+          "Brimstone Butterfly",
+          "Red Dead Nettle"
+        ]
+      },
+      {
+        "node_id": 127,
+        "left_child": 88,
+        "right_child": 121,
+        "distance": 0.146304,
+        "n_leaves": 5,
+        "species": [
+          "Common Vetch",
+          "Cow Parsley",
+          "Whitethroat",
+          "Orange Tip Butterfly",
+          "Reed Warbler"
+        ],
+        "left_species": [
+          "Common Vetch",
+          "Cow Parsley"
+        ],
+        "right_species": [
+          "Whitethroat",
+          "Orange Tip Butterfly",
+          "Reed Warbler"
+        ]
+      },
+      {
+        "node_id": 128,
+        "left_child": 76,
+        "right_child": 84,
+        "distance": 0.146934,
+        "n_leaves": 2,
+        "species": [
+          "Snowdrop",
+          "Winter Aconite"
+        ],
+        "left_species": [
+          "Snowdrop"
+        ],
+        "right_species": [
+          "Winter Aconite"
+        ]
+      },
+      {
+        "node_id": 129,
+        "left_child": 7,
+        "right_child": 114,
+        "distance": 0.151509,
+        "n_leaves": 5,
+        "species": [
+          "Coal Tit",
+          "Germander Speedwell",
+          "Common Cleavers",
+          "Blackcap",
+          "Skylark"
+        ],
+        "left_species": [
+          "Coal Tit"
+        ],
+        "right_species": [
+          "Germander Speedwell",
+          "Common Cleavers",
+          "Blackcap",
+          "Skylark"
+        ]
+      },
+      {
+        "node_id": 130,
+        "left_child": 95,
+        "right_child": 111,
+        "distance": 0.151924,
+        "n_leaves": 4,
+        "species": [
+          "Dog Rose",
+          "Teasel",
+          "Red Clover",
+          "White Campion"
+        ],
+        "left_species": [
+          "Dog Rose",
+          "Teasel"
+        ],
+        "right_species": [
+          "Red Clover",
+          "White Campion"
+        ]
+      },
+      {
+        "node_id": 131,
+        "left_child": 105,
+        "right_child": 117,
+        "distance": 0.1535,
+        "n_leaves": 4,
+        "species": [
+          "Greenfinch",
+          "Wren",
+          "Dandelion",
+          "Rook"
+        ],
+        "left_species": [
+          "Greenfinch",
+          "Wren"
+        ],
+        "right_species": [
+          "Dandelion",
+          "Rook"
+        ]
+      },
+      {
+        "node_id": 132,
+        "left_child": 103,
+        "right_child": 120,
+        "distance": 0.154192,
+        "n_leaves": 5,
+        "species": [
+          "Goldfinch",
+          "Woodpigeon",
+          "Common Starling",
+          "Crow",
+          "Magpie"
+        ],
+        "left_species": [
+          "Goldfinch",
+          "Woodpigeon"
+        ],
+        "right_species": [
+          "Common Starling",
+          "Crow",
+          "Magpie"
+        ]
+      },
+      {
+        "node_id": 133,
+        "left_child": 31,
+        "right_child": 37,
+        "distance": 0.154429,
+        "n_leaves": 2,
+        "species": [
+          "Mistle Thrush",
+          "Robin"
+        ],
+        "left_species": [
+          "Mistle Thrush"
+        ],
+        "right_species": [
+          "Robin"
+        ]
+      },
+      {
+        "node_id": 134,
+        "left_child": 109,
+        "right_child": 115,
+        "distance": 0.155837,
+        "n_leaves": 5,
+        "species": [
+          "Mallard",
+          "Pied Wagtail",
+          "Shepherds Purse",
+          "Daisy",
+          "Nettle"
+        ],
+        "left_species": [
+          "Mallard",
+          "Pied Wagtail"
+        ],
+        "right_species": [
+          "Shepherds Purse",
+          "Daisy",
+          "Nettle"
+        ]
+      },
+      {
+        "node_id": 135,
+        "left_child": 112,
+        "right_child": 116,
+        "distance": 0.160448,
+        "n_leaves": 7,
+        "species": [
+          "Green Alkanet",
+          "Peacock Butterfly",
+          "Common Comfrey",
+          "Oxeye Daisy",
+          "Doves Foot Cranesbill",
+          "Honeysuckle",
+          "Red Campion"
+        ],
+        "left_species": [
+          "Green Alkanet",
+          "Peacock Butterfly",
+          "Common Comfrey",
+          "Oxeye Daisy"
+        ],
+        "right_species": [
+          "Doves Foot Cranesbill",
+          "Honeysuckle",
+          "Red Campion"
+        ]
+      },
+      {
+        "node_id": 136,
+        "left_child": 24,
+        "right_child": 110,
+        "distance": 0.160575,
+        "n_leaves": 3,
+        "species": [
+          "Herring Gull",
+          "Black Headed Gull",
+          "Coot"
+        ],
+        "left_species": [
+          "Herring Gull"
+        ],
+        "right_species": [
+          "Black Headed Gull",
+          "Coot"
+        ]
+      },
+      {
+        "node_id": 137,
+        "left_child": 82,
+        "right_child": 102,
+        "distance": 0.165685,
+        "n_leaves": 3,
+        "species": [
+          "White Clover",
+          "Gatekeeper Butterfly",
+          "Goats Beard"
+        ],
+        "left_species": [
+          "White Clover"
+        ],
+        "right_species": [
+          "Gatekeeper Butterfly",
+          "Goats Beard"
+        ]
+      },
+      {
+        "node_id": 138,
+        "left_child": 124,
+        "right_child": 127,
+        "distance": 0.177738,
+        "n_leaves": 8,
+        "species": [
+          "Lesser Celandine",
+          "Cowslip",
+          "Garlic Mustard",
+          "Common Vetch",
+          "Cow Parsley",
+          "Whitethroat",
+          "Orange Tip Butterfly",
+          "Reed Warbler"
+        ],
+        "left_species": [
+          "Lesser Celandine",
+          "Cowslip",
+          "Garlic Mustard"
+        ],
+        "right_species": [
+          "Common Vetch",
+          "Cow Parsley",
+          "Whitethroat",
+          "Orange Tip Butterfly",
+          "Reed Warbler"
+        ]
+      },
+      {
+        "node_id": 139,
+        "left_child": 129,
+        "right_child": 134,
+        "distance": 0.1788,
+        "n_leaves": 10,
+        "species": [
+          "Coal Tit",
+          "Germander Speedwell",
+          "Common Cleavers",
+          "Blackcap",
+          "Skylark",
+          "Mallard",
+          "Pied Wagtail",
+          "Shepherds Purse",
+          "Daisy",
+          "Nettle"
+        ],
+        "left_species": [
+          "Coal Tit",
+          "Germander Speedwell",
+          "Common Cleavers",
+          "Blackcap",
+          "Skylark"
+        ],
+        "right_species": [
+          "Mallard",
+          "Pied Wagtail",
+          "Shepherds Purse",
+          "Daisy",
+          "Nettle"
+        ]
+      },
+      {
+        "node_id": 140,
+        "left_child": 47,
+        "right_child": 58,
+        "distance": 0.179472,
+        "n_leaves": 2,
+        "species": [
+          "Chiffchaff",
+          "Garden Warbler"
+        ],
+        "left_species": [
+          "Chiffchaff"
+        ],
+        "right_species": [
+          "Garden Warbler"
+        ]
+      },
+      {
+        "node_id": 141,
+        "left_child": 13,
+        "right_child": 133,
+        "distance": 0.180532,
+        "n_leaves": 3,
+        "species": [
+          "Cormorant",
+          "Mistle Thrush",
+          "Robin"
+        ],
+        "left_species": [
+          "Cormorant"
+        ],
+        "right_species": [
+          "Mistle Thrush",
+          "Robin"
+        ]
+      },
+      {
+        "node_id": 142,
+        "left_child": 6,
+        "right_child": 139,
+        "distance": 0.200532,
+        "n_leaves": 11,
+        "species": [
+          "Chaffinch",
+          "Coal Tit",
+          "Germander Speedwell",
+          "Common Cleavers",
+          "Blackcap",
+          "Skylark",
+          "Mallard",
+          "Pied Wagtail",
+          "Shepherds Purse",
+          "Daisy",
+          "Nettle"
+        ],
+        "left_species": [
+          "Chaffinch"
+        ],
+        "right_species": [
+          "Coal Tit",
+          "Germander Speedwell",
+          "Common Cleavers",
+          "Blackcap",
+          "Skylark",
+          "Mallard",
+          "Pied Wagtail",
+          "Shepherds Purse",
+          "Daisy",
+          "Nettle"
+        ]
+      },
+      {
+        "node_id": 143,
+        "left_child": 126,
+        "right_child": 135,
+        "distance": 0.201843,
+        "n_leaves": 10,
+        "species": [
+          "Buttercup",
+          "Brimstone Butterfly",
+          "Red Dead Nettle",
+          "Green Alkanet",
+          "Peacock Butterfly",
+          "Common Comfrey",
+          "Oxeye Daisy",
+          "Doves Foot Cranesbill",
+          "Honeysuckle",
+          "Red Campion"
+        ],
+        "left_species": [
+          "Buttercup",
+          "Brimstone Butterfly",
+          "Red Dead Nettle"
+        ],
+        "right_species": [
+          "Green Alkanet",
+          "Peacock Butterfly",
+          "Common Comfrey",
+          "Oxeye Daisy",
+          "Doves Foot Cranesbill",
+          "Honeysuckle",
+          "Red Campion"
+        ]
+      },
+      {
+        "node_id": 144,
+        "left_child": 32,
+        "right_child": 136,
+        "distance": 0.201957,
+        "n_leaves": 4,
+        "species": [
+          "Mute Swan",
+          "Herring Gull",
+          "Black Headed Gull",
+          "Coot"
+        ],
+        "left_species": [
+          "Mute Swan"
+        ],
+        "right_species": [
+          "Herring Gull",
+          "Black Headed Gull",
+          "Coot"
+        ]
+      },
+      {
+        "node_id": 145,
+        "left_child": 85,
+        "right_child": 113,
+        "distance": 0.203296,
+        "n_leaves": 3,
+        "species": [
+          "Yellow Flag Iris",
+          "Bluebell",
+          "Cuckoo"
+        ],
+        "left_species": [
+          "Yellow Flag Iris"
+        ],
+        "right_species": [
+          "Bluebell",
+          "Cuckoo"
+        ]
+      },
+      {
+        "node_id": 146,
+        "left_child": 75,
+        "right_child": 137,
+        "distance": 0.20348,
+        "n_leaves": 4,
+        "species": [
+          "Rosebay Willowherb",
+          "White Clover",
+          "Gatekeeper Butterfly",
+          "Goats Beard"
+        ],
+        "left_species": [
+          "Rosebay Willowherb"
+        ],
+        "right_species": [
+          "White Clover",
+          "Gatekeeper Butterfly",
+          "Goats Beard"
+        ]
+      },
+      {
+        "node_id": 147,
+        "left_child": 106,
+        "right_child": 122,
+        "distance": 0.204942,
+        "n_leaves": 5,
+        "species": [
+          "Horsetail",
+          "Meadow Brown Butterfly",
+          "Common Poppy",
+          "Cornflower",
+          "Swift"
+        ],
+        "left_species": [
+          "Horsetail",
+          "Meadow Brown Butterfly"
+        ],
+        "right_species": [
+          "Common Poppy",
+          "Cornflower",
+          "Swift"
+        ]
+      },
+      {
+        "node_id": 148,
+        "left_child": 123,
+        "right_child": 131,
+        "distance": 0.205408,
+        "n_leaves": 7,
+        "species": [
+          "Greylag Goose",
+          "Great Tit",
+          "Pheasant",
+          "Greenfinch",
+          "Wren",
+          "Dandelion",
+          "Rook"
+        ],
+        "left_species": [
+          "Greylag Goose",
+          "Great Tit",
+          "Pheasant"
+        ],
+        "right_species": [
+          "Greenfinch",
+          "Wren",
+          "Dandelion",
+          "Rook"
+        ]
+      },
+      {
+        "node_id": 149,
+        "left_child": 125,
+        "right_child": 148,
+        "distance": 0.211908,
+        "n_leaves": 9,
+        "species": [
+          "Canada Goose",
+          "Song Thrush",
+          "Greylag Goose",
+          "Great Tit",
+          "Pheasant",
+          "Greenfinch",
+          "Wren",
+          "Dandelion",
+          "Rook"
+        ],
+        "left_species": [
+          "Canada Goose",
+          "Song Thrush"
+        ],
+        "right_species": [
+          "Greylag Goose",
+          "Great Tit",
+          "Pheasant",
+          "Greenfinch",
+          "Wren",
+          "Dandelion",
+          "Rook"
+        ]
+      },
+      {
+        "node_id": 150,
+        "left_child": 22,
+        "right_child": 26,
+        "distance": 0.215114,
+        "n_leaves": 2,
+        "species": [
+          "Grey Heron",
+          "Jackdaw"
+        ],
+        "left_species": [
+          "Grey Heron"
+        ],
+        "right_species": [
+          "Jackdaw"
+        ]
+      },
+      {
+        "node_id": 151,
+        "left_child": 119,
+        "right_child": 147,
+        "distance": 0.22202,
+        "n_leaves": 7,
+        "species": [
+          "Cuckoo Pint",
+          "Speckled Wood Butterfly",
+          "Horsetail",
+          "Meadow Brown Butterfly",
+          "Common Poppy",
+          "Cornflower",
+          "Swift"
+        ],
+        "left_species": [
+          "Cuckoo Pint",
+          "Speckled Wood Butterfly"
+        ],
+        "right_species": [
+          "Horsetail",
+          "Meadow Brown Butterfly",
+          "Common Poppy",
+          "Cornflower",
+          "Swift"
+        ]
+      },
+      {
+        "node_id": 152,
+        "left_child": 141,
+        "right_child": 144,
+        "distance": 0.235573,
+        "n_leaves": 7,
+        "species": [
+          "Cormorant",
+          "Mistle Thrush",
+          "Robin",
+          "Mute Swan",
+          "Herring Gull",
+          "Black Headed Gull",
+          "Coot"
+        ],
+        "left_species": [
+          "Cormorant",
+          "Mistle Thrush",
+          "Robin"
+        ],
+        "right_species": [
+          "Mute Swan",
+          "Herring Gull",
+          "Black Headed Gull",
+          "Coot"
+        ]
+      },
+      {
+        "node_id": 153,
+        "left_child": 36,
+        "right_child": 132,
+        "distance": 0.246813,
+        "n_leaves": 6,
+        "species": [
+          "Red Kite",
+          "Goldfinch",
+          "Woodpigeon",
+          "Common Starling",
+          "Crow",
+          "Magpie"
+        ],
+        "left_species": [
+          "Red Kite"
+        ],
+        "right_species": [
+          "Goldfinch",
+          "Woodpigeon",
+          "Common Starling",
+          "Crow",
+          "Magpie"
+        ]
+      },
+      {
+        "node_id": 154,
+        "left_child": 78,
+        "right_child": 143,
+        "distance": 0.248047,
+        "n_leaves": 11,
+        "species": [
+          "Swallow",
+          "Buttercup",
+          "Brimstone Butterfly",
+          "Red Dead Nettle",
+          "Green Alkanet",
+          "Peacock Butterfly",
+          "Common Comfrey",
+          "Oxeye Daisy",
+          "Doves Foot Cranesbill",
+          "Honeysuckle",
+          "Red Campion"
+        ],
+        "left_species": [
+          "Swallow"
+        ],
+        "right_species": [
+          "Buttercup",
+          "Brimstone Butterfly",
+          "Red Dead Nettle",
+          "Green Alkanet",
+          "Peacock Butterfly",
+          "Common Comfrey",
+          "Oxeye Daisy",
+          "Doves Foot Cranesbill",
+          "Honeysuckle",
+          "Red Campion"
+        ]
+      },
+      {
+        "node_id": 155,
+        "left_child": 130,
+        "right_child": 151,
+        "distance": 0.248077,
+        "n_leaves": 11,
+        "species": [
+          "Dog Rose",
+          "Teasel",
+          "Red Clover",
+          "White Campion",
+          "Cuckoo Pint",
+          "Speckled Wood Butterfly",
+          "Horsetail",
+          "Meadow Brown Butterfly",
+          "Common Poppy",
+          "Cornflower",
+          "Swift"
+        ],
+        "left_species": [
+          "Dog Rose",
+          "Teasel",
+          "Red Clover",
+          "White Campion"
+        ],
+        "right_species": [
+          "Cuckoo Pint",
+          "Speckled Wood Butterfly",
+          "Horsetail",
+          "Meadow Brown Butterfly",
+          "Common Poppy",
+          "Cornflower",
+          "Swift"
+        ]
+      },
+      {
+        "node_id": 156,
+        "left_child": 118,
+        "right_child": 149,
+        "distance": 0.248174,
+        "n_leaves": 13,
+        "species": [
+          "Buzzard",
+          "Blackbird",
+          "Blue Tit",
+          "Dunnock",
+          "Canada Goose",
+          "Song Thrush",
+          "Greylag Goose",
+          "Great Tit",
+          "Pheasant",
+          "Greenfinch",
+          "Wren",
+          "Dandelion",
+          "Rook"
+        ],
+        "left_species": [
+          "Buzzard",
+          "Blackbird",
+          "Blue Tit",
+          "Dunnock"
+        ],
+        "right_species": [
+          "Canada Goose",
+          "Song Thrush",
+          "Greylag Goose",
+          "Great Tit",
+          "Pheasant",
+          "Greenfinch",
+          "Wren",
+          "Dandelion",
+          "Rook"
+        ]
+      },
+      {
+        "node_id": 157,
+        "left_child": 100,
+        "right_child": 142,
+        "distance": 0.248313,
+        "n_leaves": 13,
+        "species": [
+          "Collared Dove",
+          "House Sparrow",
+          "Chaffinch",
+          "Coal Tit",
+          "Germander Speedwell",
+          "Common Cleavers",
+          "Blackcap",
+          "Skylark",
+          "Mallard",
+          "Pied Wagtail",
+          "Shepherds Purse",
+          "Daisy",
+          "Nettle"
+        ],
+        "left_species": [
+          "Collared Dove",
+          "House Sparrow"
+        ],
+        "right_species": [
+          "Chaffinch",
+          "Coal Tit",
+          "Germander Speedwell",
+          "Common Cleavers",
+          "Blackcap",
+          "Skylark",
+          "Mallard",
+          "Pied Wagtail",
+          "Shepherds Purse",
+          "Daisy",
+          "Nettle"
+        ]
+      },
+      {
+        "node_id": 158,
+        "left_child": 138,
+        "right_child": 145,
+        "distance": 0.267677,
+        "n_leaves": 11,
+        "species": [
+          "Lesser Celandine",
+          "Cowslip",
+          "Garlic Mustard",
+          "Common Vetch",
+          "Cow Parsley",
+          "Whitethroat",
+          "Orange Tip Butterfly",
+          "Reed Warbler",
+          "Yellow Flag Iris",
+          "Bluebell",
+          "Cuckoo"
+        ],
+        "left_species": [
+          "Lesser Celandine",
+          "Cowslip",
+          "Garlic Mustard",
+          "Common Vetch",
+          "Cow Parsley",
+          "Whitethroat",
+          "Orange Tip Butterfly",
+          "Reed Warbler"
+        ],
+        "right_species": [
+          "Yellow Flag Iris",
+          "Bluebell",
+          "Cuckoo"
+        ]
+      },
+      {
+        "node_id": 159,
+        "left_child": 150,
+        "right_child": 153,
+        "distance": 0.272799,
+        "n_leaves": 8,
+        "species": [
+          "Grey Heron",
+          "Jackdaw",
+          "Red Kite",
+          "Goldfinch",
+          "Woodpigeon",
+          "Common Starling",
+          "Crow",
+          "Magpie"
+        ],
+        "left_species": [
+          "Grey Heron",
+          "Jackdaw"
+        ],
+        "right_species": [
+          "Red Kite",
+          "Goldfinch",
+          "Woodpigeon",
+          "Common Starling",
+          "Crow",
+          "Magpie"
+        ]
+      },
+      {
+        "node_id": 160,
+        "left_child": 28,
+        "right_child": 156,
+        "distance": 0.27337,
+        "n_leaves": 14,
+        "species": [
+          "Long Tailed Tit",
+          "Buzzard",
+          "Blackbird",
+          "Blue Tit",
+          "Dunnock",
+          "Canada Goose",
+          "Song Thrush",
+          "Greylag Goose",
+          "Great Tit",
+          "Pheasant",
+          "Greenfinch",
+          "Wren",
+          "Dandelion",
+          "Rook"
+        ],
+        "left_species": [
+          "Long Tailed Tit"
+        ],
+        "right_species": [
+          "Buzzard",
+          "Blackbird",
+          "Blue Tit",
+          "Dunnock",
+          "Canada Goose",
+          "Song Thrush",
+          "Greylag Goose",
+          "Great Tit",
+          "Pheasant",
+          "Greenfinch",
+          "Wren",
+          "Dandelion",
+          "Rook"
+        ]
+      },
+      {
+        "node_id": 161,
+        "left_child": 10,
+        "right_child": 160,
+        "distance": 0.287767,
+        "n_leaves": 15,
+        "species": [
+          "Common Kestrel",
+          "Long Tailed Tit",
+          "Buzzard",
+          "Blackbird",
+          "Blue Tit",
+          "Dunnock",
+          "Canada Goose",
+          "Song Thrush",
+          "Greylag Goose",
+          "Great Tit",
+          "Pheasant",
+          "Greenfinch",
+          "Wren",
+          "Dandelion",
+          "Rook"
+        ],
+        "left_species": [
+          "Common Kestrel"
+        ],
+        "right_species": [
+          "Long Tailed Tit",
+          "Buzzard",
+          "Blackbird",
+          "Blue Tit",
+          "Dunnock",
+          "Canada Goose",
+          "Song Thrush",
+          "Greylag Goose",
+          "Great Tit",
+          "Pheasant",
+          "Greenfinch",
+          "Wren",
+          "Dandelion",
+          "Rook"
+        ]
+      },
+      {
+        "node_id": 162,
+        "left_child": 157,
+        "right_child": 161,
+        "distance": 0.295193,
+        "n_leaves": 28,
+        "species": [
+          "Collared Dove",
+          "House Sparrow",
+          "Chaffinch",
+          "Coal Tit",
+          "Germander Speedwell",
+          "Common Cleavers",
+          "Blackcap",
+          "Skylark",
+          "Mallard",
+          "Pied Wagtail",
+          "Shepherds Purse",
+          "Daisy",
+          "Nettle",
+          "Common Kestrel",
+          "Long Tailed Tit",
+          "Buzzard",
+          "Blackbird",
+          "Blue Tit",
+          "Dunnock",
+          "Canada Goose",
+          "Song Thrush",
+          "Greylag Goose",
+          "Great Tit",
+          "Pheasant",
+          "Greenfinch",
+          "Wren",
+          "Dandelion",
+          "Rook"
+        ],
+        "left_species": [
+          "Collared Dove",
+          "House Sparrow",
+          "Chaffinch",
+          "Coal Tit",
+          "Germander Speedwell",
+          "Common Cleavers",
+          "Blackcap",
+          "Skylark",
+          "Mallard",
+          "Pied Wagtail",
+          "Shepherds Purse",
+          "Daisy",
+          "Nettle"
+        ],
+        "right_species": [
+          "Common Kestrel",
+          "Long Tailed Tit",
+          "Buzzard",
+          "Blackbird",
+          "Blue Tit",
+          "Dunnock",
+          "Canada Goose",
+          "Song Thrush",
+          "Greylag Goose",
+          "Great Tit",
+          "Pheasant",
+          "Greenfinch",
+          "Wren",
+          "Dandelion",
+          "Rook"
+        ]
+      },
+      {
+        "node_id": 163,
+        "left_child": 152,
+        "right_child": 159,
+        "distance": 0.316858,
+        "n_leaves": 15,
+        "species": [
+          "Cormorant",
+          "Mistle Thrush",
+          "Robin",
+          "Mute Swan",
+          "Herring Gull",
+          "Black Headed Gull",
+          "Coot",
+          "Grey Heron",
+          "Jackdaw",
+          "Red Kite",
+          "Goldfinch",
+          "Woodpigeon",
+          "Common Starling",
+          "Crow",
+          "Magpie"
+        ],
+        "left_species": [
+          "Cormorant",
+          "Mistle Thrush",
+          "Robin",
+          "Mute Swan",
+          "Herring Gull",
+          "Black Headed Gull",
+          "Coot"
+        ],
+        "right_species": [
+          "Grey Heron",
+          "Jackdaw",
+          "Red Kite",
+          "Goldfinch",
+          "Woodpigeon",
+          "Common Starling",
+          "Crow",
+          "Magpie"
+        ]
+      },
+      {
+        "node_id": 164,
+        "left_child": 154,
+        "right_child": 155,
+        "distance": 0.317037,
+        "n_leaves": 22,
+        "species": [
+          "Swallow",
+          "Buttercup",
+          "Brimstone Butterfly",
+          "Red Dead Nettle",
+          "Green Alkanet",
+          "Peacock Butterfly",
+          "Common Comfrey",
+          "Oxeye Daisy",
+          "Doves Foot Cranesbill",
+          "Honeysuckle",
+          "Red Campion",
+          "Dog Rose",
+          "Teasel",
+          "Red Clover",
+          "White Campion",
+          "Cuckoo Pint",
+          "Speckled Wood Butterfly",
+          "Horsetail",
+          "Meadow Brown Butterfly",
+          "Common Poppy",
+          "Cornflower",
+          "Swift"
+        ],
+        "left_species": [
+          "Swallow",
+          "Buttercup",
+          "Brimstone Butterfly",
+          "Red Dead Nettle",
+          "Green Alkanet",
+          "Peacock Butterfly",
+          "Common Comfrey",
+          "Oxeye Daisy",
+          "Doves Foot Cranesbill",
+          "Honeysuckle",
+          "Red Campion"
+        ],
+        "right_species": [
+          "Dog Rose",
+          "Teasel",
+          "Red Clover",
+          "White Campion",
+          "Cuckoo Pint",
+          "Speckled Wood Butterfly",
+          "Horsetail",
+          "Meadow Brown Butterfly",
+          "Common Poppy",
+          "Cornflower",
+          "Swift"
+        ]
+      },
+      {
+        "node_id": 165,
+        "left_child": 140,
+        "right_child": 158,
+        "distance": 0.345155,
+        "n_leaves": 13,
+        "species": [
+          "Chiffchaff",
+          "Garden Warbler",
+          "Lesser Celandine",
+          "Cowslip",
+          "Garlic Mustard",
+          "Common Vetch",
+          "Cow Parsley",
+          "Whitethroat",
+          "Orange Tip Butterfly",
+          "Reed Warbler",
+          "Yellow Flag Iris",
+          "Bluebell",
+          "Cuckoo"
+        ],
+        "left_species": [
+          "Chiffchaff",
+          "Garden Warbler"
+        ],
+        "right_species": [
+          "Lesser Celandine",
+          "Cowslip",
+          "Garlic Mustard",
+          "Common Vetch",
+          "Cow Parsley",
+          "Whitethroat",
+          "Orange Tip Butterfly",
+          "Reed Warbler",
+          "Yellow Flag Iris",
+          "Bluebell",
+          "Cuckoo"
+        ]
+      },
+      {
+        "node_id": 166,
+        "left_child": 146,
+        "right_child": 165,
+        "distance": 0.374478,
+        "n_leaves": 17,
+        "species": [
+          "Rosebay Willowherb",
+          "White Clover",
+          "Gatekeeper Butterfly",
+          "Goats Beard",
+          "Chiffchaff",
+          "Garden Warbler",
+          "Lesser Celandine",
+          "Cowslip",
+          "Garlic Mustard",
+          "Common Vetch",
+          "Cow Parsley",
+          "Whitethroat",
+          "Orange Tip Butterfly",
+          "Reed Warbler",
+          "Yellow Flag Iris",
+          "Bluebell",
+          "Cuckoo"
+        ],
+        "left_species": [
+          "Rosebay Willowherb",
+          "White Clover",
+          "Gatekeeper Butterfly",
+          "Goats Beard"
+        ],
+        "right_species": [
+          "Chiffchaff",
+          "Garden Warbler",
+          "Lesser Celandine",
+          "Cowslip",
+          "Garlic Mustard",
+          "Common Vetch",
+          "Cow Parsley",
+          "Whitethroat",
+          "Orange Tip Butterfly",
+          "Reed Warbler",
+          "Yellow Flag Iris",
+          "Bluebell",
+          "Cuckoo"
+        ]
+      },
+      {
+        "node_id": 167,
+        "left_child": 162,
+        "right_child": 163,
+        "distance": 0.375251,
+        "n_leaves": 43,
+        "species": [
+          "Collared Dove",
+          "House Sparrow",
+          "Chaffinch",
+          "Coal Tit",
+          "Germander Speedwell",
+          "Common Cleavers",
+          "Blackcap",
+          "Skylark",
+          "Mallard",
+          "Pied Wagtail",
+          "Shepherds Purse",
+          "Daisy",
+          "Nettle",
+          "Common Kestrel",
+          "Long Tailed Tit",
+          "Buzzard",
+          "Blackbird",
+          "Blue Tit",
+          "Dunnock",
+          "Canada Goose",
+          "Song Thrush",
+          "Greylag Goose",
+          "Great Tit",
+          "Pheasant",
+          "Greenfinch",
+          "Wren",
+          "Dandelion",
+          "Rook",
+          "Cormorant",
+          "Mistle Thrush",
+          "Robin",
+          "Mute Swan",
+          "Herring Gull",
+          "Black Headed Gull",
+          "Coot",
+          "Grey Heron",
+          "Jackdaw",
+          "Red Kite",
+          "Goldfinch",
+          "Woodpigeon",
+          "Common Starling",
+          "Crow",
+          "Magpie"
+        ],
+        "left_species": [
+          "Collared Dove",
+          "House Sparrow",
+          "Chaffinch",
+          "Coal Tit",
+          "Germander Speedwell",
+          "Common Cleavers",
+          "Blackcap",
+          "Skylark",
+          "Mallard",
+          "Pied Wagtail",
+          "Shepherds Purse",
+          "Daisy",
+          "Nettle",
+          "Common Kestrel",
+          "Long Tailed Tit",
+          "Buzzard",
+          "Blackbird",
+          "Blue Tit",
+          "Dunnock",
+          "Canada Goose",
+          "Song Thrush",
+          "Greylag Goose",
+          "Great Tit",
+          "Pheasant",
+          "Greenfinch",
+          "Wren",
+          "Dandelion",
+          "Rook"
+        ],
+        "right_species": [
+          "Cormorant",
+          "Mistle Thrush",
+          "Robin",
+          "Mute Swan",
+          "Herring Gull",
+          "Black Headed Gull",
+          "Coot",
+          "Grey Heron",
+          "Jackdaw",
+          "Red Kite",
+          "Goldfinch",
+          "Woodpigeon",
+          "Common Starling",
+          "Crow",
+          "Magpie"
+        ]
+      },
+      {
+        "node_id": 168,
+        "left_child": 70,
+        "right_child": 164,
+        "distance": 0.394294,
+        "n_leaves": 23,
+        "species": [
+          "Red Admiral Butterfly",
+          "Swallow",
+          "Buttercup",
+          "Brimstone Butterfly",
+          "Red Dead Nettle",
+          "Green Alkanet",
+          "Peacock Butterfly",
+          "Common Comfrey",
+          "Oxeye Daisy",
+          "Doves Foot Cranesbill",
+          "Honeysuckle",
+          "Red Campion",
+          "Dog Rose",
+          "Teasel",
+          "Red Clover",
+          "White Campion",
+          "Cuckoo Pint",
+          "Speckled Wood Butterfly",
+          "Horsetail",
+          "Meadow Brown Butterfly",
+          "Common Poppy",
+          "Cornflower",
+          "Swift"
+        ],
+        "left_species": [
+          "Red Admiral Butterfly"
+        ],
+        "right_species": [
+          "Swallow",
+          "Buttercup",
+          "Brimstone Butterfly",
+          "Red Dead Nettle",
+          "Green Alkanet",
+          "Peacock Butterfly",
+          "Common Comfrey",
+          "Oxeye Daisy",
+          "Doves Foot Cranesbill",
+          "Honeysuckle",
+          "Red Campion",
+          "Dog Rose",
+          "Teasel",
+          "Red Clover",
+          "White Campion",
+          "Cuckoo Pint",
+          "Speckled Wood Butterfly",
+          "Horsetail",
+          "Meadow Brown Butterfly",
+          "Common Poppy",
+          "Cornflower",
+          "Swift"
+        ]
+      },
+      {
+        "node_id": 169,
+        "left_child": 166,
+        "right_child": 168,
+        "distance": 0.422718,
+        "n_leaves": 40,
+        "species": [
+          "Rosebay Willowherb",
+          "White Clover",
+          "Gatekeeper Butterfly",
+          "Goats Beard",
+          "Chiffchaff",
+          "Garden Warbler",
+          "Lesser Celandine",
+          "Cowslip",
+          "Garlic Mustard",
+          "Common Vetch",
+          "Cow Parsley",
+          "Whitethroat",
+          "Orange Tip Butterfly",
+          "Reed Warbler",
+          "Yellow Flag Iris",
+          "Bluebell",
+          "Cuckoo",
+          "Red Admiral Butterfly",
+          "Swallow",
+          "Buttercup",
+          "Brimstone Butterfly",
+          "Red Dead Nettle",
+          "Green Alkanet",
+          "Peacock Butterfly",
+          "Common Comfrey",
+          "Oxeye Daisy",
+          "Doves Foot Cranesbill",
+          "Honeysuckle",
+          "Red Campion",
+          "Dog Rose",
+          "Teasel",
+          "Red Clover",
+          "White Campion",
+          "Cuckoo Pint",
+          "Speckled Wood Butterfly",
+          "Horsetail",
+          "Meadow Brown Butterfly",
+          "Common Poppy",
+          "Cornflower",
+          "Swift"
+        ],
+        "left_species": [
+          "Rosebay Willowherb",
+          "White Clover",
+          "Gatekeeper Butterfly",
+          "Goats Beard",
+          "Chiffchaff",
+          "Garden Warbler",
+          "Lesser Celandine",
+          "Cowslip",
+          "Garlic Mustard",
+          "Common Vetch",
+          "Cow Parsley",
+          "Whitethroat",
+          "Orange Tip Butterfly",
+          "Reed Warbler",
+          "Yellow Flag Iris",
+          "Bluebell",
+          "Cuckoo"
+        ],
+        "right_species": [
+          "Red Admiral Butterfly",
+          "Swallow",
+          "Buttercup",
+          "Brimstone Butterfly",
+          "Red Dead Nettle",
+          "Green Alkanet",
+          "Peacock Butterfly",
+          "Common Comfrey",
+          "Oxeye Daisy",
+          "Doves Foot Cranesbill",
+          "Honeysuckle",
+          "Red Campion",
+          "Dog Rose",
+          "Teasel",
+          "Red Clover",
+          "White Campion",
+          "Cuckoo Pint",
+          "Speckled Wood Butterfly",
+          "Horsetail",
+          "Meadow Brown Butterfly",
+          "Common Poppy",
+          "Cornflower",
+          "Swift"
+        ]
+      },
+      {
+        "node_id": 170,
+        "left_child": 86,
+        "right_child": 128,
+        "distance": 0.497349,
+        "n_leaves": 3,
+        "species": [
+          "Redwing",
+          "Snowdrop",
+          "Winter Aconite"
+        ],
+        "left_species": [
+          "Redwing"
+        ],
+        "right_species": [
+          "Snowdrop",
+          "Winter Aconite"
+        ]
+      },
+      {
+        "node_id": 171,
+        "left_child": 27,
+        "right_child": 167,
+        "distance": 0.505187,
+        "n_leaves": 44,
+        "species": [
+          "Jay",
+          "Collared Dove",
+          "House Sparrow",
+          "Chaffinch",
+          "Coal Tit",
+          "Germander Speedwell",
+          "Common Cleavers",
+          "Blackcap",
+          "Skylark",
+          "Mallard",
+          "Pied Wagtail",
+          "Shepherds Purse",
+          "Daisy",
+          "Nettle",
+          "Common Kestrel",
+          "Long Tailed Tit",
+          "Buzzard",
+          "Blackbird",
+          "Blue Tit",
+          "Dunnock",
+          "Canada Goose",
+          "Song Thrush",
+          "Greylag Goose",
+          "Great Tit",
+          "Pheasant",
+          "Greenfinch",
+          "Wren",
+          "Dandelion",
+          "Rook",
+          "Cormorant",
+          "Mistle Thrush",
+          "Robin",
+          "Mute Swan",
+          "Herring Gull",
+          "Black Headed Gull",
+          "Coot",
+          "Grey Heron",
+          "Jackdaw",
+          "Red Kite",
+          "Goldfinch",
+          "Woodpigeon",
+          "Common Starling",
+          "Crow",
+          "Magpie"
+        ],
+        "left_species": [
+          "Jay"
+        ],
+        "right_species": [
+          "Collared Dove",
+          "House Sparrow",
+          "Chaffinch",
+          "Coal Tit",
+          "Germander Speedwell",
+          "Common Cleavers",
+          "Blackcap",
+          "Skylark",
+          "Mallard",
+          "Pied Wagtail",
+          "Shepherds Purse",
+          "Daisy",
+          "Nettle",
+          "Common Kestrel",
+          "Long Tailed Tit",
+          "Buzzard",
+          "Blackbird",
+          "Blue Tit",
+          "Dunnock",
+          "Canada Goose",
+          "Song Thrush",
+          "Greylag Goose",
+          "Great Tit",
+          "Pheasant",
+          "Greenfinch",
+          "Wren",
+          "Dandelion",
+          "Rook",
+          "Cormorant",
+          "Mistle Thrush",
+          "Robin",
+          "Mute Swan",
+          "Herring Gull",
+          "Black Headed Gull",
+          "Coot",
+          "Grey Heron",
+          "Jackdaw",
+          "Red Kite",
+          "Goldfinch",
+          "Woodpigeon",
+          "Common Starling",
+          "Crow",
+          "Magpie"
+        ]
+      },
+      {
+        "node_id": 172,
+        "left_child": 169,
+        "right_child": 170,
+        "distance": 0.589869,
+        "n_leaves": 43,
+        "species": [
+          "Rosebay Willowherb",
+          "White Clover",
+          "Gatekeeper Butterfly",
+          "Goats Beard",
+          "Chiffchaff",
+          "Garden Warbler",
+          "Lesser Celandine",
+          "Cowslip",
+          "Garlic Mustard",
+          "Common Vetch",
+          "Cow Parsley",
+          "Whitethroat",
+          "Orange Tip Butterfly",
+          "Reed Warbler",
+          "Yellow Flag Iris",
+          "Bluebell",
+          "Cuckoo",
+          "Red Admiral Butterfly",
+          "Swallow",
+          "Buttercup",
+          "Brimstone Butterfly",
+          "Red Dead Nettle",
+          "Green Alkanet",
+          "Peacock Butterfly",
+          "Common Comfrey",
+          "Oxeye Daisy",
+          "Doves Foot Cranesbill",
+          "Honeysuckle",
+          "Red Campion",
+          "Dog Rose",
+          "Teasel",
+          "Red Clover",
+          "White Campion",
+          "Cuckoo Pint",
+          "Speckled Wood Butterfly",
+          "Horsetail",
+          "Meadow Brown Butterfly",
+          "Common Poppy",
+          "Cornflower",
+          "Swift",
+          "Redwing",
+          "Snowdrop",
+          "Winter Aconite"
+        ],
+        "left_species": [
+          "Rosebay Willowherb",
+          "White Clover",
+          "Gatekeeper Butterfly",
+          "Goats Beard",
+          "Chiffchaff",
+          "Garden Warbler",
+          "Lesser Celandine",
+          "Cowslip",
+          "Garlic Mustard",
+          "Common Vetch",
+          "Cow Parsley",
+          "Whitethroat",
+          "Orange Tip Butterfly",
+          "Reed Warbler",
+          "Yellow Flag Iris",
+          "Bluebell",
+          "Cuckoo",
+          "Red Admiral Butterfly",
+          "Swallow",
+          "Buttercup",
+          "Brimstone Butterfly",
+          "Red Dead Nettle",
+          "Green Alkanet",
+          "Peacock Butterfly",
+          "Common Comfrey",
+          "Oxeye Daisy",
+          "Doves Foot Cranesbill",
+          "Honeysuckle",
+          "Red Campion",
+          "Dog Rose",
+          "Teasel",
+          "Red Clover",
+          "White Campion",
+          "Cuckoo Pint",
+          "Speckled Wood Butterfly",
+          "Horsetail",
+          "Meadow Brown Butterfly",
+          "Common Poppy",
+          "Cornflower",
+          "Swift"
+        ],
+        "right_species": [
+          "Redwing",
+          "Snowdrop",
+          "Winter Aconite"
+        ]
+      },
+      {
+        "node_id": 173,
+        "left_child": 171,
+        "right_child": 172,
+        "distance": 0.607359,
+        "n_leaves": 87,
+        "species": [
+          "Jay",
+          "Collared Dove",
+          "House Sparrow",
+          "Chaffinch",
+          "Coal Tit",
+          "Germander Speedwell",
+          "Common Cleavers",
+          "Blackcap",
+          "Skylark",
+          "Mallard",
+          "Pied Wagtail",
+          "Shepherds Purse",
+          "Daisy",
+          "Nettle",
+          "Common Kestrel",
+          "Long Tailed Tit",
+          "Buzzard",
+          "Blackbird",
+          "Blue Tit",
+          "Dunnock",
+          "Canada Goose",
+          "Song Thrush",
+          "Greylag Goose",
+          "Great Tit",
+          "Pheasant",
+          "Greenfinch",
+          "Wren",
+          "Dandelion",
+          "Rook",
+          "Cormorant",
+          "Mistle Thrush",
+          "Robin",
+          "Mute Swan",
+          "Herring Gull",
+          "Black Headed Gull",
+          "Coot",
+          "Grey Heron",
+          "Jackdaw",
+          "Red Kite",
+          "Goldfinch",
+          "Woodpigeon",
+          "Common Starling",
+          "Crow",
+          "Magpie",
+          "Rosebay Willowherb",
+          "White Clover",
+          "Gatekeeper Butterfly",
+          "Goats Beard",
+          "Chiffchaff",
+          "Garden Warbler",
+          "Lesser Celandine",
+          "Cowslip",
+          "Garlic Mustard",
+          "Common Vetch",
+          "Cow Parsley",
+          "Whitethroat",
+          "Orange Tip Butterfly",
+          "Reed Warbler",
+          "Yellow Flag Iris",
+          "Bluebell",
+          "Cuckoo",
+          "Red Admiral Butterfly",
+          "Swallow",
+          "Buttercup",
+          "Brimstone Butterfly",
+          "Red Dead Nettle",
+          "Green Alkanet",
+          "Peacock Butterfly",
+          "Common Comfrey",
+          "Oxeye Daisy",
+          "Doves Foot Cranesbill",
+          "Honeysuckle",
+          "Red Campion",
+          "Dog Rose",
+          "Teasel",
+          "Red Clover",
+          "White Campion",
+          "Cuckoo Pint",
+          "Speckled Wood Butterfly",
+          "Horsetail",
+          "Meadow Brown Butterfly",
+          "Common Poppy",
+          "Cornflower",
+          "Swift",
+          "Redwing",
+          "Snowdrop",
+          "Winter Aconite"
+        ],
+        "left_species": [
+          "Jay",
+          "Collared Dove",
+          "House Sparrow",
+          "Chaffinch",
+          "Coal Tit",
+          "Germander Speedwell",
+          "Common Cleavers",
+          "Blackcap",
+          "Skylark",
+          "Mallard",
+          "Pied Wagtail",
+          "Shepherds Purse",
+          "Daisy",
+          "Nettle",
+          "Common Kestrel",
+          "Long Tailed Tit",
+          "Buzzard",
+          "Blackbird",
+          "Blue Tit",
+          "Dunnock",
+          "Canada Goose",
+          "Song Thrush",
+          "Greylag Goose",
+          "Great Tit",
+          "Pheasant",
+          "Greenfinch",
+          "Wren",
+          "Dandelion",
+          "Rook",
+          "Cormorant",
+          "Mistle Thrush",
+          "Robin",
+          "Mute Swan",
+          "Herring Gull",
+          "Black Headed Gull",
+          "Coot",
+          "Grey Heron",
+          "Jackdaw",
+          "Red Kite",
+          "Goldfinch",
+          "Woodpigeon",
+          "Common Starling",
+          "Crow",
+          "Magpie"
+        ],
+        "right_species": [
+          "Rosebay Willowherb",
+          "White Clover",
+          "Gatekeeper Butterfly",
+          "Goats Beard",
+          "Chiffchaff",
+          "Garden Warbler",
+          "Lesser Celandine",
+          "Cowslip",
+          "Garlic Mustard",
+          "Common Vetch",
+          "Cow Parsley",
+          "Whitethroat",
+          "Orange Tip Butterfly",
+          "Reed Warbler",
+          "Yellow Flag Iris",
+          "Bluebell",
+          "Cuckoo",
+          "Red Admiral Butterfly",
+          "Swallow",
+          "Buttercup",
+          "Brimstone Butterfly",
+          "Red Dead Nettle",
+          "Green Alkanet",
+          "Peacock Butterfly",
+          "Common Comfrey",
+          "Oxeye Daisy",
+          "Doves Foot Cranesbill",
+          "Honeysuckle",
+          "Red Campion",
+          "Dog Rose",
+          "Teasel",
+          "Red Clover",
+          "White Campion",
+          "Cuckoo Pint",
+          "Speckled Wood Butterfly",
+          "Horsetail",
+          "Meadow Brown Butterfly",
+          "Common Poppy",
+          "Cornflower",
+          "Swift",
+          "Redwing",
+          "Snowdrop",
+          "Winter Aconite"
+        ]
+      },
+      {
+        "node_id": 174,
+        "left_child": 87,
+        "right_child": 173,
+        "distance": 0.697624,
+        "n_leaves": 88,
+        "species": [
+          "Snowberry",
+          "Jay",
+          "Collared Dove",
+          "House Sparrow",
+          "Chaffinch",
+          "Coal Tit",
+          "Germander Speedwell",
+          "Common Cleavers",
+          "Blackcap",
+          "Skylark",
+          "Mallard",
+          "Pied Wagtail",
+          "Shepherds Purse",
+          "Daisy",
+          "Nettle",
+          "Common Kestrel",
+          "Long Tailed Tit",
+          "Buzzard",
+          "Blackbird",
+          "Blue Tit",
+          "Dunnock",
+          "Canada Goose",
+          "Song Thrush",
+          "Greylag Goose",
+          "Great Tit",
+          "Pheasant",
+          "Greenfinch",
+          "Wren",
+          "Dandelion",
+          "Rook",
+          "Cormorant",
+          "Mistle Thrush",
+          "Robin",
+          "Mute Swan",
+          "Herring Gull",
+          "Black Headed Gull",
+          "Coot",
+          "Grey Heron",
+          "Jackdaw",
+          "Red Kite",
+          "Goldfinch",
+          "Woodpigeon",
+          "Common Starling",
+          "Crow",
+          "Magpie",
+          "Rosebay Willowherb",
+          "White Clover",
+          "Gatekeeper Butterfly",
+          "Goats Beard",
+          "Chiffchaff",
+          "Garden Warbler",
+          "Lesser Celandine",
+          "Cowslip",
+          "Garlic Mustard",
+          "Common Vetch",
+          "Cow Parsley",
+          "Whitethroat",
+          "Orange Tip Butterfly",
+          "Reed Warbler",
+          "Yellow Flag Iris",
+          "Bluebell",
+          "Cuckoo",
+          "Red Admiral Butterfly",
+          "Swallow",
+          "Buttercup",
+          "Brimstone Butterfly",
+          "Red Dead Nettle",
+          "Green Alkanet",
+          "Peacock Butterfly",
+          "Common Comfrey",
+          "Oxeye Daisy",
+          "Doves Foot Cranesbill",
+          "Honeysuckle",
+          "Red Campion",
+          "Dog Rose",
+          "Teasel",
+          "Red Clover",
+          "White Campion",
+          "Cuckoo Pint",
+          "Speckled Wood Butterfly",
+          "Horsetail",
+          "Meadow Brown Butterfly",
+          "Common Poppy",
+          "Cornflower",
+          "Swift",
+          "Redwing",
+          "Snowdrop",
+          "Winter Aconite"
+        ],
+        "left_species": [
+          "Snowberry"
+        ],
+        "right_species": [
+          "Jay",
+          "Collared Dove",
+          "House Sparrow",
+          "Chaffinch",
+          "Coal Tit",
+          "Germander Speedwell",
+          "Common Cleavers",
+          "Blackcap",
+          "Skylark",
+          "Mallard",
+          "Pied Wagtail",
+          "Shepherds Purse",
+          "Daisy",
+          "Nettle",
+          "Common Kestrel",
+          "Long Tailed Tit",
+          "Buzzard",
+          "Blackbird",
+          "Blue Tit",
+          "Dunnock",
+          "Canada Goose",
+          "Song Thrush",
+          "Greylag Goose",
+          "Great Tit",
+          "Pheasant",
+          "Greenfinch",
+          "Wren",
+          "Dandelion",
+          "Rook",
+          "Cormorant",
+          "Mistle Thrush",
+          "Robin",
+          "Mute Swan",
+          "Herring Gull",
+          "Black Headed Gull",
+          "Coot",
+          "Grey Heron",
+          "Jackdaw",
+          "Red Kite",
+          "Goldfinch",
+          "Woodpigeon",
+          "Common Starling",
+          "Crow",
+          "Magpie",
+          "Rosebay Willowherb",
+          "White Clover",
+          "Gatekeeper Butterfly",
+          "Goats Beard",
+          "Chiffchaff",
+          "Garden Warbler",
+          "Lesser Celandine",
+          "Cowslip",
+          "Garlic Mustard",
+          "Common Vetch",
+          "Cow Parsley",
+          "Whitethroat",
+          "Orange Tip Butterfly",
+          "Reed Warbler",
+          "Yellow Flag Iris",
+          "Bluebell",
+          "Cuckoo",
+          "Red Admiral Butterfly",
+          "Swallow",
+          "Buttercup",
+          "Brimstone Butterfly",
+          "Red Dead Nettle",
+          "Green Alkanet",
+          "Peacock Butterfly",
+          "Common Comfrey",
+          "Oxeye Daisy",
+          "Doves Foot Cranesbill",
+          "Honeysuckle",
+          "Red Campion",
+          "Dog Rose",
+          "Teasel",
+          "Red Clover",
+          "White Campion",
+          "Cuckoo Pint",
+          "Speckled Wood Butterfly",
+          "Horsetail",
+          "Meadow Brown Butterfly",
+          "Common Poppy",
+          "Cornflower",
+          "Swift",
+          "Redwing",
+          "Snowdrop",
+          "Winter Aconite"
+        ]
+      }
+    ]
+  },
+  "species_cluster_ids": {
+    "Black Headed Gull": 4,
+    "Blackbird": 3,
+    "Blackcap": 3,
+    "Blue Tit": 3,
+    "Buzzard": 3,
+    "Canada Goose": 3,
+    "Chaffinch": 3,
+    "Coal Tit": 3,
+    "Collared Dove": 3,
+    "Common Cleavers": 3,
+    "Common Kestrel": 3,
+    "Common Starling": 4,
+    "Coot": 4,
+    "Cormorant": 4,
+    "Crow": 4,
+    "Daisy": 3,
+    "Dandelion": 3,
+    "Dunnock": 3,
+    "Germander Speedwell": 3,
+    "Goldfinch": 4,
+    "Great Tit": 3,
+    "Greenfinch": 3,
+    "Grey Heron": 4,
+    "Greylag Goose": 3,
+    "Herring Gull": 4,
+    "House Sparrow": 3,
+    "Jackdaw": 4,
+    "Jay": 2,
+    "Long Tailed Tit": 3,
+    "Magpie": 4,
+    "Mallard": 3,
+    "Mistle Thrush": 4,
+    "Mute Swan": 4,
+    "Nettle": 3,
+    "Pheasant": 3,
+    "Pied Wagtail": 3,
+    "Red Kite": 4,
+    "Robin": 4,
+    "Rook": 3,
+    "Shepherds Purse": 3,
+    "Skylark": 3,
+    "Song Thrush": 3,
+    "Woodpigeon": 4,
+    "Wren": 3,
+    "Bluebell": 6,
+    "Brimstone Butterfly": 8,
+    "Buttercup": 8,
+    "Chiffchaff": 6,
+    "Common Comfrey": 8,
+    "Common Poppy": 8,
+    "Common Vetch": 6,
+    "Cornflower": 8,
+    "Cow Parsley": 6,
+    "Cowslip": 6,
+    "Cuckoo": 6,
+    "Cuckoo Pint": 8,
+    "Dog Rose": 8,
+    "Doves Foot Cranesbill": 8,
+    "Garden Warbler": 6,
+    "Garlic Mustard": 6,
+    "Gatekeeper Butterfly": 5,
+    "Goats Beard": 5,
+    "Green Alkanet": 8,
+    "Honeysuckle": 8,
+    "Horsetail": 8,
+    "Lesser Celandine": 6,
+    "Meadow Brown Butterfly": 8,
+    "Orange Tip Butterfly": 6,
+    "Oxeye Daisy": 8,
+    "Peacock Butterfly": 8,
+    "Red Admiral Butterfly": 7,
+    "Red Campion": 8,
+    "Red Clover": 8,
+    "Red Dead Nettle": 8,
+    "Reed Warbler": 6,
+    "Rosebay Willowherb": 5,
+    "Snowdrop": 10,
+    "Speckled Wood Butterfly": 8,
+    "Swallow": 8,
+    "Swift": 8,
+    "Teasel": 8,
+    "White Campion": 8,
+    "White Clover": 5,
+    "Whitethroat": 6,
+    "Winter Aconite": 10,
+    "Yellow Flag Iris": 6,
+    "Redwing": 9,
+    "Snowberry": 1
+  },
+  "clusters": [
+    {
+      "cluster_id": 1,
+      "n_species": 1,
+      "species": [
+        "Snowberry"
+      ],
+      "description": "Single-species cluster containing Snowberry, mainly representing winter visitor with autumn arrival component. The defining pattern is a winter peak around September, a moderate autumn component, moderate summer suppression, and balanced response dynamics. Its defining traits include year wrapping winter presence, atypical winter peak, and moderate autumn component. Compared with the full species set, autumn to winter weight ratio is higher than the whole-set average and trough month is lower than the whole-set average.",
+      "dominant_model_family": "winter_presence",
+      "dominant_primary_class": "winter_visitor_with_autumn_arrival_component",
+      "numeric_summary": {
+        "peak_month": {
+          "n": 1,
+          "mean": 9.0,
+          "min": 9.0,
+          "max": 9.0
+        },
+        "trough_month": {
+          "n": 1,
+          "mean": 3.0,
+          "min": 3.0,
+          "max": 3.0
+        },
+        "autumn_to_winter_weight_ratio": {
+          "n": 1,
+          "mean": 0.452991,
+          "min": 0.452991,
+          "max": 0.452991
+        },
+        "decay_to_growth_ratio": {
+          "n": 1,
+          "mean": 1.409756,
+          "min": 1.409756,
+          "max": 1.409756
+        },
+        "active_month_count_ge_0_10": {
+          "n": 1,
+          "mean": 6.0,
+          "min": 6.0,
+          "max": 6.0
+        },
+        "fit_score": {
+          "n": 1,
+          "mean": 0.145,
+          "min": 0.145,
+          "max": 0.145
+        }
+      },
+      "categorical_summary": {
+        "model_family": {
+          "dominant": "winter_presence",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "winter_presence",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "primary_class": {
+          "dominant": "winter_visitor_with_autumn_arrival_component",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "winter_visitor_with_autumn_arrival_component",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "confidence": {
+          "dominant": "medium",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "medium",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "baseline_presence": {
+          "dominant": "low",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "low",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "timing": {
+          "dominant": "atypical",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "atypical",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "summer_suppression": {
+          "dominant": "moderate",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "moderate",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "autumn_component": {
+          "dominant": "moderate",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "moderate",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "response_dynamics": {
+          "dominant": "balanced",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "balanced",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        }
+      },
+      "common_traits": [
+        {
+          "trait": "year_wrapping_winter_presence",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "atypical_winter_peak",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "moderate_autumn_component",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "moderate_summer_suppression",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "low_baseline_presence",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "moderate_winter_bump",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "balanced_response_dynamics",
+          "count": 1,
+          "fraction": 1.0
+        }
+      ],
+      "distinguishing_numeric_features": [
+        {
+          "feature": "autumn_to_winter_weight_ratio",
+          "cluster_mean": 0.452991,
+          "global_mean": 0.077325,
+          "difference": 0.375666,
+          "scaled_difference": 0.879448,
+          "direction": "higher"
+        },
+        {
+          "feature": "trough_month",
+          "cluster_mean": 3.0,
+          "global_mean": 8.396314,
+          "difference": -5.396314,
+          "scaled_difference": -0.674539,
+          "direction": "lower"
+        },
+        {
+          "feature": "active_month_count_ge_0_10",
+          "cluster_mean": 6.0,
+          "global_mean": 6.5,
+          "difference": -0.5,
+          "scaled_difference": -0.5,
+          "direction": "lower"
+        },
+        {
+          "feature": "peak_month",
+          "cluster_mean": 9.0,
+          "global_mean": 4.523587,
+          "difference": 4.476413,
+          "scaled_difference": 0.497379,
+          "direction": "higher"
+        },
+        {
+          "feature": "fit_score",
+          "cluster_mean": 0.145,
+          "global_mean": 0.187477,
+          "difference": -0.042477,
+          "scaled_difference": -0.07349,
+          "direction": "lower"
+        },
+        {
+          "feature": "decay_to_growth_ratio",
+          "cluster_mean": 1.409756,
+          "global_mean": 1.519766,
+          "difference": -0.11001,
+          "scaled_difference": -0.058354,
+          "direction": "lower"
+        }
+      ],
+      "suggested_label_terms": [
+        "winter_presence",
+        "atypical",
+        "winter_visitor_with_autumn_arrival_component",
+        "mean_peak_month_9.0",
+        "year_wrapping_winter_presence",
+        "atypical_winter_peak",
+        "moderate_autumn_component"
+      ]
+    },
+    {
+      "cluster_id": 2,
+      "n_species": 1,
+      "species": [
+        "Jay"
+      ],
+      "description": "Single-species cluster containing Jay, mainly representing resident with summer detectability collapse. Detectability peaks around October and and is lowest around August. The shared pattern includes weak baseline presence, moderate summer suppression, meaningful autumn component, and rapid decline biased response dynamics. Its defining traits include resident detectability pattern, weak baseline presence, and autumn detectability peak. Compared with the full species set, fit score is higher than the whole-set average and target amplitude is lower than the whole-set average.",
+      "dominant_model_family": "resident_detectability",
+      "dominant_primary_class": "resident_with_summer_detectability_collapse",
+      "numeric_summary": {
+        "peak_month": {
+          "n": 1,
+          "mean": 10.0,
+          "min": 10.0,
+          "max": 10.0
+        },
+        "trough_month": {
+          "n": 1,
+          "mean": 8.0,
+          "min": 8.0,
+          "max": 8.0
+        },
+        "target_mean_value": {
+          "n": 1,
+          "mean": 0.108596,
+          "min": 0.108596,
+          "max": 0.108596
+        },
+        "target_amplitude": {
+          "n": 1,
+          "mean": 0.247474,
+          "min": 0.247474,
+          "max": 0.247474
+        },
+        "baseline_to_peak_ratio": {
+          "n": 1,
+          "mean": 0.14547,
+          "min": 0.14547,
+          "max": 0.14547
+        },
+        "autumn_to_winter_weight_ratio": {
+          "n": 1,
+          "mean": 0.130841,
+          "min": 0.130841,
+          "max": 0.130841
+        },
+        "year_end_to_winter_weight_ratio": {
+          "n": 1,
+          "mean": 0.738318,
+          "min": 0.738318,
+          "max": 0.738318
+        },
+        "decay_to_growth_ratio": {
+          "n": 1,
+          "mean": 1.329609,
+          "min": 1.329609,
+          "max": 1.329609
+        },
+        "fit_score": {
+          "n": 1,
+          "mean": 0.581,
+          "min": 0.581,
+          "max": 0.581
+        }
+      },
+      "categorical_summary": {
+        "model_family": {
+          "dominant": "resident_detectability",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "resident_detectability",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "primary_class": {
+          "dominant": "resident_with_summer_detectability_collapse",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "resident_with_summer_detectability_collapse",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "confidence": {
+          "dominant": "low",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "low",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "baseline_presence": {
+          "dominant": "weak",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "weak",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "timing": {
+          "dominant": "autumn",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "autumn",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "summer_suppression": {
+          "dominant": "moderate",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "moderate",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "autumn_component": {
+          "dominant": "meaningful",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "meaningful",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "response_dynamics": {
+          "dominant": "rapid_decline_biased",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "rapid_decline_biased",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        }
+      },
+      "common_traits": [
+        {
+          "trait": "resident_detectability_pattern",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "weak_baseline_presence",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "autumn_detectability_peak",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "summer_detectability_trough",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "weak_spring_carryover",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "moderate_summer_suppression",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "strong_summer_decay_acceleration",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "strong_pre_summer_retention",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "meaningful_autumn_component",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "meaningful_year_end_component",
+          "count": 1,
+          "fraction": 1.0
+        }
+      ],
+      "distinguishing_numeric_features": [
+        {
+          "feature": "fit_score",
+          "cluster_mean": 0.581,
+          "global_mean": 0.187477,
+          "difference": 0.393523,
+          "scaled_difference": 0.680836,
+          "direction": "higher"
+        },
+        {
+          "feature": "target_amplitude",
+          "cluster_mean": 0.247474,
+          "global_mean": 0.632112,
+          "difference": -0.384638,
+          "scaled_difference": -0.649486,
+          "direction": "lower"
+        },
+        {
+          "feature": "peak_month",
+          "cluster_mean": 10.0,
+          "global_mean": 4.523587,
+          "difference": 5.476413,
+          "scaled_difference": 0.60849,
+          "direction": "higher"
+        },
+        {
+          "feature": "year_end_to_winter_weight_ratio",
+          "cluster_mean": 0.738318,
+          "global_mean": 0.431529,
+          "difference": 0.306789,
+          "scaled_difference": 0.404264,
+          "direction": "higher"
+        },
+        {
+          "feature": "target_mean_value",
+          "cluster_mean": 0.108596,
+          "global_mean": 0.400373,
+          "difference": -0.291777,
+          "scaled_difference": -0.385093,
+          "direction": "lower"
+        },
+        {
+          "feature": "baseline_to_peak_ratio",
+          "cluster_mean": 0.14547,
+          "global_mean": 0.277962,
+          "difference": -0.132492,
+          "scaled_difference": -0.222278,
+          "direction": "lower"
+        },
+        {
+          "feature": "autumn_to_winter_weight_ratio",
+          "cluster_mean": 0.130841,
+          "global_mean": 0.077325,
+          "difference": 0.053516,
+          "scaled_difference": 0.125283,
+          "direction": "higher"
+        },
+        {
+          "feature": "decay_to_growth_ratio",
+          "cluster_mean": 1.329609,
+          "global_mean": 1.519766,
+          "difference": -0.190157,
+          "scaled_difference": -0.100868,
+          "direction": "lower"
+        }
+      ],
+      "suggested_label_terms": [
+        "resident_detectability",
+        "autumn",
+        "resident_with_summer_detectability_collapse",
+        "mean_peak_month_10.0",
+        "resident_detectability_pattern",
+        "weak_baseline_presence",
+        "autumn_detectability_peak"
+      ]
+    },
+    {
+      "cluster_id": 3,
+      "n_species": 28,
+      "species": [
+        "Collared Dove",
+        "House Sparrow",
+        "Chaffinch",
+        "Coal Tit",
+        "Germander Speedwell",
+        "Common Cleavers",
+        "Blackcap",
+        "Skylark",
+        "Mallard",
+        "Pied Wagtail",
+        "Shepherds Purse",
+        "Daisy",
+        "Nettle",
+        "Common Kestrel",
+        "Long Tailed Tit",
+        "Buzzard",
+        "Blackbird",
+        "Blue Tit",
+        "Dunnock",
+        "Canada Goose",
+        "Song Thrush",
+        "Greylag Goose",
+        "Great Tit",
+        "Pheasant",
+        "Greenfinch",
+        "Wren",
+        "Dandelion",
+        "Rook"
+      ],
+      "description": "Cluster of 28 species, mainly representing resident with summer detectability collapse. Detectability peaks around April and and is lowest around September. The shared pattern includes weak baseline presence, moderate summer suppression, weak autumn component, and rapid decline biased response dynamics. Common high-support traits include resident detectability pattern, moderate summer suppression, and weak autumn component.",
+      "dominant_model_family": "resident_detectability",
+      "dominant_primary_class": "resident_with_summer_detectability_collapse",
+      "numeric_summary": {
+        "peak_month": {
+          "n": 28,
+          "mean": 4.292004,
+          "min": 3.0,
+          "max": 6.0
+        },
+        "trough_month": {
+          "n": 28,
+          "mean": 8.599991,
+          "min": 5.0,
+          "max": 11.0
+        },
+        "target_mean_value": {
+          "n": 28,
+          "mean": 0.335226,
+          "min": 0.151548,
+          "max": 0.614964
+        },
+        "target_amplitude": {
+          "n": 28,
+          "mean": 0.654807,
+          "min": 0.470688,
+          "max": 0.839693
+        },
+        "baseline_to_peak_ratio": {
+          "n": 28,
+          "mean": 0.215582,
+          "min": 0.048953,
+          "max": 0.50113
+        },
+        "autumn_to_winter_weight_ratio": {
+          "n": 28,
+          "mean": 0.051784,
+          "min": 0.02583,
+          "max": 0.084184
+        },
+        "year_end_to_winter_weight_ratio": {
+          "n": 28,
+          "mean": 0.353438,
+          "min": 0.187719,
+          "max": 0.619266
+        },
+        "decay_to_growth_ratio": {
+          "n": 28,
+          "mean": 1.61339,
+          "min": 0.874426,
+          "max": 2.111575
+        },
+        "fit_score": {
+          "n": 28,
+          "mean": 0.320214,
+          "min": 0.159,
+          "max": 0.549
+        }
+      },
+      "categorical_summary": {
+        "model_family": {
+          "dominant": "resident_detectability",
+          "dominant_count": 28,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "resident_detectability",
+              "count": 28,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "primary_class": {
+          "dominant": "resident_with_summer_detectability_collapse",
+          "dominant_count": 28,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "resident_with_summer_detectability_collapse",
+              "count": 28,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "confidence": {
+          "dominant": "medium",
+          "dominant_count": 12,
+          "dominant_fraction": 0.428571,
+          "values": [
+            {
+              "value": "medium",
+              "count": 12,
+              "fraction": 0.428571
+            },
+            {
+              "value": "low",
+              "count": 11,
+              "fraction": 0.392857
+            },
+            {
+              "value": "high",
+              "count": 5,
+              "fraction": 0.178571
+            }
+          ]
+        },
+        "baseline_presence": {
+          "dominant": "weak",
+          "dominant_count": 13,
+          "dominant_fraction": 0.464286,
+          "values": [
+            {
+              "value": "weak",
+              "count": 13,
+              "fraction": 0.464286
+            },
+            {
+              "value": "moderate",
+              "count": 8,
+              "fraction": 0.285714
+            },
+            {
+              "value": "strong",
+              "count": 7,
+              "fraction": 0.25
+            }
+          ]
+        },
+        "timing": {
+          "dominant": "spring",
+          "dominant_count": 15,
+          "dominant_fraction": 0.535714,
+          "values": [
+            {
+              "value": "spring",
+              "count": 15,
+              "fraction": 0.535714
+            },
+            {
+              "value": "late_spring_early_summer",
+              "count": 13,
+              "fraction": 0.464286
+            }
+          ]
+        },
+        "summer_suppression": {
+          "dominant": "moderate",
+          "dominant_count": 27,
+          "dominant_fraction": 0.964286,
+          "values": [
+            {
+              "value": "moderate",
+              "count": 27,
+              "fraction": 0.964286
+            },
+            {
+              "value": "strong",
+              "count": 1,
+              "fraction": 0.035714
+            }
+          ]
+        },
+        "autumn_component": {
+          "dominant": "weak",
+          "dominant_count": 25,
+          "dominant_fraction": 0.892857,
+          "values": [
+            {
+              "value": "weak",
+              "count": 25,
+              "fraction": 0.892857
+            },
+            {
+              "value": "minimal",
+              "count": 3,
+              "fraction": 0.107143
+            }
+          ]
+        },
+        "response_dynamics": {
+          "dominant": "rapid_decline_biased",
+          "dominant_count": 22,
+          "dominant_fraction": 0.785714,
+          "values": [
+            {
+              "value": "rapid_decline_biased",
+              "count": 22,
+              "fraction": 0.785714
+            },
+            {
+              "value": "decline_biased",
+              "count": 6,
+              "fraction": 0.214286
+            }
+          ]
+        }
+      },
+      "common_traits": [
+        {
+          "trait": "resident_detectability_pattern",
+          "count": 28,
+          "fraction": 1.0
+        },
+        {
+          "trait": "moderate_summer_suppression",
+          "count": 27,
+          "fraction": 0.964286
+        },
+        {
+          "trait": "weak_autumn_component",
+          "count": 25,
+          "fraction": 0.892857
+        },
+        {
+          "trait": "rapid_decline_biased_response_dynamics",
+          "count": 22,
+          "fraction": 0.785714
+        },
+        {
+          "trait": "meaningful_year_end_component",
+          "count": 20,
+          "fraction": 0.714286
+        },
+        {
+          "trait": "moderate_summer_decay_acceleration",
+          "count": 15,
+          "fraction": 0.535714
+        },
+        {
+          "trait": "strong_pre_summer_retention",
+          "count": 15,
+          "fraction": 0.535714
+        },
+        {
+          "trait": "weak_spring_carryover",
+          "count": 15,
+          "fraction": 0.535714
+        },
+        {
+          "trait": "spring_detectability_peak",
+          "count": 15,
+          "fraction": 0.535714
+        },
+        {
+          "trait": "late_spring_early_summer_detectability_peak",
+          "count": 13,
+          "fraction": 0.464286
+        }
+      ],
+      "distinguishing_numeric_features": [
+        {
+          "feature": "fit_score",
+          "cluster_mean": 0.320214,
+          "global_mean": 0.187477,
+          "difference": 0.132737,
+          "scaled_difference": 0.229649,
+          "direction": "higher"
+        },
+        {
+          "feature": "baseline_to_peak_ratio",
+          "cluster_mean": 0.215582,
+          "global_mean": 0.277962,
+          "difference": -0.06238,
+          "scaled_difference": -0.104653,
+          "direction": "lower"
+        },
+        {
+          "feature": "year_end_to_winter_weight_ratio",
+          "cluster_mean": 0.353438,
+          "global_mean": 0.431529,
+          "difference": -0.078091,
+          "scaled_difference": -0.102903,
+          "direction": "lower"
+        },
+        {
+          "feature": "target_mean_value",
+          "cluster_mean": 0.335226,
+          "global_mean": 0.400373,
+          "difference": -0.065147,
+          "scaled_difference": -0.085982,
+          "direction": "lower"
+        },
+        {
+          "feature": "autumn_to_winter_weight_ratio",
+          "cluster_mean": 0.051784,
+          "global_mean": 0.077325,
+          "difference": -0.025541,
+          "scaled_difference": -0.059792,
+          "direction": "lower"
+        },
+        {
+          "feature": "decay_to_growth_ratio",
+          "cluster_mean": 1.61339,
+          "global_mean": 1.519766,
+          "difference": 0.093624,
+          "scaled_difference": 0.049662,
+          "direction": "higher"
+        },
+        {
+          "feature": "target_amplitude",
+          "cluster_mean": 0.654807,
+          "global_mean": 0.632112,
+          "difference": 0.022695,
+          "scaled_difference": 0.038322,
+          "direction": "higher"
+        },
+        {
+          "feature": "peak_month",
+          "cluster_mean": 4.292004,
+          "global_mean": 4.523587,
+          "difference": -0.231583,
+          "scaled_difference": -0.025731,
+          "direction": "lower"
+        }
+      ],
+      "suggested_label_terms": [
+        "resident_detectability",
+        "spring",
+        "resident_with_summer_detectability_collapse",
+        "mean_peak_month_4.292004",
+        "resident_detectability_pattern",
+        "moderate_summer_suppression",
+        "weak_autumn_component"
+      ]
+    },
+    {
+      "cluster_id": 4,
+      "n_species": 15,
+      "species": [
+        "Cormorant",
+        "Mistle Thrush",
+        "Robin",
+        "Mute Swan",
+        "Herring Gull",
+        "Black Headed Gull",
+        "Coot",
+        "Grey Heron",
+        "Jackdaw",
+        "Red Kite",
+        "Goldfinch",
+        "Woodpigeon",
+        "Common Starling",
+        "Crow",
+        "Magpie"
+      ],
+      "description": "Cluster of 15 species, mainly representing resident with spring persistence and summer suppression. Detectability peaks around February and and is lowest around August. The shared pattern includes strong baseline presence, strong summer suppression, weak autumn component, and rapid decline biased response dynamics. Common high-support traits include resident detectability pattern, meaningful year end component, and weak autumn component. Compared with the full species set, fit score is higher than the whole-set average.",
+      "dominant_model_family": "resident_detectability",
+      "dominant_primary_class": "resident_with_spring_persistence_and_summer_suppression",
+      "numeric_summary": {
+        "peak_month": {
+          "n": 15,
+          "mean": 2.334613,
+          "min": 2.0,
+          "max": 5.0
+        },
+        "trough_month": {
+          "n": 15,
+          "mean": 8.258615,
+          "min": 7.0,
+          "max": 10.0
+        },
+        "target_mean_value": {
+          "n": 15,
+          "mean": 0.541431,
+          "min": 0.138453,
+          "max": 0.866275
+        },
+        "target_amplitude": {
+          "n": 15,
+          "mean": 0.615392,
+          "min": 0.423891,
+          "max": 0.755396
+        },
+        "baseline_to_peak_ratio": {
+          "n": 15,
+          "mean": 0.403236,
+          "min": 0.076952,
+          "max": 0.645018
+        },
+        "autumn_to_winter_weight_ratio": {
+          "n": 15,
+          "mean": 0.085754,
+          "min": 0.052863,
+          "max": 0.135922
+        },
+        "year_end_to_winter_weight_ratio": {
+          "n": 15,
+          "mean": 0.556847,
+          "min": 0.361702,
+          "max": 0.946602
+        },
+        "decay_to_growth_ratio": {
+          "n": 15,
+          "mean": 1.289128,
+          "min": 0.772803,
+          "max": 1.610954
+        },
+        "fit_score": {
+          "n": 15,
+          "mean": 0.3386,
+          "min": 0.154,
+          "max": 0.497
+        }
+      },
+      "categorical_summary": {
+        "model_family": {
+          "dominant": "resident_detectability",
+          "dominant_count": 15,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "resident_detectability",
+              "count": 15,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "primary_class": {
+          "dominant": "resident_with_spring_persistence_and_summer_suppression",
+          "dominant_count": 8,
+          "dominant_fraction": 0.533333,
+          "values": [
+            {
+              "value": "resident_with_spring_persistence_and_summer_suppression",
+              "count": 8,
+              "fraction": 0.533333
+            },
+            {
+              "value": "resident_with_summer_detectability_collapse",
+              "count": 7,
+              "fraction": 0.466667
+            }
+          ]
+        },
+        "confidence": {
+          "dominant": "medium",
+          "dominant_count": 8,
+          "dominant_fraction": 0.533333,
+          "values": [
+            {
+              "value": "medium",
+              "count": 8,
+              "fraction": 0.533333
+            },
+            {
+              "value": "low",
+              "count": 6,
+              "fraction": 0.4
+            },
+            {
+              "value": "high",
+              "count": 1,
+              "fraction": 0.066667
+            }
+          ]
+        },
+        "baseline_presence": {
+          "dominant": "strong",
+          "dominant_count": 10,
+          "dominant_fraction": 0.666667,
+          "values": [
+            {
+              "value": "strong",
+              "count": 10,
+              "fraction": 0.666667
+            },
+            {
+              "value": "weak",
+              "count": 3,
+              "fraction": 0.2
+            },
+            {
+              "value": "moderate",
+              "count": 2,
+              "fraction": 0.133333
+            }
+          ]
+        },
+        "timing": {
+          "dominant": "winter",
+          "dominant_count": 12,
+          "dominant_fraction": 0.8,
+          "values": [
+            {
+              "value": "winter",
+              "count": 12,
+              "fraction": 0.8
+            },
+            {
+              "value": "spring",
+              "count": 2,
+              "fraction": 0.133333
+            },
+            {
+              "value": "late_spring_early_summer",
+              "count": 1,
+              "fraction": 0.066667
+            }
+          ]
+        },
+        "summer_suppression": {
+          "dominant": "strong",
+          "dominant_count": 10,
+          "dominant_fraction": 0.666667,
+          "values": [
+            {
+              "value": "strong",
+              "count": 10,
+              "fraction": 0.666667
+            },
+            {
+              "value": "moderate",
+              "count": 5,
+              "fraction": 0.333333
+            }
+          ]
+        },
+        "autumn_component": {
+          "dominant": "weak",
+          "dominant_count": 13,
+          "dominant_fraction": 0.866667,
+          "values": [
+            {
+              "value": "weak",
+              "count": 13,
+              "fraction": 0.866667
+            },
+            {
+              "value": "meaningful",
+              "count": 2,
+              "fraction": 0.133333
+            }
+          ]
+        },
+        "response_dynamics": {
+          "dominant": "rapid_decline_biased",
+          "dominant_count": 8,
+          "dominant_fraction": 0.533333,
+          "values": [
+            {
+              "value": "rapid_decline_biased",
+              "count": 8,
+              "fraction": 0.533333
+            },
+            {
+              "value": "decline_biased",
+              "count": 7,
+              "fraction": 0.466667
+            }
+          ]
+        }
+      },
+      "common_traits": [
+        {
+          "trait": "resident_detectability_pattern",
+          "count": 15,
+          "fraction": 1.0
+        },
+        {
+          "trait": "meaningful_year_end_component",
+          "count": 15,
+          "fraction": 1.0
+        },
+        {
+          "trait": "weak_autumn_component",
+          "count": 13,
+          "fraction": 0.866667
+        },
+        {
+          "trait": "winter_detectability_peak",
+          "count": 12,
+          "fraction": 0.8
+        },
+        {
+          "trait": "strong_pre_summer_retention",
+          "count": 12,
+          "fraction": 0.8
+        },
+        {
+          "trait": "summer_detectability_trough",
+          "count": 10,
+          "fraction": 0.666667
+        },
+        {
+          "trait": "strong_summer_suppression",
+          "count": 10,
+          "fraction": 0.666667
+        },
+        {
+          "trait": "strong_baseline_presence",
+          "count": 10,
+          "fraction": 0.666667
+        },
+        {
+          "trait": "moderate_summer_decay_acceleration",
+          "count": 8,
+          "fraction": 0.533333
+        },
+        {
+          "trait": "rapid_decline_biased_response_dynamics",
+          "count": 8,
+          "fraction": 0.533333
+        }
+      ],
+      "distinguishing_numeric_features": [
+        {
+          "feature": "fit_score",
+          "cluster_mean": 0.3386,
+          "global_mean": 0.187477,
+          "difference": 0.151123,
+          "scaled_difference": 0.261458,
+          "direction": "higher"
+        },
+        {
+          "feature": "peak_month",
+          "cluster_mean": 2.334613,
+          "global_mean": 4.523587,
+          "difference": -2.188974,
+          "scaled_difference": -0.243219,
+          "direction": "lower"
+        },
+        {
+          "feature": "baseline_to_peak_ratio",
+          "cluster_mean": 0.403236,
+          "global_mean": 0.277962,
+          "difference": 0.125274,
+          "scaled_difference": 0.210168,
+          "direction": "higher"
+        },
+        {
+          "feature": "target_mean_value",
+          "cluster_mean": 0.541431,
+          "global_mean": 0.400373,
+          "difference": 0.141058,
+          "scaled_difference": 0.186171,
+          "direction": "higher"
+        },
+        {
+          "feature": "year_end_to_winter_weight_ratio",
+          "cluster_mean": 0.556847,
+          "global_mean": 0.431529,
+          "difference": 0.125318,
+          "scaled_difference": 0.165135,
+          "direction": "higher"
+        },
+        {
+          "feature": "decay_to_growth_ratio",
+          "cluster_mean": 1.289128,
+          "global_mean": 1.519766,
+          "difference": -0.230638,
+          "scaled_difference": -0.122341,
+          "direction": "lower"
+        },
+        {
+          "feature": "target_amplitude",
+          "cluster_mean": 0.615392,
+          "global_mean": 0.632112,
+          "difference": -0.01672,
+          "scaled_difference": -0.028233,
+          "direction": "lower"
+        },
+        {
+          "feature": "autumn_to_winter_weight_ratio",
+          "cluster_mean": 0.085754,
+          "global_mean": 0.077325,
+          "difference": 0.008429,
+          "scaled_difference": 0.019733,
+          "direction": "higher"
+        }
+      ],
+      "suggested_label_terms": [
+        "resident_detectability",
+        "winter",
+        "resident_with_spring_persistence_and_summer_suppression",
+        "mean_peak_month_2.334613",
+        "resident_detectability_pattern",
+        "meaningful_year_end_component",
+        "weak_autumn_component"
+      ]
+    },
+    {
+      "cluster_id": 5,
+      "n_species": 4,
+      "species": [
+        "Rosebay Willowherb",
+        "White Clover",
+        "Gatekeeper Butterfly",
+        "Goats Beard"
+      ],
+      "description": "Cluster of 4 species, mainly representing moderate summer seasonal presence. The fitted active window runs roughly from June to September, with a mean peak around July, and and an average width of 3.0 months. It is characterised by moderate season and moderate active window. Common high-support traits include summer peak, moderate season, and central peak alignment. Compared with the full species set, season start month is higher than the whole-set average and fit score is lower than the whole-set average.",
+      "dominant_model_family": "seasonal_presence",
+      "dominant_primary_class": "moderate_summer_seasonal_presence",
+      "numeric_summary": {
+        "peak_month": {
+          "n": 4,
+          "mean": 7.045899,
+          "min": 6.175,
+          "max": 8.265
+        },
+        "season_start_month": {
+          "n": 4,
+          "mean": 5.64607,
+          "min": 5.005,
+          "max": 6.125
+        },
+        "season_end_month": {
+          "n": 4,
+          "mean": 8.614523,
+          "min": 8.3,
+          "max": 9.3
+        },
+        "season_width_months": {
+          "n": 4,
+          "mean": 2.9725,
+          "min": 2.435,
+          "max": 3.305
+        },
+        "season_midpoint_month": {
+          "n": 4,
+          "mean": 7.130672,
+          "min": 6.6575,
+          "max": 7.6875
+        },
+        "fit_score": {
+          "n": 4,
+          "mean": 0.01975,
+          "min": 0.009,
+          "max": 0.037
+        }
+      },
+      "categorical_summary": {
+        "model_family": {
+          "dominant": "seasonal_presence",
+          "dominant_count": 4,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "seasonal_presence",
+              "count": 4,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "primary_class": {
+          "dominant": "moderate_summer_seasonal_presence",
+          "dominant_count": 4,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "moderate_summer_seasonal_presence",
+              "count": 4,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "confidence": {
+          "dominant": "high",
+          "dominant_count": 4,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "high",
+              "count": 4,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "timing": {
+          "dominant": "summer",
+          "dominant_count": 4,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "summer",
+              "count": 4,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "season_width_class": {
+          "dominant": "moderate",
+          "dominant_count": 4,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "moderate",
+              "count": 4,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "window_shape": {
+          "dominant": "moderate",
+          "dominant_count": 3,
+          "dominant_fraction": 0.75,
+          "values": [
+            {
+              "value": "moderate",
+              "count": 3,
+              "fraction": 0.75
+            },
+            {
+              "value": "sharp",
+              "count": 1,
+              "fraction": 0.25
+            }
+          ]
+        },
+        "post_peak_decline": {
+          "dominant": "moderate",
+          "dominant_count": 2,
+          "dominant_fraction": 0.5,
+          "values": [
+            {
+              "value": "moderate",
+              "count": 2,
+              "fraction": 0.5
+            },
+            {
+              "value": "strong",
+              "count": 2,
+              "fraction": 0.5
+            }
+          ]
+        },
+        "offseason_suppression": {
+          "dominant": "strong",
+          "dominant_count": 3,
+          "dominant_fraction": 0.75,
+          "values": [
+            {
+              "value": "strong",
+              "count": 3,
+              "fraction": 0.75
+            },
+            {
+              "value": "moderate",
+              "count": 1,
+              "fraction": 0.25
+            }
+          ]
+        }
+      },
+      "common_traits": [
+        {
+          "trait": "summer_peak",
+          "count": 4,
+          "fraction": 1.0
+        },
+        {
+          "trait": "moderate_season",
+          "count": 4,
+          "fraction": 1.0
+        },
+        {
+          "trait": "central_peak_alignment",
+          "count": 4,
+          "fraction": 1.0
+        },
+        {
+          "trait": "strong_offseason_suppression",
+          "count": 3,
+          "fraction": 0.75
+        },
+        {
+          "trait": "moderate_seasonal_window",
+          "count": 3,
+          "fraction": 0.75
+        },
+        {
+          "trait": "moderate_post_peak_decline",
+          "count": 2,
+          "fraction": 0.5
+        },
+        {
+          "trait": "strong_post_peak_decline",
+          "count": 2,
+          "fraction": 0.5
+        },
+        {
+          "trait": "sharp_seasonal_window",
+          "count": 1,
+          "fraction": 0.25
+        },
+        {
+          "trait": "moderate_offseason_suppression",
+          "count": 1,
+          "fraction": 0.25
+        }
+      ],
+      "distinguishing_numeric_features": [
+        {
+          "feature": "season_start_month",
+          "cluster_mean": 5.64607,
+          "global_mean": 4.000033,
+          "difference": 1.646037,
+          "scaled_difference": 0.347265,
+          "direction": "higher"
+        },
+        {
+          "feature": "fit_score",
+          "cluster_mean": 0.01975,
+          "global_mean": 0.187477,
+          "difference": -0.167727,
+          "scaled_difference": -0.290185,
+          "direction": "lower"
+        },
+        {
+          "feature": "peak_month",
+          "cluster_mean": 7.045899,
+          "global_mean": 4.523587,
+          "difference": 2.522312,
+          "scaled_difference": 0.280257,
+          "direction": "higher"
+        },
+        {
+          "feature": "season_width_months",
+          "cluster_mean": 2.9725,
+          "global_mean": 4.392738,
+          "difference": -1.420238,
+          "scaled_difference": -0.177419,
+          "direction": "lower"
+        },
+        {
+          "feature": "season_midpoint_month",
+          "cluster_mean": 7.130672,
+          "global_mean": 6.288318,
+          "difference": 0.842354,
+          "scaled_difference": 0.134939,
+          "direction": "higher"
+        },
+        {
+          "feature": "season_end_month",
+          "cluster_mean": 8.614523,
+          "global_mean": 8.703144,
+          "difference": -0.088621,
+          "scaled_difference": -0.010204,
+          "direction": "lower"
+        }
+      ],
+      "suggested_label_terms": [
+        "seasonal_presence",
+        "summer",
+        "moderate",
+        "moderate_summer_seasonal_presence",
+        "mean_peak_month_7.045899",
+        "summer_peak",
+        "moderate_season",
+        "central_peak_alignment"
+      ]
+    },
+    {
+      "cluster_id": 6,
+      "n_species": 13,
+      "species": [
+        "Chiffchaff",
+        "Garden Warbler",
+        "Lesser Celandine",
+        "Cowslip",
+        "Garlic Mustard",
+        "Common Vetch",
+        "Cow Parsley",
+        "Whitethroat",
+        "Orange Tip Butterfly",
+        "Reed Warbler",
+        "Yellow Flag Iris",
+        "Bluebell",
+        "Cuckoo"
+      ],
+      "description": "Cluster of 13 species, mainly representing moderate spring seasonal presence. The fitted active window runs roughly from April to June, with a mean peak around May, and and an average width of 2.6 months. It is characterised by moderate season and sharp active window. Common high-support traits include spring peak, central peak alignment, and strong offseason suppression. Compared with the full species set, fit score is lower than the whole-set average and season end month is lower than the whole-set average.",
+      "dominant_model_family": "seasonal_presence",
+      "dominant_primary_class": "moderate_spring_seasonal_presence",
+      "numeric_summary": {
+        "peak_month": {
+          "n": 13,
+          "mean": 4.68437,
+          "min": 3.12,
+          "max": 5.49
+        },
+        "season_start_month": {
+          "n": 13,
+          "mean": 3.746148,
+          "min": 2.035,
+          "max": 5.115
+        },
+        "season_end_month": {
+          "n": 13,
+          "mean": 6.316123,
+          "min": 5.25,
+          "max": 7.395
+        },
+        "season_width_months": {
+          "n": 13,
+          "mean": 2.588846,
+          "min": 0.77,
+          "max": 4.46
+        },
+        "season_midpoint_month": {
+          "n": 13,
+          "mean": 5.028751,
+          "min": 3.765,
+          "max": 5.8675
+        },
+        "fit_score": {
+          "n": 13,
+          "mean": 0.028385,
+          "min": 0.006,
+          "max": 0.065
+        }
+      },
+      "categorical_summary": {
+        "model_family": {
+          "dominant": "seasonal_presence",
+          "dominant_count": 13,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "seasonal_presence",
+              "count": 13,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "primary_class": {
+          "dominant": "moderate_spring_seasonal_presence",
+          "dominant_count": 8,
+          "dominant_fraction": 0.615385,
+          "values": [
+            {
+              "value": "moderate_spring_seasonal_presence",
+              "count": 8,
+              "fraction": 0.615385
+            },
+            {
+              "value": "narrow_spring_seasonal_presence",
+              "count": 3,
+              "fraction": 0.230769
+            },
+            {
+              "value": "extended_spring_seasonal_presence",
+              "count": 1,
+              "fraction": 0.076923
+            },
+            {
+              "value": "extended_early_spring_seasonal_presence",
+              "count": 1,
+              "fraction": 0.076923
+            }
+          ]
+        },
+        "confidence": {
+          "dominant": "high",
+          "dominant_count": 13,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "high",
+              "count": 13,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "timing": {
+          "dominant": "spring",
+          "dominant_count": 12,
+          "dominant_fraction": 0.923077,
+          "values": [
+            {
+              "value": "spring",
+              "count": 12,
+              "fraction": 0.923077
+            },
+            {
+              "value": "early_spring",
+              "count": 1,
+              "fraction": 0.076923
+            }
+          ]
+        },
+        "season_width_class": {
+          "dominant": "moderate",
+          "dominant_count": 8,
+          "dominant_fraction": 0.615385,
+          "values": [
+            {
+              "value": "moderate",
+              "count": 8,
+              "fraction": 0.615385
+            },
+            {
+              "value": "narrow",
+              "count": 3,
+              "fraction": 0.230769
+            },
+            {
+              "value": "broad",
+              "count": 2,
+              "fraction": 0.153846
+            }
+          ]
+        },
+        "window_shape": {
+          "dominant": "sharp",
+          "dominant_count": 8,
+          "dominant_fraction": 0.615385,
+          "values": [
+            {
+              "value": "sharp",
+              "count": 8,
+              "fraction": 0.615385
+            },
+            {
+              "value": "moderate",
+              "count": 5,
+              "fraction": 0.384615
+            }
+          ]
+        },
+        "post_peak_decline": {
+          "dominant": "moderate",
+          "dominant_count": 7,
+          "dominant_fraction": 0.538462,
+          "values": [
+            {
+              "value": "moderate",
+              "count": 7,
+              "fraction": 0.538462
+            },
+            {
+              "value": "strong",
+              "count": 6,
+              "fraction": 0.461538
+            }
+          ]
+        },
+        "offseason_suppression": {
+          "dominant": "strong",
+          "dominant_count": 10,
+          "dominant_fraction": 0.769231,
+          "values": [
+            {
+              "value": "strong",
+              "count": 10,
+              "fraction": 0.769231
+            },
+            {
+              "value": "moderate",
+              "count": 3,
+              "fraction": 0.230769
+            }
+          ]
+        }
+      },
+      "common_traits": [
+        {
+          "trait": "spring_peak",
+          "count": 12,
+          "fraction": 0.923077
+        },
+        {
+          "trait": "central_peak_alignment",
+          "count": 11,
+          "fraction": 0.846154
+        },
+        {
+          "trait": "strong_offseason_suppression",
+          "count": 10,
+          "fraction": 0.769231
+        },
+        {
+          "trait": "sharp_seasonal_window",
+          "count": 8,
+          "fraction": 0.615385
+        },
+        {
+          "trait": "moderate_season",
+          "count": 8,
+          "fraction": 0.615385
+        },
+        {
+          "trait": "moderate_post_peak_decline",
+          "count": 7,
+          "fraction": 0.538462
+        },
+        {
+          "trait": "strong_post_peak_decline",
+          "count": 6,
+          "fraction": 0.461538
+        },
+        {
+          "trait": "moderate_seasonal_window",
+          "count": 5,
+          "fraction": 0.384615
+        },
+        {
+          "trait": "moderate_offseason_suppression",
+          "count": 3,
+          "fraction": 0.230769
+        },
+        {
+          "trait": "narrow_season",
+          "count": 3,
+          "fraction": 0.230769
+        }
+      ],
+      "distinguishing_numeric_features": [
+        {
+          "feature": "fit_score",
+          "cluster_mean": 0.028385,
+          "global_mean": 0.187477,
+          "difference": -0.159092,
+          "scaled_difference": -0.275246,
+          "direction": "lower"
+        },
+        {
+          "feature": "season_end_month",
+          "cluster_mean": 6.316123,
+          "global_mean": 8.703144,
+          "difference": -2.387021,
+          "scaled_difference": -0.274844,
+          "direction": "lower"
+        },
+        {
+          "feature": "season_width_months",
+          "cluster_mean": 2.588846,
+          "global_mean": 4.392738,
+          "difference": -1.803892,
+          "scaled_difference": -0.225346,
+          "direction": "lower"
+        },
+        {
+          "feature": "season_midpoint_month",
+          "cluster_mean": 5.028751,
+          "global_mean": 6.288318,
+          "difference": -1.259567,
+          "scaled_difference": -0.201773,
+          "direction": "lower"
+        },
+        {
+          "feature": "season_start_month",
+          "cluster_mean": 3.746148,
+          "global_mean": 4.000033,
+          "difference": -0.253885,
+          "scaled_difference": -0.053562,
+          "direction": "lower"
+        },
+        {
+          "feature": "peak_month",
+          "cluster_mean": 4.68437,
+          "global_mean": 4.523587,
+          "difference": 0.160783,
+          "scaled_difference": 0.017865,
+          "direction": "higher"
+        }
+      ],
+      "suggested_label_terms": [
+        "seasonal_presence",
+        "spring",
+        "moderate",
+        "moderate_spring_seasonal_presence",
+        "mean_peak_month_4.68437",
+        "spring_peak",
+        "central_peak_alignment",
+        "strong_offseason_suppression"
+      ]
+    },
+    {
+      "cluster_id": 7,
+      "n_species": 1,
+      "species": [
+        "Red Admiral Butterfly"
+      ],
+      "description": "Single-species cluster containing Red Admiral Butterfly, mainly representing extended summer seasonal presence. The fitted active window runs roughly from March to December, with a mean peak around August, and and an average width of 8.8 months. It is characterised by very broad season and moderate active window. Its defining traits include summer peak, very broad season, and moderate seasonal window. Compared with the full species set, season width months is higher than the whole-set average and peak month is higher than the whole-set average.",
+      "dominant_model_family": "seasonal_presence",
+      "dominant_primary_class": "extended_summer_seasonal_presence",
+      "numeric_summary": {
+        "peak_month": {
+          "n": 1,
+          "mean": 7.62,
+          "min": 7.62,
+          "max": 7.62
+        },
+        "season_start_month": {
+          "n": 1,
+          "mean": 2.855,
+          "min": 2.855,
+          "max": 2.855
+        },
+        "season_end_month": {
+          "n": 1,
+          "mean": 11.63,
+          "min": 11.63,
+          "max": 11.63
+        },
+        "season_width_months": {
+          "n": 1,
+          "mean": 8.775,
+          "min": 8.775,
+          "max": 8.775
+        },
+        "season_midpoint_month": {
+          "n": 1,
+          "mean": 7.2425,
+          "min": 7.2425,
+          "max": 7.2425
+        },
+        "fit_score": {
+          "n": 1,
+          "mean": 0.076,
+          "min": 0.076,
+          "max": 0.076
+        }
+      },
+      "categorical_summary": {
+        "model_family": {
+          "dominant": "seasonal_presence",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "seasonal_presence",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "primary_class": {
+          "dominant": "extended_summer_seasonal_presence",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "extended_summer_seasonal_presence",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "confidence": {
+          "dominant": "medium",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "medium",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "timing": {
+          "dominant": "summer",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "summer",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "season_width_class": {
+          "dominant": "very_broad",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "very_broad",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "window_shape": {
+          "dominant": "moderate",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "moderate",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "post_peak_decline": {
+          "dominant": "moderate",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "moderate",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "offseason_suppression": {
+          "dominant": "moderate",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "moderate",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        }
+      },
+      "common_traits": [
+        {
+          "trait": "summer_peak",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "very_broad_season",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "moderate_seasonal_window",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "moderate_post_peak_decline",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "moderate_offseason_suppression",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "central_peak_alignment",
+          "count": 1,
+          "fraction": 1.0
+        }
+      ],
+      "distinguishing_numeric_features": [
+        {
+          "feature": "season_width_months",
+          "cluster_mean": 8.775,
+          "global_mean": 4.392738,
+          "difference": 4.382262,
+          "scaled_difference": 0.547441,
+          "direction": "higher"
+        },
+        {
+          "feature": "peak_month",
+          "cluster_mean": 7.62,
+          "global_mean": 4.523587,
+          "difference": 3.096413,
+          "scaled_difference": 0.344046,
+          "direction": "higher"
+        },
+        {
+          "feature": "season_end_month",
+          "cluster_mean": 11.63,
+          "global_mean": 8.703144,
+          "difference": 2.926856,
+          "scaled_difference": 0.337001,
+          "direction": "higher"
+        },
+        {
+          "feature": "season_start_month",
+          "cluster_mean": 2.855,
+          "global_mean": 4.000033,
+          "difference": -1.145033,
+          "scaled_difference": -0.241568,
+          "direction": "lower"
+        },
+        {
+          "feature": "fit_score",
+          "cluster_mean": 0.076,
+          "global_mean": 0.187477,
+          "difference": -0.111477,
+          "scaled_difference": -0.192867,
+          "direction": "lower"
+        },
+        {
+          "feature": "season_midpoint_month",
+          "cluster_mean": 7.2425,
+          "global_mean": 6.288318,
+          "difference": 0.954182,
+          "scaled_difference": 0.152853,
+          "direction": "higher"
+        }
+      ],
+      "suggested_label_terms": [
+        "seasonal_presence",
+        "summer",
+        "very_broad",
+        "extended_summer_seasonal_presence",
+        "mean_peak_month_7.62",
+        "summer_peak",
+        "very_broad_season",
+        "moderate_seasonal_window"
+      ]
+    },
+    {
+      "cluster_id": 8,
+      "n_species": 22,
+      "species": [
+        "Swallow",
+        "Buttercup",
+        "Brimstone Butterfly",
+        "Red Dead Nettle",
+        "Green Alkanet",
+        "Peacock Butterfly",
+        "Common Comfrey",
+        "Oxeye Daisy",
+        "Doves Foot Cranesbill",
+        "Honeysuckle",
+        "Red Campion",
+        "Dog Rose",
+        "Teasel",
+        "Red Clover",
+        "White Campion",
+        "Cuckoo Pint",
+        "Speckled Wood Butterfly",
+        "Horsetail",
+        "Meadow Brown Butterfly",
+        "Common Poppy",
+        "Cornflower",
+        "Swift"
+      ],
+      "description": "Cluster of 22 species, mainly representing extended spring seasonal presence. The fitted active window runs roughly from April to October, with a mean peak around June, and and an average width of 5.8 months. It is characterised by broad season and moderate active window. Common high-support traits include strong offseason suppression, strong post peak decline, and early peak alignment.",
+      "dominant_model_family": "seasonal_presence",
+      "dominant_primary_class": "extended_spring_seasonal_presence",
+      "numeric_summary": {
+        "peak_month": {
+          "n": 22,
+          "mean": 5.823411,
+          "min": 4.125,
+          "max": 8.385
+        },
+        "season_start_month": {
+          "n": 22,
+          "mean": 4.110511,
+          "min": 2.29,
+          "max": 6.11
+        },
+        "season_end_month": {
+          "n": 22,
+          "mean": 9.863468,
+          "min": 8.25,
+          "max": 11.475
+        },
+        "season_width_months": {
+          "n": 22,
+          "mean": 5.764091,
+          "min": 4.095,
+          "max": 7.595
+        },
+        "season_midpoint_month": {
+          "n": 22,
+          "mean": 6.986091,
+          "min": 5.39,
+          "max": 8.4675
+        },
+        "fit_score": {
+          "n": 22,
+          "mean": 0.048545,
+          "min": 0.017,
+          "max": 0.09
+        }
+      },
+      "categorical_summary": {
+        "model_family": {
+          "dominant": "seasonal_presence",
+          "dominant_count": 22,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "seasonal_presence",
+              "count": 22,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "primary_class": {
+          "dominant": "extended_spring_seasonal_presence",
+          "dominant_count": 11,
+          "dominant_fraction": 0.5,
+          "values": [
+            {
+              "value": "extended_spring_seasonal_presence",
+              "count": 11,
+              "fraction": 0.5
+            },
+            {
+              "value": "extended_summer_seasonal_presence",
+              "count": 11,
+              "fraction": 0.5
+            }
+          ]
+        },
+        "confidence": {
+          "dominant": "high",
+          "dominant_count": 20,
+          "dominant_fraction": 0.909091,
+          "values": [
+            {
+              "value": "high",
+              "count": 20,
+              "fraction": 0.909091
+            },
+            {
+              "value": "medium",
+              "count": 2,
+              "fraction": 0.090909
+            }
+          ]
+        },
+        "timing": {
+          "dominant": "spring",
+          "dominant_count": 11,
+          "dominant_fraction": 0.5,
+          "values": [
+            {
+              "value": "spring",
+              "count": 11,
+              "fraction": 0.5
+            },
+            {
+              "value": "summer",
+              "count": 11,
+              "fraction": 0.5
+            }
+          ]
+        },
+        "season_width_class": {
+          "dominant": "broad",
+          "dominant_count": 12,
+          "dominant_fraction": 0.545455,
+          "values": [
+            {
+              "value": "broad",
+              "count": 12,
+              "fraction": 0.545455
+            },
+            {
+              "value": "very_broad",
+              "count": 10,
+              "fraction": 0.454545
+            }
+          ]
+        },
+        "window_shape": {
+          "dominant": "moderate",
+          "dominant_count": 15,
+          "dominant_fraction": 0.681818,
+          "values": [
+            {
+              "value": "moderate",
+              "count": 15,
+              "fraction": 0.681818
+            },
+            {
+              "value": "sharp",
+              "count": 7,
+              "fraction": 0.318182
+            }
+          ]
+        },
+        "post_peak_decline": {
+          "dominant": "strong",
+          "dominant_count": 18,
+          "dominant_fraction": 0.818182,
+          "values": [
+            {
+              "value": "strong",
+              "count": 18,
+              "fraction": 0.818182
+            },
+            {
+              "value": "moderate",
+              "count": 4,
+              "fraction": 0.181818
+            }
+          ]
+        },
+        "offseason_suppression": {
+          "dominant": "strong",
+          "dominant_count": 19,
+          "dominant_fraction": 0.863636,
+          "values": [
+            {
+              "value": "strong",
+              "count": 19,
+              "fraction": 0.863636
+            },
+            {
+              "value": "moderate",
+              "count": 3,
+              "fraction": 0.136364
+            }
+          ]
+        }
+      },
+      "common_traits": [
+        {
+          "trait": "strong_offseason_suppression",
+          "count": 19,
+          "fraction": 0.863636
+        },
+        {
+          "trait": "strong_post_peak_decline",
+          "count": 18,
+          "fraction": 0.818182
+        },
+        {
+          "trait": "early_peak_alignment",
+          "count": 17,
+          "fraction": 0.772727
+        },
+        {
+          "trait": "moderate_seasonal_window",
+          "count": 15,
+          "fraction": 0.681818
+        },
+        {
+          "trait": "broad_season",
+          "count": 12,
+          "fraction": 0.545455
+        },
+        {
+          "trait": "spring_peak",
+          "count": 11,
+          "fraction": 0.5
+        },
+        {
+          "trait": "summer_peak",
+          "count": 11,
+          "fraction": 0.5
+        },
+        {
+          "trait": "very_broad_season",
+          "count": 10,
+          "fraction": 0.454545
+        },
+        {
+          "trait": "sharp_seasonal_window",
+          "count": 7,
+          "fraction": 0.318182
+        },
+        {
+          "trait": "moderate_post_peak_decline",
+          "count": 4,
+          "fraction": 0.181818
+        }
+      ],
+      "distinguishing_numeric_features": [
+        {
+          "feature": "fit_score",
+          "cluster_mean": 0.048545,
+          "global_mean": 0.187477,
+          "difference": -0.138932,
+          "scaled_difference": -0.240367,
+          "direction": "lower"
+        },
+        {
+          "feature": "season_width_months",
+          "cluster_mean": 5.764091,
+          "global_mean": 4.392738,
+          "difference": 1.371353,
+          "scaled_difference": 0.171312,
+          "direction": "higher"
+        },
+        {
+          "feature": "peak_month",
+          "cluster_mean": 5.823411,
+          "global_mean": 4.523587,
+          "difference": 1.299824,
+          "scaled_difference": 0.144425,
+          "direction": "higher"
+        },
+        {
+          "feature": "season_end_month",
+          "cluster_mean": 9.863468,
+          "global_mean": 8.703144,
+          "difference": 1.160324,
+          "scaled_difference": 0.133601,
+          "direction": "higher"
+        },
+        {
+          "feature": "season_midpoint_month",
+          "cluster_mean": 6.986091,
+          "global_mean": 6.288318,
+          "difference": 0.697773,
+          "scaled_difference": 0.111778,
+          "direction": "higher"
+        },
+        {
+          "feature": "season_start_month",
+          "cluster_mean": 4.110511,
+          "global_mean": 4.000033,
+          "difference": 0.110478,
+          "scaled_difference": 0.023308,
+          "direction": "higher"
+        }
+      ],
+      "suggested_label_terms": [
+        "seasonal_presence",
+        "spring",
+        "broad",
+        "extended_spring_seasonal_presence",
+        "mean_peak_month_5.823411",
+        "strong_offseason_suppression",
+        "strong_post_peak_decline",
+        "early_peak_alignment"
+      ]
+    },
+    {
+      "cluster_id": 9,
+      "n_species": 1,
+      "species": [
+        "Redwing"
+      ],
+      "description": "Single-species cluster containing Redwing, mainly representing winter visitor with autumn arrival component. The defining pattern is a winter peak around January, a moderate autumn component, moderate summer suppression, and slow arrival fast departure response dynamics. Its defining traits include year wrapping winter presence, core winter winter peak, and moderate autumn component. Compared with the full species set, decay to growth ratio is higher than the whole-set average and active month count ge 0 10 is higher than the whole-set average.",
+      "dominant_model_family": "winter_presence",
+      "dominant_primary_class": "winter_visitor_with_autumn_arrival_component",
+      "numeric_summary": {
+        "peak_month": {
+          "n": 1,
+          "mean": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "trough_month": {
+          "n": 1,
+          "mean": 5.0,
+          "min": 5.0,
+          "max": 5.0
+        },
+        "autumn_to_winter_weight_ratio": {
+          "n": 1,
+          "mean": 0.236867,
+          "min": 0.236867,
+          "max": 0.236867
+        },
+        "decay_to_growth_ratio": {
+          "n": 1,
+          "mean": 2.658009,
+          "min": 2.658009,
+          "max": 2.658009
+        },
+        "active_month_count_ge_0_10": {
+          "n": 1,
+          "mean": 7.0,
+          "min": 7.0,
+          "max": 7.0
+        },
+        "fit_score": {
+          "n": 1,
+          "mean": 0.128,
+          "min": 0.128,
+          "max": 0.128
+        }
+      },
+      "categorical_summary": {
+        "model_family": {
+          "dominant": "winter_presence",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "winter_presence",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "primary_class": {
+          "dominant": "winter_visitor_with_autumn_arrival_component",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "winter_visitor_with_autumn_arrival_component",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "confidence": {
+          "dominant": "medium",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "medium",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "baseline_presence": {
+          "dominant": "low",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "low",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "timing": {
+          "dominant": "core_winter",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "core_winter",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "summer_suppression": {
+          "dominant": "moderate",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "moderate",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "autumn_component": {
+          "dominant": "moderate",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "moderate",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "response_dynamics": {
+          "dominant": "slow_arrival_fast_departure",
+          "dominant_count": 1,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "slow_arrival_fast_departure",
+              "count": 1,
+              "fraction": 1.0
+            }
+          ]
+        }
+      },
+      "common_traits": [
+        {
+          "trait": "year_wrapping_winter_presence",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "core_winter_winter_peak",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "moderate_autumn_component",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "moderate_summer_suppression",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "low_baseline_presence",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "moderate_winter_bump",
+          "count": 1,
+          "fraction": 1.0
+        },
+        {
+          "trait": "slow_arrival_fast_departure_response_dynamics",
+          "count": 1,
+          "fraction": 1.0
+        }
+      ],
+      "distinguishing_numeric_features": [
+        {
+          "feature": "decay_to_growth_ratio",
+          "cluster_mean": 2.658009,
+          "global_mean": 1.519766,
+          "difference": 1.138243,
+          "scaled_difference": 0.603776,
+          "direction": "higher"
+        },
+        {
+          "feature": "active_month_count_ge_0_10",
+          "cluster_mean": 7.0,
+          "global_mean": 6.5,
+          "difference": 0.5,
+          "scaled_difference": 0.5,
+          "direction": "higher"
+        },
+        {
+          "feature": "trough_month",
+          "cluster_mean": 5.0,
+          "global_mean": 8.396314,
+          "difference": -3.396314,
+          "scaled_difference": -0.424539,
+          "direction": "lower"
+        },
+        {
+          "feature": "peak_month",
+          "cluster_mean": 1.0,
+          "global_mean": 4.523587,
+          "difference": -3.523587,
+          "scaled_difference": -0.39151,
+          "direction": "lower"
+        },
+        {
+          "feature": "autumn_to_winter_weight_ratio",
+          "cluster_mean": 0.236867,
+          "global_mean": 0.077325,
+          "difference": 0.159542,
+          "scaled_difference": 0.373494,
+          "direction": "higher"
+        },
+        {
+          "feature": "fit_score",
+          "cluster_mean": 0.128,
+          "global_mean": 0.187477,
+          "difference": -0.059477,
+          "scaled_difference": -0.102901,
+          "direction": "lower"
+        }
+      ],
+      "suggested_label_terms": [
+        "winter_presence",
+        "core_winter",
+        "winter_visitor_with_autumn_arrival_component",
+        "mean_peak_month_1.0",
+        "year_wrapping_winter_presence",
+        "core_winter_winter_peak",
+        "moderate_autumn_component"
+      ]
+    },
+    {
+      "cluster_id": 10,
+      "n_species": 2,
+      "species": [
+        "Snowdrop",
+        "Winter Aconite"
+      ],
+      "description": "Cluster of 2 species, mainly representing narrow winter seasonal presence. The fitted active window runs roughly from January to March, with a mean peak around February, and and an average width of 1.7 months. It is characterised by narrow season and moderate active window. Common high-support traits include winter peak, narrow season, and strong offseason suppression. Compared with the full species set, season end month is lower than the whole-set average and season midpoint month is lower than the whole-set average.",
+      "dominant_model_family": "seasonal_presence",
+      "dominant_primary_class": "narrow_winter_seasonal_presence",
+      "numeric_summary": {
+        "peak_month": {
+          "n": 2,
+          "mean": 2.4025,
+          "min": 2.355,
+          "max": 2.45
+        },
+        "season_start_month": {
+          "n": 2,
+          "mean": 1.445,
+          "min": 1.385,
+          "max": 1.505
+        },
+        "season_end_month": {
+          "n": 2,
+          "mean": 3.1275,
+          "min": 2.945,
+          "max": 3.31
+        },
+        "season_width_months": {
+          "n": 2,
+          "mean": 1.6825,
+          "min": 1.44,
+          "max": 1.925
+        },
+        "season_midpoint_month": {
+          "n": 2,
+          "mean": 2.28625,
+          "min": 2.225,
+          "max": 2.3475
+        },
+        "fit_score": {
+          "n": 2,
+          "mean": 0.0035,
+          "min": 0.003,
+          "max": 0.004
+        }
+      },
+      "categorical_summary": {
+        "model_family": {
+          "dominant": "seasonal_presence",
+          "dominant_count": 2,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "seasonal_presence",
+              "count": 2,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "primary_class": {
+          "dominant": "narrow_winter_seasonal_presence",
+          "dominant_count": 2,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "narrow_winter_seasonal_presence",
+              "count": 2,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "confidence": {
+          "dominant": "high",
+          "dominant_count": 2,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "high",
+              "count": 2,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "timing": {
+          "dominant": "winter",
+          "dominant_count": 2,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "winter",
+              "count": 2,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "season_width_class": {
+          "dominant": "narrow",
+          "dominant_count": 2,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "narrow",
+              "count": 2,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "window_shape": {
+          "dominant": "moderate",
+          "dominant_count": 1,
+          "dominant_fraction": 0.5,
+          "values": [
+            {
+              "value": "moderate",
+              "count": 1,
+              "fraction": 0.5
+            },
+            {
+              "value": "sharp",
+              "count": 1,
+              "fraction": 0.5
+            }
+          ]
+        },
+        "post_peak_decline": {
+          "dominant": "strong",
+          "dominant_count": 1,
+          "dominant_fraction": 0.5,
+          "values": [
+            {
+              "value": "strong",
+              "count": 1,
+              "fraction": 0.5
+            },
+            {
+              "value": "moderate",
+              "count": 1,
+              "fraction": 0.5
+            }
+          ]
+        },
+        "offseason_suppression": {
+          "dominant": "strong",
+          "dominant_count": 2,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "strong",
+              "count": 2,
+              "fraction": 1.0
+            }
+          ]
+        }
+      },
+      "common_traits": [
+        {
+          "trait": "winter_peak",
+          "count": 2,
+          "fraction": 1.0
+        },
+        {
+          "trait": "narrow_season",
+          "count": 2,
+          "fraction": 1.0
+        },
+        {
+          "trait": "strong_offseason_suppression",
+          "count": 2,
+          "fraction": 1.0
+        },
+        {
+          "trait": "central_peak_alignment",
+          "count": 2,
+          "fraction": 1.0
+        },
+        {
+          "trait": "moderate_seasonal_window",
+          "count": 1,
+          "fraction": 0.5
+        },
+        {
+          "trait": "strong_post_peak_decline",
+          "count": 1,
+          "fraction": 0.5
+        },
+        {
+          "trait": "sharp_seasonal_window",
+          "count": 1,
+          "fraction": 0.5
+        },
+        {
+          "trait": "moderate_post_peak_decline",
+          "count": 1,
+          "fraction": 0.5
+        }
+      ],
+      "distinguishing_numeric_features": [
+        {
+          "feature": "season_end_month",
+          "cluster_mean": 3.1275,
+          "global_mean": 8.703144,
+          "difference": -5.575644,
+          "scaled_difference": -0.641985,
+          "direction": "lower"
+        },
+        {
+          "feature": "season_midpoint_month",
+          "cluster_mean": 2.28625,
+          "global_mean": 6.288318,
+          "difference": -4.002068,
+          "scaled_difference": -0.6411,
+          "direction": "lower"
+        },
+        {
+          "feature": "season_start_month",
+          "cluster_mean": 1.445,
+          "global_mean": 4.000033,
+          "difference": -2.555033,
+          "scaled_difference": -0.539036,
+          "direction": "lower"
+        },
+        {
+          "feature": "season_width_months",
+          "cluster_mean": 1.6825,
+          "global_mean": 4.392738,
+          "difference": -2.710238,
+          "scaled_difference": -0.338568,
+          "direction": "lower"
+        },
+        {
+          "feature": "fit_score",
+          "cluster_mean": 0.0035,
+          "global_mean": 0.187477,
+          "difference": -0.183977,
+          "scaled_difference": -0.318299,
+          "direction": "lower"
+        },
+        {
+          "feature": "peak_month",
+          "cluster_mean": 2.4025,
+          "global_mean": 4.523587,
+          "difference": -2.121087,
+          "scaled_difference": -0.235676,
+          "direction": "lower"
+        }
+      ],
+      "suggested_label_terms": [
+        "seasonal_presence",
+        "winter",
+        "narrow",
+        "narrow_winter_seasonal_presence",
+        "mean_peak_month_2.4025",
+        "winter_peak",
+        "narrow_season",
+        "strong_offseason_suppression"
+      ]
+    }
+  ]
+}

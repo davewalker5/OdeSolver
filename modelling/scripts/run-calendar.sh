@@ -20,18 +20,15 @@ SEASONAL_DATA="$MODELLING_ROOT/data/$1/seasonal"
 WINTER_DATA="$MODELLING_ROOT/data/$1/winter"
 
 if [[ ! -d "$RESIDENT_DATA" ]]; then
-    echo Data folder not found: $RESIDENT_DATA
-    exit 1
+    RESIDENT_DATA=""
 fi
 
 if [[ ! -d "$SEASONAL_DATA" ]]; then
-    echo Data folder not found: $SEASONAL_DATA
-    exit 1
+    SEASONAL_DATA=""
 fi
 
 if [[ ! -d "$WINTER_DATA" ]]; then
-    echo Data folder not found: $WINTER_DATA
-    exit 1
+    WINTER_DATA=""
 fi
 
 # Build the ecological calendar pipeline

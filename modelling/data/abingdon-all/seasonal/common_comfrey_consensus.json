@@ -1,0 +1,13 @@
+{
+  "GROWTH": "3.136",
+  "DECAY": "1.629",
+  "OOS_DECAY": "4.222",
+  "POST_PEAK_DECAY": "4.63",
+  "POST_PEAK_SHARPNESS": "4.557",
+  "SEASON_START": "3.355",
+  "SEASON_END": "9.32",
+  "SHARPNESS": "7.978",
+  "FORCING_PEAK": "5.245",
+  "SCORE": "0.035",
+  "SPECIES": "Common Comfrey"
+}

@@ -1,0 +1,13 @@
+{
+  "GROWTH": "2.656",
+  "DECAY": "1.726",
+  "OOS_DECAY": "4.778",
+  "POST_PEAK_DECAY": "3.406",
+  "POST_PEAK_SHARPNESS": "6.168",
+  "SEASON_START": "4.365",
+  "SEASON_END": "6.195",
+  "SHARPNESS": "9.266",
+  "FORCING_PEAK": "5.49",
+  "SCORE": "0.007",
+  "SPECIES": "Cuckoo"
+}

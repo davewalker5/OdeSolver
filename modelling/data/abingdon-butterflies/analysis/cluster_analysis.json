@@ -1,0 +1,1018 @@
+{
+  "schema_version": "species-similarity-clusters/v2",
+  "created_utc": "2026-05-25T07:37:27.609942+00:00",
+  "source_similarity_schema_version": "species-similarity/v1",
+  "source_feature_schema_version": "species-feature-table/v1",
+  "n_species": 7,
+  "n_clusters": 3,
+  "method": {
+    "description": "Hierarchical clustering over pairwise species similarity, followed by cluster-level summaries from the species feature matrix.",
+    "linkage_method": "average",
+    "cluster_cut": {
+      "criterion": "maxclust",
+      "n_clusters_requested": 3
+    },
+    "distance_definition": "distance = 1 - similarity",
+    "cluster_caveat": "Clusters should be interpreted as exploratory seasonal assemblages rather than fixed ecological categories."
+  },
+  "species_order": [
+    "Gatekeeper Butterfly",
+    "Orange Tip Butterfly",
+    "Brimstone Butterfly",
+    "Peacock Butterfly",
+    "Red Admiral Butterfly",
+    "Meadow Brown Butterfly",
+    "Speckled Wood Butterfly"
+  ],
+  "linkage": {
+    "format": "scipy.cluster.hierarchy.linkage",
+    "columns": [
+      "left_child",
+      "right_child",
+      "distance",
+      "n_leaves"
+    ],
+    "node_id_convention": "Leaf nodes are 0..n_species-1 in species_input_order; internal nodes are n_species..2*n_species-2 in linkage row order.",
+    "species_input_order": [
+      "Brimstone Butterfly",
+      "Gatekeeper Butterfly",
+      "Meadow Brown Butterfly",
+      "Orange Tip Butterfly",
+      "Peacock Butterfly",
+      "Red Admiral Butterfly",
+      "Speckled Wood Butterfly"
+    ],
+    "leaf_order_indices": [
+      1,
+      3,
+      0,
+      4,
+      5,
+      2,
+      6
+    ],
+    "leaf_order_species": [
+      "Gatekeeper Butterfly",
+      "Orange Tip Butterfly",
+      "Brimstone Butterfly",
+      "Peacock Butterfly",
+      "Red Admiral Butterfly",
+      "Meadow Brown Butterfly",
+      "Speckled Wood Butterfly"
+    ],
+    "matrix": [
+      [
+        0,
+        4,
+        0.136882,
+        2
+      ],
+      [
+        1,
+        3,
+        0.283202,
+        2
+      ],
+      [
+        2,
+        6,
+        0.285861,
+        2
+      ],
+      [
+        5,
+        9,
+        0.333906,
+        3
+      ],
+      [
+        7,
+        10,
+        0.413745,
+        5
+      ],
+      [
+        8,
+        11,
+        0.45889,
+        7
+      ]
+    ],
+    "merges": [
+      {
+        "node_id": 7,
+        "left_child": 0,
+        "right_child": 4,
+        "distance": 0.136882,
+        "n_leaves": 2,
+        "species": [
+          "Brimstone Butterfly",
+          "Peacock Butterfly"
+        ],
+        "left_species": [
+          "Brimstone Butterfly"
+        ],
+        "right_species": [
+          "Peacock Butterfly"
+        ]
+      },
+      {
+        "node_id": 8,
+        "left_child": 1,
+        "right_child": 3,
+        "distance": 0.283202,
+        "n_leaves": 2,
+        "species": [
+          "Gatekeeper Butterfly",
+          "Orange Tip Butterfly"
+        ],
+        "left_species": [
+          "Gatekeeper Butterfly"
+        ],
+        "right_species": [
+          "Orange Tip Butterfly"
+        ]
+      },
+      {
+        "node_id": 9,
+        "left_child": 2,
+        "right_child": 6,
+        "distance": 0.285861,
+        "n_leaves": 2,
+        "species": [
+          "Meadow Brown Butterfly",
+          "Speckled Wood Butterfly"
+        ],
+        "left_species": [
+          "Meadow Brown Butterfly"
+        ],
+        "right_species": [
+          "Speckled Wood Butterfly"
+        ]
+      },
+      {
+        "node_id": 10,
+        "left_child": 5,
+        "right_child": 9,
+        "distance": 0.333906,
+        "n_leaves": 3,
+        "species": [
+          "Red Admiral Butterfly",
+          "Meadow Brown Butterfly",
+          "Speckled Wood Butterfly"
+        ],
+        "left_species": [
+          "Red Admiral Butterfly"
+        ],
+        "right_species": [
+          "Meadow Brown Butterfly",
+          "Speckled Wood Butterfly"
+        ]
+      },
+      {
+        "node_id": 11,
+        "left_child": 7,
+        "right_child": 10,
+        "distance": 0.413745,
+        "n_leaves": 5,
+        "species": [
+          "Brimstone Butterfly",
+          "Peacock Butterfly",
+          "Red Admiral Butterfly",
+          "Meadow Brown Butterfly",
+          "Speckled Wood Butterfly"
+        ],
+        "left_species": [
+          "Brimstone Butterfly",
+          "Peacock Butterfly"
+        ],
+        "right_species": [
+          "Red Admiral Butterfly",
+          "Meadow Brown Butterfly",
+          "Speckled Wood Butterfly"
+        ]
+      },
+      {
+        "node_id": 12,
+        "left_child": 8,
+        "right_child": 11,
+        "distance": 0.45889,
+        "n_leaves": 7,
+        "species": [
+          "Gatekeeper Butterfly",
+          "Orange Tip Butterfly",
+          "Brimstone Butterfly",
+          "Peacock Butterfly",
+          "Red Admiral Butterfly",
+          "Meadow Brown Butterfly",
+          "Speckled Wood Butterfly"
+        ],
+        "left_species": [
+          "Gatekeeper Butterfly",
+          "Orange Tip Butterfly"
+        ],
+        "right_species": [
+          "Brimstone Butterfly",
+          "Peacock Butterfly",
+          "Red Admiral Butterfly",
+          "Meadow Brown Butterfly",
+          "Speckled Wood Butterfly"
+        ]
+      }
+    ]
+  },
+  "species_cluster_ids": {
+    "Brimstone Butterfly": 2,
+    "Gatekeeper Butterfly": 1,
+    "Meadow Brown Butterfly": 3,
+    "Orange Tip Butterfly": 1,
+    "Peacock Butterfly": 2,
+    "Red Admiral Butterfly": 3,
+    "Speckled Wood Butterfly": 3
+  },
+  "clusters": [
+    {
+      "cluster_id": 1,
+      "n_species": 2,
+      "species": [
+        "Gatekeeper Butterfly",
+        "Orange Tip Butterfly"
+      ],
+      "description": "Cluster of 2 species, mainly representing moderate summer seasonal presence. The fitted active window runs roughly from May to July, with a mean peak around June, and and an average width of 2.4 months. It is characterised by moderate season and moderate active window. Common high-support traits include moderate season, moderate seasonal window, and strong post peak decline. Compared with the full species set, season width months is lower than the whole-set average and fit score is lower than the whole-set average.",
+      "dominant_model_family": "seasonal_presence",
+      "dominant_primary_class": "moderate_summer_seasonal_presence",
+      "numeric_summary": {
+        "peak_month": {
+          "n": 2,
+          "mean": 5.885,
+          "min": 4.295,
+          "max": 7.475
+        },
+        "season_start_month": {
+          "n": 2,
+          "mean": 4.95,
+          "min": 3.775,
+          "max": 6.125
+        },
+        "season_end_month": {
+          "n": 2,
+          "mean": 7.38,
+          "min": 6.2,
+          "max": 8.56
+        },
+        "season_width_months": {
+          "n": 2,
+          "mean": 2.43,
+          "min": 2.425,
+          "max": 2.435
+        },
+        "season_midpoint_month": {
+          "n": 2,
+          "mean": 6.165,
+          "min": 4.9875,
+          "max": 7.3425
+        },
+        "fit_score": {
+          "n": 2,
+          "mean": 0.0375,
+          "min": 0.037,
+          "max": 0.038
+        }
+      },
+      "categorical_summary": {
+        "model_family": {
+          "dominant": "seasonal_presence",
+          "dominant_count": 2,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "seasonal_presence",
+              "count": 2,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "primary_class": {
+          "dominant": "moderate_summer_seasonal_presence",
+          "dominant_count": 1,
+          "dominant_fraction": 0.5,
+          "values": [
+            {
+              "value": "moderate_summer_seasonal_presence",
+              "count": 1,
+              "fraction": 0.5
+            },
+            {
+              "value": "moderate_spring_seasonal_presence",
+              "count": 1,
+              "fraction": 0.5
+            }
+          ]
+        },
+        "confidence": {
+          "dominant": "high",
+          "dominant_count": 2,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "high",
+              "count": 2,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "timing": {
+          "dominant": "summer",
+          "dominant_count": 1,
+          "dominant_fraction": 0.5,
+          "values": [
+            {
+              "value": "summer",
+              "count": 1,
+              "fraction": 0.5
+            },
+            {
+              "value": "spring",
+              "count": 1,
+              "fraction": 0.5
+            }
+          ]
+        },
+        "season_width_class": {
+          "dominant": "moderate",
+          "dominant_count": 2,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "moderate",
+              "count": 2,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "window_shape": {
+          "dominant": "moderate",
+          "dominant_count": 2,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "moderate",
+              "count": 2,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "post_peak_decline": {
+          "dominant": "strong",
+          "dominant_count": 2,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "strong",
+              "count": 2,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "offseason_suppression": {
+          "dominant": "strong",
+          "dominant_count": 2,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "strong",
+              "count": 2,
+              "fraction": 1.0
+            }
+          ]
+        }
+      },
+      "common_traits": [
+        {
+          "trait": "moderate_season",
+          "count": 2,
+          "fraction": 1.0
+        },
+        {
+          "trait": "moderate_seasonal_window",
+          "count": 2,
+          "fraction": 1.0
+        },
+        {
+          "trait": "strong_post_peak_decline",
+          "count": 2,
+          "fraction": 1.0
+        },
+        {
+          "trait": "strong_offseason_suppression",
+          "count": 2,
+          "fraction": 1.0
+        },
+        {
+          "trait": "central_peak_alignment",
+          "count": 2,
+          "fraction": 1.0
+        },
+        {
+          "trait": "summer_peak",
+          "count": 1,
+          "fraction": 0.5
+        },
+        {
+          "trait": "spring_peak",
+          "count": 1,
+          "fraction": 0.5
+        }
+      ],
+      "distinguishing_numeric_features": [
+        {
+          "feature": "season_width_months",
+          "cluster_mean": 2.43,
+          "global_mean": 5.315714,
+          "difference": -2.885714,
+          "scaled_difference": -0.454443,
+          "direction": "lower"
+        },
+        {
+          "feature": "fit_score",
+          "cluster_mean": 0.0375,
+          "global_mean": 0.059714,
+          "difference": -0.022214,
+          "scaled_difference": -0.419132,
+          "direction": "lower"
+        },
+        {
+          "feature": "season_start_month",
+          "cluster_mean": 4.95,
+          "global_mean": 3.585788,
+          "difference": 1.364212,
+          "scaled_difference": 0.355727,
+          "direction": "higher"
+        },
+        {
+          "feature": "season_end_month",
+          "cluster_mean": 7.38,
+          "global_mean": 9.001047,
+          "difference": -1.621047,
+          "scaled_difference": -0.298535,
+          "direction": "lower"
+        },
+        {
+          "feature": "season_midpoint_month",
+          "cluster_mean": 6.165,
+          "global_mean": 6.331547,
+          "difference": -0.166547,
+          "scaled_difference": -0.070721,
+          "direction": "lower"
+        },
+        {
+          "feature": "peak_month",
+          "cluster_mean": 5.885,
+          "global_mean": 6.125892,
+          "difference": -0.240892,
+          "scaled_difference": -0.056547,
+          "direction": "lower"
+        }
+      ],
+      "suggested_label_terms": [
+        "seasonal_presence",
+        "summer",
+        "moderate",
+        "moderate_summer_seasonal_presence",
+        "mean_peak_month_5.885",
+        "moderate_season",
+        "moderate_seasonal_window",
+        "strong_post_peak_decline"
+      ]
+    },
+    {
+      "cluster_id": 2,
+      "n_species": 2,
+      "species": [
+        "Brimstone Butterfly",
+        "Peacock Butterfly"
+      ],
+      "description": "Cluster of 2 species, mainly representing extended spring seasonal presence. The fitted active window runs roughly from February to September, with a mean peak around April, and and an average width of 6.3 months. It is characterised by very broad season and moderate active window. Common high-support traits include spring peak, moderate seasonal window, and strong post peak decline. Compared with the full species set, peak month is lower than the whole-set average and season midpoint month is lower than the whole-set average.",
+      "dominant_model_family": "seasonal_presence",
+      "dominant_primary_class": "extended_spring_seasonal_presence",
+      "numeric_summary": {
+        "peak_month": {
+          "n": 2,
+          "mean": 4.135,
+          "min": 4.125,
+          "max": 4.145
+        },
+        "season_start_month": {
+          "n": 2,
+          "mean": 2.41,
+          "min": 2.29,
+          "max": 2.53
+        },
+        "season_end_month": {
+          "n": 2,
+          "mean": 8.685,
+          "min": 8.25,
+          "max": 9.12
+        },
+        "season_width_months": {
+          "n": 2,
+          "mean": 6.275,
+          "min": 5.72,
+          "max": 6.83
+        },
+        "season_midpoint_month": {
+          "n": 2,
+          "mean": 5.5475,
+          "min": 5.39,
+          "max": 5.705
+        },
+        "fit_score": {
+          "n": 2,
+          "mean": 0.0615,
+          "min": 0.053,
+          "max": 0.07
+        }
+      },
+      "categorical_summary": {
+        "model_family": {
+          "dominant": "seasonal_presence",
+          "dominant_count": 2,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "seasonal_presence",
+              "count": 2,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "primary_class": {
+          "dominant": "extended_spring_seasonal_presence",
+          "dominant_count": 2,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "extended_spring_seasonal_presence",
+              "count": 2,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "confidence": {
+          "dominant": "high",
+          "dominant_count": 2,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "high",
+              "count": 2,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "timing": {
+          "dominant": "spring",
+          "dominant_count": 2,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "spring",
+              "count": 2,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "season_width_class": {
+          "dominant": "very_broad",
+          "dominant_count": 1,
+          "dominant_fraction": 0.5,
+          "values": [
+            {
+              "value": "very_broad",
+              "count": 1,
+              "fraction": 0.5
+            },
+            {
+              "value": "broad",
+              "count": 1,
+              "fraction": 0.5
+            }
+          ]
+        },
+        "window_shape": {
+          "dominant": "moderate",
+          "dominant_count": 2,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "moderate",
+              "count": 2,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "post_peak_decline": {
+          "dominant": "strong",
+          "dominant_count": 2,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "strong",
+              "count": 2,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "offseason_suppression": {
+          "dominant": "strong",
+          "dominant_count": 2,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "strong",
+              "count": 2,
+              "fraction": 1.0
+            }
+          ]
+        }
+      },
+      "common_traits": [
+        {
+          "trait": "spring_peak",
+          "count": 2,
+          "fraction": 1.0
+        },
+        {
+          "trait": "moderate_seasonal_window",
+          "count": 2,
+          "fraction": 1.0
+        },
+        {
+          "trait": "strong_post_peak_decline",
+          "count": 2,
+          "fraction": 1.0
+        },
+        {
+          "trait": "strong_offseason_suppression",
+          "count": 2,
+          "fraction": 1.0
+        },
+        {
+          "trait": "early_peak_alignment",
+          "count": 2,
+          "fraction": 1.0
+        },
+        {
+          "trait": "very_broad_season",
+          "count": 1,
+          "fraction": 0.5
+        },
+        {
+          "trait": "broad_season",
+          "count": 1,
+          "fraction": 0.5
+        }
+      ],
+      "distinguishing_numeric_features": [
+        {
+          "feature": "peak_month",
+          "cluster_mean": 4.135,
+          "global_mean": 6.125892,
+          "difference": -1.990892,
+          "scaled_difference": -0.467346,
+          "direction": "lower"
+        },
+        {
+          "feature": "season_midpoint_month",
+          "cluster_mean": 5.5475,
+          "global_mean": 6.331547,
+          "difference": -0.784047,
+          "scaled_difference": -0.332929,
+          "direction": "lower"
+        },
+        {
+          "feature": "season_start_month",
+          "cluster_mean": 2.41,
+          "global_mean": 3.585788,
+          "difference": -1.175788,
+          "scaled_difference": -0.306594,
+          "direction": "lower"
+        },
+        {
+          "feature": "season_width_months",
+          "cluster_mean": 6.275,
+          "global_mean": 5.315714,
+          "difference": 0.959286,
+          "scaled_difference": 0.151069,
+          "direction": "higher"
+        },
+        {
+          "feature": "season_end_month",
+          "cluster_mean": 8.685,
+          "global_mean": 9.001047,
+          "difference": -0.316047,
+          "scaled_difference": -0.058204,
+          "direction": "lower"
+        },
+        {
+          "feature": "fit_score",
+          "cluster_mean": 0.0615,
+          "global_mean": 0.059714,
+          "difference": 0.001786,
+          "scaled_difference": 0.033698,
+          "direction": "higher"
+        }
+      ],
+      "suggested_label_terms": [
+        "seasonal_presence",
+        "spring",
+        "very_broad",
+        "extended_spring_seasonal_presence",
+        "mean_peak_month_4.135",
+        "spring_peak",
+        "moderate_seasonal_window",
+        "strong_post_peak_decline"
+      ]
+    },
+    {
+      "cluster_id": 3,
+      "n_species": 3,
+      "species": [
+        "Red Admiral Butterfly",
+        "Meadow Brown Butterfly",
+        "Speckled Wood Butterfly"
+      ],
+      "description": "Cluster of 3 species, mainly representing extended summer seasonal presence. The fitted active window runs roughly from April to October, with a mean peak around August, and and an average width of 6.6 months. It is characterised by very broad season and moderate active window. Common high-support traits include summer peak and moderate seasonal window. Compared with the full species set, peak month is higher than the whole-set average and season midpoint month is higher than the whole-set average.",
+      "dominant_model_family": "seasonal_presence",
+      "dominant_primary_class": "extended_summer_seasonal_presence",
+      "numeric_summary": {
+        "peak_month": {
+          "n": 3,
+          "mean": 7.550959,
+          "min": 6.64,
+          "max": 8.385
+        },
+        "season_start_month": {
+          "n": 3,
+          "mean": 3.641808,
+          "min": 2.855,
+          "max": 4.48
+        },
+        "season_end_month": {
+          "n": 3,
+          "mean": 10.212851,
+          "min": 9.33,
+          "max": 11.63
+        },
+        "season_width_months": {
+          "n": 3,
+          "mean": 6.6,
+          "min": 4.85,
+          "max": 8.775
+        },
+        "season_midpoint_month": {
+          "n": 3,
+          "mean": 6.943196,
+          "min": 6.6825,
+          "max": 7.2425
+        },
+        "fit_score": {
+          "n": 3,
+          "mean": 0.073333,
+          "min": 0.054,
+          "max": 0.09
+        }
+      },
+      "categorical_summary": {
+        "model_family": {
+          "dominant": "seasonal_presence",
+          "dominant_count": 3,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "seasonal_presence",
+              "count": 3,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "primary_class": {
+          "dominant": "extended_summer_seasonal_presence",
+          "dominant_count": 3,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "extended_summer_seasonal_presence",
+              "count": 3,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "confidence": {
+          "dominant": "medium",
+          "dominant_count": 2,
+          "dominant_fraction": 0.666667,
+          "values": [
+            {
+              "value": "medium",
+              "count": 2,
+              "fraction": 0.666667
+            },
+            {
+              "value": "high",
+              "count": 1,
+              "fraction": 0.333333
+            }
+          ]
+        },
+        "timing": {
+          "dominant": "summer",
+          "dominant_count": 3,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "summer",
+              "count": 3,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "season_width_class": {
+          "dominant": "very_broad",
+          "dominant_count": 2,
+          "dominant_fraction": 0.666667,
+          "values": [
+            {
+              "value": "very_broad",
+              "count": 2,
+              "fraction": 0.666667
+            },
+            {
+              "value": "broad",
+              "count": 1,
+              "fraction": 0.333333
+            }
+          ]
+        },
+        "window_shape": {
+          "dominant": "moderate",
+          "dominant_count": 3,
+          "dominant_fraction": 1.0,
+          "values": [
+            {
+              "value": "moderate",
+              "count": 3,
+              "fraction": 1.0
+            }
+          ]
+        },
+        "post_peak_decline": {
+          "dominant": "moderate",
+          "dominant_count": 2,
+          "dominant_fraction": 0.666667,
+          "values": [
+            {
+              "value": "moderate",
+              "count": 2,
+              "fraction": 0.666667
+            },
+            {
+              "value": "strong",
+              "count": 1,
+              "fraction": 0.333333
+            }
+          ]
+        },
+        "offseason_suppression": {
+          "dominant": "strong",
+          "dominant_count": 2,
+          "dominant_fraction": 0.666667,
+          "values": [
+            {
+              "value": "strong",
+              "count": 2,
+              "fraction": 0.666667
+            },
+            {
+              "value": "moderate",
+              "count": 1,
+              "fraction": 0.333333
+            }
+          ]
+        }
+      },
+      "common_traits": [
+        {
+          "trait": "summer_peak",
+          "count": 3,
+          "fraction": 1.0
+        },
+        {
+          "trait": "moderate_seasonal_window",
+          "count": 3,
+          "fraction": 1.0
+        },
+        {
+          "trait": "very_broad_season",
+          "count": 2,
+          "fraction": 0.666667
+        },
+        {
+          "trait": "moderate_post_peak_decline",
+          "count": 2,
+          "fraction": 0.666667
+        },
+        {
+          "trait": "central_peak_alignment",
+          "count": 2,
+          "fraction": 0.666667
+        },
+        {
+          "trait": "strong_offseason_suppression",
+          "count": 2,
+          "fraction": 0.666667
+        },
+        {
+          "trait": "moderate_offseason_suppression",
+          "count": 1,
+          "fraction": 0.333333
+        },
+        {
+          "trait": "broad_season",
+          "count": 1,
+          "fraction": 0.333333
+        },
+        {
+          "trait": "strong_post_peak_decline",
+          "count": 1,
+          "fraction": 0.333333
+        },
+        {
+          "trait": "late_peak_alignment",
+          "count": 1,
+          "fraction": 0.333333
+        }
+      ],
+      "distinguishing_numeric_features": [
+        {
+          "feature": "peak_month",
+          "cluster_mean": 7.550959,
+          "global_mean": 6.125892,
+          "difference": 1.425067,
+          "scaled_difference": 0.334523,
+          "direction": "higher"
+        },
+        {
+          "feature": "season_midpoint_month",
+          "cluster_mean": 6.943196,
+          "global_mean": 6.331547,
+          "difference": 0.611649,
+          "scaled_difference": 0.259724,
+          "direction": "higher"
+        },
+        {
+          "feature": "fit_score",
+          "cluster_mean": 0.073333,
+          "global_mean": 0.059714,
+          "difference": 0.013619,
+          "scaled_difference": 0.256962,
+          "direction": "higher"
+        },
+        {
+          "feature": "season_end_month",
+          "cluster_mean": 10.212851,
+          "global_mean": 9.001047,
+          "difference": 1.211804,
+          "scaled_difference": 0.223168,
+          "direction": "higher"
+        },
+        {
+          "feature": "season_width_months",
+          "cluster_mean": 6.6,
+          "global_mean": 5.315714,
+          "difference": 1.284286,
+          "scaled_difference": 0.20225,
+          "direction": "higher"
+        },
+        {
+          "feature": "season_start_month",
+          "cluster_mean": 3.641808,
+          "global_mean": 3.585788,
+          "difference": 0.05602,
+          "scaled_difference": 0.014608,
+          "direction": "higher"
+        }
+      ],
+      "suggested_label_terms": [
+        "seasonal_presence",
+        "summer",
+        "very_broad",
+        "extended_summer_seasonal_presence",
+        "mean_peak_month_7.550959",
+        "summer_peak",
+        "moderate_seasonal_window",
+        "very_broad_season"
+      ]
+    }
+  ]
+}

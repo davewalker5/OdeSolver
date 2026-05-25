@@ -1,0 +1,49 @@
+{
+  "schema_version": "seasonal-classification/v1",
+  "species": "Rosebay Willowherb",
+  "model_family": "seasonal_presence",
+  "classification": {
+    "primary_class": "moderate_summer_seasonal_presence",
+    "timing": "summer",
+    "season_width": "moderate",
+    "window_shape": "sharp",
+    "post_peak_decline": "moderate",
+    "offseason_suppression": "strong",
+    "peak_alignment": "central",
+    "traits": [
+      "summer_peak",
+      "moderate_season",
+      "sharp_seasonal_window",
+      "moderate_post_peak_decline",
+      "strong_offseason_suppression",
+      "central_peak_alignment"
+    ],
+    "confidence": "high"
+  },
+  "derived_metrics": {
+    "season_start_month": 6.075,
+    "season_end_month": 9.3,
+    "forcing_peak_month": 8.265,
+    "season_width_months": 3.225,
+    "season_midpoint_month": 7.6875,
+    "season_start_label": "June",
+    "season_end_label": "September",
+    "forcing_peak_label": "August"
+  },
+  "parameter_evidence": {
+    "GROWTH": 3.374,
+    "DECAY": 1.661,
+    "OOS_DECAY": 5.364,
+    "POST_PEAK_DECAY": 3.216,
+    "POST_PEAK_SHARPNESS": 5.862,
+    "SEASON_START": 6.075,
+    "SEASON_END": 9.3,
+    "SHARPNESS": 8.808,
+    "FORCING_PEAK": 8.265
+  },
+  "fit": {
+    "score": 0.012
+  },
+  "warnings": [],
+  "summary": "Rosebay Willowherb is classified as moderate summer seasonal presence. The fitted seasonal window runs from about June to September, with a summer peak around August. The season is moderate, with a sharp active window, moderate post-peak decline, and strong off-season suppression."
+}

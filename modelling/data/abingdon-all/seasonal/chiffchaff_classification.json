@@ -1,0 +1,49 @@
+{
+  "schema_version": "seasonal-classification/v1",
+  "species": "Chiffchaff",
+  "model_family": "seasonal_presence",
+  "classification": {
+    "primary_class": "extended_spring_seasonal_presence",
+    "timing": "spring",
+    "season_width": "broad",
+    "window_shape": "sharp",
+    "post_peak_decline": "moderate",
+    "offseason_suppression": "strong",
+    "peak_alignment": "early",
+    "traits": [
+      "spring_peak",
+      "broad_season",
+      "sharp_seasonal_window",
+      "moderate_post_peak_decline",
+      "strong_offseason_suppression",
+      "early_peak_alignment"
+    ],
+    "confidence": "high"
+  },
+  "derived_metrics": {
+    "season_start_month": 3.03,
+    "season_end_month": 7.35,
+    "forcing_peak_month": 4.255,
+    "season_width_months": 4.32,
+    "season_midpoint_month": 5.19,
+    "season_start_label": "March",
+    "season_end_label": "July",
+    "forcing_peak_label": "April"
+  },
+  "parameter_evidence": {
+    "GROWTH": 2.208,
+    "DECAY": 1.953,
+    "OOS_DECAY": 4.463,
+    "POST_PEAK_DECAY": 2.812,
+    "POST_PEAK_SHARPNESS": 6.114,
+    "SEASON_START": 3.03,
+    "SEASON_END": 7.35,
+    "SHARPNESS": 8.426,
+    "FORCING_PEAK": 4.255
+  },
+  "fit": {
+    "score": 0.024
+  },
+  "warnings": [],
+  "summary": "Chiffchaff is classified as extended spring seasonal presence. The fitted seasonal window runs from about March to July, with a spring peak around April. The season is broad, with a sharp active window, moderate post-peak decline, and strong off-season suppression."
+}

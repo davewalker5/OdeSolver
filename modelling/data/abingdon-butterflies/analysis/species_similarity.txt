@@ -1,0 +1,56 @@
+
+Brimstone Butterfly
+-------------------
+ 1. Peacock Butterfly            similarity=0.863 distance=0.137
+ 2. Speckled Wood Butterfly      similarity=0.668 distance=0.332
+ 3. Orange Tip Butterfly         similarity=0.634 distance=0.366
+ 4. Meadow Brown Butterfly       similarity=0.592 distance=0.408
+ 5. Red Admiral Butterfly        similarity=0.533 distance=0.467
+
+Gatekeeper Butterfly
+--------------------
+ 1. Orange Tip Butterfly         similarity=0.717 distance=0.283
+ 2. Meadow Brown Butterfly       similarity=0.693 distance=0.307
+ 3. Speckled Wood Butterfly      similarity=0.616 distance=0.384
+ 4. Peacock Butterfly            similarity=0.518 distance=0.482
+ 5. Brimstone Butterfly          similarity=0.491 distance=0.509
+
+Meadow Brown Butterfly
+----------------------
+ 1. Speckled Wood Butterfly      similarity=0.714 distance=0.286
+ 2. Gatekeeper Butterfly         similarity=0.693 distance=0.307
+ 3. Peacock Butterfly            similarity=0.649 distance=0.351
+ 4. Red Admiral Butterfly        similarity=0.640 distance=0.360
+ 5. Brimstone Butterfly          similarity=0.592 distance=0.408
+
+Orange Tip Butterfly
+--------------------
+ 1. Gatekeeper Butterfly         similarity=0.717 distance=0.283
+ 2. Peacock Butterfly            similarity=0.680 distance=0.320
+ 3. Brimstone Butterfly          similarity=0.634 distance=0.366
+ 4. Meadow Brown Butterfly       similarity=0.558 distance=0.442
+ 5. Speckled Wood Butterfly      similarity=0.471 distance=0.529
+
+Peacock Butterfly
+-----------------
+ 1. Brimstone Butterfly          similarity=0.863 distance=0.137
+ 2. Orange Tip Butterfly         similarity=0.680 distance=0.320
+ 3. Meadow Brown Butterfly       similarity=0.649 distance=0.351
+ 4. Speckled Wood Butterfly      similarity=0.623 distance=0.377
+ 5. Gatekeeper Butterfly         similarity=0.518 distance=0.482
+
+Red Admiral Butterfly
+---------------------
+ 1. Speckled Wood Butterfly      similarity=0.692 distance=0.308
+ 2. Meadow Brown Butterfly       similarity=0.640 distance=0.360
+ 3. Brimstone Butterfly          similarity=0.533 distance=0.467
+ 4. Gatekeeper Butterfly         similarity=0.455 distance=0.545
+ 5. Peacock Butterfly            similarity=0.453 distance=0.547
+
+Speckled Wood Butterfly
+-----------------------
+ 1. Meadow Brown Butterfly       similarity=0.714 distance=0.286
+ 2. Red Admiral Butterfly        similarity=0.692 distance=0.308
+ 3. Brimstone Butterfly          similarity=0.668 distance=0.332
+ 4. Peacock Butterfly            similarity=0.623 distance=0.377
+ 5. Gatekeeper Butterfly         similarity=0.616 distance=0.384
