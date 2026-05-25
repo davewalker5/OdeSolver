@@ -1,0 +1,13 @@
+{
+  "GROWTH": "2.344",
+  "DECAY": "1.774",
+  "OOS_DECAY": "4.75",
+  "POST_PEAK_DECAY": "4.948",
+  "POST_PEAK_SHARPNESS": "5.35",
+  "SEASON_START": "1.385",
+  "SEASON_END": "3.31",
+  "SHARPNESS": "6.531",
+  "FORCING_PEAK": "2.45",
+  "SCORE": "0.003",
+  "SPECIES": "Snowdrop"
+}

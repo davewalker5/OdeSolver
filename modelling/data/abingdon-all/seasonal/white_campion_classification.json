@@ -1,0 +1,49 @@
+{
+  "schema_version": "seasonal-classification/v1",
+  "species": "White Campion",
+  "model_family": "seasonal_presence",
+  "classification": {
+    "primary_class": "extended_summer_seasonal_presence",
+    "timing": "summer",
+    "season_width": "very_broad",
+    "window_shape": "moderate",
+    "post_peak_decline": "moderate",
+    "offseason_suppression": "strong",
+    "peak_alignment": "early",
+    "traits": [
+      "summer_peak",
+      "very_broad_season",
+      "moderate_seasonal_window",
+      "moderate_post_peak_decline",
+      "strong_offseason_suppression",
+      "early_peak_alignment"
+    ],
+    "confidence": "high"
+  },
+  "derived_metrics": {
+    "season_start_month": 4.92,
+    "season_end_month": 11.245,
+    "forcing_peak_month": 6.045,
+    "season_width_months": 6.325,
+    "season_midpoint_month": 8.0825,
+    "season_start_label": "May",
+    "season_end_label": "November",
+    "forcing_peak_label": "June"
+  },
+  "parameter_evidence": {
+    "GROWTH": 3.001,
+    "DECAY": 2.034,
+    "OOS_DECAY": 4.258,
+    "POST_PEAK_DECAY": 2.744,
+    "POST_PEAK_SHARPNESS": 5.558,
+    "SEASON_START": 4.92,
+    "SEASON_END": 11.245,
+    "SHARPNESS": 6.904,
+    "FORCING_PEAK": 6.045
+  },
+  "fit": {
+    "score": 0.063
+  },
+  "warnings": [],
+  "summary": "White Campion is classified as extended summer seasonal presence. The fitted seasonal window runs from about May to November, with a summer peak around June. The season is very_broad, with a moderate active window, moderate post-peak decline, and strong off-season suppression."
+}

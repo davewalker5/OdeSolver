@@ -1,0 +1,13 @@
+{
+  "GROWTH": "3.012",
+  "DECAY": "1.52",
+  "OOS_DECAY": "4.032",
+  "POST_PEAK_DECAY": "3.563",
+  "POST_PEAK_SHARPNESS": "5.208",
+  "SEASON_START": "6.125",
+  "SEASON_END": "8.56",
+  "SHARPNESS": "7.572",
+  "FORCING_PEAK": "7.475",
+  "SCORE": "0.037",
+  "SPECIES": "Gatekeeper Butterfly"
+}

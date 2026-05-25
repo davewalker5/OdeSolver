@@ -1,0 +1,49 @@
+{
+  "schema_version": "seasonal-classification/v1",
+  "species": "Whitethroat",
+  "model_family": "seasonal_presence",
+  "classification": {
+    "primary_class": "moderate_spring_seasonal_presence",
+    "timing": "spring",
+    "season_width": "moderate",
+    "window_shape": "moderate",
+    "post_peak_decline": "strong",
+    "offseason_suppression": "moderate",
+    "peak_alignment": "central",
+    "traits": [
+      "spring_peak",
+      "moderate_season",
+      "moderate_seasonal_window",
+      "strong_post_peak_decline",
+      "moderate_offseason_suppression",
+      "central_peak_alignment"
+    ],
+    "confidence": "high"
+  },
+  "derived_metrics": {
+    "season_start_month": 4.395,
+    "season_end_month": 6.77,
+    "forcing_peak_month": 5.19,
+    "season_width_months": 2.375,
+    "season_midpoint_month": 5.5825,
+    "season_start_label": "April",
+    "season_end_label": "July",
+    "forcing_peak_label": "May"
+  },
+  "parameter_evidence": {
+    "GROWTH": 2.702,
+    "DECAY": 1.888,
+    "OOS_DECAY": 3.599,
+    "POST_PEAK_DECAY": 4.627,
+    "POST_PEAK_SHARPNESS": 6.37,
+    "SEASON_START": 4.395,
+    "SEASON_END": 6.77,
+    "SHARPNESS": 7.882,
+    "FORCING_PEAK": 5.19
+  },
+  "fit": {
+    "score": 0.028
+  },
+  "warnings": [],
+  "summary": "Whitethroat is classified as moderate spring seasonal presence. The fitted seasonal window runs from about April to July, with a spring peak around May. The season is moderate, with a moderate active window, strong post-peak decline, and moderate off-season suppression."
+}

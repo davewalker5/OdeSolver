@@ -1,0 +1,49 @@
+{
+  "schema_version": "seasonal-classification/v1",
+  "species": "Peacock Butterfly",
+  "model_family": "seasonal_presence",
+  "classification": {
+    "primary_class": "extended_spring_seasonal_presence",
+    "timing": "spring",
+    "season_width": "broad",
+    "window_shape": "moderate",
+    "post_peak_decline": "strong",
+    "offseason_suppression": "strong",
+    "peak_alignment": "early",
+    "traits": [
+      "spring_peak",
+      "broad_season",
+      "moderate_seasonal_window",
+      "strong_post_peak_decline",
+      "strong_offseason_suppression",
+      "early_peak_alignment"
+    ],
+    "confidence": "high"
+  },
+  "derived_metrics": {
+    "season_start_month": 2.53,
+    "season_end_month": 8.25,
+    "forcing_peak_month": 4.125,
+    "season_width_months": 5.72,
+    "season_midpoint_month": 5.39,
+    "season_start_label": "March",
+    "season_end_label": "August",
+    "forcing_peak_label": "April"
+  },
+  "parameter_evidence": {
+    "GROWTH": 3.639,
+    "DECAY": 1.88,
+    "OOS_DECAY": 4.902,
+    "POST_PEAK_DECAY": 4.002,
+    "POST_PEAK_SHARPNESS": 6.29,
+    "SEASON_START": 2.53,
+    "SEASON_END": 8.25,
+    "SHARPNESS": 7.768,
+    "FORCING_PEAK": 4.125
+  },
+  "fit": {
+    "score": 0.07
+  },
+  "warnings": [],
+  "summary": "Peacock Butterfly is classified as extended spring seasonal presence. The fitted seasonal window runs from about March to August, with a spring peak around April. The season is broad, with a moderate active window, strong post-peak decline, and strong off-season suppression."
+}

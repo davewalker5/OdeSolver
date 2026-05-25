@@ -1,0 +1,70 @@
+
+Species clusters
+================
+
+Cluster 1
+---------
+Cluster of 2 species, mainly representing moderate summer seasonal presence. The fitted active window runs roughly from May to July, with a mean peak around June, and and an average width of 2.4 months. It is characterised by moderate season and moderate active window. Common high-support traits include moderate season, moderate seasonal window, and strong post peak decline. Compared with the full species set, season width months is lower than the whole-set average and fit score is lower than the whole-set average.
+
+Species (2):
+  Gatekeeper Butterfly
+  Orange Tip Butterfly
+
+Dominant model family : seasonal_presence
+Dominant class        : moderate_summer_seasonal_presence
+Common traits         : moderate_season (2, 100%), moderate_seasonal_window (2, 100%), strong_post_peak_decline (2, 100%), strong_offseason_suppression (2, 100%), central_peak_alignment (2, 100%)
+
+Peak month mean/range : 5.88 (4.29 - 7.47)
+Season width mean     : 2.43 months
+
+Distinguishing numeric features:
+  - season_width_months (lower, scaled_difference=-0.45)
+  - fit_score (lower, scaled_difference=-0.42)
+  - season_start_month (higher, scaled_difference=0.36)
+  - season_end_month (lower, scaled_difference=-0.30)
+  - season_midpoint_month (lower, scaled_difference=-0.07)
+
+Cluster 2
+---------
+Cluster of 2 species, mainly representing extended spring seasonal presence. The fitted active window runs roughly from February to September, with a mean peak around April, and and an average width of 6.3 months. It is characterised by very broad season and moderate active window. Common high-support traits include spring peak, moderate seasonal window, and strong post peak decline. Compared with the full species set, peak month is lower than the whole-set average and season midpoint month is lower than the whole-set average.
+
+Species (2):
+  Brimstone Butterfly
+  Peacock Butterfly
+
+Dominant model family : seasonal_presence
+Dominant class        : extended_spring_seasonal_presence
+Common traits         : spring_peak (2, 100%), moderate_seasonal_window (2, 100%), strong_post_peak_decline (2, 100%), strong_offseason_suppression (2, 100%), early_peak_alignment (2, 100%)
+
+Peak month mean/range : 4.13 (4.12 - 4.14)
+Season width mean     : 6.28 months
+
+Distinguishing numeric features:
+  - peak_month (lower, scaled_difference=-0.47)
+  - season_midpoint_month (lower, scaled_difference=-0.33)
+  - season_start_month (lower, scaled_difference=-0.31)
+  - season_width_months (higher, scaled_difference=0.15)
+  - season_end_month (lower, scaled_difference=-0.06)
+
+Cluster 3
+---------
+Cluster of 3 species, mainly representing extended summer seasonal presence. The fitted active window runs roughly from April to October, with a mean peak around August, and and an average width of 6.6 months. It is characterised by very broad season and moderate active window. Common high-support traits include summer peak and moderate seasonal window. Compared with the full species set, peak month is higher than the whole-set average and season midpoint month is higher than the whole-set average.
+
+Species (3):
+  Red Admiral Butterfly
+  Meadow Brown Butterfly
+  Speckled Wood Butterfly
+
+Dominant model family : seasonal_presence
+Dominant class        : extended_summer_seasonal_presence
+Common traits         : summer_peak (3, 100%), moderate_seasonal_window (3, 100%), very_broad_season (2, 67%), moderate_post_peak_decline (2, 67%), central_peak_alignment (2, 67%)
+
+Peak month mean/range : 7.55 (6.64 - 8.38)
+Season width mean     : 6.60 months
+
+Distinguishing numeric features:
+  - peak_month (higher, scaled_difference=0.33)
+  - season_midpoint_month (higher, scaled_difference=0.26)
+  - fit_score (higher, scaled_difference=0.26)
+  - season_end_month (higher, scaled_difference=0.22)
+  - season_width_months (higher, scaled_difference=0.20)

@@ -1,0 +1,17 @@
+{
+  "SCORE": "0.128",
+  "INITIAL_Y": "0.971",
+  "GROWTH_RATE": "0.924",
+  "DECAY_RATE": "2.456",
+  "BASELINE": "0",
+  "WINTER_WEIGHT": "1.047",
+  "AUTUMN_WEIGHT": "0.248",
+  "WINTER_PEAK": "1.62",
+  "AUTUMN_PEAK": "11.65",
+  "WINTER_WIDTH": "2.892",
+  "AUTUMN_WIDTH": "3.48",
+  "SUMMER_DIP": "0.228",
+  "SUMMER_LOW": "6.32",
+  "SUMMER_WIDTH": "3.244",
+  "SPECIES": "Redwing"
+}

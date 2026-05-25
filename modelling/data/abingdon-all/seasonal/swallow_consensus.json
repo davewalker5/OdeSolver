@@ -1,0 +1,13 @@
+{
+  "GROWTH": "3.111",
+  "DECAY": "1.967",
+  "OOS_DECAY": "3.851",
+  "POST_PEAK_DECAY": "2.266",
+  "POST_PEAK_SHARPNESS": "5.498",
+  "SEASON_START": "4.08",
+  "SEASON_END": "10.295",
+  "SHARPNESS": "8.176",
+  "FORCING_PEAK": "5.47",
+  "SCORE": "0.045",
+  "SPECIES": "Swallow"
+}

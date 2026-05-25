@@ -1,0 +1,49 @@
+{
+  "schema_version": "seasonal-classification/v1",
+  "species": "Garden Warbler",
+  "model_family": "seasonal_presence",
+  "classification": {
+    "primary_class": "extended_early_spring_seasonal_presence",
+    "timing": "early_spring",
+    "season_width": "broad",
+    "window_shape": "sharp",
+    "post_peak_decline": "moderate",
+    "offseason_suppression": "strong",
+    "peak_alignment": "early",
+    "traits": [
+      "early_spring_peak",
+      "broad_season",
+      "sharp_seasonal_window",
+      "moderate_post_peak_decline",
+      "strong_offseason_suppression",
+      "early_peak_alignment"
+    ],
+    "confidence": "high"
+  },
+  "derived_metrics": {
+    "season_start_month": 2.035,
+    "season_end_month": 6.495,
+    "forcing_peak_month": 3.12,
+    "season_width_months": 4.46,
+    "season_midpoint_month": 4.265,
+    "season_start_label": "February",
+    "season_end_label": "June",
+    "forcing_peak_label": "March"
+  },
+  "parameter_evidence": {
+    "GROWTH": 2.644,
+    "DECAY": 1.657,
+    "OOS_DECAY": 4.19,
+    "POST_PEAK_DECAY": 2.56,
+    "POST_PEAK_SHARPNESS": 4.474,
+    "SEASON_START": 2.035,
+    "SEASON_END": 6.495,
+    "SHARPNESS": 8.569,
+    "FORCING_PEAK": 3.12
+  },
+  "fit": {
+    "score": 0.065
+  },
+  "warnings": [],
+  "summary": "Garden Warbler is classified as extended early spring seasonal presence. The fitted seasonal window runs from about February to June, with a early spring peak around March. The season is broad, with a sharp active window, moderate post-peak decline, and strong off-season suppression."
+}

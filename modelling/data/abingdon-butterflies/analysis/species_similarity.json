@@ -1,0 +1,1024 @@
+{
+  "schema_version": "species-similarity/v1",
+  "created_utc": "2026-05-25T07:37:27.412808+00:00",
+  "source_feature_schema_version": "species-feature-table/v1",
+  "source_feature_created_utc": "2026-05-25T07:37:27.412086+00:00",
+  "n_species": 7,
+  "top_n": 5,
+  "method": {
+    "description": "Weighted mixed-feature similarity using circular month distance, min-max scaled numeric distance, categorical exact-match distance, and Jaccard trait distance.",
+    "distance_range": "0 means identical on compared features; 1 means maximally different",
+    "similarity_range": "1 means most similar; 0 means least similar",
+    "component_weights": {
+      "circular_month": 0.4,
+      "numeric": 0.25,
+      "categorical": 0.2,
+      "traits": 0.15
+    },
+    "circular_month_features": {
+      "peak_month": 2.0,
+      "trough_month": 1.25,
+      "season_start_month": 1.25,
+      "season_end_month": 1.25,
+      "season_midpoint_month": 1.5
+    },
+    "numeric_features": {
+      "season_width_months": 1.5,
+      "target_mean_value": 1.0,
+      "target_amplitude": 1.0,
+      "baseline_to_peak_ratio": 1.0,
+      "autumn_to_winter_weight_ratio": 0.75,
+      "year_end_to_winter_weight_ratio": 0.75,
+      "decay_to_growth_ratio": 0.75,
+      "active_month_count_ge_0_10": 1.0,
+      "fit_score": 0.25
+    },
+    "categorical_features": {
+      "model_family": 1.0,
+      "primary_class": 1.0,
+      "confidence": 0.25,
+      "baseline_presence": 0.75,
+      "timing": 1.0,
+      "season_width_class": 0.75,
+      "window_shape": 0.75,
+      "post_peak_decline": 0.75,
+      "offseason_suppression": 0.75,
+      "summer_suppression": 0.75,
+      "autumn_component": 0.75,
+      "response_dynamics": 0.75
+    },
+    "missing_value_policy": "Missing feature values are skipped for that pair/component. Component weights are renormalised over available components."
+  },
+  "species": [
+    {
+      "species": "Brimstone Butterfly",
+      "model_family": "seasonal_presence",
+      "primary_class": "extended_spring_seasonal_presence"
+    },
+    {
+      "species": "Gatekeeper Butterfly",
+      "model_family": "seasonal_presence",
+      "primary_class": "moderate_summer_seasonal_presence"
+    },
+    {
+      "species": "Meadow Brown Butterfly",
+      "model_family": "seasonal_presence",
+      "primary_class": "extended_summer_seasonal_presence"
+    },
+    {
+      "species": "Orange Tip Butterfly",
+      "model_family": "seasonal_presence",
+      "primary_class": "moderate_spring_seasonal_presence"
+    },
+    {
+      "species": "Peacock Butterfly",
+      "model_family": "seasonal_presence",
+      "primary_class": "extended_spring_seasonal_presence"
+    },
+    {
+      "species": "Red Admiral Butterfly",
+      "model_family": "seasonal_presence",
+      "primary_class": "extended_summer_seasonal_presence"
+    },
+    {
+      "species": "Speckled Wood Butterfly",
+      "model_family": "seasonal_presence",
+      "primary_class": "extended_summer_seasonal_presence"
+    }
+  ],
+  "nearest_neighbours": {
+    "Brimstone Butterfly": [
+      {
+        "species": "Peacock Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "extended_spring_seasonal_presence",
+        "similarity": 0.863118,
+        "distance": 0.136882,
+        "component_distances": {
+          "circular_month": 0.052778,
+          "numeric": 0.195653,
+          "categorical": 0.12,
+          "traits": 0.285714
+        }
+      },
+      {
+        "species": "Speckled Wood Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "extended_summer_seasonal_presence",
+        "similarity": 0.668297,
+        "distance": 0.331703,
+        "component_distances": {
+          "circular_month": 0.344167,
+          "numeric": 0.188144,
+          "categorical": 0.36,
+          "traits": 0.5
+        }
+      },
+      {
+        "species": "Orange Tip Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "moderate_spring_seasonal_presence",
+        "similarity": 0.63377,
+        "distance": 0.36623,
+        "component_distances": {
+          "circular_month": 0.191181,
+          "numeric": 0.635032,
+          "categorical": 0.28,
+          "traits": 0.5
+        }
+      },
+      {
+        "species": "Meadow Brown Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "extended_summer_seasonal_presence",
+        "similarity": 0.591732,
+        "distance": 0.408268,
+        "component_distances": {
+          "circular_month": 0.271944,
+          "numeric": 0.269962,
+          "categorical": 0.56,
+          "traits": 0.8
+        }
+      },
+      {
+        "species": "Red Admiral Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "extended_summer_seasonal_presence",
+        "similarity": 0.53331,
+        "distance": 0.46669,
+        "component_distances": {
+          "circular_month": 0.363889,
+          "numeric": 0.324537,
+          "categorical": 0.6,
+          "traits": 0.8
+        }
+      }
+    ],
+    "Gatekeeper Butterfly": [
+      {
+        "species": "Orange Tip Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "moderate_spring_seasonal_presence",
+        "similarity": 0.716798,
+        "distance": 0.283202,
+        "component_distances": {
+          "circular_month": 0.438333,
+          "numeric": 0.004045,
+          "categorical": 0.32,
+          "traits": 0.285714
+        }
+      },
+      {
+        "species": "Meadow Brown Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "extended_summer_seasonal_presence",
+        "similarity": 0.69266,
+        "distance": 0.30734,
+        "component_distances": {
+          "circular_month": 0.148472,
+          "numeric": 0.371806,
+          "categorical": 0.4,
+          "traits": 0.5
+        }
+      },
+      {
+        "species": "Speckled Wood Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "extended_summer_seasonal_presence",
+        "similarity": 0.61591,
+        "distance": 0.38409,
+        "component_distances": {
+          "circular_month": 0.207917,
+          "numeric": 0.647694,
+          "categorical": 0.32,
+          "traits": 0.5
+        }
+      },
+      {
+        "species": "Peacock Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "extended_spring_seasonal_presence",
+        "similarity": 0.517686,
+        "distance": 0.482314,
+        "component_distances": {
+          "circular_month": 0.403056,
+          "numeric": 0.532368,
+          "categorical": 0.44,
+          "traits": 0.666667
+        }
+      },
+      {
+        "species": "Brimstone Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "extended_spring_seasonal_presence",
+        "similarity": 0.490572,
+        "distance": 0.509428,
+        "component_distances": {
+          "circular_month": 0.405833,
+          "numeric": 0.636378,
+          "categorical": 0.44,
+          "traits": 0.666667
+        }
+      }
+    ],
+    "Meadow Brown Butterfly": [
+      {
+        "species": "Speckled Wood Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "extended_summer_seasonal_presence",
+        "similarity": 0.714139,
+        "distance": 0.285861,
+        "component_distances": {
+          "circular_month": 0.152222,
+          "numeric": 0.275888,
+          "categorical": 0.28,
+          "traits": 0.666667
+        }
+      },
+      {
+        "species": "Gatekeeper Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "moderate_summer_seasonal_presence",
+        "similarity": 0.69266,
+        "distance": 0.30734,
+        "component_distances": {
+          "circular_month": 0.148472,
+          "numeric": 0.371806,
+          "categorical": 0.4,
+          "traits": 0.5
+        }
+      },
+      {
+        "species": "Peacock Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "extended_spring_seasonal_presence",
+        "similarity": 0.648637,
+        "distance": 0.351363,
+        "component_distances": {
+          "circular_month": 0.308056,
+          "numeric": 0.160562,
+          "categorical": 0.44,
+          "traits": 0.666667
+        }
+      },
+      {
+        "species": "Red Admiral Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "extended_summer_seasonal_presence",
+        "similarity": 0.639806,
+        "distance": 0.360194,
+        "component_distances": {
+          "circular_month": 0.204792,
+          "numeric": 0.589108,
+          "categorical": 0.28,
+          "traits": 0.5
+        }
+      },
+      {
+        "species": "Brimstone Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "extended_spring_seasonal_presence",
+        "similarity": 0.591732,
+        "distance": 0.408268,
+        "component_distances": {
+          "circular_month": 0.271944,
+          "numeric": 0.269962,
+          "categorical": 0.56,
+          "traits": 0.8
+        }
+      }
+    ],
+    "Orange Tip Butterfly": [
+      {
+        "species": "Gatekeeper Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "moderate_summer_seasonal_presence",
+        "similarity": 0.716798,
+        "distance": 0.283202,
+        "component_distances": {
+          "circular_month": 0.438333,
+          "numeric": 0.004045,
+          "categorical": 0.32,
+          "traits": 0.285714
+        }
+      },
+      {
+        "species": "Peacock Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "extended_spring_seasonal_presence",
+        "similarity": 0.679994,
+        "distance": 0.320006,
+        "component_distances": {
+          "circular_month": 0.140625,
+          "numeric": 0.531023,
+          "categorical": 0.28,
+          "traits": 0.5
+        }
+      },
+      {
+        "species": "Brimstone Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "extended_spring_seasonal_presence",
+        "similarity": 0.63377,
+        "distance": 0.36623,
+        "component_distances": {
+          "circular_month": 0.191181,
+          "numeric": 0.635032,
+          "categorical": 0.28,
+          "traits": 0.5
+        }
+      },
+      {
+        "species": "Meadow Brown Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "extended_summer_seasonal_presence",
+        "similarity": 0.558051,
+        "distance": 0.441949,
+        "component_distances": {
+          "circular_month": 0.343333,
+          "numeric": 0.370461,
+          "categorical": 0.56,
+          "traits": 0.666667
+        }
+      },
+      {
+        "species": "Speckled Wood Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "extended_summer_seasonal_presence",
+        "similarity": 0.471191,
+        "distance": 0.528809,
+        "component_distances": {
+          "circular_month": 0.428056,
+          "numeric": 0.646348,
+          "categorical": 0.48,
+          "traits": 0.666667
+        }
+      }
+    ],
+    "Peacock Butterfly": [
+      {
+        "species": "Brimstone Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "extended_spring_seasonal_presence",
+        "similarity": 0.863118,
+        "distance": 0.136882,
+        "component_distances": {
+          "circular_month": 0.052778,
+          "numeric": 0.195653,
+          "categorical": 0.12,
+          "traits": 0.285714
+        }
+      },
+      {
+        "species": "Orange Tip Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "moderate_spring_seasonal_presence",
+        "similarity": 0.679994,
+        "distance": 0.320006,
+        "component_distances": {
+          "circular_month": 0.140625,
+          "numeric": 0.531023,
+          "categorical": 0.28,
+          "traits": 0.5
+        }
+      },
+      {
+        "species": "Meadow Brown Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "extended_summer_seasonal_presence",
+        "similarity": 0.648637,
+        "distance": 0.351363,
+        "component_distances": {
+          "circular_month": 0.308056,
+          "numeric": 0.160562,
+          "categorical": 0.44,
+          "traits": 0.666667
+        }
+      },
+      {
+        "species": "Speckled Wood Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "extended_summer_seasonal_presence",
+        "similarity": 0.623057,
+        "distance": 0.376943,
+        "component_distances": {
+          "circular_month": 0.380278,
+          "numeric": 0.115326,
+          "categorical": 0.48,
+          "traits": 0.666667
+        }
+      },
+      {
+        "species": "Gatekeeper Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "moderate_summer_seasonal_presence",
+        "similarity": 0.517686,
+        "distance": 0.482314,
+        "component_distances": {
+          "circular_month": 0.403056,
+          "numeric": 0.532368,
+          "categorical": 0.44,
+          "traits": 0.666667
+        }
+      }
+    ],
+    "Red Admiral Butterfly": [
+      {
+        "species": "Speckled Wood Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "extended_summer_seasonal_presence",
+        "similarity": 0.692383,
+        "distance": 0.307617,
+        "component_distances": {
+          "circular_month": 0.156111,
+          "numeric": 0.388692,
+          "categorical": 0.24,
+          "traits": 0.666667
+        }
+      },
+      {
+        "species": "Meadow Brown Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "extended_summer_seasonal_presence",
+        "similarity": 0.639806,
+        "distance": 0.360194,
+        "component_distances": {
+          "circular_month": 0.204792,
+          "numeric": 0.589108,
+          "categorical": 0.28,
+          "traits": 0.5
+        }
+      },
+      {
+        "species": "Brimstone Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "extended_spring_seasonal_presence",
+        "similarity": 0.53331,
+        "distance": 0.46669,
+        "component_distances": {
+          "circular_month": 0.363889,
+          "numeric": 0.324537,
+          "categorical": 0.6,
+          "traits": 0.8
+        }
+      },
+      {
+        "species": "Gatekeeper Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "moderate_summer_seasonal_presence",
+        "similarity": 0.454827,
+        "distance": 0.545173,
+        "component_distances": {
+          "circular_month": 0.232361,
+          "numeric": 0.960914,
+          "categorical": 0.56,
+          "traits": 0.666667
+        }
+      },
+      {
+        "species": "Peacock Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "extended_spring_seasonal_presence",
+        "similarity": 0.4525,
+        "distance": 0.5475,
+        "component_distances": {
+          "circular_month": 0.4,
+          "numeric": 0.428546,
+          "categorical": 0.72,
+          "traits": 0.909091
+        }
+      }
+    ],
+    "Speckled Wood Butterfly": [
+      {
+        "species": "Meadow Brown Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "extended_summer_seasonal_presence",
+        "similarity": 0.714139,
+        "distance": 0.285861,
+        "component_distances": {
+          "circular_month": 0.152222,
+          "numeric": 0.275888,
+          "categorical": 0.28,
+          "traits": 0.666667
+        }
+      },
+      {
+        "species": "Red Admiral Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "extended_summer_seasonal_presence",
+        "similarity": 0.692383,
+        "distance": 0.307617,
+        "component_distances": {
+          "circular_month": 0.156111,
+          "numeric": 0.388692,
+          "categorical": 0.24,
+          "traits": 0.666667
+        }
+      },
+      {
+        "species": "Brimstone Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "extended_spring_seasonal_presence",
+        "similarity": 0.668297,
+        "distance": 0.331703,
+        "component_distances": {
+          "circular_month": 0.344167,
+          "numeric": 0.188144,
+          "categorical": 0.36,
+          "traits": 0.5
+        }
+      },
+      {
+        "species": "Peacock Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "extended_spring_seasonal_presence",
+        "similarity": 0.623057,
+        "distance": 0.376943,
+        "component_distances": {
+          "circular_month": 0.380278,
+          "numeric": 0.115326,
+          "categorical": 0.48,
+          "traits": 0.666667
+        }
+      },
+      {
+        "species": "Gatekeeper Butterfly",
+        "model_family": "seasonal_presence",
+        "primary_class": "moderate_summer_seasonal_presence",
+        "similarity": 0.61591,
+        "distance": 0.38409,
+        "component_distances": {
+          "circular_month": 0.207917,
+          "numeric": 0.647694,
+          "categorical": 0.32,
+          "traits": 0.5
+        }
+      }
+    ]
+  },
+  "pairwise": [
+    {
+      "species_a": "Brimstone Butterfly",
+      "species_b": "Gatekeeper Butterfly",
+      "model_family_a": "seasonal_presence",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "extended_spring_seasonal_presence",
+      "primary_class_b": "moderate_summer_seasonal_presence",
+      "similarity": 0.490572,
+      "distance": 0.509428,
+      "component_distances": {
+        "circular_month": 0.405833,
+        "numeric": 0.636378,
+        "categorical": 0.44,
+        "traits": 0.666667
+      },
+      "compared_feature_counts": {
+        "circular_month": 4,
+        "numeric": 2,
+        "categorical": 8,
+        "traits": 3
+      }
+    },
+    {
+      "species_a": "Brimstone Butterfly",
+      "species_b": "Meadow Brown Butterfly",
+      "model_family_a": "seasonal_presence",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "extended_spring_seasonal_presence",
+      "primary_class_b": "extended_summer_seasonal_presence",
+      "similarity": 0.591732,
+      "distance": 0.408268,
+      "component_distances": {
+        "circular_month": 0.271944,
+        "numeric": 0.269962,
+        "categorical": 0.56,
+        "traits": 0.8
+      },
+      "compared_feature_counts": {
+        "circular_month": 4,
+        "numeric": 2,
+        "categorical": 8,
+        "traits": 2
+      }
+    },
+    {
+      "species_a": "Brimstone Butterfly",
+      "species_b": "Orange Tip Butterfly",
+      "model_family_a": "seasonal_presence",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "extended_spring_seasonal_presence",
+      "primary_class_b": "moderate_spring_seasonal_presence",
+      "similarity": 0.63377,
+      "distance": 0.36623,
+      "component_distances": {
+        "circular_month": 0.191181,
+        "numeric": 0.635032,
+        "categorical": 0.28,
+        "traits": 0.5
+      },
+      "compared_feature_counts": {
+        "circular_month": 4,
+        "numeric": 2,
+        "categorical": 8,
+        "traits": 4
+      }
+    },
+    {
+      "species_a": "Brimstone Butterfly",
+      "species_b": "Peacock Butterfly",
+      "model_family_a": "seasonal_presence",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "extended_spring_seasonal_presence",
+      "primary_class_b": "extended_spring_seasonal_presence",
+      "similarity": 0.863118,
+      "distance": 0.136882,
+      "component_distances": {
+        "circular_month": 0.052778,
+        "numeric": 0.195653,
+        "categorical": 0.12,
+        "traits": 0.285714
+      },
+      "compared_feature_counts": {
+        "circular_month": 4,
+        "numeric": 2,
+        "categorical": 8,
+        "traits": 5
+      }
+    },
+    {
+      "species_a": "Brimstone Butterfly",
+      "species_b": "Red Admiral Butterfly",
+      "model_family_a": "seasonal_presence",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "extended_spring_seasonal_presence",
+      "primary_class_b": "extended_summer_seasonal_presence",
+      "similarity": 0.53331,
+      "distance": 0.46669,
+      "component_distances": {
+        "circular_month": 0.363889,
+        "numeric": 0.324537,
+        "categorical": 0.6,
+        "traits": 0.8
+      },
+      "compared_feature_counts": {
+        "circular_month": 4,
+        "numeric": 2,
+        "categorical": 8,
+        "traits": 2
+      }
+    },
+    {
+      "species_a": "Brimstone Butterfly",
+      "species_b": "Speckled Wood Butterfly",
+      "model_family_a": "seasonal_presence",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "extended_spring_seasonal_presence",
+      "primary_class_b": "extended_summer_seasonal_presence",
+      "similarity": 0.668297,
+      "distance": 0.331703,
+      "component_distances": {
+        "circular_month": 0.344167,
+        "numeric": 0.188144,
+        "categorical": 0.36,
+        "traits": 0.5
+      },
+      "compared_feature_counts": {
+        "circular_month": 4,
+        "numeric": 2,
+        "categorical": 8,
+        "traits": 4
+      }
+    },
+    {
+      "species_a": "Gatekeeper Butterfly",
+      "species_b": "Meadow Brown Butterfly",
+      "model_family_a": "seasonal_presence",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "moderate_summer_seasonal_presence",
+      "primary_class_b": "extended_summer_seasonal_presence",
+      "similarity": 0.69266,
+      "distance": 0.30734,
+      "component_distances": {
+        "circular_month": 0.148472,
+        "numeric": 0.371806,
+        "categorical": 0.4,
+        "traits": 0.5
+      },
+      "compared_feature_counts": {
+        "circular_month": 4,
+        "numeric": 2,
+        "categorical": 8,
+        "traits": 4
+      }
+    },
+    {
+      "species_a": "Gatekeeper Butterfly",
+      "species_b": "Orange Tip Butterfly",
+      "model_family_a": "seasonal_presence",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "moderate_summer_seasonal_presence",
+      "primary_class_b": "moderate_spring_seasonal_presence",
+      "similarity": 0.716798,
+      "distance": 0.283202,
+      "component_distances": {
+        "circular_month": 0.438333,
+        "numeric": 0.004045,
+        "categorical": 0.32,
+        "traits": 0.285714
+      },
+      "compared_feature_counts": {
+        "circular_month": 4,
+        "numeric": 2,
+        "categorical": 8,
+        "traits": 5
+      }
+    },
+    {
+      "species_a": "Gatekeeper Butterfly",
+      "species_b": "Peacock Butterfly",
+      "model_family_a": "seasonal_presence",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "moderate_summer_seasonal_presence",
+      "primary_class_b": "extended_spring_seasonal_presence",
+      "similarity": 0.517686,
+      "distance": 0.482314,
+      "component_distances": {
+        "circular_month": 0.403056,
+        "numeric": 0.532368,
+        "categorical": 0.44,
+        "traits": 0.666667
+      },
+      "compared_feature_counts": {
+        "circular_month": 4,
+        "numeric": 2,
+        "categorical": 8,
+        "traits": 3
+      }
+    },
+    {
+      "species_a": "Gatekeeper Butterfly",
+      "species_b": "Red Admiral Butterfly",
+      "model_family_a": "seasonal_presence",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "moderate_summer_seasonal_presence",
+      "primary_class_b": "extended_summer_seasonal_presence",
+      "similarity": 0.454827,
+      "distance": 0.545173,
+      "component_distances": {
+        "circular_month": 0.232361,
+        "numeric": 0.960914,
+        "categorical": 0.56,
+        "traits": 0.666667
+      },
+      "compared_feature_counts": {
+        "circular_month": 4,
+        "numeric": 2,
+        "categorical": 8,
+        "traits": 3
+      }
+    },
+    {
+      "species_a": "Gatekeeper Butterfly",
+      "species_b": "Speckled Wood Butterfly",
+      "model_family_a": "seasonal_presence",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "moderate_summer_seasonal_presence",
+      "primary_class_b": "extended_summer_seasonal_presence",
+      "similarity": 0.61591,
+      "distance": 0.38409,
+      "component_distances": {
+        "circular_month": 0.207917,
+        "numeric": 0.647694,
+        "categorical": 0.32,
+        "traits": 0.5
+      },
+      "compared_feature_counts": {
+        "circular_month": 4,
+        "numeric": 2,
+        "categorical": 8,
+        "traits": 4
+      }
+    },
+    {
+      "species_a": "Meadow Brown Butterfly",
+      "species_b": "Orange Tip Butterfly",
+      "model_family_a": "seasonal_presence",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "extended_summer_seasonal_presence",
+      "primary_class_b": "moderate_spring_seasonal_presence",
+      "similarity": 0.558051,
+      "distance": 0.441949,
+      "component_distances": {
+        "circular_month": 0.343333,
+        "numeric": 0.370461,
+        "categorical": 0.56,
+        "traits": 0.666667
+      },
+      "compared_feature_counts": {
+        "circular_month": 4,
+        "numeric": 2,
+        "categorical": 8,
+        "traits": 3
+      }
+    },
+    {
+      "species_a": "Meadow Brown Butterfly",
+      "species_b": "Peacock Butterfly",
+      "model_family_a": "seasonal_presence",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "extended_summer_seasonal_presence",
+      "primary_class_b": "extended_spring_seasonal_presence",
+      "similarity": 0.648637,
+      "distance": 0.351363,
+      "component_distances": {
+        "circular_month": 0.308056,
+        "numeric": 0.160562,
+        "categorical": 0.44,
+        "traits": 0.666667
+      },
+      "compared_feature_counts": {
+        "circular_month": 4,
+        "numeric": 2,
+        "categorical": 8,
+        "traits": 3
+      }
+    },
+    {
+      "species_a": "Meadow Brown Butterfly",
+      "species_b": "Red Admiral Butterfly",
+      "model_family_a": "seasonal_presence",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "extended_summer_seasonal_presence",
+      "primary_class_b": "extended_summer_seasonal_presence",
+      "similarity": 0.639806,
+      "distance": 0.360194,
+      "component_distances": {
+        "circular_month": 0.204792,
+        "numeric": 0.589108,
+        "categorical": 0.28,
+        "traits": 0.5
+      },
+      "compared_feature_counts": {
+        "circular_month": 4,
+        "numeric": 2,
+        "categorical": 8,
+        "traits": 4
+      }
+    },
+    {
+      "species_a": "Meadow Brown Butterfly",
+      "species_b": "Speckled Wood Butterfly",
+      "model_family_a": "seasonal_presence",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "extended_summer_seasonal_presence",
+      "primary_class_b": "extended_summer_seasonal_presence",
+      "similarity": 0.714139,
+      "distance": 0.285861,
+      "component_distances": {
+        "circular_month": 0.152222,
+        "numeric": 0.275888,
+        "categorical": 0.28,
+        "traits": 0.666667
+      },
+      "compared_feature_counts": {
+        "circular_month": 4,
+        "numeric": 2,
+        "categorical": 8,
+        "traits": 3
+      }
+    },
+    {
+      "species_a": "Orange Tip Butterfly",
+      "species_b": "Peacock Butterfly",
+      "model_family_a": "seasonal_presence",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "moderate_spring_seasonal_presence",
+      "primary_class_b": "extended_spring_seasonal_presence",
+      "similarity": 0.679994,
+      "distance": 0.320006,
+      "component_distances": {
+        "circular_month": 0.140625,
+        "numeric": 0.531023,
+        "categorical": 0.28,
+        "traits": 0.5
+      },
+      "compared_feature_counts": {
+        "circular_month": 4,
+        "numeric": 2,
+        "categorical": 8,
+        "traits": 4
+      }
+    },
+    {
+      "species_a": "Orange Tip Butterfly",
+      "species_b": "Red Admiral Butterfly",
+      "model_family_a": "seasonal_presence",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "moderate_spring_seasonal_presence",
+      "primary_class_b": "extended_summer_seasonal_presence",
+      "similarity": 0.296441,
+      "distance": 0.703559,
+      "component_distances": {
+        "circular_month": 0.499167,
+        "numeric": 0.959569,
+        "categorical": 0.72,
+        "traits": 0.8
+      },
+      "compared_feature_counts": {
+        "circular_month": 4,
+        "numeric": 2,
+        "categorical": 8,
+        "traits": 2
+      }
+    },
+    {
+      "species_a": "Orange Tip Butterfly",
+      "species_b": "Speckled Wood Butterfly",
+      "model_family_a": "seasonal_presence",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "moderate_spring_seasonal_presence",
+      "primary_class_b": "extended_summer_seasonal_presence",
+      "similarity": 0.471191,
+      "distance": 0.528809,
+      "component_distances": {
+        "circular_month": 0.428056,
+        "numeric": 0.646348,
+        "categorical": 0.48,
+        "traits": 0.666667
+      },
+      "compared_feature_counts": {
+        "circular_month": 4,
+        "numeric": 2,
+        "categorical": 8,
+        "traits": 3
+      }
+    },
+    {
+      "species_a": "Peacock Butterfly",
+      "species_b": "Red Admiral Butterfly",
+      "model_family_a": "seasonal_presence",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "extended_spring_seasonal_presence",
+      "primary_class_b": "extended_summer_seasonal_presence",
+      "similarity": 0.4525,
+      "distance": 0.5475,
+      "component_distances": {
+        "circular_month": 0.4,
+        "numeric": 0.428546,
+        "categorical": 0.72,
+        "traits": 0.909091
+      },
+      "compared_feature_counts": {
+        "circular_month": 4,
+        "numeric": 2,
+        "categorical": 8,
+        "traits": 1
+      }
+    },
+    {
+      "species_a": "Peacock Butterfly",
+      "species_b": "Speckled Wood Butterfly",
+      "model_family_a": "seasonal_presence",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "extended_spring_seasonal_presence",
+      "primary_class_b": "extended_summer_seasonal_presence",
+      "similarity": 0.623057,
+      "distance": 0.376943,
+      "component_distances": {
+        "circular_month": 0.380278,
+        "numeric": 0.115326,
+        "categorical": 0.48,
+        "traits": 0.666667
+      },
+      "compared_feature_counts": {
+        "circular_month": 4,
+        "numeric": 2,
+        "categorical": 8,
+        "traits": 3
+      }
+    },
+    {
+      "species_a": "Red Admiral Butterfly",
+      "species_b": "Speckled Wood Butterfly",
+      "model_family_a": "seasonal_presence",
+      "model_family_b": "seasonal_presence",
+      "primary_class_a": "extended_summer_seasonal_presence",
+      "primary_class_b": "extended_summer_seasonal_presence",
+      "similarity": 0.692383,
+      "distance": 0.307617,
+      "component_distances": {
+        "circular_month": 0.156111,
+        "numeric": 0.388692,
+        "categorical": 0.24,
+        "traits": 0.666667
+      },
+      "compared_feature_counts": {
+        "circular_month": 4,
+        "numeric": 2,
+        "categorical": 8,
+        "traits": 3
+      }
+    }
+  ]
+}

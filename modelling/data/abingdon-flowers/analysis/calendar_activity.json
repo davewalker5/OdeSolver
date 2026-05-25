@@ -1,0 +1,703 @@
+{
+  "schema_version": "seasonal-ecological-calendar-activity/v1",
+  "source_cluster_schema_version": "seasonal-ecological-calendar-clusters/v1",
+  "n_clusters": 8,
+  "normalisation": {
+    "method": "species_max",
+    "description": "Each species is normalised to its own maximum synthesised value before cluster-level monthly aggregation.",
+    "value_column": "synthesised"
+  },
+  "clusters": [
+    {
+      "cluster_id": 1,
+      "calendar_label": "Snowberry neighbourhood",
+      "description": "Single-species cluster containing Snowberry, mainly representing winter visitor with autumn arrival component. The defining pattern is a winter peak around September, a moderate autumn component, moderate summer suppression, and balanced response dynamics. Its defining traits include year wrapping winter presence, atypical winter peak, and moderate autumn component. Compared with the full species set, trough month is lower than the whole-set average and autumn to winter weight ratio is higher than the whole-set average.",
+      "n_species": 1,
+      "species": [
+        "Snowberry"
+      ],
+      "monthly_activity": [
+        {
+          "month": 1,
+          "month_name": "January",
+          "mean_activity": 0.289268,
+          "n_species_contributing": 1
+        },
+        {
+          "month": 2,
+          "month_name": "February",
+          "mean_activity": 0.053012,
+          "n_species_contributing": 1
+        },
+        {
+          "month": 3,
+          "month_name": "March",
+          "mean_activity": 0.009363,
+          "n_species_contributing": 1
+        },
+        {
+          "month": 4,
+          "month_name": "April",
+          "mean_activity": 0.001653,
+          "n_species_contributing": 1
+        },
+        {
+          "month": 5,
+          "month_name": "May",
+          "mean_activity": 0.000292,
+          "n_species_contributing": 1
+        },
+        {
+          "month": 6,
+          "month_name": "June",
+          "mean_activity": 0.035926,
+          "n_species_contributing": 1
+        },
+        {
+          "month": 7,
+          "month_name": "July",
+          "mean_activity": 0.291041,
+          "n_species_contributing": 1
+        },
+        {
+          "month": 8,
+          "month_name": "August",
+          "mean_activity": 0.706134,
+          "n_species_contributing": 1
+        },
+        {
+          "month": 9,
+          "month_name": "September",
+          "mean_activity": 1.0,
+          "n_species_contributing": 1
+        },
+        {
+          "month": 10,
+          "month_name": "October",
+          "mean_activity": 0.936094,
+          "n_species_contributing": 1
+        },
+        {
+          "month": 11,
+          "month_name": "November",
+          "mean_activity": 0.581471,
+          "n_species_contributing": 1
+        },
+        {
+          "month": 12,
+          "month_name": "December",
+          "mean_activity": 0.244276,
+          "n_species_contributing": 1
+        }
+      ]
+    },
+    {
+      "cluster_id": 2,
+      "calendar_label": "Resident With Summer Detectability Collapse",
+      "description": "Cluster of 6 species, mainly representing resident with summer detectability collapse. Detectability peaks around May and and is lowest around September. The shared pattern includes moderate baseline presence, moderate summer suppression, weak autumn component, and rapid decline biased response dynamics. Common high-support traits include resident detectability pattern, moderate summer suppression, and late spring early summer detectability peak. Compared with the full species set, fit score is higher than the whole-set average.",
+      "n_species": 6,
+      "species": [
+        "Nettle",
+        "Daisy",
+        "Shepherds Purse",
+        "Dandelion",
+        "Common Cleavers",
+        "Germander Speedwell"
+      ],
+      "monthly_activity": [
+        {
+          "month": 1,
+          "month_name": "January",
+          "mean_activity": 0.262306,
+          "n_species_contributing": 6
+        },
+        {
+          "month": 2,
+          "month_name": "February",
+          "mean_activity": 0.309034,
+          "n_species_contributing": 6
+        },
+        {
+          "month": 3,
+          "month_name": "March",
+          "mean_activity": 0.423749,
+          "n_species_contributing": 6
+        },
+        {
+          "month": 4,
+          "month_name": "April",
+          "mean_activity": 0.814026,
+          "n_species_contributing": 6
+        },
+        {
+          "month": 5,
+          "month_name": "May",
+          "mean_activity": 0.990138,
+          "n_species_contributing": 6
+        },
+        {
+          "month": 6,
+          "month_name": "June",
+          "mean_activity": 0.687428,
+          "n_species_contributing": 6
+        },
+        {
+          "month": 7,
+          "month_name": "July",
+          "mean_activity": 0.327064,
+          "n_species_contributing": 6
+        },
+        {
+          "month": 8,
+          "month_name": "August",
+          "mean_activity": 0.205891,
+          "n_species_contributing": 6
+        },
+        {
+          "month": 9,
+          "month_name": "September",
+          "mean_activity": 0.199651,
+          "n_species_contributing": 6
+        },
+        {
+          "month": 10,
+          "month_name": "October",
+          "mean_activity": 0.215433,
+          "n_species_contributing": 6
+        },
+        {
+          "month": 11,
+          "month_name": "November",
+          "mean_activity": 0.225705,
+          "n_species_contributing": 6
+        },
+        {
+          "month": 12,
+          "month_name": "December",
+          "mean_activity": 0.340456,
+          "n_species_contributing": 6
+        }
+      ]
+    },
+    {
+      "cluster_id": 3,
+      "calendar_label": "Narrow Winter Seasonal Presence",
+      "description": "Cluster of 2 species, mainly representing narrow winter seasonal presence. The fitted active window runs roughly from January to March, with a mean peak around February, and and an average width of 1.7 months. It is characterised by narrow season and moderate active window. Common high-support traits include winter peak, narrow season, and strong offseason suppression. Compared with the full species set, season end month is lower than the whole-set average and season midpoint month is lower than the whole-set average.",
+      "n_species": 2,
+      "species": [
+        "Snowdrop",
+        "Winter Aconite"
+      ],
+      "monthly_activity": [
+        {
+          "month": 1,
+          "month_name": "January",
+          "mean_activity": 0.211124,
+          "n_species_contributing": 2
+        },
+        {
+          "month": 2,
+          "month_name": "February",
+          "mean_activity": 1.0,
+          "n_species_contributing": 2
+        },
+        {
+          "month": 3,
+          "month_name": "March",
+          "mean_activity": 0.290158,
+          "n_species_contributing": 2
+        },
+        {
+          "month": 4,
+          "month_name": "April",
+          "mean_activity": 0.000638,
+          "n_species_contributing": 2
+        },
+        {
+          "month": 5,
+          "month_name": "May",
+          "mean_activity": 1e-06,
+          "n_species_contributing": 2
+        },
+        {
+          "month": 6,
+          "month_name": "June",
+          "mean_activity": 0.0,
+          "n_species_contributing": 2
+        },
+        {
+          "month": 7,
+          "month_name": "July",
+          "mean_activity": 0.0,
+          "n_species_contributing": 2
+        },
+        {
+          "month": 8,
+          "month_name": "August",
+          "mean_activity": 0.0,
+          "n_species_contributing": 2
+        },
+        {
+          "month": 9,
+          "month_name": "September",
+          "mean_activity": 0.0,
+          "n_species_contributing": 2
+        },
+        {
+          "month": 10,
+          "month_name": "October",
+          "mean_activity": 0.0,
+          "n_species_contributing": 2
+        },
+        {
+          "month": 11,
+          "month_name": "November",
+          "mean_activity": 0.0,
+          "n_species_contributing": 2
+        },
+        {
+          "month": 12,
+          "month_name": "December",
+          "mean_activity": 0.0,
+          "n_species_contributing": 2
+        }
+      ]
+    },
+    {
+      "cluster_id": 4,
+      "calendar_label": "Extended Spring Seasonal Presence",
+      "description": "Cluster of 8 species, mainly representing extended spring seasonal presence. The fitted active window runs roughly from April to October, with a mean peak around May, and and an average width of 6.0 months. It is characterised by broad season and moderate active window. Common high-support traits include spring peak, strong post peak decline, and early peak alignment.",
+      "n_species": 8,
+      "species": [
+        "Buttercup",
+        "Red Dead Nettle",
+        "Doves Foot Cranesbill",
+        "Green Alkanet",
+        "Honeysuckle",
+        "Red Campion",
+        "Common Comfrey",
+        "Oxeye Daisy"
+      ],
+      "monthly_activity": [
+        {
+          "month": 1,
+          "month_name": "January",
+          "mean_activity": 0.000104,
+          "n_species_contributing": 8
+        },
+        {
+          "month": 2,
+          "month_name": "February",
+          "mean_activity": 0.021833,
+          "n_species_contributing": 8
+        },
+        {
+          "month": 3,
+          "month_name": "March",
+          "mean_activity": 0.167577,
+          "n_species_contributing": 8
+        },
+        {
+          "month": 4,
+          "month_name": "April",
+          "mean_activity": 0.591781,
+          "n_species_contributing": 8
+        },
+        {
+          "month": 5,
+          "month_name": "May",
+          "mean_activity": 0.948469,
+          "n_species_contributing": 8
+        },
+        {
+          "month": 6,
+          "month_name": "June",
+          "mean_activity": 0.582796,
+          "n_species_contributing": 8
+        },
+        {
+          "month": 7,
+          "month_name": "July",
+          "mean_activity": 0.264913,
+          "n_species_contributing": 8
+        },
+        {
+          "month": 8,
+          "month_name": "August",
+          "mean_activity": 0.158593,
+          "n_species_contributing": 8
+        },
+        {
+          "month": 9,
+          "month_name": "September",
+          "mean_activity": 0.062315,
+          "n_species_contributing": 8
+        },
+        {
+          "month": 10,
+          "month_name": "October",
+          "mean_activity": 0.008137,
+          "n_species_contributing": 8
+        },
+        {
+          "month": 11,
+          "month_name": "November",
+          "mean_activity": 9e-06,
+          "n_species_contributing": 8
+        },
+        {
+          "month": 12,
+          "month_name": "December",
+          "mean_activity": 0.0,
+          "n_species_contributing": 8
+        }
+      ]
+    },
+    {
+      "cluster_id": 5,
+      "calendar_label": "Extended Summer Seasonal Presence",
+      "description": "Cluster of 7 species, mainly representing extended summer seasonal presence. The fitted active window runs roughly from May to November, with a mean peak around July, and and an average width of 5.7 months. It is characterised by very broad season and moderate active window. Common high-support traits include summer peak, strong offseason suppression, and strong post peak decline.",
+      "n_species": 7,
+      "species": [
+        "Dog Rose",
+        "Teasel",
+        "Red Clover",
+        "White Campion",
+        "Cuckoo Pint",
+        "Common Poppy",
+        "Cornflower"
+      ],
+      "monthly_activity": [
+        {
+          "month": 1,
+          "month_name": "January",
+          "mean_activity": 0.0,
+          "n_species_contributing": 7
+        },
+        {
+          "month": 2,
+          "month_name": "February",
+          "mean_activity": 3e-06,
+          "n_species_contributing": 7
+        },
+        {
+          "month": 3,
+          "month_name": "March",
+          "mean_activity": 0.001238,
+          "n_species_contributing": 7
+        },
+        {
+          "month": 4,
+          "month_name": "April",
+          "mean_activity": 0.064865,
+          "n_species_contributing": 7
+        },
+        {
+          "month": 5,
+          "month_name": "May",
+          "mean_activity": 0.460198,
+          "n_species_contributing": 7
+        },
+        {
+          "month": 6,
+          "month_name": "June",
+          "mean_activity": 0.856157,
+          "n_species_contributing": 7
+        },
+        {
+          "month": 7,
+          "month_name": "July",
+          "mean_activity": 0.72511,
+          "n_species_contributing": 7
+        },
+        {
+          "month": 8,
+          "month_name": "August",
+          "mean_activity": 0.463901,
+          "n_species_contributing": 7
+        },
+        {
+          "month": 9,
+          "month_name": "September",
+          "mean_activity": 0.199741,
+          "n_species_contributing": 7
+        },
+        {
+          "month": 10,
+          "month_name": "October",
+          "mean_activity": 0.074768,
+          "n_species_contributing": 7
+        },
+        {
+          "month": 11,
+          "month_name": "November",
+          "mean_activity": 0.01478,
+          "n_species_contributing": 7
+        },
+        {
+          "month": 12,
+          "month_name": "December",
+          "mean_activity": 6e-05,
+          "n_species_contributing": 7
+        }
+      ]
+    },
+    {
+      "cluster_id": 6,
+      "calendar_label": "Moderate Summer Seasonal Presence",
+      "description": "Cluster of 4 species, mainly representing moderate summer seasonal presence. The fitted active window runs roughly from May to September, with a mean peak around July, and and an average width of 3.5 months. It is characterised by moderate season and moderate active window. Common high-support traits include summer peak, central peak alignment, and moderate seasonal window.",
+      "n_species": 4,
+      "species": [
+        "Horsetail",
+        "Rosebay Willowherb",
+        "Goats Beard",
+        "White Clover"
+      ],
+      "monthly_activity": [
+        {
+          "month": 1,
+          "month_name": "January",
+          "mean_activity": 0.0,
+          "n_species_contributing": 4
+        },
+        {
+          "month": 2,
+          "month_name": "February",
+          "mean_activity": 0.0,
+          "n_species_contributing": 4
+        },
+        {
+          "month": 3,
+          "month_name": "March",
+          "mean_activity": 0.000537,
+          "n_species_contributing": 4
+        },
+        {
+          "month": 4,
+          "month_name": "April",
+          "mean_activity": 0.063317,
+          "n_species_contributing": 4
+        },
+        {
+          "month": 5,
+          "month_name": "May",
+          "mean_activity": 0.387647,
+          "n_species_contributing": 4
+        },
+        {
+          "month": 6,
+          "month_name": "June",
+          "mean_activity": 0.827421,
+          "n_species_contributing": 4
+        },
+        {
+          "month": 7,
+          "month_name": "July",
+          "mean_activity": 0.736237,
+          "n_species_contributing": 4
+        },
+        {
+          "month": 8,
+          "month_name": "August",
+          "mean_activity": 0.401753,
+          "n_species_contributing": 4
+        },
+        {
+          "month": 9,
+          "month_name": "September",
+          "mean_activity": 0.090029,
+          "n_species_contributing": 4
+        },
+        {
+          "month": 10,
+          "month_name": "October",
+          "mean_activity": 0.000107,
+          "n_species_contributing": 4
+        },
+        {
+          "month": 11,
+          "month_name": "November",
+          "mean_activity": 0.0,
+          "n_species_contributing": 4
+        },
+        {
+          "month": 12,
+          "month_name": "December",
+          "mean_activity": 0.0,
+          "n_species_contributing": 4
+        }
+      ]
+    },
+    {
+      "cluster_id": 7,
+      "calendar_label": "Moderate Spring Seasonal Presence",
+      "description": "Cluster of 5 species, mainly representing moderate spring seasonal presence. The fitted active window runs roughly from April to June, with a mean peak around May, and and an average width of 2.6 months. It is characterised by moderate season and sharp active window. Common high-support traits include spring peak, moderate season, and strong offseason suppression. Compared with the full species set, season end month is lower than the whole-set average.",
+      "n_species": 5,
+      "species": [
+        "Common Vetch",
+        "Cow Parsley",
+        "Lesser Celandine",
+        "Cowslip",
+        "Garlic Mustard"
+      ],
+      "monthly_activity": [
+        {
+          "month": 1,
+          "month_name": "January",
+          "mean_activity": 0.000183,
+          "n_species_contributing": 5
+        },
+        {
+          "month": 2,
+          "month_name": "February",
+          "mean_activity": 0.038141,
+          "n_species_contributing": 5
+        },
+        {
+          "month": 3,
+          "month_name": "March",
+          "mean_activity": 0.197269,
+          "n_species_contributing": 5
+        },
+        {
+          "month": 4,
+          "month_name": "April",
+          "mean_activity": 0.608199,
+          "n_species_contributing": 5
+        },
+        {
+          "month": 5,
+          "month_name": "May",
+          "mean_activity": 0.779512,
+          "n_species_contributing": 5
+        },
+        {
+          "month": 6,
+          "month_name": "June",
+          "mean_activity": 0.297048,
+          "n_species_contributing": 5
+        },
+        {
+          "month": 7,
+          "month_name": "July",
+          "mean_activity": 0.047299,
+          "n_species_contributing": 5
+        },
+        {
+          "month": 8,
+          "month_name": "August",
+          "mean_activity": 0.000127,
+          "n_species_contributing": 5
+        },
+        {
+          "month": 9,
+          "month_name": "September",
+          "mean_activity": 0.0,
+          "n_species_contributing": 5
+        },
+        {
+          "month": 10,
+          "month_name": "October",
+          "mean_activity": 0.0,
+          "n_species_contributing": 5
+        },
+        {
+          "month": 11,
+          "month_name": "November",
+          "mean_activity": 0.0,
+          "n_species_contributing": 5
+        },
+        {
+          "month": 12,
+          "month_name": "December",
+          "mean_activity": 0.0,
+          "n_species_contributing": 5
+        }
+      ]
+    },
+    {
+      "cluster_id": 8,
+      "calendar_label": "Narrow Spring Seasonal Presence",
+      "description": "Cluster of 2 species, mainly representing narrow spring seasonal presence. The fitted active window runs roughly from May to June, with a mean peak around May, and and an average width of 1.1 months. It is characterised by narrow season and sharp active window. Common high-support traits include spring peak, narrow season, and moderate offseason suppression. Compared with the full species set, season width months is lower than the whole-set average and season end month is lower than the whole-set average.",
+      "n_species": 2,
+      "species": [
+        "Bluebell",
+        "Yellow Flag Iris"
+      ],
+      "monthly_activity": [
+        {
+          "month": 1,
+          "month_name": "January",
+          "mean_activity": 0.0,
+          "n_species_contributing": 2
+        },
+        {
+          "month": 2,
+          "month_name": "February",
+          "mean_activity": 1e-06,
+          "n_species_contributing": 2
+        },
+        {
+          "month": 3,
+          "month_name": "March",
+          "mean_activity": 0.003553,
+          "n_species_contributing": 2
+        },
+        {
+          "month": 4,
+          "month_name": "April",
+          "mean_activity": 0.347482,
+          "n_species_contributing": 2
+        },
+        {
+          "month": 5,
+          "month_name": "May",
+          "mean_activity": 1.0,
+          "n_species_contributing": 2
+        },
+        {
+          "month": 6,
+          "month_name": "June",
+          "mean_activity": 0.163968,
+          "n_species_contributing": 2
+        },
+        {
+          "month": 7,
+          "month_name": "July",
+          "mean_activity": 0.000223,
+          "n_species_contributing": 2
+        },
+        {
+          "month": 8,
+          "month_name": "August",
+          "mean_activity": 0.0,
+          "n_species_contributing": 2
+        },
+        {
+          "month": 9,
+          "month_name": "September",
+          "mean_activity": 0.0,
+          "n_species_contributing": 2
+        },
+        {
+          "month": 10,
+          "month_name": "October",
+          "mean_activity": 0.0,
+          "n_species_contributing": 2
+        },
+        {
+          "month": 11,
+          "month_name": "November",
+          "mean_activity": 0.0,
+          "n_species_contributing": 2
+        },
+        {
+          "month": 12,
+          "month_name": "December",
+          "mean_activity": 0.0,
+          "n_species_contributing": 2
+        }
+      ]
+    }
+  ]
+}
